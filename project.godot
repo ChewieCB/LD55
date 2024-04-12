@@ -14,6 +14,14 @@ config/name="LD55"
 config/features=PackedStringArray("4.2", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[autoload]
+
+SoundManager="*res://addons/sound_manager/sound_manager.gd"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/Todo_Manager/plugin.cfg", "res://addons/godot_state_charts/plugin.cfg", "res://addons/sound_manager/plugin.cfg")
+
 [rendering]
 
 renderer/rendering_method="gl_compatibility"
