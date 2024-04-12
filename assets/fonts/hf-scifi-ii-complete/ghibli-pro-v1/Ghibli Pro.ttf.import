@@ -1,0 +1,33 @@
+[remap]
+
+importer="font_data_dynamic"
+type="FontFile"
+uid="uid://bikau43nr4e3l"
+path="res://.godot/imported/Ghibli Pro.ttf-9211c107c328f78619c0ef3deb3ef99e.fontdata"
+
+[deps]
+
+source_file="res://assets/fonts/hf-scifi-ii-complete/ghibli-pro-v1/Ghibli Pro.ttf"
+dest_files=["res://.godot/imported/Ghibli Pro.ttf-9211c107c328f78619c0ef3deb3ef99e.fontdata"]
+
+[params]
+
+Rendering=null
+antialiasing=1
+generate_mipmaps=false
+multichannel_signed_distance_field=false
+msdf_pixel_range=8
+msdf_size=48
+allow_system_fallback=true
+force_autohinter=false
+hinting=1
+subpixel_positioning=1
+oversampling=0.0
+Fallbacks=null
+fallbacks=[]
+Compress=null
+compress=true
+preload=[]
+language_support={}
+script_support={}
+opentype_features={}
