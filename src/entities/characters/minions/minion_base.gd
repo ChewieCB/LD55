@@ -14,9 +14,6 @@ var crusader_target: Vector2
 func _spawn():
 	# TODO - play some animation or effect before beginning the movement
 	health_ui.max_value = attributes.health
-	await get_tree().physics_frame
-	await get_tree().physics_frame
-	crusader = get_tree().get_nodes_in_group("crusader")[0]
 	if attacks:
 		current_attack = attacks[0]
 

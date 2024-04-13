@@ -25,6 +25,7 @@ var current_attack: AttackResource
 
 
 func _ready():
+	await get_owner().ready
 	_spawn()
 
 
