@@ -65,10 +65,20 @@ func _input(event: InputEvent) -> void:
 	if not is_casting:
 		return
 	
-	for action in CASTABLE_INPUTS:
-		if Input.is_action_just_released(action):
-			cast_input(action)
-			return
+	var action
+	if event.is_action_pressed("up"):
+		action = "up"
+	elif event.is_action_pressed("down"):
+		action = "down"
+	elif event.is_action_pressed("left"):
+		action = "left"
+	elif event.is_action_pressed("right"):
+		action = "right"
+	elif event.is_action_pressed("delete"):
+		action = "delete"
+	
+	if action:
+		cast_input(action)
 
 
 func _process(delta):
@@ -144,7 +154,8 @@ func cast_readied_spell():
 				# Double health
 				var _minion = current_spell.scene.instantiate()
 				_minion.global_position = mouse_global_pos
-				_minion.current_health *= 2
+				_minion.attributes.health *= 2
+				_minion.current_health = _minion.attributes.health
 				_minion.scale *= 1.4
 				_minion.crusader = crusader
 				GameManager.main_game.minion_spawn.add_child(_minion)
@@ -170,13 +181,14 @@ func finish_cast():
 
 
 func cast_input(input: String):
-	if len(current_spell_str) >= MAX_SPELL_LENGTH:
+	if len(spell_input) >= MAX_SPELL_LENGTH:
 		return
 	
 	if input not in CASTABLE_INPUTS:
 		return
-	elif input == "delete":
-		if len(current_spell_str) > 0:
+	
+	if input == "delete":
+		if len(spell_input) > 0:
 			spell_input = spell_input.substr(0, len(spell_input) - 1)
 	else:
 		spell_input += input[0].to_upper()
