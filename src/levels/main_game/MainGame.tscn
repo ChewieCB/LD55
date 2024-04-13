@@ -1,20 +1,26 @@
-[gd_scene load_steps=12 format=3 uid="uid://bjabavwsrnt0y"]
+[gd_scene load_steps=13 format=3 uid="uid://bjabavwsrnt0y"]
 
 [ext_resource type="Script" path="res://src/levels/main_game/main_game.gd" id="1_4qjmh"]
 [ext_resource type="Texture2D" uid="uid://8q5gyn8ex2wv" path="res://assets/sprite/square.png" id="1_vuavk"]
 [ext_resource type="Texture2D" uid="uid://cjwi0pfmn0q6j" path="res://assets/sprite/home_building.png" id="2_ryj4c"]
-[ext_resource type="PackedScene" uid="uid://cl2vbhwlslu0h" path="res://src/entities/hero/TheHero.tscn" id="3_700ak"]
 [ext_resource type="Script" path="res://src/levels/main_game/follow_camera.gd" id="3_nexuo"]
-[ext_resource type="PackedScene" uid="uid://b428f1lj6tuvn" path="res://src/entities/Zombie.tscn" id="4_p2j4l"]
-[ext_resource type="PackedScene" uid="uid://b7y4r3ixcgn8b" path="res://src/entities/Mummy.tscn" id="6_0ykfp"]
+[ext_resource type="PackedScene" uid="uid://binmlcu1tn3wn" path="res://src/entities/ritual_point/RitualPoint.tscn" id="4_62qie"]
+[ext_resource type="PackedScene" uid="uid://bev1egpx7qcvi" path="res://src/entities/characters/crusader/Crusader.tscn" id="4_udo82"]
 [ext_resource type="PackedScene" uid="uid://c3hse0gwreuje" path="res://src/ui/GameUI.tscn" id="6_k6rr8"]
 [ext_resource type="PackedScene" uid="uid://bl8brofna47l6" path="res://src/entities/player/PlayerControl.tscn" id="6_r66m5"]
+[ext_resource type="PackedScene" uid="uid://y43wlad4886x" path="res://src/entities/characters/minions/MinionBase.tscn" id="8_oocfn"]
 
-[sub_resource type="Curve2D" id="Curve2D_i2xrd"]
+[sub_resource type="Curve2D" id="Curve2D_g2yoo"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 264, 142, 0, 0, 0, 0, 702, 26, 0, 0, 0, 0, 1016, 240, 0, 0, 0, 0, 873, 493, 0, 0, 0, 0, 280, 561, 0, 0, 0, 0, 108, 318, 0, 0, 0, 0, 260, 144)
+"points": PackedVector2Array(0, 0, 0, 0, 244.002, 44.0002, 0, 0, 0, 0, 127.002, 242, 0, 0, 0, 0, 216.002, 407.999, 0, 0, 0, 0, 223.002, 562.999, 0, 0, 0, 0, 443.001, 656.999, 0, 0, 0, 0, 606.001, 579.999, 0, 0, 0, 0, 738.001, 528.999, 0, 0, 0, 0, 971, 633.999, 0, 0, 0, 0, 1222, 620.999, 0, 0, 0, 0, 1218, 458.999, 0, 0, 0, 0, 1152, 313, 0, 0, 0, 0, 922, 404.999, 0, 0, 0, 0, 803.001, 421.999, 0, 0, 0, 0, 821, 310, 0, 0, 0, 0, 898, 246, 0, 0, 0, 0, 1061, 176, 0, 0, 0, 0, 932, 106, 0, 0, 0, 0, 749.001, 83.0001, 0, 0, 0, 0, 490.001, 103)
 }
-point_count = 7
+point_count = 19
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_e1llw"]
+vertices = PackedVector2Array(753, 424, 783, 333, 783, 334, 821, 243, 670, 16, 1359, 13, 1361, 755, 1341, 752, 752, 180, 1337, 759, 12, 755, 384, 411, 12, 8, 322, 311, 323, 192, 526, 156, 666, 5, 742, 186)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2), PackedInt32Array(3, 4, 5, 6, 7), PackedInt32Array(4, 3, 8), PackedInt32Array(0, 2, 3, 7, 9), PackedInt32Array(0, 9, 10, 11), PackedInt32Array(11, 10, 12, 13), PackedInt32Array(14, 13, 12), PackedInt32Array(15, 14, 12, 16, 4), PackedInt32Array(17, 15, 4, 8)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(3, -1, 2, 765, 1359, 770, 747, 415, 390, 401, 332, 308, 333, 200, 526, 166, 753, 198, 673, -5), PackedVector2Array(1369, 3, 663, 7, 740, 183, 809, 246, 774, 330, 744, 423, 1321, 758, 1372, 768)])
+source_geometry_group_name = &"navigation_polygon_source_group"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_w0twn"]
 size = Vector2(175, 63.5)
@@ -23,7 +29,7 @@ size = Vector2(175, 63.5)
 script = ExtResource("1_4qjmh")
 
 [node name="Ground" type="Sprite2D" parent="."]
-self_modulate = Color(0, 0, 0, 1)
+self_modulate = Color(0.22847, 0.129932, 0.144078, 1)
 position = Vector2(562, 350)
 scale = Vector2(48.6094, 48.6094)
 texture = ExtResource("1_vuavk")
@@ -31,11 +37,14 @@ texture = ExtResource("1_vuavk")
 [node name="Path2D" type="Path2D" parent="Ground"]
 position = Vector2(-11.5616, -7.20026)
 scale = Vector2(0.0205722, 0.0205722)
-curve = SubResource("Curve2D_i2xrd")
+curve = SubResource("Curve2D_g2yoo")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Ground/Path2D"]
-position = Vector2(264, 142)
-rotation = -0.258896
+position = Vector2(244.002, 44.0002)
+rotation = 2.1045
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+navigation_polygon = SubResource("NavigationPolygon_e1llw")
 
 [node name="YSort" type="Node2D" parent="."]
 y_sort_enabled = true
@@ -53,21 +62,36 @@ texture = ExtResource("2_ryj4c")
 position = Vector2(5.5, 21.75)
 shape = SubResource("RectangleShape2D_w0twn")
 
-[node name="TheHero" parent="YSort" node_paths=PackedStringArray("patrol_path") instance=ExtResource("3_700ak")]
-position = Vector2(280, 504)
-patrol_path = NodePath("../../Ground/Path2D")
+[node name="RitualSites" type="Node2D" parent="."]
 
-[node name="Zombie" parent="YSort" instance=ExtResource("4_p2j4l")]
-position = Vector2(430, 507)
+[node name="RitualPoint" parent="RitualSites" instance=ExtResource("4_62qie")]
+position = Vector2(213, 396)
+
+[node name="RitualPoint2" parent="RitualSites" instance=ExtResource("4_62qie")]
+position = Vector2(460, 660)
+
+[node name="RitualPoint3" parent="RitualSites" instance=ExtResource("4_62qie")]
+position = Vector2(978, 640)
+
+[node name="RitualPoint4" parent="RitualSites" instance=ExtResource("4_62qie")]
+position = Vector2(807, 424)
+
+[node name="RitualPoint5" parent="RitualSites" instance=ExtResource("4_62qie")]
+position = Vector2(521, 101)
+
+[node name="Minions" type="Node2D" parent="."]
+
+[node name="Crusader" parent="." instance=ExtResource("4_udo82")]
+position = Vector2(246, 39)
 
 [node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("player")]
 position_smoothing_enabled = true
 script = ExtResource("3_nexuo")
-player = NodePath("../YSort/TheHero")
+player = NodePath("../Crusader")
 
-[node name="PlayerControl" parent="." instance=ExtResource("6_r66m5")]
-zombie_prefab = ExtResource("4_p2j4l")
-mummy_prefab = ExtResource("6_0ykfp")
+[node name="PlayerControl" parent="." node_paths=PackedStringArray("crusader") instance=ExtResource("6_r66m5")]
+zombie_prefab = ExtResource("8_oocfn")
+crusader = NodePath("../Crusader")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

@@ -3,6 +3,8 @@ class_name PlayerControl
 
 @export var zombie_prefab: PackedScene
 @export var mummy_prefab: PackedScene
+@export var crusader: Crusader
+
 
 var spell_list = ['DDDUUU', 'UUDDLRLR']
 var current_spell: String = ""
@@ -72,8 +74,8 @@ func cast_readied_spell():
 	match translated_main_spell:
 		EnumAutoload.SpellMain.ZOMBIE:
 			prefab_to_spawn = zombie_prefab
-		EnumAutoload.SpellMain.MUMMY:
-			prefab_to_spawn = mummy_prefab
+		#EnumAutoload.SpellMain.MUMMY:
+			#prefab_to_spawn = mummy_prefab
 
 	if prefab_to_spawn == null:
 		print("ERROR prefab_to_spawn is null")
@@ -85,38 +87,47 @@ func cast_readied_spell():
 		match translated_prefix:
 			EnumAutoload.SpellPrefix.SQUARE:
 				# Will spawn 4 in each corner of square shape
-				var spawn_ul: Troop = prefab_to_spawn.instantiate()
-				GameManager.main_game.game_area.add_child(spawn_ul)
+				var spawn_ul: AIAgent = prefab_to_spawn.instantiate()
+				spawn_ul.crusader = crusader
+				GameManager.main_game.minion_spawn.add_child(spawn_ul)
 				spawn_ul.global_position = mouse_global_pos + Vector2( - 20, -20)
-				var spawn_ur: Troop = prefab_to_spawn.instantiate()
-				GameManager.main_game.game_area.add_child(spawn_ur)
+				var spawn_ur: AIAgent = prefab_to_spawn.instantiate()
+				spawn_ur.crusader = crusader
+				GameManager.main_game.minion_spawn.add_child(spawn_ur)
 				spawn_ur.global_position = mouse_global_pos + Vector2(20, -20)
-				var spawn_ll: Troop = prefab_to_spawn.instantiate()
-				GameManager.main_game.game_area.add_child(spawn_ll)
+				var spawn_ll: AIAgent = prefab_to_spawn.instantiate()
+				spawn_ll.crusader = crusader
+				GameManager.main_game.minion_spawn.add_child(spawn_ll)
 				spawn_ll.global_position = mouse_global_pos + Vector2( - 20, 20)
-				var spawn_lr: Troop = prefab_to_spawn.instantiate()
-				GameManager.main_game.game_area.add_child(spawn_lr)
+				var spawn_lr: AIAgent = prefab_to_spawn.instantiate()
+				spawn_lr.crusader = crusader
+				GameManager.main_game.minion_spawn.add_child(spawn_lr)
 				spawn_lr.global_position = mouse_global_pos + Vector2(20, 20)
 			EnumAutoload.SpellPrefix.TRIANGLE:
 				# Will spawn 3 in each corner of triangle shape
-				var spawn_top: Troop = prefab_to_spawn.instantiate()
-				GameManager.main_game.game_area.add_child(spawn_top)
+				var spawn_top: AIAgent = prefab_to_spawn.instantiate()
+				spawn_top.crusader = crusader
+				GameManager.main_game.minion_spawn.add_child(spawn_top)
 				spawn_top.global_position = mouse_global_pos + Vector2(0, -10)
-				var spawn_left: Troop = prefab_to_spawn.instantiate()
-				GameManager.main_game.game_area.add_child(spawn_left)
+				var spawn_left: AIAgent = prefab_to_spawn.instantiate()
+				spawn_left.crusader = crusader
+				GameManager.main_game.minion_spawn.add_child(spawn_left)
 				spawn_left.global_position = mouse_global_pos + Vector2( - 20, 10)
-				var spawn_right: Troop = prefab_to_spawn.instantiate()
-				GameManager.main_game.game_area.add_child(spawn_right)
+				var spawn_right: AIAgent = prefab_to_spawn.instantiate()
+				spawn_right.crusader = crusader
+				GameManager.main_game.minion_spawn.add_child(spawn_right)
 				spawn_right.global_position = mouse_global_pos + Vector2(20, 10)
 			EnumAutoload.SpellPrefix.AGILE, EnumAutoload.SpellPrefix.TOUGH:
-				var spawn_single: Troop = prefab_to_spawn.instantiate()
-				GameManager.main_game.game_area.add_child(spawn_single)
+				var spawn_single: AIAgent = prefab_to_spawn.instantiate()
+				spawn_single.crusader = crusader
+				GameManager.main_game.minion_spawn.add_child(spawn_single)
 				spawn_single.global_position = mouse_global_pos
-				spawn_single.apply_effect(translated_prefix)
+				apply_effect(spawn_single, translated_prefix)
 
 	else:
-		var spawn_single: Troop = prefab_to_spawn.instantiate()
-		GameManager.main_game.game_area.add_child(spawn_single)
+		var spawn_single: AIAgent = prefab_to_spawn.instantiate()
+		spawn_single.crusader = crusader
+		GameManager.main_game.minion_spawn.add_child(spawn_single)
 		spawn_single.global_position = mouse_global_pos
 	finish_cast()
 
@@ -127,6 +138,19 @@ func finish_cast():
 	spell_ready = false
 	translated_main_spell = EnumAutoload.SpellMain.NONE
 	translated_prefix = EnumAutoload.SpellPrefix.NONE
+
+
+func apply_effect(minion: AIAgent, effect: EnumAutoload.SpellPrefix):
+	match effect:
+		EnumAutoload.SpellPrefix.AGILE:
+			# Increase speed by 40%
+			minion.speed = int(minion.speed * 1.4)
+		#EnumAutoload.SpellPrefix.TOUGH:
+			## Increase max HP and size by 25%
+			#var current_hp_perc = current_hp / float(max_hp)
+			#max_hp = int(max_hp * 1.2)
+			#current_hp = int(current_hp_perc * max_hp)
+			#scale = scale * 1.2
 
 func translate_spell_component(input: String, is_prefix=false):
 	if is_prefix:
