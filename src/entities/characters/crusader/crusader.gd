@@ -5,7 +5,12 @@ signal cleansing_complete
 
 var path: Curve2D
 var path_points: PackedVector2Array
-var path_index: int = 0
+var path_index: int = 0:
+	set(value):
+		if value > path_points.size() - 1:
+			path_index = path_points.size() - 1
+		else:
+			path_index = value
 var ritual_point:
 	set(value):
 		ritual_point = value
@@ -13,7 +18,6 @@ var ritual_point:
 
 func _move(delta):
 	# If we're in range of a ritual point, move to that
-	print(ritual_point)
 	if ritual_point:
 		nav_agent.target_position = ritual_point
 	else:

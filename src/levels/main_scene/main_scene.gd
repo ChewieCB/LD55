@@ -17,3 +17,7 @@ func _on_summoning_button_pressed():
 
 func _on_ai_nav_button_pressed():
 	get_tree().change_scene_to_file("res://src/entities/characters/tests/TestAINavigation.tscn")
+
+
+func _on_crusader_ai_button_pressed():
+	get_tree().change_scene_to_file("res://src/entities/characters/tests/TestCrusader.tscn")
