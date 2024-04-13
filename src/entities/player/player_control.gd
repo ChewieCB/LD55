@@ -8,8 +8,8 @@ var spell_list = ['DDDUUU', 'UUDDLRLR']
 var current_spell: String = ""
 var is_casting = false
 var spell_ready = false
-var translated_main_spell = ""
-var translated_prefix = ""
+var translated_main_spell: EnumAutoload.SpellMain = EnumAutoload.SpellMain.NONE
+var translated_prefix: EnumAutoload.SpellPrefix = EnumAutoload.SpellPrefix.NONE
 
 const MAX_SPELL_LENGTH = 20
 
@@ -44,13 +44,13 @@ func start_cast():
 	current_spell = ""
 	is_casting = true
 	spell_ready = false
-	translated_main_spell = ""
-	translated_prefix = ""
+	translated_main_spell = EnumAutoload.SpellMain.NONE
+	translated_prefix = EnumAutoload.SpellPrefix.NONE
 
 func confirm_spell():
 	var spell_data = parse_spell_input(current_spell)
-	var prefix = spell_data["prefix"]
 	var main_spell = spell_data["main_spell"]
+	var prefix = spell_data["prefix"]
 	is_casting = false
 	if main_spell == "":
 		GameManager.game_ui.set_spell_label("Failed spell. Press Space to cast again")
@@ -58,10 +58,11 @@ func confirm_spell():
 		spell_ready = true
 		translated_main_spell = translate_spell_component(main_spell)
 		translated_prefix = translate_spell_component(prefix, true)
-		if translated_prefix == "":
-			GameManager.game_ui.set_spell_label("Ready: {0}".format([translated_main_spell]))
+		if translated_prefix == EnumAutoload.SpellPrefix.NONE:
+			GameManager.game_ui.set_spell_label("Ready: {0}".format([convert_enum_to_str(translated_main_spell)]))
 		else:
-			GameManager.game_ui.set_spell_label("Ready: {0} + {1}".format([translated_prefix, translated_main_spell]))
+			GameManager.game_ui.set_spell_label("Ready: {0} + {1}".format([
+				convert_enum_to_str(translated_prefix, true), convert_enum_to_str(translated_main_spell)]))
 
 func cast_readied_spell():
 	if not spell_ready:
@@ -69,20 +70,20 @@ func cast_readied_spell():
 	var prefab_to_spawn: PackedScene = null
 	# Decide what to spawn
 	match translated_main_spell:
-		"Zombie":
+		EnumAutoload.SpellMain.ZOMBIE:
 			prefab_to_spawn = zombie_prefab
-		"Mummy":
+		EnumAutoload.SpellMain.MUMMY:
 			prefab_to_spawn = mummy_prefab
-	
+
 	if prefab_to_spawn == null:
 		print("ERROR prefab_to_spawn is null")
 		return
 
 	# Decide how we spawn it
 	var mouse_global_pos = get_global_mouse_position()
-	if translated_prefix != "":
+	if translated_prefix != EnumAutoload.SpellPrefix.NONE:
 		match translated_prefix:
-			"Square":
+			EnumAutoload.SpellPrefix.SQUARE:
 				# Will spawn 4 in each corner of square shape
 				var spawn_ul: Troop = prefab_to_spawn.instantiate()
 				GameManager.main_game.game_area.add_child(spawn_ul)
@@ -96,7 +97,7 @@ func cast_readied_spell():
 				var spawn_lr: Troop = prefab_to_spawn.instantiate()
 				GameManager.main_game.game_area.add_child(spawn_lr)
 				spawn_lr.global_position = mouse_global_pos + Vector2(20, 20)
-			"Triangle":
+			EnumAutoload.SpellPrefix.TRIANGLE:
 				# Will spawn 3 in each corner of triangle shape
 				var spawn_top: Troop = prefab_to_spawn.instantiate()
 				GameManager.main_game.game_area.add_child(spawn_top)
@@ -107,7 +108,7 @@ func cast_readied_spell():
 				var spawn_right: Troop = prefab_to_spawn.instantiate()
 				GameManager.main_game.game_area.add_child(spawn_right)
 				spawn_right.global_position = mouse_global_pos + Vector2(20, 10)
-			"Agile", "Tough":
+			EnumAutoload.SpellPrefix.AGILE, EnumAutoload.SpellPrefix.TOUGH:
 				var spawn_single: Troop = prefab_to_spawn.instantiate()
 				GameManager.main_game.game_area.add_child(spawn_single)
 				spawn_single.global_position = mouse_global_pos
@@ -124,27 +125,36 @@ func finish_cast():
 	current_spell = ""
 	is_casting = false
 	spell_ready = false
-	translated_main_spell = ""
-	translated_prefix = ""
+	translated_main_spell = EnumAutoload.SpellMain.NONE
+	translated_prefix = EnumAutoload.SpellPrefix.NONE
 
 func translate_spell_component(input: String, is_prefix=false):
 	if is_prefix:
 		match input:
 			"UUU":
-				return "Square"
+				return EnumAutoload.SpellPrefix.SQUARE
 			"LLL":
-				return "Triangle"
+				return EnumAutoload.SpellPrefix.TRIANGLE
 			"UULLRR":
-				return "Agile"
+				return EnumAutoload.SpellPrefix.AGILE
 			"UUUDDDUD":
-				return "Tough"
+				return EnumAutoload.SpellPrefix.TOUGH
+			_:
+				return EnumAutoload.SpellPrefix.NONE
 	else:
 		match input:
 			"DDDUUU":
-				return "Zombie"
+				return EnumAutoload.SpellMain.ZOMBIE
 			"UUDDLRLR":
-				return "Mummy"
-	return ""
+				return EnumAutoload.SpellMain.MUMMY
+			_:
+				return EnumAutoload.SpellMain.NONE
+
+func convert_enum_to_str(content: int, is_prefix=false):
+	if is_prefix:
+		return EnumAutoload.SpellPrefix.keys()[content]
+	else:
+		return EnumAutoload.SpellMain.keys()[content]
 
 func cast_input(input: String):
 	if len(current_spell) >= MAX_SPELL_LENGTH:

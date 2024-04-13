@@ -42,12 +42,12 @@ func _on_attack_timer_timeout() -> void:
 	attack_label.visible = false
 	is_in_attack = false
 
-func apply_effect(effect: String):
+func apply_effect(effect: EnumAutoload.SpellPrefix):
 	match effect:
-		"Agile":
-			# Increase speed by 20%
-			move_speed = int(move_speed * 1.2)
-		"Tough":
+		EnumAutoload.SpellPrefix.AGILE:
+			# Increase speed by 40%
+			move_speed = int(move_speed * 1.4)
+		EnumAutoload.SpellPrefix.TOUGH:
 			# Increase max HP and size by 25%
 			var current_hp_perc = current_hp / float(max_hp)
 			max_hp = int(max_hp * 1.2)
