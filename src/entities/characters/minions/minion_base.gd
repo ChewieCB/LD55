@@ -21,8 +21,6 @@ func _spawn():
 	crusader = get_tree().get_nodes_in_group("crusader")[0]
 	if attacks:
 		current_attack = attacks[0]
-	
-	cooldown_timer.timeout.connect(func(): print("cooldown"))
 
 
 func _attack(attack: AttackResource):
