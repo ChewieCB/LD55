@@ -29,18 +29,37 @@ grow_vertical = 2
 texture = ExtResource("1_prdx4")
 stretch_mode = 5
 
+[node name="JuniSprite" type="Sprite2D" parent="Temp/Control"]
+position = Vector2(904, 205)
+scale = Vector2(1.18591, 1.18591)
+texture = ExtResource("3_xxgf2")
+
+[node name="MalinaSprite" type="Sprite2D" parent="Temp/Control"]
+position = Vector2(202.749, 457.625)
+scale = Vector2(0.790206, 0.790206)
+texture = ExtResource("4_xephx")
+
 [node name="MarginContainer" type="MarginContainer" parent="Temp/Control"]
 layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -195.0
-offset_right = 195.0
-offset_bottom = 259.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 362.0
+offset_top = 78.0
+offset_right = -449.0
+offset_bottom = -102.0
 grow_horizontal = 2
+grow_vertical = 2
 theme_override_constants/margin_bottom = 0
 
-[node name="Label" type="Label" parent="Temp/Control/MarginContainer"]
+[node name="Panel" type="Panel" parent="Temp/Control/MarginContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Temp/Control/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Label" type="Label" parent="Temp/Control/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.545174, 0.427451, 0.611612, 1)
 theme_override_colors/font_outline_color = Color(0.282353, 0.297993, 0.489982, 1)
@@ -51,12 +70,33 @@ text = "LD55"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="JuniSprite" type="Sprite2D" parent="Temp"]
-position = Vector2(904, 205)
-scale = Vector2(1.18591, 1.18591)
-texture = ExtResource("3_xxgf2")
+[node name="SummoningButton" type="Button" parent="Temp/Control/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_fonts/font = ExtResource("2_a4b4n")
+theme_override_font_sizes/font_size = 32
+text = "Mockup/Summoning"
 
-[node name="MalinaSprite" type="Sprite2D" parent="Temp"]
-position = Vector2(202.749, 457.625)
-scale = Vector2(0.790206, 0.790206)
-texture = ExtResource("4_xephx")
+[node name="AINavButton" type="Button" parent="Temp/Control/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_fonts/font = ExtResource("2_a4b4n")
+theme_override_font_sizes/font_size = 32
+text = "AI Navigation"
+
+[node name="CrusaderAIButton" type="Button" parent="Temp/Control/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_fonts/font = ExtResource("2_a4b4n")
+theme_override_font_sizes/font_size = 32
+text = "Crusader AI"
+
+[connection signal="pressed" from="Temp/Control/MarginContainer/VBoxContainer/SummoningButton" to="." method="_on_summoning_button_pressed"]
+[connection signal="pressed" from="Temp/Control/MarginContainer/VBoxContainer/AINavButton" to="." method="_on_ai_nav_button_pressed"]
+[connection signal="pressed" from="Temp/Control/MarginContainer/VBoxContainer/CrusaderAIButton" to="." method="_on_crusader_ai_button_pressed"]

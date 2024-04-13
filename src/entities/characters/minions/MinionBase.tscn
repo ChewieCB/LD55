@@ -1,0 +1,109 @@
+[gd_scene load_steps=8 format=3 uid="uid://y43wlad4886x"]
+
+[ext_resource type="Script" path="res://src/entities/characters/minions/minion_base.gd" id="1_etj48"]
+[ext_resource type="Texture2D" uid="uid://tbaw03mlpcud" path="res://assets/temp/malina-bg.png" id="2_7fim8"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/state_chart.gd" id="3_ffk6h"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/compound_state.gd" id="4_06cnh"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/atomic_state.gd" id="5_qt5d1"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/transition.gd" id="6_wku5f"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ci4kf"]
+size = Vector2(32, 32)
+
+[node name="MinionBase" type="CharacterBody2D"]
+script = ExtResource("1_etj48")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -17.0
+offset_top = -17.0
+offset_right = 17.0
+offset_bottom = 17.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.403922, 0.756863, 0.894118, 1)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0.0360824, 1.2815e-06)
+scale = Vector2(0.0619958, 0.0659794)
+texture = ExtResource("2_7fim8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_ci4kf")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+avoidance_enabled = true
+radius = 16.0
+debug_enabled = true
+
+[node name="StateChart" type="Node" parent="."]
+script = ExtResource("3_ffk6h")
+
+[node name="Root" type="Node" parent="StateChart"]
+script = ExtResource("4_06cnh")
+initial_state = NodePath("Idle")
+
+[node name="Idle" type="Node" parent="StateChart/Root"]
+script = ExtResource("5_qt5d1")
+
+[node name="toMove" type="Node" parent="StateChart/Root/Idle"]
+script = ExtResource("6_wku5f")
+to = NodePath("../../Move")
+
+[node name="toAttack" type="Node" parent="StateChart/Root/Idle"]
+script = ExtResource("6_wku5f")
+to = NodePath("../../Attack")
+
+[node name="toHit" type="Node" parent="StateChart/Root/Idle"]
+script = ExtResource("6_wku5f")
+to = NodePath("../../Hit")
+
+[node name="toDead" type="Node" parent="StateChart/Root/Idle"]
+script = ExtResource("6_wku5f")
+to = NodePath("../../Dead")
+
+[node name="Move" type="Node" parent="StateChart/Root"]
+script = ExtResource("5_qt5d1")
+
+[node name="toIdle" type="Node" parent="StateChart/Root/Move"]
+script = ExtResource("6_wku5f")
+to = NodePath("../../Idle")
+
+[node name="toAttack" type="Node" parent="StateChart/Root/Move"]
+script = ExtResource("6_wku5f")
+to = NodePath("../../Attack")
+
+[node name="toHit" type="Node" parent="StateChart/Root/Move"]
+script = ExtResource("6_wku5f")
+to = NodePath("../../Hit")
+
+[node name="toDead" type="Node" parent="StateChart/Root/Move"]
+script = ExtResource("6_wku5f")
+to = NodePath("../../Dead")
+
+[node name="Attack" type="Node" parent="StateChart/Root"]
+script = ExtResource("5_qt5d1")
+
+[node name="toIdle" type="Node" parent="StateChart/Root/Attack"]
+script = ExtResource("6_wku5f")
+to = NodePath("../../Idle")
+
+[node name="toHit" type="Node" parent="StateChart/Root/Attack"]
+script = ExtResource("6_wku5f")
+to = NodePath("../../Hit")
+
+[node name="Hit" type="Node" parent="StateChart/Root"]
+script = ExtResource("5_qt5d1")
+
+[node name="toIdle" type="Node" parent="StateChart/Root/Hit"]
+script = ExtResource("6_wku5f")
+to = NodePath("../../Idle")
+
+[node name="Dead" type="Node" parent="StateChart/Root"]
+script = ExtResource("5_qt5d1")
+
+[connection signal="velocity_computed" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_velocity_computed"]

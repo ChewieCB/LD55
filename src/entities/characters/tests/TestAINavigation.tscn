@@ -1,0 +1,70 @@
+[gd_scene load_steps=4 format=3 uid="uid://0yjx1wdqhhf5"]
+
+[ext_resource type="Script" path="res://src/entities/characters/tests/test_ai_navigation.gd" id="1_55b3q"]
+[ext_resource type="PackedScene" uid="uid://sfxnk5e65vam" path="res://src/entities/characters/AIAgent.tscn" id="1_aua5u"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_imd56"]
+vertices = PackedVector2Array(1327, 174, 1318, 294, 1191, 516, 796, 354, 764, 234, 1156, 57, 718, 377, 1216, 725, 759, 769, 330, 766, 130, 647, 517, 439, 332, 299, 128, 196, 126, 57, 252, 45, 460, 201, 469, 214, 602, 191, 163, 475, 594, 202)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4, 5), PackedInt32Array(6, 3, 2, 7, 8, 9, 10, 11), PackedInt32Array(12, 13, 14, 15, 16), PackedInt32Array(16, 15, 5), PackedInt32Array(17, 16, 5, 18), PackedInt32Array(10, 19, 11), PackedInt32Array(20, 6, 11, 17), PackedInt32Array(18, 20, 17), PackedInt32Array(18, 5, 4)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(116, 48, 119, 203, 333, 311, 460, 215, 588, 198, 756, 242, 784, 347, 510, 430, 155, 466, 119, 653, 327, 776, 760, 780, 1228, 734, 1201, 518, 1328, 298, 1338, 170, 1160, 48, 252, 35), PackedVector2Array(460, 218, 508, 441, 733, 380, 579, 164, 440, 180)])
+source_geometry_group_name = &"navigation_polygon_source_group"
+
+[node name="TestAINavigation" type="Node2D"]
+script = ExtResource("1_55b3q")
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+position = Vector2(0, -26)
+navigation_polygon = SubResource("NavigationPolygon_imd56")
+
+[node name="Agents" type="Node2D" parent="."]
+
+[node name="AIAgent1" parent="Agents" instance=ExtResource("1_aua5u")]
+position = Vector2(261, 142)
+
+[node name="AIAgent2" parent="Agents" instance=ExtResource("1_aua5u")]
+position = Vector2(203, 66)
+
+[node name="AIAgent3" parent="Agents" instance=ExtResource("1_aua5u")]
+position = Vector2(308, 99)
+
+[node name="AIAgent4" parent="Agents" instance=ExtResource("1_aua5u")]
+position = Vector2(321, 158)
+
+[node name="AIAgent5" parent="Agents" instance=ExtResource("1_aua5u")]
+position = Vector2(200, 141)
+
+[node name="AIAgent6" parent="Agents" instance=ExtResource("1_aua5u")]
+position = Vector2(267, 195)
+
+[node name="AIAgent8" parent="Agents" instance=ExtResource("1_aua5u")]
+position = Vector2(413, 117)
+
+[node name="AIAgent9" parent="Agents" instance=ExtResource("1_aua5u")]
+position = Vector2(349, 73)
+
+[node name="AIAgent10" parent="Agents" instance=ExtResource("1_aua5u")]
+position = Vector2(273, 42)
+
+[node name="AIAgent11" parent="Agents" instance=ExtResource("1_aua5u")]
+position = Vector2(252, 89)
+
+[node name="AIAgent12" parent="Agents" instance=ExtResource("1_aua5u")]
+position = Vector2(467, 59)
+
+[node name="AIAgent13" parent="Agents" instance=ExtResource("1_aua5u")]
+position = Vector2(396, 49)
+
+[node name="AIAgent14" parent="Agents" instance=ExtResource("1_aua5u")]
+position = Vector2(490, 113)
+
+[node name="AIAgent15" parent="Agents" instance=ExtResource("1_aua5u")]
+position = Vector2(402, 163)
+
+[node name="AIAgent16" parent="Agents" instance=ExtResource("1_aua5u")]
+position = Vector2(556, 113)
+
+[node name="AIAgent17" parent="Agents" instance=ExtResource("1_aua5u")]
+position = Vector2(524, 65)
+
+[node name="AIAgent18" parent="Agents" instance=ExtResource("1_aua5u")]
+position = Vector2(589, 62)
