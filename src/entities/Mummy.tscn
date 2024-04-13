@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://b7y4r3ixcgn8b"]
 
-[ext_resource type="Script" path="res://src/entity/troop.gd" id="1_h16p6"]
+[ext_resource type="Script" path="res://src/entities/troop.gd" id="1_h16p6"]
 [ext_resource type="Texture2D" uid="uid://drpc5qnu6pf8u" path="res://assets/sprite/human.png" id="2_hht6v"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d2hco"]
