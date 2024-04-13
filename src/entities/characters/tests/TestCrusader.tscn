@@ -54,6 +54,12 @@ navigation_polygon = SubResource("NavigationPolygon_y84vj")
 [node name="RitualPoint4" parent="RitualPoints" instance=ExtResource("3_n0qqr")]
 position = Vector2(868, 550)
 
+[node name="RitualPoint5" parent="RitualPoints" instance=ExtResource("3_n0qqr")]
+position = Vector2(215, 182)
+
+[node name="RitualPoint6" parent="RitualPoints" instance=ExtResource("3_n0qqr")]
+position = Vector2(438, 515)
+
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="StateChartDebugger" parent="CanvasLayer" instance=ExtResource("4_54j0e")]
@@ -64,4 +70,4 @@ offset_left = -327.0
 offset_bottom = 270.0
 grow_horizontal = 0
 grow_vertical = 1
-initial_node_to_watch = NodePath("../../MinionBase")
+initial_node_to_watch = NodePath("../../Crusader")

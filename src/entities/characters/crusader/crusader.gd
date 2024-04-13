@@ -35,6 +35,7 @@ func _hurt():
 
 
 func _die():
+	state_chart.send_event("stop_cleansing")
 	state_chart.send_event("death")
 
 
@@ -46,9 +47,6 @@ func start_cleanse(ritual_node):
 
 func finish_cleanse():
 	ritual_point = null
-	# TODO - remove this after debugging
-	current_health -= 150
-	
 	emit_signal("cleansing_complete")
 	
 	var path_points_sorted_closest = Array(path_points)
@@ -111,6 +109,7 @@ func _on_hit_state_entered():
 
 
 func _on_dead_state_entered():
+	state_chart.send_event("stop_walking")
 	#anim_player.play("death")
 	pass # Replace with function body.
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://bev1egpx7qcvi"]
+[gd_scene load_steps=26 format=3 uid="uid://bev1egpx7qcvi"]
 
 [ext_resource type="Script" path="res://src/entities/characters/crusader/crusader.gd" id="1_0cjda"]
 [ext_resource type="Resource" uid="uid://b5dljo4pci4to" path="res://src/entities/characters/crusader/crusader_attributes.tres" id="2_agl2u"]
@@ -42,6 +42,14 @@ guard = SubResource("Resource_ws0oh")
 [sub_resource type="Resource" id="Resource_auvi3"]
 script = ExtResource("10_slxhv")
 guards = Array[Resource("res://addons/godot_state_charts/guard.gd")]([SubResource("Resource_ovjto"), SubResource("Resource_evjk3"), SubResource("Resource_ap0hw")])
+
+[sub_resource type="Resource" id="Resource_p5ia4"]
+script = ExtResource("8_6fl0h")
+state = NodePath("../../../Damage/Dead")
+
+[sub_resource type="Resource" id="Resource_wyu0t"]
+script = ExtResource("9_30nyi")
+guard = SubResource("Resource_p5ia4")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mttwg"]
 bg_color = Color(0.843137, 0.196078, 0.0666667, 1)
@@ -125,7 +133,6 @@ shape = SubResource("RectangleShape2D_ci4kf")
 avoidance_enabled = true
 radius = 16.0
 avoidance_layers = 3
-debug_enabled = true
 
 [node name="StateChart" type="Node" parent="."]
 script = ExtResource("3_hr7jo")
@@ -248,6 +255,7 @@ script = ExtResource("6_w7y78")
 script = ExtResource("7_v3ig5")
 to = NodePath("../../Cleansing")
 event = &"start_cleansing"
+guard = SubResource("Resource_wyu0t")
 
 [node name="Cleansing" type="Node" parent="StateChart/Root/Action"]
 script = ExtResource("6_w7y78")
