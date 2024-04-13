@@ -18,6 +18,9 @@ var current_health: int:
 var speed: int
 var acceleration: int = 7
 
+@export var attacks: Array[AttackResource]
+var current_attack: AttackResource
+
 @onready var nav_agent = $NavigationAgent2D
 
 
@@ -44,7 +47,7 @@ func _move(delta):
 	nav_agent.set_velocity(intended_velocity)
 
 
-func _attack(attack: AttackResource):
+func _attack(attack: AttackResource, target: AIAgent):
 	pass
 
 

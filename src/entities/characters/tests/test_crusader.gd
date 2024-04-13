@@ -5,9 +5,7 @@ extends Node2D
 var patrol_points: PackedVector2Array
 
 
-
 func _ready():
 	if patrol_path:
 		crusader.path = patrol_path.curve
 		crusader.path_points = patrol_path.curve.get_baked_points()
-

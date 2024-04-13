@@ -6,6 +6,10 @@ signal cleansing_complete
 @onready var state_chart: StateChart = $StateChart
 @onready var health_ui = $HealthBar
 @onready var anim_player = $AnimationPlayer
+@onready var cooldown_timer = $AttackCooldownTimer
+@onready var attack_particles = $GPUParticles2D
+@onready var attack_range_area = $AttackRange
+@onready var attack_range_collider = $AttackRange/CollisionShape2D
 
 var path: Curve2D
 var path_points: PackedVector2Array
@@ -24,10 +28,23 @@ func _spawn():
 	# TODO - play some animation or effect before beginning the movement
 	health_ui.max_value = attributes.health
 	add_to_group("crusader")
+	if attacks:
+		current_attack = attacks[0]
+		attack_range_collider.shape.radius = current_attack.range
 
 
 func _process(delta):
 	health_ui.value = current_health
+
+
+# TODO - this whole function can just be generic in the base class
+func _attack(attack: AttackResource, target: AIAgent):
+	attack_particles.global_position = target.global_position
+	anim_player.play("attack")
+	target.current_health -= attack.damage
+	state_chart.send_event("finish_attack")
+	await attack_particles.finished
+	attack_particles.global_position = Vector2.ZERO
 
 
 func _hurt():
@@ -35,6 +52,7 @@ func _hurt():
 
 
 func _die():
+	state_chart.send_event("stop_walking")
 	state_chart.send_event("stop_cleansing")
 	state_chart.send_event("death")
 
@@ -62,6 +80,10 @@ func finish_cleanse():
 	nav_agent.target_position = closest_path_point
 	
 	state_chart.send_event("stop_cleansing")
+
+
+func _on_idle_state_entered():
+	nav_agent.target_position = global_position
 
 
 func _on_idle_state_physics_processing(delta):
@@ -100,6 +122,27 @@ func _on_action_idle_state_entered():
 func _on_action_cleansing_state_entered():
 	await get_tree().create_timer(1.5).timeout
 	finish_cleanse()
+
+
+func _on_attacking_idle_state_physics_processing(delta):
+	if cooldown_timer.is_stopped():
+		if attack_range_area.has_overlapping_bodies():
+			state_chart.send_event("stop_walking")
+			state_chart.send_event("attack")
+
+
+func _on_attacking_basic_attack_state_entered():
+	# Get target
+	var minions = attack_range_area.get_overlapping_bodies()
+	minions.sort_custom(
+		func(a, b):
+			if a.global_position.distance_to(global_position) < b.global_position.distance_to(global_position):
+				return true
+			return false
+	)
+	var target = minions.front()
+	_attack(current_attack, target)
+	cooldown_timer.start(current_attack.cooldown)
 
 
 func _on_hit_state_entered():

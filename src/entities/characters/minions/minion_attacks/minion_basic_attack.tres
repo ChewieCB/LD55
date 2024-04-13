@@ -6,4 +6,4 @@
 script = ExtResource("1_s4fto")
 range = 64
 cooldown = 1.2
-damage = 20
+damage = 5

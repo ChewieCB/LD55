@@ -1,10 +1,8 @@
 extends AIAgent
 class_name MinionBase
 
-@export var attacks: Array[AttackResource]
-var current_attack: AttackResource
-
 @onready var cooldown_timer: Timer = $AttackCooldownTimer
+@onready var health_ui = $HealthBar
 @onready var state_chart: StateChart = $StateChart
 # TODO - move this to parent class
 @onready var anim_player = $AnimationPlayer
@@ -15,7 +13,7 @@ var crusader_target: Vector2
 
 func _spawn():
 	# TODO - play some animation or effect before beginning the movement
-	#health_ui.max_value = attributes.health
+	health_ui.max_value = attributes.health
 	await get_tree().physics_frame
 	await get_tree().physics_frame
 	crusader = get_tree().get_nodes_in_group("crusader")[0]
@@ -23,13 +21,30 @@ func _spawn():
 		current_attack = attacks[0]
 
 
-func _attack(attack: AttackResource):
+func _process(delta):
+	health_ui.value = current_health
+
+
+# TODO - this whole function can just be generic in the base class
+func _attack(attack: AttackResource, target: AIAgent):
+	attack_particles.global_position = target.global_position
 	anim_player.play("attack")
-	crusader.current_health -= attack.damage
+	target.current_health -= attack.damage
 	state_chart.send_event("finish_attack")
+	await attack_particles.finished
+	attack_particles.global_position = Vector2.ZERO
 
 
-func _on_idle_state_physics_processing(delta):	
+func _die():
+	state_chart.send_event("stop_walking")
+	state_chart.send_event("death")
+
+
+func _on_idle_state_entered():
+	nav_agent.target_position = global_position
+
+
+func _on_idle_state_physics_processing(delta):
 	if nav_agent.target_position:
 		state_chart.send_event("start_walking")
 	return
@@ -50,11 +65,6 @@ func _on_walking_state_physics_processing(delta):
 	nav_agent.set_velocity(intended_velocity)
 
 
-func _on_basic_attack_state_entered():
-	_attack(current_attack)
-	cooldown_timer.start(current_attack.cooldown)
-
-
 func _on_attacking_idle_state_physics_processing(delta):
 	# FIXME - dependency issue here with the crusader node not loading before this
 	if cooldown_timer.is_stopped():
@@ -62,3 +72,15 @@ func _on_attacking_idle_state_physics_processing(delta):
 			if global_position.distance_to(crusader.global_position) <= current_attack.range:
 				state_chart.send_event("stop_walking")
 				state_chart.send_event("attack")
+
+
+func _on_attacking_basic_attack_state_entered():
+	_attack(current_attack, crusader)
+	cooldown_timer.start(current_attack.cooldown)
+
+
+
+func _on_dead_state_entered():
+	anim_player.play("death")
+	await anim_player.animation_finished
+	queue_free()
