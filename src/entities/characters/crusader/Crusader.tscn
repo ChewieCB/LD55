@@ -65,9 +65,6 @@ state = NodePath("../../../Damage/Dead")
 script = ExtResource("9_30nyi")
 guard = SubResource("Resource_p5ia4")
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mttwg"]
-bg_color = Color(0.843137, 0.196078, 0.0666667, 1)
-
 [sub_resource type="Animation" id="Animation_mykda"]
 resource_name = "hurt"
 length = 0.25
@@ -115,7 +112,7 @@ length = 0.2
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("GPUParticles2D:emitting")
+tracks/0/path = NodePath("AttackParticles:emitting")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -134,6 +131,8 @@ _data = {
 [sub_resource type="CircleShape2D" id="CircleShape2D_6c0yh"]
 radius = 64.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_0pxk1"]
+
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_riogb"]
 particles_animation = true
 particles_anim_h_frames = 48
@@ -148,7 +147,8 @@ scale_max = 1.3
 anim_speed_min = 1.0
 anim_speed_max = 1.0
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_0pxk1"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mttwg"]
+bg_color = Color(0.843137, 0.196078, 0.0666667, 1)
 
 [node name="Crusader" type="CharacterBody2D"]
 script = ExtResource("1_0cjda")
@@ -324,7 +324,39 @@ script = ExtResource("7_v3ig5")
 to = NodePath("../../Idle")
 event = &"stop_cleansing"
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_utllu")
+}
+
+[node name="MinionAttackArea" type="Area2D" parent="."]
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MinionAttackArea"]
+shape = SubResource("CircleShape2D_6c0yh")
+
+[node name="AttackRange" type="Area2D" parent="."]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackRange"]
+shape = SubResource("CircleShape2D_0pxk1")
+
+[node name="AttackCooldownTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="AttackParticles" type="GPUParticles2D" parent="."]
+material = SubResource("CanvasItemMaterial_riogb")
+emitting = false
+amount = 1
+process_material = SubResource("ParticleProcessMaterial_q7emk")
+texture = ExtResource("12_nti47")
+one_shot = true
+speed_scale = 2.0
+
+[node name="DeathParticles" type="GPUParticles2D" parent="."]
+
 [node name="HealthBar" type="ProgressBar" parent="."]
+z_index = 1
 custom_minimum_size = Vector2(0, 4)
 anchors_preset = 10
 anchor_right = 1.0
@@ -338,35 +370,6 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_mttwg")
 max_value = 500.0
 value = 500.0
 show_percentage = false
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_utllu")
-}
-
-[node name="MinionAttackArea" type="Area2D" parent="."]
-collision_mask = 3
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="MinionAttackArea"]
-shape = SubResource("CircleShape2D_6c0yh")
-
-[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
-material = SubResource("CanvasItemMaterial_riogb")
-emitting = false
-amount = 1
-process_material = SubResource("ParticleProcessMaterial_q7emk")
-texture = ExtResource("12_nti47")
-one_shot = true
-speed_scale = 2.0
-
-[node name="AttackCooldownTimer" type="Timer" parent="."]
-one_shot = true
-
-[node name="AttackRange" type="Area2D" parent="."]
-collision_mask = 2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackRange"]
-shape = SubResource("CircleShape2D_0pxk1")
 
 [connection signal="velocity_computed" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_velocity_computed"]
 [connection signal="state_entered" from="StateChart/Root/Movement/Idle" to="." method="_on_idle_state_entered"]

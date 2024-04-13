@@ -22,6 +22,13 @@ var acceleration: int = 7
 var current_attack: AttackResource
 
 @onready var nav_agent = $NavigationAgent2D
+@onready var state_chart: StateChart = $StateChart
+@onready var anim_player: AnimationPlayer = $AnimationPlayer
+@onready var attack_particles: GPUParticles2D = $AttackParticles
+@onready var death_particles: GPUParticles2D = $DeathParticles
+@onready var cooldown_timer = $AttackCooldownTimer
+
+@onready var health_ui = $HealthBar
 
 
 func _ready():
@@ -49,7 +56,12 @@ func _move(delta):
 
 
 func _attack(attack: AttackResource, target: AIAgent):
-	pass
+	attack_particles.global_position = target.global_position
+	anim_player.play("attack")
+	target.current_health -= attack.damage
+	state_chart.send_event("finish_attack")
+	await attack_particles.finished
+	attack_particles.global_position = Vector2.ZERO
 
 
 func _hurt():

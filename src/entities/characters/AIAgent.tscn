@@ -1,10 +1,14 @@
-[gd_scene load_steps=4 format=3 uid="uid://sfxnk5e65vam"]
+[gd_scene load_steps=6 format=3 uid="uid://sfxnk5e65vam"]
 
 [ext_resource type="Texture2D" uid="uid://tbaw03mlpcud" path="res://assets/temp/malina-bg.png" id="1_aeg0n"]
 [ext_resource type="Script" path="res://src/entities/characters/ai_agent.gd" id="1_lj3uo"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/state_chart.gd" id="3_1ilu4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ci4kf"]
 size = Vector2(32, 32)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wjj8f"]
+bg_color = Color(0.843137, 0.196078, 0.0666667, 1)
 
 [node name="AiAgent" type="CharacterBody2D"]
 script = ExtResource("1_lj3uo")
@@ -35,5 +39,32 @@ shape = SubResource("RectangleShape2D_ci4kf")
 avoidance_enabled = true
 radius = 16.0
 debug_enabled = true
+
+[node name="StateChart" type="Node" parent="."]
+script = ExtResource("3_1ilu4")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[node name="AttackParticles" type="GPUParticles2D" parent="."]
+
+[node name="DeathParticles" type="GPUParticles2D" parent="."]
+
+[node name="AttackCooldownTimer" type="Timer" parent="."]
+
+[node name="HealthBar" type="ProgressBar" parent="."]
+z_index = 1
+custom_minimum_size = Vector2(0, 4)
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = -31.0
+offset_top = -32.0
+offset_right = 32.0
+offset_bottom = -22.0
+grow_horizontal = 2
+size_flags_vertical = 4
+theme_override_styles/fill = SubResource("StyleBoxFlat_wjj8f")
+max_value = 500.0
+value = 500.0
+show_percentage = false
 
 [connection signal="velocity_computed" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_velocity_computed"]

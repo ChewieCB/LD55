@@ -1,12 +1,6 @@
 extends AIAgent
 class_name MinionBase
 
-@onready var cooldown_timer: Timer = $AttackCooldownTimer
-@onready var health_ui = $HealthBar
-@onready var state_chart: StateChart = $StateChart
-# TODO - move this to parent class
-@onready var anim_player = $AnimationPlayer
-@onready var attack_particles = $AttackParticles
 var crusader: Crusader
 var crusader_target: Vector2
 
@@ -20,16 +14,6 @@ func _spawn():
 
 func _process(delta):
 	health_ui.value = current_health
-
-
-# TODO - this whole function can just be generic in the base class
-func _attack(attack: AttackResource, target: AIAgent):
-	attack_particles.global_position = target.global_position
-	anim_player.play("attack")
-	target.current_health -= attack.damage
-	state_chart.send_event("finish_attack")
-	await attack_particles.finished
-	attack_particles.global_position = Vector2.ZERO
 
 
 func _die():

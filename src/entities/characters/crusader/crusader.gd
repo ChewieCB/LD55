@@ -3,11 +3,6 @@ class_name Crusader
 
 signal cleansing_complete
 
-@onready var state_chart: StateChart = $StateChart
-@onready var health_ui = $HealthBar
-@onready var anim_player = $AnimationPlayer
-@onready var cooldown_timer = $AttackCooldownTimer
-@onready var attack_particles = $GPUParticles2D
 @onready var attack_range_area = $AttackRange
 @onready var attack_range_collider = $AttackRange/CollisionShape2D
 

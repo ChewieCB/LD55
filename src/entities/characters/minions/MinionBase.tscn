@@ -38,37 +38,6 @@ guard = SubResource("Resource_p6r68")
 script = ExtResource("12_n7d5c")
 guards = Array[Resource("res://addons/godot_state_charts/guard.gd")]([SubResource("Resource_wljmr"), SubResource("Resource_srkw7")])
 
-[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_lb03b"]
-particles_animation = true
-particles_anim_h_frames = 31
-particles_anim_v_frames = 1
-particles_anim_loop = true
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_0t0au"]
-particle_flag_disable_z = true
-gravity = Vector3(0, 0, 0)
-scale_min = 0.7
-scale_max = 0.7
-anim_speed_min = 1.0
-anim_speed_max = 1.0
-
-[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_mbyvb"]
-particles_animation = true
-particles_anim_h_frames = 44
-particles_anim_v_frames = 1
-particles_anim_loop = false
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_paynb"]
-lifetime_randomness = 0.11
-particle_flag_disable_z = true
-emission_shape = 3
-emission_box_extents = Vector3(16, 16, 1)
-gravity = Vector3(0, 0, 0)
-scale_min = 0.7
-scale_max = 1.3
-anim_speed_min = 1.0
-anim_speed_max = 1.0
-
 [sub_resource type="Animation" id="Animation_a6hs8"]
 resource_name = "attack"
 length = 0.1
@@ -118,6 +87,37 @@ _data = {
 "attack": SubResource("Animation_a6hs8"),
 "death": SubResource("Animation_qcj21")
 }
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_lb03b"]
+particles_animation = true
+particles_anim_h_frames = 31
+particles_anim_v_frames = 1
+particles_anim_loop = true
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_0t0au"]
+particle_flag_disable_z = true
+gravity = Vector3(0, 0, 0)
+scale_min = 0.7
+scale_max = 0.7
+anim_speed_min = 1.0
+anim_speed_max = 1.0
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_mbyvb"]
+particles_animation = true
+particles_anim_h_frames = 44
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_paynb"]
+lifetime_randomness = 0.11
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(16, 16, 1)
+gravity = Vector3(0, 0, 0)
+scale_min = 0.7
+scale_max = 1.3
+anim_speed_min = 1.0
+anim_speed_max = 1.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bif26"]
 bg_color = Color(0.843137, 0.196078, 0.0666667, 1)
@@ -238,8 +238,10 @@ event = &"death"
 [node name="Dead" type="Node" parent="StateChart/Root/Damage"]
 script = ExtResource("5_qt5d1")
 
-[node name="AttackCooldownTimer" type="Timer" parent="."]
-one_shot = true
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_lj4jm")
+}
 
 [node name="AttackParticles" type="GPUParticles2D" parent="."]
 material = SubResource("CanvasItemMaterial_lb03b")
@@ -262,12 +264,11 @@ one_shot = true
 explosiveness = 0.62
 randomness = 0.1
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_lj4jm")
-}
+[node name="AttackCooldownTimer" type="Timer" parent="."]
+one_shot = true
 
 [node name="HealthBar" type="ProgressBar" parent="."]
+z_index = 1
 custom_minimum_size = Vector2(0, 4)
 anchors_preset = 10
 anchor_right = 1.0
