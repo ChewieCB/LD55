@@ -5,10 +5,10 @@
 [ext_resource type="Texture2D" uid="uid://cjwi0pfmn0q6j" path="res://assets/sprite/home_building.png" id="2_ryj4c"]
 [ext_resource type="PackedScene" uid="uid://cl2vbhwlslu0h" path="res://src/entities/hero/TheHero.tscn" id="3_700ak"]
 [ext_resource type="Script" path="res://src/levels/main_game/follow_camera.gd" id="3_nexuo"]
-[ext_resource type="PackedScene" uid="uid://b428f1lj6tuvn" path="res://src/entity/Zombie.tscn" id="4_p2j4l"]
-[ext_resource type="PackedScene" uid="uid://b7y4r3ixcgn8b" path="res://src/entity/Mummy.tscn" id="6_0ykfp"]
+[ext_resource type="PackedScene" uid="uid://b428f1lj6tuvn" path="res://src/entities/Zombie.tscn" id="4_p2j4l"]
+[ext_resource type="PackedScene" uid="uid://b7y4r3ixcgn8b" path="res://src/entities/Mummy.tscn" id="6_0ykfp"]
 [ext_resource type="PackedScene" uid="uid://c3hse0gwreuje" path="res://src/ui/GameUI.tscn" id="6_k6rr8"]
-[ext_resource type="PackedScene" uid="uid://bl8brofna47l6" path="res://src/entity/player/PlayerControl.tscn" id="6_r66m5"]
+[ext_resource type="PackedScene" uid="uid://bl8brofna47l6" path="res://src/entities/player/PlayerControl.tscn" id="6_r66m5"]
 
 [sub_resource type="Curve2D" id="Curve2D_i2xrd"]
 _data = {
