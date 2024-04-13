@@ -41,7 +41,7 @@ curve = SubResource("Curve2D_g2yoo")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Ground/Path2D"]
 position = Vector2(244.002, 44.0002)
-rotation = 2.1045
+rotation = 2.10451
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
 navigation_polygon = SubResource("NavigationPolygon_e1llw")
@@ -90,7 +90,7 @@ script = ExtResource("3_nexuo")
 player = NodePath("../Crusader")
 
 [node name="PlayerControl" parent="." node_paths=PackedStringArray("crusader") instance=ExtResource("6_r66m5")]
-minions = Array[Object]([ExtResource("8_jh4ys")])
+minions = Array[Resource("res://src/entities/characters/minions/minion_resource.gd")]([ExtResource("8_jh4ys")])
 crusader = NodePath("../Crusader")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
