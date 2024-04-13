@@ -1,11 +1,14 @@
-[gd_scene load_steps=9 format=3 uid="uid://bjabavwsrnt0y"]
+[gd_scene load_steps=12 format=3 uid="uid://bjabavwsrnt0y"]
 
+[ext_resource type="Script" path="res://src/levels/main_game/main_game.gd" id="1_4qjmh"]
 [ext_resource type="Texture2D" uid="uid://8q5gyn8ex2wv" path="res://assets/sprite/square.png" id="1_vuavk"]
 [ext_resource type="Texture2D" uid="uid://cjwi0pfmn0q6j" path="res://assets/sprite/home_building.png" id="2_ryj4c"]
 [ext_resource type="PackedScene" uid="uid://cl2vbhwlslu0h" path="res://src/entity/hero/TheHero.tscn" id="3_700ak"]
 [ext_resource type="Script" path="res://src/levels/main_game/follow_camera.gd" id="3_nexuo"]
 [ext_resource type="PackedScene" uid="uid://b428f1lj6tuvn" path="res://src/entity/Zombie.tscn" id="4_p2j4l"]
+[ext_resource type="PackedScene" uid="uid://b7y4r3ixcgn8b" path="res://src/entity/Mummy.tscn" id="6_0ykfp"]
 [ext_resource type="PackedScene" uid="uid://c3hse0gwreuje" path="res://src/ui/GameUI.tscn" id="6_k6rr8"]
+[ext_resource type="PackedScene" uid="uid://bl8brofna47l6" path="res://src/entity/player/PlayerControl.tscn" id="6_r66m5"]
 
 [sub_resource type="Curve2D" id="Curve2D_i2xrd"]
 _data = {
@@ -17,6 +20,7 @@ point_count = 7
 size = Vector2(175, 63.5)
 
 [node name="MainGame" type="Node2D"]
+script = ExtResource("1_4qjmh")
 
 [node name="Ground" type="Sprite2D" parent="."]
 self_modulate = Color(0, 0, 0, 1)
@@ -50,28 +54,20 @@ position = Vector2(5.5, 21.75)
 shape = SubResource("RectangleShape2D_w0twn")
 
 [node name="TheHero" parent="YSort" node_paths=PackedStringArray("patrol_path") instance=ExtResource("3_700ak")]
-position = Vector2(289, 511)
+position = Vector2(280, 504)
 patrol_path = NodePath("../../Ground/Path2D")
 
 [node name="Zombie" parent="YSort" instance=ExtResource("4_p2j4l")]
 position = Vector2(430, 507)
 
-[node name="Zombie2" parent="YSort" instance=ExtResource("4_p2j4l")]
-position = Vector2(503, 509)
-
-[node name="Zombie3" parent="YSort" instance=ExtResource("4_p2j4l")]
-position = Vector2(464, 543)
-
-[node name="Zombie4" parent="YSort" instance=ExtResource("4_p2j4l")]
-position = Vector2(430, 572)
-
-[node name="Zombie5" parent="YSort" instance=ExtResource("4_p2j4l")]
-position = Vector2(503, 572)
-
 [node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("player")]
 position_smoothing_enabled = true
 script = ExtResource("3_nexuo")
 player = NodePath("../YSort/TheHero")
+
+[node name="PlayerControl" parent="." instance=ExtResource("6_r66m5")]
+zombie_prefab = ExtResource("4_p2j4l")
+mummy_prefab = ExtResource("6_0ykfp")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
