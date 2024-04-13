@@ -1,7 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://c3hse0gwreuje"]
+[gd_scene load_steps=6 format=3 uid="uid://c3hse0gwreuje"]
 
 [ext_resource type="Script" path="res://src/ui/game_ui.gd" id="1_mbso5"]
 [ext_resource type="Texture2D" uid="uid://8q5gyn8ex2wv" path="res://assets/sprite/square.png" id="2_5ds5d"]
+[ext_resource type="Texture2D" uid="uid://klywda7vhx06" path="res://assets/ui/lef panel.png" id="2_doy7b"]
+[ext_resource type="Texture2D" uid="uid://c3ydalaynuwlg" path="res://assets/ui/right panel.png" id="3_sxvjh"]
+[ext_resource type="FontFile" uid="uid://b21yg3y2byt8f" path="res://assets/fonts/AvQest.ttf" id="4_ptily"]
 
 [node name="GameUI" type="Control"]
 layout_mode = 3
@@ -12,39 +15,228 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_mbso5")
 
-[node name="LeftPanel" type="ColorRect" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LeftScroll" type="TextureRect" parent="MarginContainer"]
+layout_mode = 2
+texture = ExtResource("2_doy7b")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="RightScroll" type="TextureRect" parent="MarginContainer"]
+layout_mode = 2
+texture = ExtResource("3_sxvjh")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="PrefixesContainer" type="MarginContainer" parent="."]
 layout_mode = 1
 anchors_preset = 9
 anchor_bottom = 1.0
-offset_right = 128.0
-offset_bottom = -64.0
+offset_left = -26.0
+offset_top = 107.0
+offset_right = 246.0
+offset_bottom = -56.0
 grow_vertical = 2
-color = Color(0.482353, 0.266667, 0.0196078, 0.215686)
+theme_override_constants/margin_left = 64
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
 
-[node name="Label" type="Label" parent="LeftPanel"]
-layout_mode = 0
-offset_left = 8.0
-offset_top = 8.0
-offset_right = 120.0
-offset_bottom = 432.0
-text = "Square:
-UUU
-Triangle
-LLL
-----
-Agile
-UULLRR
-Tough
-UUUDDDUD
+[node name="VBoxContainer" type="VBoxContainer" parent="PrefixesContainer"]
+layout_mode = 2
 
-"
+[node name="MarginContainer" type="MarginContainer" parent="PrefixesContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PrefixesContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.760784, 0.760784, 0.760784, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 2
+theme_override_constants/shadow_outline_size = 3
+theme_override_fonts/font = ExtResource("4_ptily")
+theme_override_font_sizes/font_size = 24
+text = "Prefixes"
+vertical_alignment = 1
+
+[node name="MarginContainer3" type="MarginContainer" parent="PrefixesContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = -24
+
+[node name="Label" type="Label" parent="PrefixesContainer/VBoxContainer/MarginContainer3"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.760784, 0.760784, 0.760784, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 2
+theme_override_constants/shadow_outline_size = 3
+theme_override_fonts/font = ExtResource("4_ptily")
+theme_override_font_sizes/font_size = 24
+text = "_________________"
+vertical_alignment = 1
+
+[node name="MarginContainer2" type="MarginContainer" parent="PrefixesContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PrefixesContainer/VBoxContainer/MarginContainer2"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.760784, 0.760784, 0.760784, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 2
+theme_override_constants/shadow_outline_size = 3
+theme_override_fonts/font = ExtResource("4_ptily")
+theme_override_font_sizes/font_size = 24
+text = "Square | UUU"
+vertical_alignment = 1
+
+[node name="MarginContainer4" type="MarginContainer" parent="PrefixesContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PrefixesContainer/VBoxContainer/MarginContainer4"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.760784, 0.760784, 0.760784, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 2
+theme_override_constants/shadow_outline_size = 3
+theme_override_fonts/font = ExtResource("4_ptily")
+theme_override_font_sizes/font_size = 24
+text = "Triangle | LLL"
+vertical_alignment = 1
+
+[node name="MarginContainer6" type="MarginContainer" parent="PrefixesContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = -24
+
+[node name="Label" type="Label" parent="PrefixesContainer/VBoxContainer/MarginContainer6"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.760784, 0.760784, 0.760784, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 2
+theme_override_constants/shadow_outline_size = 3
+theme_override_fonts/font = ExtResource("4_ptily")
+theme_override_font_sizes/font_size = 24
+text = "_________________"
+vertical_alignment = 1
+
+[node name="MarginContainer7" type="MarginContainer" parent="PrefixesContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PrefixesContainer/VBoxContainer/MarginContainer7"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.760784, 0.760784, 0.760784, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 2
+theme_override_constants/shadow_outline_size = 3
+theme_override_fonts/font = ExtResource("4_ptily")
+theme_override_font_sizes/font_size = 24
+text = "Agile :  
+  UULLRR"
+vertical_alignment = 1
+
+[node name="MarginContainer8" type="MarginContainer" parent="PrefixesContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PrefixesContainer/VBoxContainer/MarginContainer8"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.760784, 0.760784, 0.760784, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 2
+theme_override_constants/shadow_outline_size = 3
+theme_override_fonts/font = ExtResource("4_ptily")
+theme_override_font_sizes/font_size = 24
+text = "Tough :
+  UUUDDDUD"
+vertical_alignment = 1
+
+[node name="SpellsContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -291.0
+offset_top = 114.0
+offset_right = 44.0
+offset_bottom = -26.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 72
+theme_override_constants/margin_bottom = 32
+
+[node name="VBoxContainer" type="VBoxContainer" parent="SpellsContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="SpellsContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="SpellsContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.760784, 0.760784, 0.760784, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 2
+theme_override_constants/shadow_outline_size = 3
+theme_override_fonts/font = ExtResource("4_ptily")
+theme_override_font_sizes/font_size = 24
+text = "Summons"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="MarginContainer3" type="MarginContainer" parent="SpellsContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = -24
+
+[node name="Label" type="Label" parent="SpellsContainer/VBoxContainer/MarginContainer3"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.760784, 0.760784, 0.760784, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 2
+theme_override_constants/shadow_outline_size = 3
+theme_override_fonts/font = ExtResource("4_ptily")
+theme_override_font_sizes/font_size = 24
+text = "_________________"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="MarginContainer2" type="MarginContainer" parent="SpellsContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="SpellsContainer/VBoxContainer/MarginContainer2"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.760784, 0.760784, 0.760784, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 2
+theme_override_constants/shadow_outline_size = 3
+theme_override_fonts/font = ExtResource("4_ptily")
+theme_override_font_sizes/font_size = 24
+text = "Zombie | DDD"
+horizontal_alignment = 2
+vertical_alignment = 1
 
 [node name="SpellPanel" type="ColorRect" parent="."]
 layout_mode = 1
 anchors_preset = 9
 anchor_bottom = 1.0
-offset_top = 688.0
-offset_right = 288.0
+offset_left = 383.0
+offset_top = 984.0
+offset_right = 730.0
 grow_vertical = 2
 color = Color(0.117647, 0.482353, 0.0627451, 0.537255)
 
@@ -78,28 +270,6 @@ texture_under = ExtResource("2_5ds5d")
 texture_progress = ExtResource("2_5ds5d")
 tint_under = Color(0, 0, 0, 1)
 tint_progress = Color(0.184314, 1, 0.00784314, 1)
-
-[node name="RightPanel" type="ColorRect" parent="."]
-layout_mode = 1
-anchors_preset = 11
-anchor_left = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -134.0
-grow_horizontal = 0
-grow_vertical = 2
-color = Color(0.482353, 0.266667, 0.0196078, 0.215686)
-
-[node name="Label" type="Label" parent="RightPanel"]
-layout_mode = 0
-offset_left = 16.0
-offset_top = 8.0
-offset_right = 128.0
-offset_bottom = 752.0
-text = "Zombie:
-DDDUUU
-Mummy:
-UUDDLRLR"
 
 [node name="TimePanel" type="Panel" parent="."]
 layout_mode = 1
