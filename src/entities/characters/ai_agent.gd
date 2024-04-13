@@ -7,15 +7,25 @@ class_name AIAgent
 		current_health = attributes.health
 		speed = attributes.speed
 
-var current_health: int = 100
-var speed: int = 300
+var current_health: int:
+	set(value):
+		var prev_health = current_health
+		current_health = clamp(value, 0, attributes.health)
+		if current_health == 0:
+			_die()
+		elif value < prev_health:
+			_hurt()
+var speed: int
 var acceleration: int = 7
+
+@export var attacks: Array[AttackResource]
+var current_attack: AttackResource
 
 @onready var nav_agent = $NavigationAgent2D
 
 
 func _ready():
-	# TODO - preload stuff here
+	await get_owner().ready
 	_spawn()
 
 
@@ -24,7 +34,6 @@ func _physics_process(delta):
 
 
 func _spawn():
-	# TODO
 	pass
 
 
@@ -39,8 +48,15 @@ func _move(delta):
 	nav_agent.set_velocity(intended_velocity)
 
 
+func _attack(attack: AttackResource, target: AIAgent):
+	pass
+
+
+func _hurt():
+	pass
+
+
 func _die():
-	# TODO
 	pass
 
 

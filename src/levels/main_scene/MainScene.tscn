@@ -77,16 +77,7 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_fonts/font = ExtResource("2_a4b4n")
 theme_override_font_sizes/font_size = 32
-text = "Mockup/Summoning"
-
-[node name="AINavButton" type="Button" parent="Temp/Control/MarginContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 64)
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-theme_override_fonts/font = ExtResource("2_a4b4n")
-theme_override_font_sizes/font_size = 32
-text = "AI Navigation"
+text = "Summoning"
 
 [node name="CrusaderAIButton" type="Button" parent="Temp/Control/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 64)
@@ -98,5 +89,4 @@ theme_override_font_sizes/font_size = 32
 text = "Crusader AI"
 
 [connection signal="pressed" from="Temp/Control/MarginContainer/VBoxContainer/SummoningButton" to="." method="_on_summoning_button_pressed"]
-[connection signal="pressed" from="Temp/Control/MarginContainer/VBoxContainer/AINavButton" to="." method="_on_ai_nav_button_pressed"]
 [connection signal="pressed" from="Temp/Control/MarginContainer/VBoxContainer/CrusaderAIButton" to="." method="_on_crusader_ai_button_pressed"]

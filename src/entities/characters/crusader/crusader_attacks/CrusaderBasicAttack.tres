@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="AttackResource" load_steps=2 format=3 uid="uid://cs0ahufxrbf1t"]
+
+[ext_resource type="Script" path="res://src/entities/characters/attack_resource.gd" id="1_i0vad"]
+
+[resource]
+script = ExtResource("1_i0vad")
+range = 64
+cooldown = 1.0
+damage = 30
