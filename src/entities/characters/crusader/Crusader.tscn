@@ -1,10 +1,38 @@
-[gd_scene load_steps=4 format=3 uid="uid://bev1egpx7qcvi"]
+[gd_scene load_steps=17 format=3 uid="uid://bev1egpx7qcvi"]
 
 [ext_resource type="Script" path="res://src/entities/characters/crusader/crusader.gd" id="1_0cjda"]
 [ext_resource type="Texture2D" uid="uid://tbaw03mlpcud" path="res://assets/temp/malina-bg.png" id="2_svunf"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/state_chart.gd" id="3_hr7jo"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/parallel_state.gd" id="4_mr8e3"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/compound_state.gd" id="5_6ihxl"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/atomic_state.gd" id="6_w7y78"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/transition.gd" id="7_v3ig5"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/state_is_active_guard.gd" id="8_6fl0h"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/not_guard.gd" id="9_30nyi"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/all_of_guard.gd" id="10_slxhv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ci4kf"]
 size = Vector2(32, 32)
+
+[sub_resource type="Resource" id="Resource_a1oeu"]
+script = ExtResource("8_6fl0h")
+state = NodePath("../../../Action/Cleansing")
+
+[sub_resource type="Resource" id="Resource_ovjto"]
+script = ExtResource("9_30nyi")
+guard = SubResource("Resource_a1oeu")
+
+[sub_resource type="Resource" id="Resource_tv0jp"]
+script = ExtResource("8_6fl0h")
+state = NodePath("../../../Action/Cleansed")
+
+[sub_resource type="Resource" id="Resource_evjk3"]
+script = ExtResource("9_30nyi")
+guard = SubResource("Resource_tv0jp")
+
+[sub_resource type="Resource" id="Resource_auvi3"]
+script = ExtResource("10_slxhv")
+guards = Array[Resource("res://addons/godot_state_charts/guard.gd")]([SubResource("Resource_ovjto"), SubResource("Resource_evjk3")])
 
 [node name="Crusader" type="CharacterBody2D"]
 script = ExtResource("1_0cjda")
@@ -36,4 +64,120 @@ avoidance_enabled = true
 radius = 16.0
 debug_enabled = true
 
+[node name="StateChart" type="Node" parent="."]
+script = ExtResource("3_hr7jo")
+
+[node name="Root" type="Node" parent="StateChart"]
+script = ExtResource("4_mr8e3")
+
+[node name="Movement" type="Node" parent="StateChart/Root"]
+script = ExtResource("5_6ihxl")
+initial_state = NodePath("Walking")
+
+[node name="Idle" type="Node" parent="StateChart/Root/Movement"]
+script = ExtResource("6_w7y78")
+
+[node name="toWalking" type="Node" parent="StateChart/Root/Movement/Idle"]
+script = ExtResource("7_v3ig5")
+to = NodePath("../../Walking")
+event = &"start_walking"
+guard = SubResource("Resource_auvi3")
+
+[node name="Walking" type="Node" parent="StateChart/Root/Movement"]
+script = ExtResource("6_w7y78")
+
+[node name="toIdle" type="Node" parent="StateChart/Root/Movement/Walking"]
+script = ExtResource("7_v3ig5")
+to = NodePath("../../Idle")
+event = &"stop_walking"
+
+[node name="toStaggered" type="Node" parent="StateChart/Root/Movement/Walking"]
+script = ExtResource("7_v3ig5")
+to = NodePath("../../Staggered")
+event = &"stagger"
+
+[node name="Staggered" type="Node" parent="StateChart/Root/Movement"]
+script = ExtResource("6_w7y78")
+
+[node name="toIdle" type="Node" parent="StateChart/Root/Movement/Staggered"]
+script = ExtResource("7_v3ig5")
+to = NodePath("../../Idle")
+event = &"recover"
+
+[node name="toWalking" type="Node" parent="StateChart/Root/Movement/Staggered"]
+script = ExtResource("7_v3ig5")
+to = NodePath("../../Walking")
+event = &"recover"
+
+[node name="Stunned" type="Node" parent="StateChart/Root/Movement"]
+script = ExtResource("6_w7y78")
+
+[node name="Stances" type="Node" parent="StateChart/Root"]
+script = ExtResource("5_6ihxl")
+initial_state = NodePath("DefaultStance")
+
+[node name="DefaultStance" type="Node" parent="StateChart/Root/Stances"]
+script = ExtResource("6_w7y78")
+
+[node name="TankStance" type="Node" parent="StateChart/Root/Stances"]
+script = ExtResource("6_w7y78")
+
+[node name="FastStance" type="Node" parent="StateChart/Root/Stances"]
+script = ExtResource("6_w7y78")
+
+[node name="DamageStance" type="Node" parent="StateChart/Root/Stances"]
+script = ExtResource("6_w7y78")
+
+[node name="Damage" type="Node" parent="StateChart/Root"]
+script = ExtResource("5_6ihxl")
+initial_state = NodePath("Idle")
+
+[node name="Idle" type="Node" parent="StateChart/Root/Damage"]
+script = ExtResource("6_w7y78")
+
+[node name="Hit" type="Node" parent="StateChart/Root/Damage"]
+script = ExtResource("6_w7y78")
+
+[node name="Dead" type="Node" parent="StateChart/Root/Damage"]
+script = ExtResource("6_w7y78")
+
+[node name="Attacking" type="Node" parent="StateChart/Root"]
+script = ExtResource("5_6ihxl")
+initial_state = NodePath("Idle")
+
+[node name="Idle" type="Node" parent="StateChart/Root/Attacking"]
+script = ExtResource("6_w7y78")
+
+[node name="BasicAttack" type="Node" parent="StateChart/Root/Attacking"]
+script = ExtResource("6_w7y78")
+
+[node name="Cleave" type="Node" parent="StateChart/Root/Attacking"]
+script = ExtResource("6_w7y78")
+
+[node name="Action" type="Node" parent="StateChart/Root"]
+script = ExtResource("5_6ihxl")
+initial_state = NodePath("Idle")
+
+[node name="Idle" type="Node" parent="StateChart/Root/Action"]
+script = ExtResource("6_w7y78")
+
+[node name="toCleansing" type="Node" parent="StateChart/Root/Action/Idle"]
+script = ExtResource("7_v3ig5")
+to = NodePath("../../Cleansing")
+event = &"start_cleansing"
+
+[node name="Cleansing" type="Node" parent="StateChart/Root/Action"]
+script = ExtResource("6_w7y78")
+
+[node name="toIdle" type="Node" parent="StateChart/Root/Action/Cleansing"]
+script = ExtResource("7_v3ig5")
+to = NodePath("../../Idle")
+event = &"stop_cleansing"
+
 [connection signal="velocity_computed" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_velocity_computed"]
+[connection signal="state_physics_processing" from="StateChart/Root/Movement/Idle" to="." method="_on_idle_state_physics_processing"]
+[connection signal="state_physics_processing" from="StateChart/Root/Movement/Walking" to="." method="_on_walking_state_physics_processing"]
+[connection signal="state_entered" from="StateChart/Root/Stances/DefaultStance" to="." method="_on_default_stance_state_entered"]
+[connection signal="state_physics_processing" from="StateChart/Root/Stances/DefaultStance" to="." method="_on_default_stance_state_physics_processing"]
+[connection signal="state_entered" from="StateChart/Root/Action/Idle" to="." method="_on_action_idle_state_entered"]
+[connection signal="state_entered" from="StateChart/Root/Action/Cleansing" to="." method="_on_action_cleansing_state_entered"]

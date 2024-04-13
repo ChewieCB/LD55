@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://ct5ht7xrs5le"]
+[gd_scene load_steps=7 format=3 uid="uid://ct5ht7xrs5le"]
 
 [ext_resource type="Script" path="res://src/entities/characters/tests/test_crusader.gd" id="1_n4lhb"]
 [ext_resource type="PackedScene" uid="uid://bev1egpx7qcvi" path="res://src/entities/characters/crusader/Crusader.tscn" id="2_0iela"]
 [ext_resource type="PackedScene" uid="uid://binmlcu1tn3wn" path="res://src/entities/ritual_point/RitualPoint.tscn" id="3_n0qqr"]
+[ext_resource type="PackedScene" uid="uid://bcwkugn6v3oy7" path="res://addons/godot_state_charts/utilities/state_chart_debugger.tscn" id="4_54j0e"]
 
 [sub_resource type="Curve2D" id="Curve2D_rontt"]
 _data = {
@@ -44,3 +45,15 @@ position = Vector2(594, 508)
 
 [node name="RitualPoint4" parent="RitualPoints" instance=ExtResource("3_n0qqr")]
 position = Vector2(868, 550)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="StateChartDebugger" parent="CanvasLayer" instance=ExtResource("4_54j0e")]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_bottom = 0.0
+offset_left = -327.0
+offset_bottom = 270.0
+grow_horizontal = 0
+grow_vertical = 1
+initial_node_to_watch = NodePath("../../Crusader")
