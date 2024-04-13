@@ -2,9 +2,9 @@
 
 [ext_resource type="Texture2D" uid="uid://8q5gyn8ex2wv" path="res://assets/sprite/square.png" id="1_vuavk"]
 [ext_resource type="Texture2D" uid="uid://cjwi0pfmn0q6j" path="res://assets/sprite/home_building.png" id="2_ryj4c"]
-[ext_resource type="PackedScene" uid="uid://cl2vbhwlslu0h" path="res://src/entity/hero/TheHero.tscn" id="3_700ak"]
+[ext_resource type="PackedScene" uid="uid://cl2vbhwlslu0h" path="res://src/entities/_mockup/hero/TheHero.tscn" id="3_700ak"]
 [ext_resource type="Script" path="res://src/levels/main_game/follow_camera.gd" id="3_nexuo"]
-[ext_resource type="PackedScene" uid="uid://b428f1lj6tuvn" path="res://src/entity/Zombie.tscn" id="4_p2j4l"]
+[ext_resource type="PackedScene" uid="uid://b428f1lj6tuvn" path="res://src/entities/_mockup/Zombie.tscn" id="4_p2j4l"]
 
 [sub_resource type="Curve2D" id="Curve2D_i2xrd"]
 _data = {
