@@ -7,6 +7,10 @@ signal death
 @onready var attack_range_area = $AttackRange
 @onready var attack_range_collider = $AttackRange/CollisionShape2D
 
+@onready var _attack_sfx_1: AudioStream = load("res://assets/sfx/attacks/Blade_Impact.wav")
+@onready var _attack_sfx_2: AudioStream = load("res://assets/sfx/attacks/Blade_Impact_2.wav")
+@onready var attack_sfx = [_attack_sfx_1, _attack_sfx_2]
+
 var path: Curve2D
 var path_points: PackedVector2Array
 var path_index: int = 0:
@@ -36,6 +40,7 @@ func _process(delta):
 # TODO - this whole function can just be generic in the base class
 func _attack(attack: AttackResource, target: AIAgent):
 	attack_particles.global_position = target.global_position
+	SoundManager.play_sound(attack_sfx[randi_range(0, attack_sfx.size() - 1)])
 	anim_player.play("attack")
 	target.current_health -= attack.damage
 	state_chart.send_event("finish_attack")

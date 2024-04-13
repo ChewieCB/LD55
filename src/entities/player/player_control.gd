@@ -11,6 +11,21 @@ var prefixes = {
 }
 @export var crusader: Crusader
 
+@onready var _summon_sfx_1 = load("res://assets/sfx/summoning/Summoning_noise_1.mp3")
+@onready var _summon_sfx_2 = load("res://assets/sfx/summoning/Summoning_noise_2.mp3")
+@onready var _summon_sfx_3 = load("res://assets/sfx/summoning/Summoning_noise_3.mp3")
+@onready var _summon_sfx_4 = load("res://assets/sfx/summoning/Summoning_noise_4.mp3")
+@onready var summon_sfx = [_summon_sfx_1, _summon_sfx_2, _summon_sfx_3, _summon_sfx_4]
+#
+@onready var _input_sfx_1 = load("res://assets/sfx/Knock_Reverb.mp3")
+@onready var _input_sfx_2 = load("res://assets/sfx/Knock_Reverb_2.mp3")
+@onready var _input_sfx_3 = load("res://assets/sfx/Knock_Reverb_3.mp3")
+@onready var _input_sfx_4 = load("res://assets/sfx/Knock_Reverb_4.mp3")
+@onready var _input_sfx_5 = load("res://assets/sfx/Knock_Reverb_5.mp3")
+@onready var _input_sfx_6 = load("res://assets/sfx/Knock_Reverb_6.mp3")
+@onready var input_sfx = [_input_sfx_1, _input_sfx_2, _input_sfx_3, _input_sfx_4, _input_sfx_5, _input_sfx_6]
+
+
 var spell_input: String = "":
 	set(value):
 		spell_input = value
@@ -165,6 +180,8 @@ func cast_readied_spell():
 		_minion.crusader = crusader
 		GameManager.main_game.minion_spawn.add_child(_minion)
 	
+	SoundManager.play_sound(summon_sfx[randi_range(0, summon_sfx.size() - 1)])
+	
 	finish_cast()
 
 
@@ -195,3 +212,4 @@ func cast_input(input: String):
 	
 	# FIXME - emit a signal using the current_spell signal
 	GameManager.game_ui.set_spell_label("Input: " + spell_input)
+	SoundManager.play_sound(input_sfx[randi_range(0, input_sfx.size() - 1)])
