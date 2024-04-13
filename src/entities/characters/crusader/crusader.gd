@@ -19,7 +19,7 @@ var path_index: int = 0:
 			path_index = path_points.size() - 1
 		else:
 			path_index = value
-var ritual_point:
+var ritual_point: Node2D:
 	set(value):
 		ritual_point = value
 
@@ -58,7 +58,7 @@ func _die():
 
 
 func start_cleanse(ritual_node):
-	cleansing_complete.connect(ritual_node.cleanse)
+	cleansing_complete.connect(ritual_node.cleanse_complete)
 	state_chart.send_event("stop_walking")
 	state_chart.send_event("start_cleansing")
 
@@ -95,7 +95,7 @@ func _on_idle_state_physics_processing(delta):
 func _on_walking_state_physics_processing(delta):
 	# If we're in range of a ritual point, move to that
 	if ritual_point:
-		nav_agent.target_position = ritual_point
+		nav_agent.target_position = ritual_point.global_position
 	else:
 		# Otherwise we move to the next path node
 		nav_agent.target_position = path_points[path_index]
@@ -120,7 +120,13 @@ func _on_action_idle_state_entered():
 
 
 func _on_action_cleansing_state_entered():
-	await get_tree().create_timer(1.5).timeout
+	ritual_point.cleanse()
+
+
+func _on_action_cleansing_state_physics_processing(delta):
+	while ritual_point.cleanse_progress < 100:
+		ritual_point.cleanse_progress += delta * 15
+		return
 	finish_cleanse()
 
 
@@ -160,3 +166,4 @@ func _on_dead_state_entered():
 func _on_minion_attack_area_body_entered(body):
 	if body is MinionBase:
 		body.crusader_target = body.global_position
+

@@ -378,4 +378,5 @@ shape = SubResource("CircleShape2D_0pxk1")
 [connection signal="state_entered" from="StateChart/Root/Attacking/BasicAttack" to="." method="_on_attacking_basic_attack_state_entered"]
 [connection signal="state_entered" from="StateChart/Root/Action/Idle" to="." method="_on_action_idle_state_entered"]
 [connection signal="state_entered" from="StateChart/Root/Action/Cleansing" to="." method="_on_action_cleansing_state_entered"]
+[connection signal="state_physics_processing" from="StateChart/Root/Action/Cleansing" to="." method="_on_action_cleansing_state_physics_processing"]
 [connection signal="body_entered" from="MinionAttackArea" to="." method="_on_minion_attack_area_body_entered"]

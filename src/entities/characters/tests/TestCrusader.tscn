@@ -28,6 +28,17 @@ curve = SubResource("Curve2D_rontt")
 position = Vector2(50, 26)
 rotation = 0.602627
 
+[node name="RitualPoints" type="Node2D" parent="."]
+
+[node name="RitualPoint4" parent="RitualPoints" instance=ExtResource("3_n0qqr")]
+position = Vector2(868, 550)
+
+[node name="RitualPoint5" parent="RitualPoints" instance=ExtResource("3_n0qqr")]
+position = Vector2(215, 182)
+
+[node name="RitualPoint6" parent="RitualPoints" instance=ExtResource("3_n0qqr")]
+position = Vector2(438, 515)
+
 [node name="Crusader" parent="." instance=ExtResource("2_0iela")]
 position = Vector2(45, 20)
 
@@ -50,17 +61,6 @@ position = Vector2(398, 542)
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
 navigation_polygon = SubResource("NavigationPolygon_y84vj")
-
-[node name="RitualPoints" type="Node2D" parent="."]
-
-[node name="RitualPoint4" parent="RitualPoints" instance=ExtResource("3_n0qqr")]
-position = Vector2(868, 550)
-
-[node name="RitualPoint5" parent="RitualPoints" instance=ExtResource("3_n0qqr")]
-position = Vector2(215, 182)
-
-[node name="RitualPoint6" parent="RitualPoints" instance=ExtResource("3_n0qqr")]
-position = Vector2(438, 515)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

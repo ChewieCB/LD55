@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://binmlcu1tn3wn"]
+[gd_scene load_steps=13 format=3 uid="uid://binmlcu1tn3wn"]
 
 [ext_resource type="Texture2D" uid="uid://b356n6j567g3d" path="res://assets/temp/juni-bg.png" id="1_kil8c"]
 [ext_resource type="Script" path="res://src/entities/ritual_point/ritual_point.gd" id="1_smowv"]
@@ -28,7 +28,7 @@ anim_speed_max = 1.0
 
 [sub_resource type="Animation" id="Animation_jyyon"]
 resource_name = "cleanse_complete"
-length = 0.1
+length = 0.3
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -41,11 +41,60 @@ tracks/0/keys = {
 "update": 1,
 "values": [true]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(0.535887, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_yfe30"]
+resource_name = "default"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_73k6r"]
+resource_name = "cleansing"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(0.554785, 1.7411, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0.176471, 0.560784, 0.243137, 1), Color(1, 1, 1, 1)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_b17fb"]
 _data = {
-"cleanse_complete": SubResource("Animation_jyyon")
+"cleanse_complete": SubResource("Animation_jyyon"),
+"cleansing": SubResource("Animation_73k6r"),
+"default": SubResource("Animation_yfe30")
 }
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5nkkn"]
+bg_color = Color(0.176471, 0.560784, 0.243137, 1)
 
 [node name="RitualPoint" type="Node2D"]
 script = ExtResource("1_smowv")
@@ -69,6 +118,7 @@ debug_color = Color(0.129412, 0.619608, 0.521569, 0.419608)
 shape = SubResource("CircleShape2D_h60lq")
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+modulate = Color(0.176471, 0.560784, 0.243137, 1)
 material = SubResource("CanvasItemMaterial_lt1vd")
 emitting = false
 amount = 4
@@ -83,6 +133,20 @@ randomness = 0.05
 libraries = {
 "": SubResource("AnimationLibrary_b17fb")
 }
+autoplay = "default"
+
+[node name="CleanseBar" type="ProgressBar" parent="."]
+custom_minimum_size = Vector2(0, 4)
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = -31.0
+offset_top = -32.0
+offset_right = 32.0
+offset_bottom = -22.0
+grow_horizontal = 2
+size_flags_vertical = 4
+theme_override_styles/fill = SubResource("StyleBoxFlat_5nkkn")
+show_percentage = false
 
 [connection signal="body_entered" from="Range" to="." method="_on_range_body_entered"]
 [connection signal="body_entered" from="CleansingArea" to="." method="_on_cleansing_area_body_entered"]
