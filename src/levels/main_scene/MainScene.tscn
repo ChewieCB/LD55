@@ -30,12 +30,12 @@ texture = ExtResource("1_prdx4")
 stretch_mode = 5
 
 [node name="JuniSprite" type="Sprite2D" parent="Temp/Control"]
-position = Vector2(904, 205)
+position = Vector2(1626, 205)
 scale = Vector2(1.18591, 1.18591)
 texture = ExtResource("3_xxgf2")
 
 [node name="MalinaSprite" type="Sprite2D" parent="Temp/Control"]
-position = Vector2(202.749, 457.625)
+position = Vector2(209, 894)
 scale = Vector2(0.790206, 0.790206)
 texture = ExtResource("4_xephx")
 
@@ -77,16 +77,6 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_fonts/font = ExtResource("2_a4b4n")
 theme_override_font_sizes/font_size = 32
-text = "Summoning"
-
-[node name="CrusaderAIButton" type="Button" parent="Temp/Control/MarginContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 64)
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-theme_override_fonts/font = ExtResource("2_a4b4n")
-theme_override_font_sizes/font_size = 32
-text = "Crusader AI"
+text = "Start"
 
 [connection signal="pressed" from="Temp/Control/MarginContainer/VBoxContainer/SummoningButton" to="." method="_on_summoning_button_pressed"]
-[connection signal="pressed" from="Temp/Control/MarginContainer/VBoxContainer/CrusaderAIButton" to="." method="_on_crusader_ai_button_pressed"]

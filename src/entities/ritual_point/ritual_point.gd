@@ -5,6 +5,10 @@ signal cleansed
 @onready var anim_player = $AnimationPlayer
 @onready var particles = $GPUParticles2D
 @onready var cleanse_ui = $CleanseBar
+@onready var cleanse_sfx_1: AudioStream = load("res://assets/sfx/cleanse/Angelic_Chant_1.mp3")
+@onready var cleanse_sfx_2: AudioStream = load("res://assets/sfx/cleanse/Angelic_Chant_2.mp3")
+@onready var cleanse_sfx = [cleanse_sfx_1, cleanse_sfx_2]
+
 
 var cleanse_progress: float = 0:
 	set(value):
@@ -23,6 +27,7 @@ func cleanse():
 
 func cleanse_complete():
 	# TODO - add buffs to crusader/update loss counter/UI
+	SoundManager.play_sound(cleanse_sfx[randi_range(0, cleanse_sfx.size() - 1)])
 	anim_player.play("cleanse_complete")
 	await particles.finished
 	emit_signal("cleansed")

@@ -4,12 +4,21 @@ class_name MinionBase
 var crusader: Crusader
 var crusader_target: Vector2
 
+@onready var _minion_sfx_1: AudioStream = load("res://assets/sfx/minions/zombie/Zombie_Growl.mp3")
+@onready var _minion_sfx_2: AudioStream = load("res://assets/sfx/minions/zombie/Zombie_Growl_2.mp3")
+@onready var _minion_sfx_3: AudioStream = load("res://assets/sfx/minions/zombie/Zombie_Growl_3.mp3")
+@onready var minion_sfx = [_minion_sfx_1, _minion_sfx_2, _minion_sfx_3]
+#
+@onready var _attack_sfx_1: AudioStream = load("res://assets/sfx/Magic_Impact.mp3")
+@onready var attack_sfx = [_attack_sfx_1]
+
 
 func _spawn():
 	# TODO - play some animation or effect before beginning the movement
 	health_ui.max_value = attributes.health
 	if attacks:
 		current_attack = attacks[0]
+	SoundManager.play_sound(minion_sfx[randi_range(0, minion_sfx.size() - 1)])
 
 
 func _process(delta):
@@ -57,6 +66,7 @@ func _on_attacking_idle_state_physics_processing(delta):
 
 func _on_attacking_basic_attack_state_entered():
 	_attack(current_attack, crusader)
+	SoundManager.play_sound(attack_sfx[randi_range(0, attack_sfx.size() - 1)])
 	cooldown_timer.start(current_attack.cooldown)
 
 

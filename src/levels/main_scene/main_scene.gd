@@ -14,6 +14,3 @@ func _process(delta):
 func _on_summoning_button_pressed():
 	get_tree().change_scene_to_file("res://src/levels/main_game/MainGame.tscn")
 
-
-func _on_crusader_ai_button_pressed():
-	get_tree().change_scene_to_file("res://src/entities/characters/tests/TestCrusader.tscn")
