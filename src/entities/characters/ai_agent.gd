@@ -14,13 +14,18 @@ var acceleration: int = 7
 @onready var nav_agent = $NavigationAgent2D
 
 
-func _spawn():
-	# TODO
-	pass
+func _ready():
+	# TODO - preload stuff here
+	_spawn()
 
 
 func _physics_process(delta):
 	_move(delta)
+
+
+func _spawn():
+	# TODO
+	pass
 
 
 func _move(delta):
