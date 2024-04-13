@@ -9,10 +9,11 @@ class_name AIAgent
 
 var current_health: int:
 	set(value):
+		var prev_health = current_health
 		current_health = clamp(value, 0, attributes.health)
 		if current_health == 0:
 			_die()
-		elif value < current_health:
+		elif value < prev_health:
 			_hurt()
 var speed: int = 300
 var acceleration: int = 7
