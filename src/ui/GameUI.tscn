@@ -1,0 +1,130 @@
+[gd_scene load_steps=3 format=3 uid="uid://c3hse0gwreuje"]
+
+[ext_resource type="Script" path="res://src/ui/game_ui.gd" id="1_mbso5"]
+[ext_resource type="Texture2D" uid="uid://8q5gyn8ex2wv" path="res://assets/sprite/square.png" id="2_5ds5d"]
+
+[node name="GameUI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_mbso5")
+
+[node name="LeftPanel" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 128.0
+offset_bottom = -64.0
+grow_vertical = 2
+color = Color(0.482353, 0.266667, 0.0196078, 0.215686)
+
+[node name="Label" type="Label" parent="LeftPanel"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 120.0
+offset_bottom = 432.0
+text = "Square:
+UUU
+Triangle
+LLL
+----
+Agile
+UULLRR
+Tough
+UUUDDDUD
+
+"
+
+[node name="SpellPanel" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_top = 688.0
+offset_right = 288.0
+grow_vertical = 2
+color = Color(0.117647, 0.482353, 0.0627451, 0.537255)
+
+[node name="Label" type="Label" parent="SpellPanel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -120.0
+offset_top = 8.0
+offset_right = 120.0
+offset_bottom = 67.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 20
+text = "Failed spell. Press space to cast  again"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="SpellCooldown" type="TextureProgressBar" parent="SpellPanel"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -8.0
+grow_horizontal = 2
+grow_vertical = 0
+min_value = 100.0
+value = 100.0
+nine_patch_stretch = true
+texture_under = ExtResource("2_5ds5d")
+texture_progress = ExtResource("2_5ds5d")
+tint_under = Color(0, 0, 0, 1)
+tint_progress = Color(0.184314, 1, 0.00784314, 1)
+
+[node name="RightPanel" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -134.0
+grow_horizontal = 0
+grow_vertical = 2
+color = Color(0.482353, 0.266667, 0.0196078, 0.215686)
+
+[node name="Label" type="Label" parent="RightPanel"]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 8.0
+offset_right = 128.0
+offset_bottom = 752.0
+text = "Zombie:
+DDDUUU
+Mummy:
+UUDDLRLR"
+
+[node name="TimePanel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -59.0
+offset_right = 53.0
+offset_bottom = 40.0
+grow_horizontal = 2
+
+[node name="Label" type="Label" parent="TimePanel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.5
+offset_top = -11.5
+offset_right = 20.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 20
+text = "12:44"

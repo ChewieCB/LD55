@@ -1,10 +1,14 @@
-[gd_scene load_steps=8 format=3 uid="uid://bjabavwsrnt0y"]
+[gd_scene load_steps=12 format=3 uid="uid://bjabavwsrnt0y"]
 
+[ext_resource type="Script" path="res://src/levels/main_game/main_game.gd" id="1_4qjmh"]
 [ext_resource type="Texture2D" uid="uid://8q5gyn8ex2wv" path="res://assets/sprite/square.png" id="1_vuavk"]
 [ext_resource type="Texture2D" uid="uid://cjwi0pfmn0q6j" path="res://assets/sprite/home_building.png" id="2_ryj4c"]
 [ext_resource type="PackedScene" uid="uid://cl2vbhwlslu0h" path="res://src/entities/hero/TheHero.tscn" id="3_700ak"]
 [ext_resource type="Script" path="res://src/levels/main_game/follow_camera.gd" id="3_nexuo"]
-[ext_resource type="PackedScene" uid="uid://b428f1lj6tuvn" path="res://src/entities/Zombie.tscn" id="4_p2j4l"]
+[ext_resource type="PackedScene" uid="uid://b428f1lj6tuvn" path="res://src/entity/Zombie.tscn" id="4_p2j4l"]
+[ext_resource type="PackedScene" uid="uid://b7y4r3ixcgn8b" path="res://src/entity/Mummy.tscn" id="6_0ykfp"]
+[ext_resource type="PackedScene" uid="uid://c3hse0gwreuje" path="res://src/ui/GameUI.tscn" id="6_k6rr8"]
+[ext_resource type="PackedScene" uid="uid://bl8brofna47l6" path="res://src/entity/player/PlayerControl.tscn" id="6_r66m5"]
 
 [sub_resource type="Curve2D" id="Curve2D_i2xrd"]
 _data = {
@@ -16,6 +20,7 @@ point_count = 7
 size = Vector2(175, 63.5)
 
 [node name="MainGame" type="Node2D"]
+script = ExtResource("1_4qjmh")
 
 [node name="Ground" type="Sprite2D" parent="."]
 self_modulate = Color(0, 0, 0, 1)
@@ -49,143 +54,21 @@ position = Vector2(5.5, 21.75)
 shape = SubResource("RectangleShape2D_w0twn")
 
 [node name="TheHero" parent="YSort" node_paths=PackedStringArray("patrol_path") instance=ExtResource("3_700ak")]
-position = Vector2(289, 511)
+position = Vector2(280, 504)
 patrol_path = NodePath("../../Ground/Path2D")
 
 [node name="Zombie" parent="YSort" instance=ExtResource("4_p2j4l")]
 position = Vector2(430, 507)
-
-[node name="Zombie2" parent="YSort" instance=ExtResource("4_p2j4l")]
-position = Vector2(503, 509)
-
-[node name="Zombie3" parent="YSort" instance=ExtResource("4_p2j4l")]
-position = Vector2(464, 543)
-
-[node name="Zombie4" parent="YSort" instance=ExtResource("4_p2j4l")]
-position = Vector2(430, 572)
-
-[node name="Zombie5" parent="YSort" instance=ExtResource("4_p2j4l")]
-position = Vector2(503, 572)
 
 [node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("player")]
 position_smoothing_enabled = true
 script = ExtResource("3_nexuo")
 player = NodePath("../YSort/TheHero")
 
+[node name="PlayerControl" parent="." instance=ExtResource("6_r66m5")]
+zombie_prefab = ExtResource("4_p2j4l")
+mummy_prefab = ExtResource("6_0ykfp")
+
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="GameUI" type="Control" parent="CanvasLayer"]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="LeftPanel" type="ColorRect" parent="CanvasLayer/GameUI"]
-layout_mode = 1
-anchors_preset = 9
-anchor_bottom = 1.0
-offset_right = 128.0
-offset_bottom = -64.0
-grow_vertical = 2
-color = Color(0.482353, 0.266667, 0.0196078, 0.215686)
-
-[node name="Label" type="Label" parent="CanvasLayer/GameUI/LeftPanel"]
-layout_mode = 0
-offset_left = 8.0
-offset_top = 8.0
-offset_right = 120.0
-offset_bottom = 432.0
-text = "Square:
-UUU
-Triangle
-LLL
-Circle
-RRR
-----
-Agile
-UULLRR
-Tough
-UUUDDDUD
-Corrupted
-ULRUDLRUD
-
-"
-
-[node name="SpellPanel" type="ColorRect" parent="CanvasLayer/GameUI"]
-layout_mode = 1
-anchors_preset = 9
-anchor_bottom = 1.0
-offset_top = 704.0
-offset_right = 256.0
-grow_vertical = 2
-color = Color(0.117647, 0.482353, 0.0627451, 0.537255)
-
-[node name="Label" type="Label" parent="CanvasLayer/GameUI/SpellPanel"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -76.5
-offset_top = -15.5
-offset_right = 76.5
-offset_bottom = 15.5
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_font_sizes/font_size = 22
-text = "SPELL LOCKED"
-
-[node name="RightPanel" type="ColorRect" parent="CanvasLayer/GameUI"]
-layout_mode = 1
-anchors_preset = 11
-anchor_left = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -134.0
-grow_horizontal = 0
-grow_vertical = 2
-color = Color(0.482353, 0.266667, 0.0196078, 0.215686)
-
-[node name="Label" type="Label" parent="CanvasLayer/GameUI/RightPanel"]
-layout_mode = 0
-offset_left = 16.0
-offset_top = 8.0
-offset_right = 128.0
-offset_bottom = 752.0
-text = "Zombie:
-DDDUUU
-Zombie II:
-DUDDDUUD
-Mummy:
-UUDDLRLR
-Fishmen:
-DDDLRLL"
-
-[node name="TimePanel" type="Panel" parent="CanvasLayer/GameUI"]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -59.0
-offset_right = 53.0
-offset_bottom = 40.0
-grow_horizontal = 2
-
-[node name="Label" type="Label" parent="CanvasLayer/GameUI/TimePanel"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.5
-offset_top = -11.5
-offset_right = 20.5
-offset_bottom = 11.5
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_font_sizes/font_size = 20
-text = "12:44"
+[node name="GameUI" parent="CanvasLayer" instance=ExtResource("6_k6rr8")]
