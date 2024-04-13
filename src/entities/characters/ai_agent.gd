@@ -15,14 +15,13 @@ var current_health: int:
 			_die()
 		elif value < prev_health:
 			_hurt()
-var speed: int = 300
+var speed: int
 var acceleration: int = 7
 
 @onready var nav_agent = $NavigationAgent2D
 
 
 func _ready():
-	# TODO - preload stuff here
 	_spawn()
 
 
@@ -31,7 +30,6 @@ func _physics_process(delta):
 
 
 func _spawn():
-	# TODO
 	pass
 
 
@@ -46,13 +44,15 @@ func _move(delta):
 	nav_agent.set_velocity(intended_velocity)
 
 
+func _attack(attack: AttackResource):
+	pass
+
+
 func _hurt():
-	# TODO
 	pass
 
 
 func _die():
-	# TODO
 	pass
 
 

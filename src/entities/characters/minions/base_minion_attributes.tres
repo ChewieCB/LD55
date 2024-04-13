@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="CharacterAttributes" load_steps=2 format=3 uid="uid://c53bmthdbeicu"]
+
+[ext_resource type="Script" path="res://src/entities/characters/character_attributes.gd" id="1_f35k2"]
+
+[resource]
+script = ExtResource("1_f35k2")
+health = 50
+armour = 0
+speed = 150
+dexterity = 3
+control = 1
+rank = 0

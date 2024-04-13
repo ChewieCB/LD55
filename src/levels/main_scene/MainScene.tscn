@@ -77,7 +77,7 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_fonts/font = ExtResource("2_a4b4n")
 theme_override_font_sizes/font_size = 32
-text = "Mockup/Summoning"
+text = "Summoning"
 
 [node name="AINavButton" type="Button" parent="Temp/Control/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 64)

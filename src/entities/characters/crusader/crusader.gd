@@ -23,6 +23,7 @@ var ritual_point:
 func _spawn():
 	# TODO - play some animation or effect before beginning the movement
 	health_ui.max_value = attributes.health
+	add_to_group("crusader")
 
 
 func _process(delta):
@@ -112,3 +113,8 @@ func _on_hit_state_entered():
 func _on_dead_state_entered():
 	#anim_player.play("death")
 	pass # Replace with function body.
+
+
+func _on_minion_attack_area_body_entered(body):
+	if body is MinionBase:
+		body.crusader_target = body.global_position
