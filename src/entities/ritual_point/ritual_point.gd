@@ -1,5 +1,7 @@
 extends Node2D
 
+signal cleansed
+
 @onready var anim_player = $AnimationPlayer
 @onready var particles = $GPUParticles2D
 @onready var cleanse_ui = $CleanseBar
@@ -23,6 +25,7 @@ func cleanse_complete():
 	# TODO - add buffs to crusader/update loss counter/UI
 	anim_player.play("cleanse_complete")
 	await particles.finished
+	emit_signal("cleansed")
 	queue_free()
 
 

@@ -1,7 +1,7 @@
 extends Control
 class_name GameUI
 
-@onready var spell_label: Label = $SpellPanel/Label
+@onready var spell_label: RichTextLabel = $SpellPanel/Label
 @onready var time_panel: Label = $TimePanel/Label
 
 func _ready() -> void:

@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="MinionResource" load_steps=3 format=3 uid="uid://c7rxuxvpi8fdn"]
+
+[ext_resource type="PackedScene" uid="uid://y43wlad4886x" path="res://src/entities/characters/minions/MinionBase.tscn" id="1_65v62"]
+[ext_resource type="Script" path="res://src/entities/characters/minions/minion_resource.gd" id="1_xyo4f"]
+
+[resource]
+script = ExtResource("1_xyo4f")
+name = "BaseMinion"
+scene = ExtResource("1_65v62")
+cost = 0
+spell_input = "DDD"

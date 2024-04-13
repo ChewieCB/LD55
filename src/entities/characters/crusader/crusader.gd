@@ -2,6 +2,7 @@ extends AIAgent
 class_name Crusader
 
 signal cleansing_complete
+signal death
 
 @onready var attack_range_area = $AttackRange
 @onready var attack_range_collider = $AttackRange/CollisionShape2D
@@ -155,7 +156,7 @@ func _on_hit_state_entered():
 func _on_dead_state_entered():
 	state_chart.send_event("stop_walking")
 	#anim_player.play("death")
-	pass # Replace with function body.
+	emit_signal("death")
 
 
 func _on_minion_attack_area_body_entered(body):
