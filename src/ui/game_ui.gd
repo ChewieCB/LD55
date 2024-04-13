@@ -48,7 +48,7 @@ func confirm_spell():
 	if main_spell == "":
 		spell_label.text = "Failed spell. Press Space to cast again"
 	else:
-		if prefix == "":
+		if translate_spell_component(prefix, true) == "":
 			spell_label.text = "Ready: {0}".format([translate_spell_component(main_spell)])
 		else:
 			spell_label.text = "Ready: {0} + {1}".format(
@@ -71,7 +71,6 @@ func translate_spell_component(input: String, is_prefix=false):
 				return "Zombie"
 			"UUDDLRLR":
 				return "Mummy"
-
 	return ""
 
 func cast_input(input: String):
