@@ -17,8 +17,16 @@ config/icon="res://icon.svg"
 
 [autoload]
 
+EnumAutoload="*res://src/utils/singletons/enum_autoload.gd"
+GameManager="*res://src/utils/singletons/GameManager.tscn"
 SoundManager="*res://addons/sound_manager/sound_manager.gd"
 BuildThumbnail="*res://src/utils/singletons/build_thumbnail.gd"
+
+[display]
+
+window/size/viewport_width=1366
+window/size/viewport_height=768
+window/stretch/mode="canvas_items"
 
 [editor_plugins]
 
