@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://bev1egpx7qcvi" path="res://src/entities/characters/crusader/Crusader.tscn" id="4_udo82"]
 [ext_resource type="PackedScene" uid="uid://c3hse0gwreuje" path="res://src/ui/GameUI.tscn" id="6_k6rr8"]
 [ext_resource type="PackedScene" uid="uid://bl8brofna47l6" path="res://src/entities/player/PlayerControl.tscn" id="6_r66m5"]
-[ext_resource type="PackedScene" uid="uid://y43wlad4886x" path="res://src/entities/characters/minions/MinionBase.tscn" id="8_oocfn"]
+[ext_resource type="Resource" uid="uid://c7rxuxvpi8fdn" path="res://src/entities/characters/minions/resources/base_minion.tres" id="8_jh4ys"]
 
 [sub_resource type="Curve2D" id="Curve2D_g2yoo"]
 _data = {
@@ -90,7 +90,7 @@ script = ExtResource("3_nexuo")
 player = NodePath("../Crusader")
 
 [node name="PlayerControl" parent="." node_paths=PackedStringArray("crusader") instance=ExtResource("6_r66m5")]
-zombie_prefab = ExtResource("8_oocfn")
+minions = Array[Object]([ExtResource("8_jh4ys")])
 crusader = NodePath("../Crusader")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
