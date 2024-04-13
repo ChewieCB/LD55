@@ -1,7 +1,8 @@
-[gd_scene load_steps=13 format=3 uid="uid://binmlcu1tn3wn"]
+[gd_scene load_steps=14 format=3 uid="uid://binmlcu1tn3wn"]
 
 [ext_resource type="Texture2D" uid="uid://b356n6j567g3d" path="res://assets/temp/juni-bg.png" id="1_kil8c"]
 [ext_resource type="Script" path="res://src/entities/ritual_point/ritual_point.gd" id="1_smowv"]
+[ext_resource type="Texture2D" uid="uid://bwf2tcdl5xxjr" path="res://assets/environment/Altar_2x2_Tile1.png" id="2_njwho"]
 [ext_resource type="Texture2D" uid="uid://cewud2lc7rcrj" path="res://assets/particles/HolyExplosion_96x96_transparent.png" id="3_xpg1o"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_t32jr"]
@@ -97,11 +98,17 @@ _data = {
 bg_color = Color(0.176471, 0.560784, 0.243137, 1)
 
 [node name="RitualPoint" type="Node2D"]
+y_sort_enabled = true
 script = ExtResource("1_smowv")
 
 [node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="."]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.0748047, 0.0748047)
+texture = ExtResource("2_njwho")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(-8, -1)
 scale = Vector2(0.155312, 0.155312)
 texture = ExtResource("1_kil8c")

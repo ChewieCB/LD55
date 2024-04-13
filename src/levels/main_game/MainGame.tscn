@@ -1,11 +1,13 @@
-[gd_scene load_steps=13 format=3 uid="uid://bjabavwsrnt0y"]
+[gd_scene load_steps=15 format=3 uid="uid://bjabavwsrnt0y"]
 
 [ext_resource type="Script" path="res://src/levels/main_game/main_game.gd" id="1_4qjmh"]
 [ext_resource type="Texture2D" uid="uid://8q5gyn8ex2wv" path="res://assets/sprite/square.png" id="1_vuavk"]
 [ext_resource type="Texture2D" uid="uid://cjwi0pfmn0q6j" path="res://assets/sprite/home_building.png" id="2_ryj4c"]
 [ext_resource type="Script" path="res://src/levels/main_game/follow_camera.gd" id="3_nexuo"]
 [ext_resource type="PackedScene" uid="uid://binmlcu1tn3wn" path="res://src/entities/ritual_point/RitualPoint.tscn" id="4_62qie"]
+[ext_resource type="Texture2D" uid="uid://vm6e1lcvslcx" path="res://assets/environment/Tree._1x2_Tile1png.png" id="4_bwafd"]
 [ext_resource type="PackedScene" uid="uid://bev1egpx7qcvi" path="res://src/entities/characters/crusader/Crusader.tscn" id="4_udo82"]
+[ext_resource type="Texture2D" uid="uid://bgb07l8q8unj0" path="res://assets/environment/Grave_1.png" id="5_4uejn"]
 [ext_resource type="PackedScene" uid="uid://c3hse0gwreuje" path="res://src/ui/GameUI.tscn" id="6_k6rr8"]
 [ext_resource type="PackedScene" uid="uid://bl8brofna47l6" path="res://src/entities/player/PlayerControl.tscn" id="6_r66m5"]
 [ext_resource type="Resource" uid="uid://c7rxuxvpi8fdn" path="res://src/entities/characters/minions/resources/base_minion.tres" id="8_jh4ys"]
@@ -44,6 +46,7 @@ position = Vector2(244.002, 44.0002)
 rotation = 2.10451
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+visible = false
 navigation_polygon = SubResource("NavigationPolygon_e1llw")
 
 [node name="YSort" type="Node2D" parent="."]
@@ -61,6 +64,248 @@ texture = ExtResource("2_ryj4c")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="YSort/HomeBuilding"]
 position = Vector2(5.5, 21.75)
 shape = SubResource("RectangleShape2D_w0twn")
+
+[node name="ArtDecorations" type="Node2D" parent="YSort"]
+
+[node name="Tree" type="Sprite2D" parent="YSort/ArtDecorations"]
+position = Vector2(440, 772)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("4_bwafd")
+
+[node name="Tree2" type="Sprite2D" parent="YSort/ArtDecorations"]
+position = Vector2(665, 701)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("4_bwafd")
+
+[node name="Tree3" type="Sprite2D" parent="YSort/ArtDecorations"]
+position = Vector2(543, 499)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("4_bwafd")
+
+[node name="Tree4" type="Sprite2D" parent="YSort/ArtDecorations"]
+position = Vector2(360, 447)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("4_bwafd")
+
+[node name="Tree5" type="Sprite2D" parent="YSort/ArtDecorations"]
+position = Vector2(143, 607)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("4_bwafd")
+
+[node name="Tree6" type="Sprite2D" parent="YSort/ArtDecorations"]
+position = Vector2(76, 426)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("4_bwafd")
+
+[node name="Tree7" type="Sprite2D" parent="YSort/ArtDecorations"]
+position = Vector2(41, 480)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("4_bwafd")
+
+[node name="Tree8" type="Sprite2D" parent="YSort/ArtDecorations"]
+position = Vector2(48, 543)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("4_bwafd")
+
+[node name="Tree9" type="Sprite2D" parent="YSort/ArtDecorations"]
+position = Vector2(56, 604)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("4_bwafd")
+
+[node name="Tree10" type="Sprite2D" parent="YSort/ArtDecorations"]
+position = Vector2(92, 657)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("4_bwafd")
+
+[node name="Tree11" type="Sprite2D" parent="YSort/ArtDecorations"]
+position = Vector2(140, 702)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("4_bwafd")
+
+[node name="Tree12" type="Sprite2D" parent="YSort/ArtDecorations"]
+position = Vector2(317, 793)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("4_bwafd")
+
+[node name="Tree13" type="Sprite2D" parent="YSort/ArtDecorations"]
+position = Vector2(636, 823)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("4_bwafd")
+
+[node name="Tree14" type="Sprite2D" parent="YSort/ArtDecorations"]
+position = Vector2(611, 495)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("4_bwafd")
+
+[node name="Tree15" type="Sprite2D" parent="YSort/ArtDecorations"]
+position = Vector2(254, 224)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("4_bwafd")
+
+[node name="Tree16" type="Sprite2D" parent="YSort/ArtDecorations"]
+position = Vector2(41, 205)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("4_bwafd")
+
+[node name="Tree17" type="Sprite2D" parent="YSort/ArtDecorations"]
+position = Vector2(101, 129)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("4_bwafd")
+
+[node name="Tree18" type="Sprite2D" parent="YSort/ArtDecorations"]
+position = Vector2(88, 217)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("4_bwafd")
+
+[node name="Tree19" type="Sprite2D" parent="YSort/ArtDecorations"]
+position = Vector2(44, 38)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("4_bwafd")
+
+[node name="Tree20" type="Sprite2D" parent="YSort/ArtDecorations"]
+position = Vector2(132, 24)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("4_bwafd")
+
+[node name="Tree21" type="Sprite2D" parent="YSort/ArtDecorations"]
+position = Vector2(362, -37)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("4_bwafd")
+
+[node name="Tree22" type="Sprite2D" parent="YSort/ArtDecorations"]
+position = Vector2(363, 99)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("4_bwafd")
+
+[node name="Tree23" type="Sprite2D" parent="YSort/ArtDecorations"]
+position = Vector2(389, -21)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("4_bwafd")
+
+[node name="Tree24" type="Sprite2D" parent="YSort/ArtDecorations"]
+position = Vector2(440, -60)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("4_bwafd")
+
+[node name="Tree25" type="Sprite2D" parent="YSort/ArtDecorations"]
+position = Vector2(494, -91)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("4_bwafd")
+
+[node name="Tree26" type="Sprite2D" parent="YSort/ArtDecorations"]
+position = Vector2(540, -103)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("4_bwafd")
+
+[node name="Tree27" type="Sprite2D" parent="YSort/ArtDecorations"]
+position = Vector2(691, -24)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("4_bwafd")
+
+[node name="Tree28" type="Sprite2D" parent="YSort/ArtDecorations"]
+position = Vector2(738, -11)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("4_bwafd")
+
+[node name="Tree29" type="Sprite2D" parent="YSort/ArtDecorations"]
+position = Vector2(778, -33)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("4_bwafd")
+
+[node name="Tree30" type="Sprite2D" parent="YSort/ArtDecorations"]
+position = Vector2(712, 108)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("4_bwafd")
+
+[node name="Tree31" type="Sprite2D" parent="YSort/ArtDecorations"]
+position = Vector2(785, 130)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("4_bwafd")
+
+[node name="Tree32" type="Sprite2D" parent="YSort/ArtDecorations"]
+position = Vector2(712, 161)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("4_bwafd")
+
+[node name="Tree33" type="Sprite2D" parent="YSort/ArtDecorations"]
+position = Vector2(821, 186)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("4_bwafd")
+
+[node name="Tree34" type="Sprite2D" parent="YSort/ArtDecorations"]
+position = Vector2(976, 7.00002)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("4_bwafd")
+
+[node name="Tree35" type="Sprite2D" parent="YSort/ArtDecorations"]
+position = Vector2(1019, 25)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("4_bwafd")
+
+[node name="Tree36" type="Sprite2D" parent="YSort/ArtDecorations"]
+position = Vector2(1113, -18)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("4_bwafd")
+
+[node name="Tree37" type="Sprite2D" parent="YSort/ArtDecorations"]
+position = Vector2(1090, 20)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("4_bwafd")
+
+[node name="Sprite2D" type="Sprite2D" parent="YSort/ArtDecorations"]
+position = Vector2(304, 540)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("5_4uejn")
+
+[node name="Sprite2D2" type="Sprite2D" parent="YSort/ArtDecorations"]
+position = Vector2(112, 530)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("5_4uejn")
+
+[node name="Sprite2D3" type="Sprite2D" parent="YSort/ArtDecorations"]
+position = Vector2(665, 412)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("5_4uejn")
+
+[node name="Sprite2D4" type="Sprite2D" parent="YSort/ArtDecorations"]
+position = Vector2(707, 430)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("5_4uejn")
+
+[node name="Sprite2D5" type="Sprite2D" parent="YSort/ArtDecorations"]
+position = Vector2(663, 483)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("5_4uejn")
+
+[node name="Sprite2D6" type="Sprite2D" parent="YSort/ArtDecorations"]
+position = Vector2(1036, 310)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("5_4uejn")
+
+[node name="Sprite2D7" type="Sprite2D" parent="YSort/ArtDecorations"]
+position = Vector2(979, 273)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("5_4uejn")
+
+[node name="Sprite2D8" type="Sprite2D" parent="YSort/ArtDecorations"]
+position = Vector2(1079, 252)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("5_4uejn")
+
+[node name="Sprite2D9" type="Sprite2D" parent="YSort/ArtDecorations"]
+position = Vector2(880, 18)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("5_4uejn")
+
+[node name="Sprite2D10" type="Sprite2D" parent="YSort/ArtDecorations"]
+position = Vector2(315, 180)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("5_4uejn")
+
+[node name="Sprite2D11" type="Sprite2D" parent="YSort/ArtDecorations"]
+position = Vector2(775, 671)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("5_4uejn")
 
 [node name="RitualSites" type="Node2D" parent="."]
 
@@ -82,6 +327,7 @@ position = Vector2(521, 101)
 [node name="Minions" type="Node2D" parent="."]
 
 [node name="Crusader" parent="." instance=ExtResource("4_udo82")]
+y_sort_enabled = true
 position = Vector2(246, 39)
 
 [node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("player")]

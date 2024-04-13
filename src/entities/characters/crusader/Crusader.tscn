@@ -151,6 +151,7 @@ anim_speed_max = 1.0
 bg_color = Color(0.843137, 0.196078, 0.0666667, 1)
 
 [node name="Crusader" type="CharacterBody2D"]
+y_sort_enabled = true
 script = ExtResource("1_0cjda")
 attributes = ExtResource("2_agl2u")
 attacks = Array[Resource("res://src/entities/characters/attack_resource.gd")]([ExtResource("3_nwgsq")])
