@@ -7,7 +7,13 @@ class_name AIAgent
 		current_health = attributes.health
 		speed = attributes.speed
 
-var current_health: int = 100
+var current_health: int:
+	set(value):
+		current_health = clamp(value, 0, attributes.health)
+		if current_health == 0:
+			_die()
+		elif value < current_health:
+			_hurt()
 var speed: int = 300
 var acceleration: int = 7
 
@@ -37,6 +43,11 @@ func _move(delta):
 	var direction: Vector2 = current_agent_position.direction_to(next_path_position)
 	var intended_velocity: Vector2 = direction * speed
 	nav_agent.set_velocity(intended_velocity)
+
+
+func _hurt():
+	# TODO
+	pass
 
 
 func _die():

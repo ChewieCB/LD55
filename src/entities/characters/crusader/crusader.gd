@@ -4,6 +4,8 @@ class_name Crusader
 signal cleansing_complete
 
 @onready var state_chart: StateChart = $StateChart
+@onready var health_ui = $HealthBar
+@onready var anim_player = $AnimationPlayer
 
 var path: Curve2D
 var path_points: PackedVector2Array
@@ -18,9 +20,21 @@ var ritual_point:
 		ritual_point = value
 
 
-func _ready():
+func _spawn():
 	# TODO - play some animation or effect before beginning the movement
-	pass
+	health_ui.max_value = attributes.health
+
+
+func _process(delta):
+	health_ui.value = current_health
+
+
+func _hurt():
+	state_chart.send_event("take_damage")
+
+
+func _die():
+	state_chart.send_event("death")
 
 
 func start_cleanse(ritual_node):
@@ -31,6 +45,9 @@ func start_cleanse(ritual_node):
 
 func finish_cleanse():
 	ritual_point = null
+	# TODO - remove this after debugging
+	current_health -= 150
+	
 	emit_signal("cleansing_complete")
 	
 	var path_points_sorted_closest = Array(path_points)
@@ -85,3 +102,13 @@ func _on_action_cleansing_state_entered():
 	await get_tree().create_timer(1.5).timeout
 	finish_cleanse()
 
+
+func _on_hit_state_entered():
+	anim_player.play("hurt")
+	await anim_player.animation_finished
+	state_chart.send_event("end_damage")
+
+
+func _on_dead_state_entered():
+	#anim_player.play("death")
+	pass # Replace with function body.

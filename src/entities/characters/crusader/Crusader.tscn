@@ -1,6 +1,7 @@
-[gd_scene load_steps=17 format=3 uid="uid://bev1egpx7qcvi"]
+[gd_scene load_steps=21 format=3 uid="uid://bev1egpx7qcvi"]
 
 [ext_resource type="Script" path="res://src/entities/characters/crusader/crusader.gd" id="1_0cjda"]
+[ext_resource type="Resource" uid="uid://b5dljo4pci4to" path="res://src/entities/characters/crusader/crusader_attributes.tres" id="2_agl2u"]
 [ext_resource type="Texture2D" uid="uid://tbaw03mlpcud" path="res://assets/temp/malina-bg.png" id="2_svunf"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/state_chart.gd" id="3_hr7jo"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/parallel_state.gd" id="4_mr8e3"]
@@ -34,8 +35,58 @@ guard = SubResource("Resource_tv0jp")
 script = ExtResource("10_slxhv")
 guards = Array[Resource("res://addons/godot_state_charts/guard.gd")]([SubResource("Resource_ovjto"), SubResource("Resource_evjk3")])
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mttwg"]
+bg_color = Color(0.843137, 0.196078, 0.0666667, 1)
+
+[sub_resource type="Animation" id="Animation_mykda"]
+resource_name = "hurt"
+length = 0.25
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.15, 0.25),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(100, 1, 1, 1), Color(100, 1, 1, 1), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0.0360824, 1.2815e-06), Vector2(-4, -2), Vector2(0.0360824, 1.2815e-06), Vector2(5, 1), Vector2(0.0360824, 1.2815e-06), Vector2(0.0360824, 1.2815e-06)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ColorRect:color")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.15, 0.25),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(0.403922, 0.756863, 0.894118, 1), Color(0.701961, 0.247059, 0.243137, 1), Color(0.701961, 0.247059, 0.243137, 1), Color(0.403922, 0.756863, 0.894118, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_utllu"]
+_data = {
+"hurt": SubResource("Animation_mykda")
+}
+
 [node name="Crusader" type="CharacterBody2D"]
 script = ExtResource("1_0cjda")
+attributes = ExtResource("2_agl2u")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 anchors_preset = 8
@@ -135,8 +186,28 @@ initial_state = NodePath("Idle")
 [node name="Idle" type="Node" parent="StateChart/Root/Damage"]
 script = ExtResource("6_w7y78")
 
+[node name="toHit" type="Node" parent="StateChart/Root/Damage/Idle"]
+script = ExtResource("7_v3ig5")
+to = NodePath("../../Hit")
+event = &"take_damage"
+
+[node name="toDead" type="Node" parent="StateChart/Root/Damage/Idle"]
+script = ExtResource("7_v3ig5")
+to = NodePath("../../Dead")
+event = &"death"
+
 [node name="Hit" type="Node" parent="StateChart/Root/Damage"]
 script = ExtResource("6_w7y78")
+
+[node name="toIdle" type="Node" parent="StateChart/Root/Damage/Hit"]
+script = ExtResource("7_v3ig5")
+to = NodePath("../../Idle")
+event = &"end_damage"
+
+[node name="toDead" type="Node" parent="StateChart/Root/Damage/Hit"]
+script = ExtResource("7_v3ig5")
+to = NodePath("../../Dead")
+event = &"death"
 
 [node name="Dead" type="Node" parent="StateChart/Root/Damage"]
 script = ExtResource("6_w7y78")
@@ -174,10 +245,30 @@ script = ExtResource("7_v3ig5")
 to = NodePath("../../Idle")
 event = &"stop_cleansing"
 
+[node name="HealthBar" type="ProgressBar" parent="."]
+custom_minimum_size = Vector2(0, 4)
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = -31.0
+offset_top = -32.0
+offset_right = 32.0
+offset_bottom = -22.0
+grow_horizontal = 2
+size_flags_vertical = 4
+theme_override_styles/fill = SubResource("StyleBoxFlat_mttwg")
+max_value = 500.0
+value = 500.0
+show_percentage = false
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_utllu")
+}
+
 [connection signal="velocity_computed" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_velocity_computed"]
 [connection signal="state_physics_processing" from="StateChart/Root/Movement/Idle" to="." method="_on_idle_state_physics_processing"]
 [connection signal="state_physics_processing" from="StateChart/Root/Movement/Walking" to="." method="_on_walking_state_physics_processing"]
-[connection signal="state_entered" from="StateChart/Root/Stances/DefaultStance" to="." method="_on_default_stance_state_entered"]
-[connection signal="state_physics_processing" from="StateChart/Root/Stances/DefaultStance" to="." method="_on_default_stance_state_physics_processing"]
+[connection signal="state_entered" from="StateChart/Root/Damage/Hit" to="." method="_on_hit_state_entered"]
+[connection signal="state_entered" from="StateChart/Root/Damage/Dead" to="." method="_on_dead_state_entered"]
 [connection signal="state_entered" from="StateChart/Root/Action/Idle" to="." method="_on_action_idle_state_entered"]
 [connection signal="state_entered" from="StateChart/Root/Action/Cleansing" to="." method="_on_action_cleansing_state_entered"]
