@@ -1,0 +1,46 @@
+[gd_scene load_steps=6 format=3 uid="uid://ct5ht7xrs5le"]
+
+[ext_resource type="Script" path="res://src/entities/characters/tests/test_crusader.gd" id="1_n4lhb"]
+[ext_resource type="PackedScene" uid="uid://bev1egpx7qcvi" path="res://src/entities/characters/crusader/Crusader.tscn" id="2_0iela"]
+[ext_resource type="PackedScene" uid="uid://binmlcu1tn3wn" path="res://src/entities/ritual_point/RitualPoint.tscn" id="3_n0qqr"]
+
+[sub_resource type="Curve2D" id="Curve2D_rontt"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 50, 26, 0, 0, 0, 0, 175, 112, 0, 0, 0, 0, 248, 254, 0, 0, 0, 0, 271, 385, 0, 0, 0, 0, 403, 496, 0, 0, 0, 0, 548, 616, 0, 0, 0, 0, 644, 609, 0, 0, 0, 0, 776, 565, 0, 0, 0, 0, 848, 483, 0, 0, 0, 0, 944, 467, 0, 0, 0, 0, 1046, 445, 0, 0, 0, 0, 1104, 404, 0, 0, 0, 0, 1139, 327, 0, 0, 0, 0, 1084, 289)
+}
+point_count = 14
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_y84vj"]
+vertices = PackedVector2Array(336, 653, 33, 493, -18, -10, 77, -15, 326, 89, 487, 165, 502, 294, 652, 702, 813, 346, 865, 608, 1278, 371, 1070, 523, 942, 270, 1212, 208, 1047, 175)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4, 5, 6), PackedInt32Array(7, 0, 6, 8, 9), PackedInt32Array(10, 11, 9, 8, 12, 13), PackedInt32Array(13, 12, 14)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-30, -20, 24, 500, 333, 663, 653, 713, 869, 617, 1076, 532, 1291, 375, 1219, 199, 1045, 165, 936, 262, 811, 336, 511, 285, 497, 159, 330, 80, 79, -26)])
+source_geometry_group_name = &"navigation_polygon_source_group"
+
+[node name="TestCrusader" type="Node2D"]
+script = ExtResource("1_n4lhb")
+
+[node name="Path2D" type="Path2D" parent="."]
+curve = SubResource("Curve2D_rontt")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
+position = Vector2(50, 26)
+rotation = 0.602627
+
+[node name="Crusader" parent="." instance=ExtResource("2_0iela")]
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+navigation_polygon = SubResource("NavigationPolygon_y84vj")
+
+[node name="RitualPoints" type="Node2D" parent="."]
+
+[node name="RitualPoint" parent="RitualPoints" instance=ExtResource("3_n0qqr")]
+position = Vector2(155, 139)
+
+[node name="RitualPoint2" parent="RitualPoints" instance=ExtResource("3_n0qqr")]
+position = Vector2(319, 425)
+
+[node name="RitualPoint3" parent="RitualPoints" instance=ExtResource("3_n0qqr")]
+position = Vector2(594, 508)
+
+[node name="RitualPoint4" parent="RitualPoints" instance=ExtResource("3_n0qqr")]
+position = Vector2(868, 550)
