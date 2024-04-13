@@ -1,13 +1,51 @@
-[gd_scene load_steps=5 format=3 uid="uid://binmlcu1tn3wn"]
+[gd_scene load_steps=10 format=3 uid="uid://binmlcu1tn3wn"]
 
 [ext_resource type="Texture2D" uid="uid://b356n6j567g3d" path="res://assets/temp/juni-bg.png" id="1_kil8c"]
 [ext_resource type="Script" path="res://src/entities/ritual_point/ritual_point.gd" id="1_smowv"]
+[ext_resource type="Texture2D" uid="uid://cewud2lc7rcrj" path="res://assets/particles/HolyExplosion_96x96_transparent.png" id="3_xpg1o"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_t32jr"]
 radius = 128.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_h60lq"]
 radius = 32.0
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_lt1vd"]
+particles_animation = true
+particles_anim_h_frames = 28
+particles_anim_v_frames = 1
+particles_anim_loop = true
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_xsjen"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(64, 64, 0)
+gravity = Vector3(0, 0, 0)
+scale_min = 1.4
+scale_max = 2.0
+anim_speed_min = 1.0
+anim_speed_max = 1.0
+
+[sub_resource type="Animation" id="Animation_jyyon"]
+resource_name = "cleanse_complete"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GPUParticles2D:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_b17fb"]
+_data = {
+"cleanse_complete": SubResource("Animation_jyyon")
+}
 
 [node name="RitualPoint" type="Node2D"]
 script = ExtResource("1_smowv")
@@ -29,6 +67,22 @@ debug_color = Color(0.129412, 0.619608, 0.521569, 0.419608)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CleansingArea"]
 shape = SubResource("CircleShape2D_h60lq")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+material = SubResource("CanvasItemMaterial_lt1vd")
+emitting = false
+amount = 4
+process_material = SubResource("ParticleProcessMaterial_xsjen")
+texture = ExtResource("3_xpg1o")
+lifetime = 0.6
+one_shot = true
+explosiveness = 0.55
+randomness = 0.05
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_b17fb")
+}
 
 [connection signal="body_entered" from="Range" to="." method="_on_range_body_entered"]
 [connection signal="body_entered" from="CleansingArea" to="." method="_on_cleansing_area_body_entered"]

@@ -1,8 +1,13 @@
 extends Node2D
 
+@onready var anim_player = $AnimationPlayer
+@onready var particles = $GPUParticles2D
+
 
 func cleanse():
 	# TODO - add buffs to crusader/update loss counter/UI
+	anim_player.play("cleanse_complete")
+	await particles.finished
 	queue_free()
 
 
