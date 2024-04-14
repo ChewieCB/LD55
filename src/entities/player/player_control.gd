@@ -96,7 +96,7 @@ func _input(event: InputEvent) -> void:
 		cast_input(action)
 
 
-func _process(delta):
+func _process(_delta):
 	if is_casting:
 		if current_prefix and current_spell:
 			spell_input_repr = "[color=yellow]%s[/color] [color=green]%s[/color]" % [current_prefix, current_spell_str]

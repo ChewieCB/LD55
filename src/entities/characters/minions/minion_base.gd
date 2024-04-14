@@ -21,7 +21,7 @@ func _spawn():
 	SoundManager.play_sound(minion_sfx[randi_range(0, minion_sfx.size() - 1)])
 
 
-func _process(delta):
+func _process(_delta):
 	health_ui.value = current_health
 
 
@@ -34,13 +34,13 @@ func _on_idle_state_entered():
 	nav_agent.target_position = global_position
 
 
-func _on_idle_state_physics_processing(delta):
+func _on_idle_state_physics_processing(_delta):
 	if nav_agent.target_position:
 		state_chart.send_event("start_walking")
 	return
 
 
-func _on_walking_state_physics_processing(delta):
+func _on_walking_state_physics_processing(_delta):
 	# FIXME - dependency issue here with the crusader node not loading before this
 	crusader_target = crusader.global_position
 	nav_agent.target_position = crusader_target
@@ -55,11 +55,13 @@ func _on_walking_state_physics_processing(delta):
 	nav_agent.set_velocity(intended_velocity)
 
 
-func _on_attacking_idle_state_physics_processing(delta):
+func _on_attacking_idle_state_physics_processing(_delta):
 	# FIXME - dependency issue here with the crusader node not loading before this
+	if crusader == null: 
+		return
 	if cooldown_timer.is_stopped():
 		if crusader.current_health > 0:
-			if global_position.distance_to(crusader.global_position) <= current_attack.range:
+			if global_position.distance_to(crusader.global_position) <= current_attack.attack_range:
 				state_chart.send_event("stop_walking")
 				state_chart.send_event("attack")
 

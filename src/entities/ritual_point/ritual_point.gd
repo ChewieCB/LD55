@@ -17,7 +17,7 @@ var cleanse_progress: float = 0:
 			cleanse()
 
 
-func _process(delta):
+func _process(_delta):
 	cleanse_ui.value = cleanse_progress
 
 

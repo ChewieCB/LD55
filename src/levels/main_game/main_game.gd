@@ -9,8 +9,6 @@ class_name MainGame
 @onready var total_ritual_sites = ritual_sites.get_child_count()
 var sites_cleansed: int = 0
 
-
-
 func _ready() -> void:
 	GameManager.main_game = self
 	
@@ -24,16 +22,14 @@ func _ready() -> void:
 	for minion in minion_spawn.get_children():
 		minion.crusader = crusader
 
-
 func _on_ritual_site_cleansed():
 	sites_cleansed += 1
 	if sites_cleansed == total_ritual_sites:
 		# TODO - game over state
 		print("Game Over!")
-		get_tree().reload_current_scene()
-
+		GameManager.end_game(false)
 
 func _on_crusader_killed():
 	# TODO - win state
 	print("You Win!")
-	get_tree().reload_current_scene()
+	GameManager.end_game(true)

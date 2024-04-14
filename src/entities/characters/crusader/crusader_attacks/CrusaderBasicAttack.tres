@@ -4,6 +4,6 @@
 
 [resource]
 script = ExtResource("1_i0vad")
-range = 64
+attack_range = 40
 cooldown = 1.0
 damage = 30

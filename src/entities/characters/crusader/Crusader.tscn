@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://bev1egpx7qcvi"]
+[gd_scene load_steps=33 format=3 uid="uid://bev1egpx7qcvi"]
 
 [ext_resource type="Script" path="res://src/entities/characters/crusader/crusader.gd" id="1_0cjda"]
 [ext_resource type="Resource" uid="uid://b5dljo4pci4to" path="res://src/entities/characters/crusader/crusader_attributes.tres" id="2_agl2u"]
@@ -25,14 +25,6 @@ state = NodePath("../../../Action/Cleansing")
 script = ExtResource("9_30nyi")
 guard = SubResource("Resource_a1oeu")
 
-[sub_resource type="Resource" id="Resource_tv0jp"]
-script = ExtResource("8_6fl0h")
-state = NodePath("../../../Action/Cleansed")
-
-[sub_resource type="Resource" id="Resource_evjk3"]
-script = ExtResource("9_30nyi")
-guard = SubResource("Resource_tv0jp")
-
 [sub_resource type="Resource" id="Resource_ws0oh"]
 script = ExtResource("8_6fl0h")
 state = NodePath("../../../Damage/Dead")
@@ -43,7 +35,7 @@ guard = SubResource("Resource_ws0oh")
 
 [sub_resource type="Resource" id="Resource_auvi3"]
 script = ExtResource("10_slxhv")
-guards = Array[Resource("res://addons/godot_state_charts/guard.gd")]([SubResource("Resource_ovjto"), SubResource("Resource_evjk3"), SubResource("Resource_ap0hw")])
+guards = Array[Resource("res://addons/godot_state_charts/guard.gd")]([SubResource("Resource_ovjto"), SubResource("Resource_ap0hw")])
 
 [sub_resource type="Resource" id="Resource_7lx5c"]
 script = ExtResource("8_6fl0h")
