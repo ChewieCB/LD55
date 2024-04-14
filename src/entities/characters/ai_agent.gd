@@ -20,10 +20,6 @@ var current_health: int:
 			_die()
 		elif value < prev_health:
 			_hurt()
-		elif value == prev_health:
-			# TODO - add new particle effect for blocking
-			#_block()
-			pass
 var current_speed: float
 var acceleration: float = 7
 
@@ -33,6 +29,11 @@ var current_attack: AttackResource
 @onready var nav_agent = $NavigationAgent2D
 @onready var state_chart: StateChart = $StateChart
 @onready var anim_player: AnimationPlayer = $AnimationPlayer
+
+@onready var attack_range_area = $AttackRange:
+	set(value):
+		attack_range_area = value
+@onready var attack_range_collider = $AttackRange/CollisionShape2D
 
 @onready var attack_particles: GPUParticles2D = $AttackParticles
 @onready var block_particles: GPUParticles2D = $BlockParticles
@@ -72,40 +73,57 @@ func _move(_delta):
 	var intended_velocity: Vector2 = direction * current_speed
 	nav_agent.set_velocity(intended_velocity)
 
-func _attack(attack: AttackResource, target: AIAgent):
-	attack_particles.global_position = target.global_position
-	block_particles.global_position = target.global_position
-
-	# Calculate stagger or stun chance
-	# We need to pass 0.5 to stagger, and 0.9 to stun
-	# TODO - playtest and tweak this
-	var stagger_chance = clamp(
-		(0.8 - randf()) + attack.control + target.attributes.dexterity,
-		0.0,
-		1.0
-	)
-	if stagger_chance >= 0.9:
-		target._stun()
-	elif stagger_chance >= 0.5:
-		target._stagger()
-
-	# Damage and armour penetration
-	# TODO - playtest and tweak armour damage reduction
-	var modified_damage = attack.damage
-	# TODO - figure out an intuitive armour/armour penetration system
-	if attack.armour_penetration < target.attributes.armour:
-		modified_damage = clamp(
-			attack.damage / float(target.attributes.armour),
-			0,
-			attack.damage
+func _attack(attack: AttackResource):
+	# Update the attack area
+	attack_range_collider.shape.radius = attack.attack_range
+	await get_tree().physics_frame
+	
+	# Get targets
+	var targets = attack.get_targets(self)
+	
+	if targets.size() == 1:
+		# TODO - refactor this to generate and free a particle emitter per target
+		#    as well as an AoE particle emitter with the shape informed by the area
+		var _target = targets.front()
+		attack_particles.process_material = attack.attack_particles_process_mat
+		attack_particles.material = attack.attack_particles_canvas_mat
+		attack_particles.global_position = _target.global_position
+		#
+		block_particles.global_position = _target.global_position
+	
+	for target in targets:
+		# Calculate stagger or stun chance
+		# We need to pass 0.5 to stagger, and 0.9 to stun
+		# TODO - playtest and tweak this
+		var stagger_chance = clamp(
+			(0.8 - randf()) + attack.control + target.attributes.dexterity,
+			0.0,
+			1.0
 		)
-	target.current_health -= modified_damage
-
-	if modified_damage > 0:
-		anim_player.play("attack")
-	else:
-		anim_player.play("block")
-
+		if stagger_chance >= 0.9:
+			target._stun()
+		elif stagger_chance >= 0.5:
+			target._stagger()
+			
+		# Damage and armour penetration
+		# TODO - playtest and tweak armour damage reduction 
+		var modified_damage = attack.damage
+		# TODO - figure out an intuitive armour/armour penetration system
+		if attack.armour_penetration < target.attributes.armour:
+			modified_damage = clamp(
+				attack.damage / target.attributes.armour,
+				0,
+				attack.damage
+			)
+		target.current_health -= modified_damage
+		
+		if modified_damage > 0:
+			anim_player.play("attack")
+			attack.play_attack_sfx()
+		else:
+			anim_player.play("block")
+			attack.play_block_sfx()
+	
 	state_chart.send_event("finish_attack")
 
 	await attack_particles.finished

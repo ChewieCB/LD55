@@ -4,9 +4,6 @@ class_name Crusader
 signal cleansing_complete
 signal death
 
-@onready var attack_range_area = $AttackRange
-@onready var attack_range_collider = $AttackRange/CollisionShape2D
-
 @onready var _attack_sfx_1: AudioStream = load("res://assets/sfx/attacks/Blade_Impact.wav")
 @onready var _attack_sfx_2: AudioStream = load("res://assets/sfx/attacks/Blade_Impact_2.wav")
 @onready var attack_sfx = [_attack_sfx_1, _attack_sfx_2]
@@ -28,16 +25,9 @@ func _spawn():
 	# TODO - play some animation or effect before beginning the movement
 	health_ui.max_value = attributes.health
 	add_to_group("crusader")
-	if attacks:
-		current_attack = attacks[0]
-		attack_range_collider.shape.radius = current_attack.attack_range
 
 func _process(_delta):
 	health_ui.value = current_health
-
-func _attack(attack: AttackResource, target: AIAgent):
-	super._attack(attack, target)
-	SoundManager.play_sound(attack_sfx[randi_range(0, attack_sfx.size() - 1)])
 
 func _hurt():
 	state_chart.send_event("take_damage")
@@ -119,17 +109,10 @@ func _on_attacking_idle_state_physics_processing(_delta):
 			state_chart.send_event("attack")
 
 func _on_attacking_basic_attack_state_entered():
-	# Get target
-	var minions = attack_range_area.get_overlapping_bodies()
-	minions.sort_custom(
-		func(a, b):
-			if a.global_position.distance_to(global_position) < b.global_position.distance_to(global_position):
-				return true
-			return false
-	)
-	var target = minions.front()
-	_attack(current_attack, target)
-	cooldown_timer.start(current_attack.cooldown * remap(attributes.dexterity, 0, 1, 2, 0.25))
+	# TODO - map this to an enum that matches the attack names
+	var basic_attack = attacks[0]
+	_attack(basic_attack)
+	cooldown_timer.start(basic_attack.cooldown * remap(attributes.dexterity, 0, 1, 2, 0.25))
 
 func _on_hit_state_entered():
 	anim_player.play("hurt")
