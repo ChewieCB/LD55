@@ -12,7 +12,6 @@ var crusader_target: Vector2
 @onready var _attack_sfx_1: AudioStream = load("res://assets/sfx/Magic_Impact.mp3")
 @onready var attack_sfx = [_attack_sfx_1]
 
-
 func _spawn():
 	# TODO - play some animation or effect before beginning the movement
 	health_ui.max_value = attributes.health
@@ -20,25 +19,20 @@ func _spawn():
 		current_attack = attacks[0]
 	SoundManager.play_sound(minion_sfx[randi_range(0, minion_sfx.size() - 1)])
 
-
 func _process(_delta):
 	health_ui.value = current_health
-
 
 func _die():
 	state_chart.send_event("stop_walking")
 	state_chart.send_event("death")
 
-
 func _on_idle_state_entered():
 	nav_agent.target_position = global_position
-
 
 func _on_idle_state_physics_processing(_delta):
 	if nav_agent.target_position:
 		state_chart.send_event("start_walking")
 	return
-
 
 func _on_walking_state_physics_processing(_delta):
 	# FIXME - dependency issue here with the crusader node not loading before this
@@ -54,10 +48,9 @@ func _on_walking_state_physics_processing(_delta):
 	var intended_velocity: Vector2 = direction * speed
 	nav_agent.set_velocity(intended_velocity)
 
-
 func _on_attacking_idle_state_physics_processing(_delta):
 	# FIXME - dependency issue here with the crusader node not loading before this
-	if crusader == null: 
+	if crusader == null:
 		return
 	if cooldown_timer.is_stopped():
 		if crusader.current_health > 0:
@@ -65,15 +58,22 @@ func _on_attacking_idle_state_physics_processing(_delta):
 				state_chart.send_event("stop_walking")
 				state_chart.send_event("attack")
 
-
 func _on_attacking_basic_attack_state_entered():
 	_attack(current_attack, crusader)
 	SoundManager.play_sound(attack_sfx[randi_range(0, attack_sfx.size() - 1)])
 	cooldown_timer.start(current_attack.cooldown)
 
-
-
 func _on_dead_state_entered():
 	anim_player.play("death")
 	await anim_player.animation_finished
 	queue_free()
+
+func apply_prefix(prefix: EnumAutoload.SpellPrefix):
+	match prefix:
+		EnumAutoload.SpellPrefix.AGILE:
+			speed = int(speed * 1.4)
+			scale *= 0.7
+		EnumAutoload.SpellPrefix.TOUGH:
+			attributes.health *= 2
+			current_health = attributes.health
+			scale *= 1.4

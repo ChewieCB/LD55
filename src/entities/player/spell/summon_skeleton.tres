@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="SpellMainResource" load_steps=3 format=3 uid="uid://ix73paims45p"]
+
+[ext_resource type="PackedScene" uid="uid://58hlxoqtsuqv" path="res://src/entities/characters/minions/Skeleton.tscn" id="1_i3si7"]
+[ext_resource type="Script" path="res://src/entities/player/spell/spell_resource.gd" id="2_h8q7d"]
+
+[resource]
+script = ExtResource("2_h8q7d")
+name = "Skeleton"
+input = "DDD"
+spell_id = 3
+spawn_scene = ExtResource("1_i3si7")

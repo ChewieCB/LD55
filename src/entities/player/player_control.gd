@@ -1,14 +1,8 @@
 extends Node2D
 class_name PlayerControl
 
-@export var minions: Array[MinionResource]
-# TODO - replace this with a SpellModifier resource
-var prefixes = {
-	"UUU": "Square",
-	"LLL": "Triangle",
-	"UULLRR": "Agile",
-	"UUUDDDUD": "Tough"
-}
+@export var spells: Array[SpellMainResource]
+@export var spell_prefixes: Array[SpellPrefixResource]
 @export var crusader: Crusader
 
 @onready var _summon_sfx_1 = load("res://assets/sfx/summoning/Summoning_noise_1.mp3")
@@ -24,38 +18,38 @@ var prefixes = {
 @onready var _input_sfx_5 = load("res://assets/sfx/Knock_Reverb_5.mp3")
 @onready var _input_sfx_6 = load("res://assets/sfx/Knock_Reverb_6.mp3")
 @onready var input_sfx = [_input_sfx_1, _input_sfx_2, _input_sfx_3, _input_sfx_4, _input_sfx_5, _input_sfx_6]
+#
+var prefix_dict = {} # map input to SpellPrefixResource
+var current_spell: SpellMainResource
+var current_spell_str: String = ""
+var current_prefix_str: String = ""
 
-
-var spell_input: String = "":
+var raw_input: String = "":
 	set(value):
-		spell_input = value
-		var post_prefix = spell_input
-		if current_prefix:
-			if spell_input != current_prefix and spell_input in prefixes:
-				current_prefix = spell_input
+		raw_input = value
+		var post_prefix = raw_input
+		if current_prefix_str:
+			if raw_input != current_prefix_str and raw_input in prefix_dict:
+				current_prefix_str = raw_input
 				return
-			post_prefix = spell_input.trim_prefix(current_prefix)
-		elif spell_input in prefixes:
-			current_prefix = spell_input
+			post_prefix = raw_input.trim_prefix(current_prefix_str)
+		elif raw_input in prefix_dict:
+			current_prefix_str = raw_input
 			return
-		
-		for minion in minions:
-			if post_prefix == minion.spell_input:
+
+		for spell in spells:
+			if post_prefix == spell.input:
 				current_spell_str = post_prefix
-				current_spell = minion
-				return 
+				current_spell = spell
+				return
 		# If we don't match the string remove the current_spell to prevent
 		# overspill being accepted
 		current_spell_str = ""
 		current_spell = null
-var spell_input_repr: String = "":
+var raw_input_repr: String = "":
 	set(value):
-		spell_input_repr = value
-		GameManager.game_ui.set_spell_label("Input: %s" % spell_input_repr)
-
-var current_spell_str: String = ""
-var current_spell: MinionResource
-var current_prefix: String = ""
+		raw_input_repr = value
+		GameManager.game_ui.set_spell_label("Input: %s" % raw_input_repr)
 
 var is_casting = false
 var spell_ready = false
@@ -63,10 +57,10 @@ var spell_ready = false
 const MAX_SPELL_LENGTH = 20
 const CASTABLE_INPUTS = ["up", "down", "left", "right", "delete"]
 
-
 func _ready() -> void:
 	GameManager.player_control = self
-
+	for prefix in spell_prefixes:
+		prefix_dict[prefix.input] = prefix
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("start_cast"):
@@ -79,7 +73,7 @@ func _input(event: InputEvent) -> void:
 
 	if not is_casting:
 		return
-	
+
 	var action
 	if event.is_action_pressed("up"):
 		action = "up"
@@ -91,49 +85,45 @@ func _input(event: InputEvent) -> void:
 		action = "right"
 	elif event.is_action_pressed("delete"):
 		action = "delete"
-	
+
 	if action:
 		cast_input(action)
 
-
 func _process(_delta):
 	if is_casting:
-		if current_prefix and current_spell:
-			spell_input_repr = "[color=yellow]%s[/color] [color=green]%s[/color]" % [current_prefix, current_spell_str]
-		elif current_prefix:
-			spell_input_repr = "[color=yellow]%s[/color] %s" % [
-				current_prefix,
-				spell_input.trim_prefix(current_prefix)
+		if current_prefix_str and current_spell:
+			raw_input_repr = "[color=yellow]%s[/color] [color=green]%s[/color]" % [current_prefix_str, current_spell_str]
+		elif current_prefix_str:
+			raw_input_repr = "[color=yellow]%s[/color] %s" % [
+				current_prefix_str,
+				raw_input.trim_prefix(current_prefix_str)
 			]
 		elif current_spell:
-			spell_input_repr = "[color=green]%s[/color]" % [current_spell_str]
+			raw_input_repr = "[color=green]%s[/color]" % [current_spell_str]
 		else:
-			spell_input_repr = "%s" % [spell_input]
-
+			raw_input_repr = "%s" % [raw_input]
 
 func start_cast():
 	GameManager.game_ui.set_spell_label("Input:")
 	is_casting = true
 	spell_ready = false
 
-
 func confirm_spell():
 	is_casting = false
-	
+
 	if not current_spell:
 		GameManager.game_ui.set_spell_label("Failed spell. Press Space to cast again")
 		# Clear the inputs
-		spell_input = ""
+		raw_input = ""
 		current_spell_str = ""
-		current_prefix = ""
+		current_prefix_str = ""
 	else:
 		spell_ready = true
 		var ready_str = "Ready: "
-		if current_prefix:
-			ready_str += "[color=yellow](%s) [/color]" % [prefixes[current_prefix]]
+		if current_prefix_str:
+			ready_str += "[color=yellow](%s) [/color]" % [prefix_dict[current_prefix_str].name]
 		ready_str += "[color=green]%s[/color]" % [current_spell.name]
 		GameManager.game_ui.set_spell_label(ready_str)
-
 
 func cast_readied_spell():
 	if not spell_ready:
@@ -141,75 +131,63 @@ func cast_readied_spell():
 
 	# Decide how we spawn it
 	var mouse_global_pos = get_global_mouse_position()
-	if current_prefix:
-		var prefix_value = prefixes[current_prefix]
+	if current_prefix_str:
+		var prefix_value = prefix_dict[current_prefix_str].prefix_id
 		match prefix_value:
-			"Square":
+			EnumAutoload.SpellPrefix.SQUARE:
 				# Will spawn 4 in each corner of square shape
 				for i in range(4):
-					var _minion = current_spell.scene.instantiate()
-					_minion.global_position = mouse_global_pos + Vector2(-20, -20).rotated(PI/2 * i)
+					var _minion = current_spell.spawn_scene.instantiate()
+					_minion.global_position = mouse_global_pos + Vector2( - 20, -20).rotated(PI / 2 * i)
 					_minion.crusader = crusader
 					GameManager.main_game.minion_spawn.add_child(_minion)
-			"Triangle":
+			EnumAutoload.SpellPrefix.TRIANGLE:
 				for i in range(3):
-					var _minion = current_spell.scene.instantiate()
-					_minion.global_position = mouse_global_pos + Vector2(-20, -20).rotated(PI/2 * i)
+					var _minion = current_spell.spawn_scene.instantiate()
+					_minion.global_position = mouse_global_pos + Vector2( - 20, -20).rotated(PI / 2 * i)
 					_minion.crusader = crusader
 					GameManager.main_game.minion_spawn.add_child(_minion)
-			"Agile":
-				# Increase speed by 40%
-				var _minion = current_spell.scene.instantiate()
+			EnumAutoload.SpellPrefix.AGILE, EnumAutoload.SpellPrefix.TOUGH:
+				var _minion = current_spell.spawn_scene.instantiate()
 				_minion.global_position = mouse_global_pos
-				_minion.speed *= 1.4
-				_minion.scale *= 0.7
+
 				_minion.crusader = crusader
-				GameManager.main_game.minion_spawn.add_child(_minion)
-			"Tough":
-				# Double health
-				var _minion = current_spell.scene.instantiate()
-				_minion.global_position = mouse_global_pos
-				_minion.attributes.health *= 2
-				_minion.current_health = _minion.attributes.health
-				_minion.scale *= 1.4
-				_minion.crusader = crusader
+				_minion.apply_prefix(prefix_value)
 				GameManager.main_game.minion_spawn.add_child(_minion)
 	else:
-		var _minion = current_spell.scene.instantiate()
+		var _minion = current_spell.spawn_scene.instantiate()
 		_minion.global_position = mouse_global_pos
 		_minion.crusader = crusader
 		GameManager.main_game.minion_spawn.add_child(_minion)
-	
-	SoundManager.play_sound(summon_sfx[randi_range(0, summon_sfx.size() - 1)])
-	
-	finish_cast()
 
+	SoundManager.play_sound(summon_sfx[randi_range(0, summon_sfx.size() - 1)])
+
+	finish_cast()
 
 func finish_cast():
 	GameManager.game_ui.set_spell_label("Press Space to start")
 	current_spell = null
 	is_casting = false
 	spell_ready = false
-	
-	# Clear the inputs
-	spell_input = ""
-	current_spell_str = ""
-	current_prefix = ""
 
+	# Clear the inputs
+	raw_input = ""
+	current_spell_str = ""
+	current_prefix_str = ""
 
 func cast_input(input: String):
-	if len(spell_input) >= MAX_SPELL_LENGTH:
+	if len(raw_input) >= MAX_SPELL_LENGTH:
 		return
-	
+
 	if input not in CASTABLE_INPUTS:
 		return
-	
+
 	if input == "delete":
-		if len(spell_input) > 0:
-			spell_input = spell_input.substr(0, len(spell_input) - 1)
+		if len(raw_input) > 0:
+			raw_input = raw_input.substr(0, len(raw_input) - 1)
 	else:
-		spell_input += input[0].to_upper()
-	
+		raw_input += input[0].to_upper()
+
 	# FIXME - emit a signal using the current_spell signal
-	GameManager.game_ui.set_spell_label("Input: " + spell_input)
+	GameManager.game_ui.set_spell_label("Input: " + raw_input)
 	SoundManager.play_sound(input_sfx[randi_range(0, input_sfx.size() - 1)])
