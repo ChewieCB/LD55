@@ -68,7 +68,7 @@ func _physics_process(delta):
 	_move(delta)
 
 func _spawn():
-	pass
+	resource_attributes.play_summon_sfx()
 
 func _move(_delta):
 	if nav_agent.is_navigation_finished():

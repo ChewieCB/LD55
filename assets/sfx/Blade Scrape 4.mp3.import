@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://k1w3dhqb3dmp"
+path="res://.godot/imported/Blade Scrape 4.mp3-c2d5434ed4d87b82d7dc77e7a26d14c1.mp3str"
+
+[deps]
+
+source_file="res://assets/sfx/Blade Scrape 4.mp3"
+dest_files=["res://.godot/imported/Blade Scrape 4.mp3-c2d5434ed4d87b82d7dc77e7a26d14c1.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

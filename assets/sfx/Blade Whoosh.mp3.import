@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dvj082wcwrpft"
+path="res://.godot/imported/Blade Whoosh.mp3-51122b7d9c18be60813a33930993d317.mp3str"
+
+[deps]
+
+source_file="res://assets/sfx/Blade Whoosh.mp3"
+dest_files=["res://.godot/imported/Blade Whoosh.mp3-51122b7d9c18be60813a33930993d317.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

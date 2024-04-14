@@ -1,9 +1,10 @@
-[gd_resource type="Resource" script_class="AttackResource" load_steps=5 format=3 uid="uid://bfr671pxbeh7j"]
+[gd_resource type="Resource" script_class="AttackResource" load_steps=6 format=3 uid="uid://bfr671pxbeh7j"]
 
 [ext_resource type="Script" path="res://src/entities/characters/attack_resource.gd" id="1_5stwv"]
 [ext_resource type="Material" uid="uid://cxomekp5n5jv" path="res://src/entities/characters/crusader/crusader_attacks/particle_resources/AOECanvasItemMaterial.tres" id="1_dsopl"]
 [ext_resource type="Material" uid="uid://debt33v5ytb5v" path="res://src/entities/characters/crusader/crusader_attacks/particle_resources/AOEParticleProcessMaterial.tres" id="2_m5ge0"]
 [ext_resource type="Texture2D" uid="uid://bahe05hl0e2sx" path="res://assets/particles/MagicBarrier_64x64.png" id="3_dsm8e"]
+[ext_resource type="AudioStream" uid="uid://x83aygr7bkpq" path="res://assets/sfx/Magic Sound.mp3" id="3_ueqdr"]
 
 [resource]
 script = ExtResource("1_5stwv")
@@ -20,5 +21,5 @@ particle_texture = ExtResource("3_dsm8e")
 particle_size = 64
 attack_particles_process_mat = ExtResource("2_m5ge0")
 attack_particles_canvas_mat = ExtResource("1_dsopl")
-attack_sfx = Array[AudioStream]([])
+attack_sfx = Array[AudioStream]([ExtResource("3_ueqdr")])
 block_sfx = Array[AudioStream]([])
