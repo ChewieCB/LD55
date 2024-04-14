@@ -61,7 +61,11 @@ script = ExtResource("3_1ilu4")
 
 [node name="DeathParticles" type="GPUParticles2D" parent="."]
 
+[node name="AttackBuildupTimer" type="Timer" parent="."]
+one_shot = true
+
 [node name="AttackCooldownTimer" type="Timer" parent="."]
+one_shot = true
 
 [node name="StaggerStunTimer" type="Timer" parent="."]
 one_shot = true

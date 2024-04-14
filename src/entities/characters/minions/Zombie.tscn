@@ -1,7 +1,7 @@
 [gd_scene load_steps=34 format=3 uid="uid://c7jvs3fcwp2j1"]
 
 [ext_resource type="Script" path="res://src/entities/characters/minions/minion_base.gd" id="1_56qy7"]
-[ext_resource type="Resource" uid="uid://c53bmthdbeicu" path="res://src/entities/characters/minions/base_minion_attributes.tres" id="2_hm111"]
+[ext_resource type="Resource" uid="uid://cctfuamkj3rqr" path="res://src/entities/characters/minions/ZombieAttributes.tres" id="2_c651r"]
 [ext_resource type="Resource" uid="uid://s6oc7lk4nbw0" path="res://src/entities/characters/minions/minion_attacks/minion_basic_attack.tres" id="3_yth42"]
 [ext_resource type="Texture2D" uid="uid://bhwjl6ea1koq2" path="res://assets/temp/juni_minion.png" id="4_njwdd"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/state_chart.gd" id="5_1gsmk"]
@@ -144,7 +144,7 @@ y_sort_enabled = true
 collision_layer = 2
 collision_mask = 0
 script = ExtResource("1_56qy7")
-resource_attributes = ExtResource("2_hm111")
+resource_attributes = ExtResource("2_c651r")
 attacks = Array[Resource("res://src/entities/characters/attack_resource.gd")]([ExtResource("3_yth42")])
 
 [node name="ColorRect" type="ColorRect" parent="."]
@@ -336,10 +336,14 @@ one_shot = true
 explosiveness = 0.62
 randomness = 0.1
 
+[node name="AttackBuildupTimer" type="Timer" parent="."]
+one_shot = true
+
 [node name="AttackCooldownTimer" type="Timer" parent="."]
 one_shot = true
 
 [node name="StaggerStunTimer" type="Timer" parent="."]
+one_shot = true
 
 [node name="HealthBar" type="ProgressBar" parent="."]
 self_modulate = Color(1, 1, 1, 0.631373)

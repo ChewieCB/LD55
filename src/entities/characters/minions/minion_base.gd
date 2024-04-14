@@ -4,20 +4,13 @@ class_name MinionBase
 var crusader: Crusader
 var crusader_target: Vector2
 
-@onready var _minion_sfx_1: AudioStream = load("res://assets/sfx/minions/zombie/Zombie_Growl.mp3")
-@onready var _minion_sfx_2: AudioStream = load("res://assets/sfx/minions/zombie/Zombie_Growl_2.mp3")
-@onready var _minion_sfx_3: AudioStream = load("res://assets/sfx/minions/zombie/Zombie_Growl_3.mp3")
-@onready var minion_sfx = [_minion_sfx_1, _minion_sfx_2, _minion_sfx_3]
-#
-@onready var _attack_sfx_1: AudioStream = load("res://assets/sfx/Magic_Impact.mp3")
-@onready var attack_sfx = [_attack_sfx_1]
 
 func _spawn():
+	resource_attributes.play_summon_sfx()
 	# TODO - play some animation or effect before beginning the movement
 	health_ui.max_value = attributes.health
 	if attacks:
 		current_attack = attacks[0]
-	SoundManager.play_sound(minion_sfx[randi_range(0, minion_sfx.size() - 1)])
 
 func _process(_delta):
 	health_ui.value = current_health
@@ -52,11 +45,26 @@ func _on_attacking_idle_state_physics_processing(_delta):
 	# FIXME - dependency issue here with the crusader node not loading before this
 	if crusader == null:
 		return
-	if cooldown_timer.is_stopped():
-		if crusader.current_health > 0:
-			if global_position.distance_to(crusader.global_position) <= current_attack.attack_range:
-				state_chart.send_event("stop_walking")
-				state_chart.send_event("attack")
+	
+	# Generic cooldown for all attacks
+	if not cooldown_timer.is_stopped():
+		return
+	
+	# TODO - add attack choice logic in via stances
+	# TODO - add attack name enum
+	var attack_priority = [
+		attacks[0],
+	]
+	for _attack in attack_priority:
+		if not is_in_cooldown(_attack):
+			current_attack = _attack
+			break
+	
+	if current_attack:
+		if global_position.distance_to(crusader.global_position) <= current_attack.attack_range:
+			state_chart.send_event("stop_walking")
+			state_chart.send_event("attack")
+			return
 
 func _on_attacking_basic_attack_state_entered():
 	# TODO - map this to an enum that matches the attack names

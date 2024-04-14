@@ -29,6 +29,8 @@ var acceleration: float = 7
 
 @export var attacks: Array[AttackResource]
 var current_attack: AttackResource
+var in_cooldown: Array[AttackResource]
+var cooldown_timers: Array
 
 @onready var nav_agent = $NavigationAgent2D
 @onready var state_chart: StateChart = $StateChart
@@ -41,6 +43,7 @@ var current_attack: AttackResource
 @onready var block_particles: GPUParticles2D = $BlockParticles
 @onready var death_particles: GPUParticles2D = $DeathParticles
 
+@onready var buildup_timer = $AttackBuildupTimer
 @onready var cooldown_timer = $AttackCooldownTimer
 @onready var stagger_stun_timer = $StaggerStunTimer
 
@@ -65,7 +68,7 @@ func _physics_process(delta):
 	_move(delta)
 
 func _spawn():
-	pass
+	resource_attributes.play_summon_sfx()
 
 func _move(_delta):
 	if nav_agent.is_navigation_finished():
@@ -85,59 +88,98 @@ func _attack(attack: AttackResource):
 	# Get targets
 	var targets = attack.get_targets(self)
 	
-	if not targets:
-		return
-	
-	if targets.size() == 1:
-		# TODO - refactor this to generate and free a particle emitter per target
-		#    as well as an AoE particle emitter with the shape informed by the area
-		var _target = targets.front()
-		attack_particles.process_material = attack.attack_particles_process_mat
-		attack_particles.material = attack.attack_particles_canvas_mat
-		attack_particles.global_position = _target.global_position
-		#
-		block_particles.global_position = _target.global_position
-	
-	for target in targets:
-		if target.current_health <= 0:
-			continue
-		
-		# Calculate stagger or stun chance
-		# We need to pass 0.5 to stagger, and 0.9 to stun
-		# TODO - playtest and tweak this
-		var stagger_chance = clamp(
-			(0.8 - randf()) + attack.control + target.attributes.dexterity,
-			0.0,
-			1.0
-		)
-		if stagger_chance >= 0.9:
-			target._stun()
-		elif stagger_chance >= 0.5:
-			target._stagger()
-			
-		# Damage and armour penetration
-		# TODO - playtest and tweak armour damage reduction 
-		var modified_damage = attack.damage
-		# TODO - figure out an intuitive armour/armour penetration system
-		if attack.armour_penetration < target.attributes.armour:
-			modified_damage = clamp(
-				attack.damage / target.attributes.armour,
-				0,
-				attack.damage
-			)
-		target.current_health -= modified_damage
-		
-		if modified_damage > 0:
-			anim_player.play("attack")
-			attack.play_attack_sfx()
-		else:
-			anim_player.play("block")
-			attack.play_block_sfx()
-	
 	state_chart.send_event("finish_attack")
+	
+	if targets:
+		if attack.targeting_mode == AttackResource.TargetingMode.SINGLE:
+			# TODO - refactor this to generate and free a particle emitter per target
+			#    as well as an AoE particle emitter with the shape informed by the area
+			var _target = targets.front()
+			attack_particles.texture = attack.particle_texture
+			# TODO - work out scale
+			#attack_particles.scale = attack.attack_range
+			attack_particles.process_material = attack.attack_particles_process_mat
+			attack_particles.material = attack.attack_particles_canvas_mat
+			attack_particles.global_position = _target.global_position
+			#
+			block_particles.global_position = _target.global_position
+		else:
+			attack_particles.texture = attack.particle_texture
+			attack_particles.process_material = attack.attack_particles_process_mat
+			attack_particles.material = attack.attack_particles_canvas_mat
+			attack_particles.global_position = global_position
+		
+		var target_count: int = 0
+		for target in targets:
+			if target.current_health <= 0:
+				continue
+			
+			if attack.targeting_mode == AttackResource.TargetingMode.MULTIPLE:
+				if target_count >= attack.max_targets:
+					break
+			
+			# Calculate stagger or stun chance
+			# We need to pass 0.5 to stagger, and 0.9 to stun
+			# TODO - playtest and tweak this
+			var stagger_chance = clamp(
+				(0.8 - randf()) + attack.control + target.attributes.dexterity,
+				0.0,
+				1.0
+			)
+			if stagger_chance >= 0.9:
+				target._stun()
+			elif stagger_chance >= 0.5:
+				target._stagger()
+				
+			# Damage and armour penetration
+			# TODO - playtest and tweak armour damage reduction 
+			var modified_damage = attack.damage * attributes.strength
+			# TODO - figure out an intuitive armour/armour penetration system
+			if attack.armour_penetration < target.attributes.armour:
+				modified_damage = clamp(
+					modified_damage / target.attributes.armour,
+					0,
+					modified_damage
+				)
+			target.current_health -= modified_damage
+			
+			if modified_damage > 0: 
+				# TODO - spawn a particle emitter for each attack instance
+				anim_player.play("attack")
+				attack.play_attack_sfx()
+			else:
+				anim_player.play("block")
+				attack.play_block_sfx()
+			
+			target_count += 1
+	
+	_attack_cooldown(attack)
+	status_ui._spawn_attack_indicator(attack.name, 0.6)
+	current_attack = null
+	
+	# Generic cooldown to prevent spamming inputs each frame
+	cooldown_timer.start(0.4)
 
 	await attack_particles.finished
 	attack_particles.global_position = Vector2.ZERO
+
+
+func _attack_cooldown(attack: AttackResource):
+	in_cooldown.append(attack)
+	var cooldown_timer = get_tree().create_timer(
+		attack.cooldown * remap(attributes.dexterity, 0, 1, 3, 0.25)
+	)
+	cooldown_timers.append(cooldown_timer)
+	
+	await cooldown_timer.timeout
+	
+	in_cooldown.erase(attack)
+	cooldown_timers.erase(cooldown_timer)
+
+
+func is_in_cooldown(attack: AttackResource):
+	return in_cooldown.has(attack)
+
 
 func _stagger():
 	state_chart.send_event("stagger")

@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="CharacterAttributes" load_steps=5 format=3 uid="uid://cjg214btamq4q"]
+
+[ext_resource type="Script" path="res://src/entities/characters/character_attributes.gd" id="1_8nmfj"]
+[ext_resource type="AudioStream" uid="uid://dw54nai6xlvyx" path="res://assets/sfx/minions/skeleton/Skeleton Summon 1.mp3" id="2_uy38a"]
+[ext_resource type="AudioStream" uid="uid://clbfcyi11j242" path="res://assets/sfx/minions/skeleton/Skeleton Summon 2.mp3" id="3_wgpui"]
+[ext_resource type="AudioStream" uid="uid://bqstvmaj560i3" path="res://assets/sfx/minions/skeleton/Skeleton Summon 3.mp3" id="4_4q01r"]
+
+[resource]
+script = ExtResource("1_8nmfj")
+summon_sfx = Array[AudioStream]([ExtResource("2_uy38a"), ExtResource("3_wgpui"), ExtResource("4_4q01r")])
+health = 65
+armour = 4
+speed = 150.0
+strength = 2.0
+dexterity = 0.47
+rank = 2

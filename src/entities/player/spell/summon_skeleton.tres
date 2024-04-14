@@ -6,7 +6,7 @@
 [resource]
 script = ExtResource("2_h8q7d")
 name = "Skeleton"
-input = "DDD"
+input = "RLD"
 spell_id = 3
 spawn_scene = ExtResource("1_i3si7")
-cooldown = 0.5
+cooldown = 3.2

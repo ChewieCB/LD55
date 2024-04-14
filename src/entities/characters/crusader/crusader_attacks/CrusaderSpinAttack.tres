@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="AttackResource" load_steps=7 format=3 uid="uid://dc1uya6c085x5"]
+
+[ext_resource type="Material" uid="uid://dh5yh2yglchfh" path="res://src/entities/characters/crusader/crusader_attacks/particle_resources/SpinCanvasItemMaterial.tres" id="1_tm38s"]
+[ext_resource type="Material" uid="uid://ca6pcuxegbeoy" path="res://src/entities/characters/crusader/crusader_attacks/particle_resources/SpinParticleProcessMaterial.tres" id="2_2n73n"]
+[ext_resource type="AudioStream" uid="uid://b8mlo00p5d32b" path="res://assets/sfx/Blade Scrape 3.mp3" id="3_daobv"]
+[ext_resource type="Texture2D" uid="uid://dlsl4vycxk1wp" path="res://assets/particles/IceCast_96x96.png" id="3_wfqlw"]
+[ext_resource type="AudioStream" uid="uid://k1w3dhqb3dmp" path="res://assets/sfx/Blade Scrape 4.mp3" id="4_w3upk"]
+[ext_resource type="Script" path="res://src/entities/characters/attack_resource.gd" id="6_t2qvh"]
+
+[resource]
+script = ExtResource("6_t2qvh")
+targeting_mode = 1
+max_targets = 4
+attack_range = 64
+attack_delay = 0.0
+cooldown = 2.6
+damage = 30
+armour_penetration = 0
+control = 0.5
+name = "Spin"
+particle_texture = ExtResource("3_wfqlw")
+particle_size = 96
+attack_particles_process_mat = ExtResource("2_2n73n")
+attack_particles_canvas_mat = ExtResource("1_tm38s")
+attack_sfx = Array[AudioStream]([ExtResource("3_daobv"), ExtResource("4_w3upk")])
+block_sfx = Array[AudioStream]([])

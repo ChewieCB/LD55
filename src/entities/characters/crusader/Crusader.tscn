@@ -1,22 +1,25 @@
-[gd_scene load_steps=43 format=3 uid="uid://bev1egpx7qcvi"]
+[gd_scene load_steps=47 format=3 uid="uid://bev1egpx7qcvi"]
 
 [ext_resource type="Script" path="res://src/entities/characters/crusader/crusader.gd" id="1_0cjda"]
 [ext_resource type="Resource" uid="uid://b5dljo4pci4to" path="res://src/entities/characters/crusader/crusader_attributes.tres" id="2_jwm8m"]
 [ext_resource type="Texture2D" uid="uid://tbaw03mlpcud" path="res://assets/temp/malina-bg.png" id="2_svunf"]
 [ext_resource type="Resource" uid="uid://cs0ahufxrbf1t" path="res://src/entities/characters/crusader/crusader_attacks/CrusaderBasicAttack.tres" id="3_au4vg"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/state_chart.gd" id="3_hr7jo"]
+[ext_resource type="Resource" uid="uid://bfr671pxbeh7j" path="res://src/entities/characters/crusader/crusader_attacks/CrusaderAOEAttack.tres" id="4_50p0w"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/parallel_state.gd" id="4_mr8e3"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/compound_state.gd" id="5_6ihxl"]
+[ext_resource type="Resource" uid="uid://dc1uya6c085x5" path="res://src/entities/characters/crusader/crusader_attacks/CrusaderSpinAttack.tres" id="5_pbuhd"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/atomic_state.gd" id="6_w7y78"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/transition.gd" id="7_v3ig5"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/state_is_active_guard.gd" id="8_6fl0h"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/not_guard.gd" id="9_30nyi"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/all_of_guard.gd" id="10_slxhv"]
-[ext_resource type="Texture2D" uid="uid://1yqusuuwwuwh" path="res://assets/particles/LightCast_96.png" id="12_nti47"]
-[ext_resource type="Material" uid="uid://bye8rjpuib4pl" path="res://src/entities/characters/crusader/crusader_attacks/particle_resources/LightFlashCanvasItemMaterial.tres" id="13_oun38"]
+[ext_resource type="Material" uid="uid://dh5yh2yglchfh" path="res://src/entities/characters/crusader/crusader_attacks/particle_resources/SpinCanvasItemMaterial.tres" id="14_offsl"]
 [ext_resource type="PackedScene" uid="uid://crdcf3pu3urwg" path="res://src/ui/status/status_ui.tscn" id="14_vj2d1"]
-[ext_resource type="Material" uid="uid://87mn72p5tmgm" path="res://src/entities/characters/crusader/crusader_attacks/particle_resources/LightFlashParticleProcessMaterial.tres" id="14_xpyg4"]
 [ext_resource type="Texture2D" uid="uid://bixxqrw5c3q7e" path="res://assets/particles/SmallStar_64x64.png" id="14_yo0hq"]
+[ext_resource type="Material" uid="uid://ca6pcuxegbeoy" path="res://src/entities/characters/crusader/crusader_attacks/particle_resources/SpinParticleProcessMaterial.tres" id="15_4uj6q"]
+[ext_resource type="Animation" uid="uid://416js6etq1ua" path="res://src/entities/characters/crusader/crusader_attacks/attack_anims/spin.res" id="15_sulxg"]
+[ext_resource type="Texture2D" uid="uid://dlsl4vycxk1wp" path="res://assets/particles/IceCast_96x96.png" id="16_5hi2q"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ci4kf"]
 size = Vector2(32, 32)
@@ -83,7 +86,8 @@ guard = SubResource("Resource_p5ia4")
 
 [sub_resource type="Animation" id="Animation_45lpn"]
 resource_name = "attack"
-length = 0.2
+length = 0.05
+step = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -158,7 +162,8 @@ tracks/2/keys = {
 _data = {
 "attack": SubResource("Animation_45lpn"),
 "block": SubResource("Animation_c2uu4"),
-"hurt": SubResource("Animation_mykda")
+"hurt": SubResource("Animation_mykda"),
+"spin": ExtResource("15_sulxg")
 }
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_6c0yh"]
@@ -182,11 +187,14 @@ anim_speed_max = 1.0
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mttwg"]
 bg_color = Color(0.843137, 0.196078, 0.0666667, 1)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wevtv"]
+bg_color = Color(0.588235, 0.168627, 0.952941, 1)
+
 [node name="Crusader" type="CharacterBody2D"]
 y_sort_enabled = true
 script = ExtResource("1_0cjda")
 resource_attributes = ExtResource("2_jwm8m")
-attacks = Array[Resource("res://src/entities/characters/attack_resource.gd")]([ExtResource("3_au4vg")])
+attacks = Array[Resource("res://src/entities/characters/attack_resource.gd")]([ExtResource("3_au4vg"), ExtResource("4_50p0w"), ExtResource("5_pbuhd")])
 
 [node name="ColorRect" type="ColorRect" parent="."]
 anchors_preset = 8
@@ -385,6 +393,49 @@ script = ExtResource("7_v3ig5")
 to = NodePath("../../Idle")
 event = &"stop_cleansing"
 
+[node name="CrusaderAttacks" type="Node" parent="StateChart/Root"]
+script = ExtResource("5_6ihxl")
+initial_state = NodePath("Basic")
+
+[node name="Basic" type="Node" parent="StateChart/Root/CrusaderAttacks"]
+script = ExtResource("6_w7y78")
+
+[node name="toPower" type="Node" parent="StateChart/Root/CrusaderAttacks/Basic"]
+script = ExtResource("7_v3ig5")
+to = NodePath("../../Power")
+event = &"power"
+
+[node name="toCleave" type="Node" parent="StateChart/Root/CrusaderAttacks/Basic"]
+script = ExtResource("7_v3ig5")
+to = NodePath("../../Cleave")
+event = &"cleave"
+
+[node name="Power" type="Node" parent="StateChart/Root/CrusaderAttacks"]
+script = ExtResource("6_w7y78")
+
+[node name="toBasic" type="Node" parent="StateChart/Root/CrusaderAttacks/Power"]
+script = ExtResource("7_v3ig5")
+to = NodePath("../../Basic")
+event = &"basic"
+
+[node name="toCleave" type="Node" parent="StateChart/Root/CrusaderAttacks/Power"]
+script = ExtResource("7_v3ig5")
+to = NodePath("../../Cleave")
+event = &"cleave"
+
+[node name="Cleave" type="Node" parent="StateChart/Root/CrusaderAttacks"]
+script = ExtResource("6_w7y78")
+
+[node name="toBasic" type="Node" parent="StateChart/Root/CrusaderAttacks/Cleave"]
+script = ExtResource("7_v3ig5")
+to = NodePath("../../Basic")
+event = &"basic"
+
+[node name="toPower" type="Node" parent="StateChart/Root/CrusaderAttacks/Cleave"]
+script = ExtResource("7_v3ig5")
+to = NodePath("../../Power")
+event = &"power"
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_utllu")
@@ -402,6 +453,9 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackRange"]
 shape = SubResource("CircleShape2D_0pxk1")
 
+[node name="AttackBuildupTimer" type="Timer" parent="."]
+one_shot = true
+
 [node name="AttackCooldownTimer" type="Timer" parent="."]
 one_shot = true
 
@@ -409,11 +463,11 @@ one_shot = true
 one_shot = true
 
 [node name="AttackParticles" type="GPUParticles2D" parent="."]
-material = ExtResource("13_oun38")
+material = ExtResource("14_offsl")
 emitting = false
 amount = 1
-process_material = ExtResource("14_xpyg4")
-texture = ExtResource("12_nti47")
+process_material = ExtResource("15_4uj6q")
+texture = ExtResource("16_5hi2q")
 one_shot = true
 speed_scale = 2.0
 
@@ -448,10 +502,25 @@ show_percentage = false
 
 [node name="StatusUI" parent="." instance=ExtResource("14_vj2d1")]
 
+[node name="AttackBuildup" type="ProgressBar" parent="."]
+custom_minimum_size = Vector2(50, 6)
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -25.0
+offset_top = -40.0
+offset_right = 25.0
+offset_bottom = -34.0
+grow_horizontal = 2
+theme_override_styles/fill = SubResource("StyleBoxFlat_wevtv")
+value = 100.0
+show_percentage = false
+
 [connection signal="velocity_computed" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_velocity_computed"]
 [connection signal="state_entered" from="StateChart/Root/Movement/Idle" to="." method="_on_idle_state_entered"]
 [connection signal="state_physics_processing" from="StateChart/Root/Movement/Idle" to="." method="_on_idle_state_physics_processing"]
 [connection signal="state_physics_processing" from="StateChart/Root/Movement/Walking" to="." method="_on_walking_state_physics_processing"]
+[connection signal="state_physics_processing" from="StateChart/Root/Stances/DefaultStance" to="." method="_on_default_stance_state_physics_processing"]
 [connection signal="state_entered" from="StateChart/Root/Damage/Hit" to="." method="_on_hit_state_entered"]
 [connection signal="state_entered" from="StateChart/Root/Damage/Dead" to="." method="_on_dead_state_entered"]
 [connection signal="state_entered" from="StateChart/Root/Status/Staggered" to="." method="_on_status_staggered_state_entered"]
@@ -459,9 +528,13 @@ show_percentage = false
 [connection signal="state_entered" from="StateChart/Root/Status/Stunned" to="." method="_on_status_stunned_state_entered"]
 [connection signal="state_exited" from="StateChart/Root/Status/Stunned" to="." method="_on_status_stunned_state_exited"]
 [connection signal="state_physics_processing" from="StateChart/Root/Attacking/Idle" to="." method="_on_attacking_idle_state_physics_processing"]
-[connection signal="state_entered" from="StateChart/Root/Attacking/Attack" to="." method="_on_attacking_basic_attack_state_entered"]
+[connection signal="state_entered" from="StateChart/Root/Attacking/Buildup" to="." method="_on_attacking_buildup_state_entered"]
+[connection signal="state_exited" from="StateChart/Root/Attacking/Buildup" to="." method="_on_attacking_buildup_state_exited"]
+[connection signal="state_physics_processing" from="StateChart/Root/Attacking/Buildup" to="." method="_on_buildup_state_physics_processing"]
+[connection signal="state_entered" from="StateChart/Root/Attacking/Attack" to="." method="_on_attacking_attack_state_entered"]
 [connection signal="state_entered" from="StateChart/Root/Action/Idle" to="." method="_on_action_idle_state_entered"]
 [connection signal="state_entered" from="StateChart/Root/Action/Cleansing" to="." method="_on_action_cleansing_state_entered"]
 [connection signal="state_physics_processing" from="StateChart/Root/Action/Cleansing" to="." method="_on_action_cleansing_state_physics_processing"]
 [connection signal="body_entered" from="MinionAttackArea" to="." method="_on_minion_attack_area_body_entered"]
+[connection signal="timeout" from="AttackBuildupTimer" to="." method="_on_attack_buildup_timer_timeout"]
 [connection signal="timeout" from="StaggerStunTimer" to="." method="_on_stagger_stun_timer_timeout"]

@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dg7f6c0hu07cn"
+path="res://.godot/imported/Hit 5.mp3-25d0d5c00b7eec9cef2ce334ea706b58.mp3str"
+
+[deps]
+
+source_file="res://assets/sfx/minions/minion_attacks/Hit 5.mp3"
+dest_files=["res://.godot/imported/Hit 5.mp3-25d0d5c00b7eec9cef2ce334ea706b58.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

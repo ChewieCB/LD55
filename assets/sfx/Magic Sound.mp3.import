@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://x83aygr7bkpq"
+path="res://.godot/imported/Magic Sound.mp3-9a18dbf68b757b3a6ce3b24c23093ddc.mp3str"
+
+[deps]
+
+source_file="res://assets/sfx/Magic Sound.mp3"
+dest_files=["res://.godot/imported/Magic Sound.mp3-9a18dbf68b757b3a6ce3b24c23093ddc.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
