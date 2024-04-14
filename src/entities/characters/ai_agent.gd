@@ -45,9 +45,16 @@ var current_attack: AttackResource
 @onready var status_ui = $StatusUI
 
 func _ready():
-	#await get_owner().ready
+	# This to make sure all NavigationServer stuff is synced
+	process_mode = Node.PROCESS_MODE_DISABLED
+	await get_tree().physics_frame
+	call_deferred("_wait_for_navigation_setup")
 	health_diff.connect(status_ui._spawn_damage_indicator)
 	_spawn()
+
+func _wait_for_navigation_setup():
+	await get_tree().physics_frame
+	process_mode = Node.PROCESS_MODE_INHERIT
 
 func _physics_process(delta):
 	_move(delta)
