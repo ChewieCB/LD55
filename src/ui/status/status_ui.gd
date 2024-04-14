@@ -7,7 +7,6 @@ extends Node2D
 @onready var damage_markers = $DamageMarkers
 var damage_markers_in_use = []
 
-
 func _spawn_status_indicator(status: String, duration: float):
 	var new_indicator = Label.new()
 	new_indicator.theme = status_theme
@@ -25,12 +24,11 @@ func _spawn_status_indicator(status: String, duration: float):
 	# Animate the damage indicator via tweens to 
 	# save us creating a separate anim player
 	await get_tree().create_timer(duration).timeout
-	var tween = get_tree().create_tween()
+	var tween = create_tween()
 	# TODO - add easing
 	tween.parallel().chain().tween_property(new_indicator, "modulate", Color(1, 1, 1, 0), 1.0)
 	tween.parallel().chain().tween_property(new_indicator, "position:y", new_indicator.position.y - 24, 1.0)
 	tween.tween_callback(new_indicator.queue_free)
-
 
 func _spawn_damage_indicator(damage: int):
 	var new_indicator = Label.new()
@@ -62,11 +60,11 @@ func _spawn_damage_indicator(damage: int):
 	
 	# Animate the damage indicator via tweens to 
 	# save us creating a separate anim player
-	var tween = get_tree().create_tween()
+	var tween = create_tween()
 	# TODO - add easing
 	tween.tween_property(new_indicator, "position:y", new_indicator.position.y - 24, 1.0)
 	tween.tween_property(new_indicator, "modulate", Color(1, 1, 1, 0), 1.0)
 	tween.tween_callback(new_indicator.queue_free)
-	tween.tween_callback(func(): 
+	tween.tween_callback(func():
 		damage_markers_in_use.erase(damage_marker)
 	)

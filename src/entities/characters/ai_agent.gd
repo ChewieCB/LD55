@@ -20,8 +20,8 @@ var current_health: int:
 			_die()
 		elif value < prev_health:
 			_hurt()
-var current_speed: int
-var acceleration: int = 7
+var current_speed: float
+var acceleration: float = 7
 
 @export var attacks: Array[AttackResource]
 var current_attack: AttackResource
@@ -46,9 +46,16 @@ var current_attack: AttackResource
 @onready var status_ui = $StatusUI
 
 func _ready():
-	#await get_owner().ready
+	# This to make sure all NavigationServer stuff is synced
+	process_mode = Node.PROCESS_MODE_DISABLED
+	await get_tree().physics_frame
+	call_deferred("_wait_for_navigation_setup")
 	health_diff.connect(status_ui._spawn_damage_indicator)
 	_spawn()
+
+func _wait_for_navigation_setup():
+	await get_tree().physics_frame
+	process_mode = Node.PROCESS_MODE_INHERIT
 
 func _physics_process(delta):
 	_move(delta)
@@ -59,7 +66,7 @@ func _spawn():
 func _move(_delta):
 	if nav_agent.is_navigation_finished():
 		return
-	
+
 	var current_agent_position: Vector2 = global_position
 	var next_path_position: Vector2 = nav_agent.get_next_path_position()
 	var direction: Vector2 = current_agent_position.direction_to(next_path_position)
@@ -118,18 +125,15 @@ func _attack(attack: AttackResource):
 			attack.play_block_sfx()
 	
 	state_chart.send_event("finish_attack")
-	
+
 	await attack_particles.finished
 	attack_particles.global_position = Vector2.ZERO
-
 
 func _stagger():
 	state_chart.send_event("stagger")
 
-
 func _stun():
 	state_chart.send_event("stun")
-
 
 func _hurt():
 	pass

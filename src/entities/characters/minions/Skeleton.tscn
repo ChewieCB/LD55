@@ -1,48 +1,57 @@
-[gd_scene load_steps=34 format=3 uid="uid://y43wlad4886x"]
+[gd_scene load_steps=35 format=3 uid="uid://iqw1g1onexq2"]
 
-[ext_resource type="Script" path="res://src/entities/characters/minions/minion_base.gd" id="1_etj48"]
-[ext_resource type="Texture2D" uid="uid://bhwjl6ea1koq2" path="res://assets/temp/juni_minion.png" id="2_n7sds"]
-[ext_resource type="Script" path="res://addons/godot_state_charts/state_chart.gd" id="3_ffk6h"]
-[ext_resource type="Script" path="res://addons/godot_state_charts/compound_state.gd" id="4_06cnh"]
-[ext_resource type="Script" path="res://addons/godot_state_charts/parallel_state.gd" id="5_kn6mh"]
-[ext_resource type="Script" path="res://addons/godot_state_charts/atomic_state.gd" id="5_qt5d1"]
-[ext_resource type="Script" path="res://addons/godot_state_charts/transition.gd" id="6_wku5f"]
-[ext_resource type="Script" path="res://addons/godot_state_charts/state_is_active_guard.gd" id="8_vemok"]
-[ext_resource type="Script" path="res://addons/godot_state_charts/not_guard.gd" id="9_g2dqf"]
-[ext_resource type="Script" path="res://addons/godot_state_charts/all_of_guard.gd" id="12_n7d5c"]
-[ext_resource type="Texture2D" uid="uid://43injemtwjgx" path="res://assets/particles/PoisonClaw_96x96.png" id="13_gdsiv"]
-[ext_resource type="Material" uid="uid://dyiav2l5wpxer" path="res://src/entities/characters/minions/minion_attacks/particle_resources/PoisonClawCanvasItemMaterial.tres" id="13_ubrq3"]
-[ext_resource type="Material" uid="uid://0rrnlgpw34g1" path="res://src/entities/characters/minions/minion_attacks/particle_resources/PoisonClowProcessMaterial.tres" id="14_44smk"]
-[ext_resource type="Texture2D" uid="uid://brmlt6rgwrn1w" path="res://assets/particles/Explosion_2_64x64.png" id="14_78xok"]
-[ext_resource type="Texture2D" uid="uid://bixxqrw5c3q7e" path="res://assets/particles/SmallStar_64x64.png" id="14_tddq5"]
-[ext_resource type="PackedScene" uid="uid://crdcf3pu3urwg" path="res://src/ui/status/status_ui.tscn" id="15_q28fj"]
-[ext_resource type="Material" uid="uid://bo7kokarqmbwl" path="res://src/entities/characters/minions/minion_attacks/particle_resources/ExplosionParticleCanvasItemMaterial.tres" id="17_jocp2"]
-[ext_resource type="Material" uid="uid://5rp36woe5yso" path="res://src/entities/characters/minions/minion_attacks/particle_resources/ExplosionParticleProcessMaterial.tres" id="18_m238t"]
+[ext_resource type="Script" path="res://src/entities/characters/minions/minion_base.gd" id="1_f3oue"]
+[ext_resource type="Script" path="res://src/entities/characters/character_attributes.gd" id="2_0sm28"]
+[ext_resource type="Script" path="res://src/entities/characters/attack_resource.gd" id="3_6fht3"]
+[ext_resource type="Texture2D" uid="uid://bhwjl6ea1koq2" path="res://assets/temp/juni_minion.png" id="4_frby6"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/state_chart.gd" id="5_aa1q7"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/parallel_state.gd" id="6_4xj17"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/compound_state.gd" id="7_cvo53"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/atomic_state.gd" id="8_5qwax"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/transition.gd" id="9_jaux2"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/state_is_active_guard.gd" id="10_070dc"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/not_guard.gd" id="11_hja2u"]
+[ext_resource type="Texture2D" uid="uid://bixxqrw5c3q7e" path="res://assets/particles/SmallStar_64x64.png" id="12_6vtvd"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/all_of_guard.gd" id="12_7x0ji"]
+[ext_resource type="Texture2D" uid="uid://43injemtwjgx" path="res://assets/particles/PoisonClaw_96x96.png" id="13_eaou2"]
+[ext_resource type="Texture2D" uid="uid://brmlt6rgwrn1w" path="res://assets/particles/Explosion_2_64x64.png" id="14_eqdax"]
+[ext_resource type="PackedScene" uid="uid://crdcf3pu3urwg" path="res://src/ui/status/status_ui.tscn" id="14_q5bwy"]
+
+[sub_resource type="Resource" id="Resource_axt78"]
+script = ExtResource("2_0sm28")
+health = 35
+armour = 0
+speed = 170.0
+dexterity = 0.5
+rank = 1
+
+[sub_resource type="Resource" id="Resource_gqnnm"]
+script = ExtResource("3_6fht3")
+attack_range = 100
+cooldown = 1.0
+damage = 5
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ci4kf"]
 size = Vector2(32, 32)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_h6ul2"]
-radius = 40.0
-
 [sub_resource type="Resource" id="Resource_srrmh"]
-script = ExtResource("8_vemok")
+script = ExtResource("10_070dc")
 state = NodePath("../../../Attacking/BasicAttack")
 
 [sub_resource type="Resource" id="Resource_wljmr"]
-script = ExtResource("9_g2dqf")
+script = ExtResource("11_hja2u")
 guard = SubResource("Resource_srrmh")
 
 [sub_resource type="Resource" id="Resource_p6r68"]
-script = ExtResource("8_vemok")
+script = ExtResource("10_070dc")
 state = NodePath("../../../Damage/Dead")
 
 [sub_resource type="Resource" id="Resource_srkw7"]
-script = ExtResource("9_g2dqf")
+script = ExtResource("11_hja2u")
 guard = SubResource("Resource_p6r68")
 
 [sub_resource type="Resource" id="Resource_rb1lx"]
-script = ExtResource("12_n7d5c")
+script = ExtResource("12_7x0ji")
 guards = Array[Resource("res://addons/godot_state_charts/guard.gd")]([SubResource("Resource_wljmr"), SubResource("Resource_srkw7")])
 
 [sub_resource type="Animation" id="Animation_a6hs8"]
@@ -95,6 +104,20 @@ _data = {
 "death": SubResource("Animation_qcj21")
 }
 
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_lb03b"]
+particles_animation = true
+particles_anim_h_frames = 31
+particles_anim_v_frames = 1
+particles_anim_loop = true
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_0t0au"]
+particle_flag_disable_z = true
+gravity = Vector3(0, 0, 0)
+scale_min = 0.7
+scale_max = 0.7
+anim_speed_min = 1.0
+anim_speed_max = 1.0
+
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_pbyd6"]
 particles_animation = true
 particles_anim_h_frames = 60
@@ -107,14 +130,33 @@ gravity = Vector3(0, 0, 0)
 anim_speed_min = 1.0
 anim_speed_max = 1.0
 
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_mbyvb"]
+particles_animation = true
+particles_anim_h_frames = 44
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_paynb"]
+lifetime_randomness = 0.11
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(16, 16, 1)
+gravity = Vector3(0, 0, 0)
+scale_min = 0.7
+scale_max = 1.3
+anim_speed_min = 1.0
+anim_speed_max = 1.0
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bif26"]
 bg_color = Color(0.843137, 0.196078, 0.0666667, 1)
 
-[node name="MinionBase" type="CharacterBody2D"]
+[node name="Skeleton" type="CharacterBody2D"]
 y_sort_enabled = true
 collision_layer = 2
 collision_mask = 0
-script = ExtResource("1_etj48")
+script = ExtResource("1_f3oue")
+attributes = SubResource("Resource_axt78")
+attacks = Array[ExtResource("3_6fht3")]([SubResource("Resource_gqnnm")])
 
 [node name="ColorRect" type="ColorRect" parent="."]
 anchors_preset = 8
@@ -128,145 +170,138 @@ offset_right = 17.0
 offset_bottom = 17.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.403922, 0.756863, 0.894118, 1)
+color = Color(0.431373, 0.427451, 0.415686, 1)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(2, 3)
 scale = Vector2(0.0997529, 0.106163)
-texture = ExtResource("2_n7sds")
+texture = ExtResource("4_frby6")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_ci4kf")
 
-[node name="AttackRange" type="Area2D" parent="."]
-collision_layer = 2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackRange"]
-shape = SubResource("CircleShape2D_h6ul2")
-
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 target_desired_distance = 64.0
 avoidance_enabled = true
-radius = 16.0
-max_neighbors = 16
+radius = 32.0
 avoidance_layers = 2
 avoidance_mask = 2
 
 [node name="StateChart" type="Node" parent="."]
-script = ExtResource("3_ffk6h")
+script = ExtResource("5_aa1q7")
 
 [node name="Root" type="Node" parent="StateChart"]
-script = ExtResource("5_kn6mh")
+script = ExtResource("6_4xj17")
 
 [node name="Movement" type="Node" parent="StateChart/Root"]
-script = ExtResource("4_06cnh")
+script = ExtResource("7_cvo53")
 initial_state = NodePath("Walking")
 
 [node name="Idle" type="Node" parent="StateChart/Root/Movement"]
-script = ExtResource("5_qt5d1")
+script = ExtResource("8_5qwax")
 
 [node name="toWalking" type="Node" parent="StateChart/Root/Movement/Idle"]
-script = ExtResource("6_wku5f")
+script = ExtResource("9_jaux2")
 to = NodePath("../../Walking")
 event = &"start_walking"
 guard = SubResource("Resource_rb1lx")
 
 [node name="Walking" type="Node" parent="StateChart/Root/Movement"]
-script = ExtResource("5_qt5d1")
+script = ExtResource("8_5qwax")
 
 [node name="toIdle" type="Node" parent="StateChart/Root/Movement/Walking"]
-script = ExtResource("6_wku5f")
+script = ExtResource("9_jaux2")
 to = NodePath("../../Idle")
 event = &"stop_walking"
 
 [node name="Attacking" type="Node" parent="StateChart/Root"]
-script = ExtResource("4_06cnh")
+script = ExtResource("7_cvo53")
 initial_state = NodePath("Idle")
 
 [node name="Idle" type="Node" parent="StateChart/Root/Attacking"]
-script = ExtResource("5_qt5d1")
+script = ExtResource("8_5qwax")
 
 [node name="toBasicAttack" type="Node" parent="StateChart/Root/Attacking/Idle"]
-script = ExtResource("6_wku5f")
+script = ExtResource("9_jaux2")
 to = NodePath("../../BasicAttack")
 event = &"attack"
 
 [node name="BasicAttack" type="Node" parent="StateChart/Root/Attacking"]
-script = ExtResource("5_qt5d1")
+script = ExtResource("8_5qwax")
 
 [node name="toIdle" type="Node" parent="StateChart/Root/Attacking/BasicAttack"]
-script = ExtResource("6_wku5f")
+script = ExtResource("9_jaux2")
 to = NodePath("../../Idle")
 event = &"finish_attack"
 
 [node name="Damage" type="Node" parent="StateChart/Root"]
-script = ExtResource("4_06cnh")
+script = ExtResource("7_cvo53")
 initial_state = NodePath("Idle")
 
 [node name="Idle" type="Node" parent="StateChart/Root/Damage"]
-script = ExtResource("5_qt5d1")
+script = ExtResource("8_5qwax")
 
 [node name="toHit" type="Node" parent="StateChart/Root/Damage/Idle"]
-script = ExtResource("6_wku5f")
+script = ExtResource("9_jaux2")
 to = NodePath("../../Hit")
 event = &"take_damage"
 
 [node name="toDead" type="Node" parent="StateChart/Root/Damage/Idle"]
-script = ExtResource("6_wku5f")
+script = ExtResource("9_jaux2")
 to = NodePath("../../Dead")
 event = &"death"
 
 [node name="Hit" type="Node" parent="StateChart/Root/Damage"]
-script = ExtResource("5_qt5d1")
+script = ExtResource("8_5qwax")
 
 [node name="toIdle" type="Node" parent="StateChart/Root/Damage/Hit"]
-script = ExtResource("6_wku5f")
+script = ExtResource("9_jaux2")
 to = NodePath("../../../Movement/Idle")
 event = &"end_damage"
 
 [node name="toDead" type="Node" parent="StateChart/Root/Damage/Hit"]
-script = ExtResource("6_wku5f")
+script = ExtResource("9_jaux2")
 to = NodePath("../../Dead")
 event = &"death"
 
 [node name="Dead" type="Node" parent="StateChart/Root/Damage"]
-script = ExtResource("5_qt5d1")
+script = ExtResource("8_5qwax")
 
 [node name="Status" type="Node" parent="StateChart/Root"]
-script = ExtResource("4_06cnh")
+script = ExtResource("7_cvo53")
 initial_state = NodePath("Idle")
 
 [node name="Idle" type="Node" parent="StateChart/Root/Status"]
-script = ExtResource("5_qt5d1")
+script = ExtResource("8_5qwax")
 
 [node name="toStaggered" type="Node" parent="StateChart/Root/Status/Idle"]
-script = ExtResource("6_wku5f")
+script = ExtResource("9_jaux2")
 to = NodePath("../../Staggered")
 event = &"stagger"
 
 [node name="toStunned" type="Node" parent="StateChart/Root/Status/Idle"]
-script = ExtResource("6_wku5f")
+script = ExtResource("9_jaux2")
 to = NodePath("../../Stunned")
 event = &"stun"
 
 [node name="Staggered" type="Node" parent="StateChart/Root/Status"]
-script = ExtResource("5_qt5d1")
+script = ExtResource("8_5qwax")
 
 [node name="toIdle" type="Node" parent="StateChart/Root/Status/Staggered"]
-script = ExtResource("6_wku5f")
+script = ExtResource("9_jaux2")
 to = NodePath("../../Idle")
 event = &"recover_stagger"
 
 [node name="toStunned" type="Node" parent="StateChart/Root/Status/Staggered"]
-script = ExtResource("6_wku5f")
+script = ExtResource("9_jaux2")
 to = NodePath("../../Stunned")
 event = &"stun"
 
 [node name="Stunned" type="Node" parent="StateChart/Root/Status"]
-script = ExtResource("5_qt5d1")
+script = ExtResource("8_5qwax")
 
 [node name="toIdle" type="Node" parent="StateChart/Root/Status/Stunned"]
-script = ExtResource("6_wku5f")
+script = ExtResource("9_jaux2")
 to = NodePath("../../Idle")
 event = &"recover_stun"
 
@@ -276,11 +311,11 @@ libraries = {
 }
 
 [node name="AttackParticles" type="GPUParticles2D" parent="."]
-material = ExtResource("13_ubrq3")
+material = SubResource("CanvasItemMaterial_lb03b")
 emitting = false
 amount = 1
-process_material = ExtResource("14_44smk")
-texture = ExtResource("13_gdsiv")
+process_material = SubResource("ParticleProcessMaterial_0t0au")
+texture = ExtResource("13_eaou2")
 lifetime = 0.5
 one_shot = true
 speed_scale = 2.0
@@ -291,17 +326,17 @@ material = SubResource("CanvasItemMaterial_pbyd6")
 emitting = false
 amount = 1
 process_material = SubResource("ParticleProcessMaterial_ppx6g")
-texture = ExtResource("14_tddq5")
+texture = ExtResource("12_6vtvd")
 lifetime = 0.2
 one_shot = true
 explosiveness = 0.19
 
 [node name="DeathParticles" type="GPUParticles2D" parent="."]
-material = ExtResource("17_jocp2")
+material = SubResource("CanvasItemMaterial_mbyvb")
 emitting = false
 amount = 3
-process_material = ExtResource("18_m238t")
-texture = ExtResource("14_78xok")
+process_material = SubResource("ParticleProcessMaterial_paynb")
+texture = ExtResource("14_eqdax")
 one_shot = true
 explosiveness = 0.62
 randomness = 0.1
@@ -312,6 +347,7 @@ one_shot = true
 [node name="StaggerStunTimer" type="Timer" parent="."]
 
 [node name="HealthBar" type="ProgressBar" parent="."]
+self_modulate = Color(1, 1, 1, 0.631373)
 z_index = 1
 custom_minimum_size = Vector2(0, 4)
 anchors_preset = 10
@@ -326,7 +362,7 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_bif26")
 value = 100.0
 show_percentage = false
 
-[node name="StatusUI" parent="." instance=ExtResource("15_q28fj")]
+[node name="StatusUI" parent="." instance=ExtResource("14_q5bwy")]
 
 [connection signal="velocity_computed" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_velocity_computed"]
 [connection signal="state_entered" from="StateChart/Root/Movement/Idle" to="." method="_on_idle_state_entered"]
