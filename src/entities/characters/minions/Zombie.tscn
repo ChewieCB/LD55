@@ -336,10 +336,14 @@ one_shot = true
 explosiveness = 0.62
 randomness = 0.1
 
+[node name="AttackBuildupTimer" type="Timer" parent="."]
+one_shot = true
+
 [node name="AttackCooldownTimer" type="Timer" parent="."]
 one_shot = true
 
 [node name="StaggerStunTimer" type="Timer" parent="."]
+one_shot = true
 
 [node name="HealthBar" type="ProgressBar" parent="."]
 self_modulate = Color(1, 1, 1, 0.631373)

@@ -29,6 +29,8 @@ var acceleration: float = 7
 
 @export var attacks: Array[AttackResource]
 var current_attack: AttackResource
+var in_cooldown: Array[AttackResource]
+var cooldown_timers: Array
 
 @onready var nav_agent = $NavigationAgent2D
 @onready var state_chart: StateChart = $StateChart
@@ -41,6 +43,7 @@ var current_attack: AttackResource
 @onready var block_particles: GPUParticles2D = $BlockParticles
 @onready var death_particles: GPUParticles2D = $DeathParticles
 
+@onready var buildup_timer = $AttackBuildupTimer
 @onready var cooldown_timer = $AttackCooldownTimer
 @onready var stagger_stun_timer = $StaggerStunTimer
 
@@ -135,9 +138,28 @@ func _attack(attack: AttackResource):
 			attack.play_block_sfx()
 	
 	state_chart.send_event("finish_attack")
+	
+	_attack_cooldown(attack)
 
 	await attack_particles.finished
 	attack_particles.global_position = Vector2.ZERO
+
+
+func _attack_cooldown(attack: AttackResource):
+	in_cooldown.append(attack)
+	var cooldown_timer = get_tree().create_timer(
+		attack.cooldown * remap(attributes.dexterity, 0, 1, 3, 0.25)
+	)
+	cooldown_timers.append(cooldown_timer)
+	
+	await cooldown_timer.timeout
+	
+	in_cooldown.erase(attack)
+	cooldown_timers.erase(cooldown_timer)
+
+func is_in_cooldown(attack: AttackResource):
+	return in_cooldown.has(current_attack)
+
 
 func _stagger():
 	state_chart.send_event("stagger")

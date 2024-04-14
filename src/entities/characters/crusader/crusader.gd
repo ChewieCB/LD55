@@ -4,9 +4,17 @@ class_name Crusader
 signal cleansing_complete
 signal death
 
-@onready var _attack_sfx_1: AudioStream = load("res://assets/sfx/attacks/Blade_Impact.wav")
-@onready var _attack_sfx_2: AudioStream = load("res://assets/sfx/attacks/Blade_Impact_2.wav")
-@onready var attack_sfx = [_attack_sfx_1, _attack_sfx_2]
+# TODO - map this to an enum that matches the attack names
+enum AttackNames {
+	BASIC_ATTACK,
+	POWER_ATTACK,
+	CLEAVE,
+	SPIN,
+	AOE,
+}
+
+# TODO - move to AIAgent base class
+@onready var buildup_bar = $AttackBuildup
 
 var path: Curve2D
 var path_points: PackedVector2Array
@@ -102,17 +110,59 @@ func _on_action_cleansing_state_physics_processing(delta):
 		return
 	finish_cleanse()
 
-func _on_attacking_idle_state_physics_processing(_delta):
-	if cooldown_timer.is_stopped():
+
+func _on_default_stance_state_physics_processing(delta):
+	pass # Replace with function body.
+
+
+func _on_attacking_idle_state_physics_processing(delta):
+	# TODO - add attack choice logic in
+	if not is_in_cooldown(current_attack):
 		if attack_range_area.has_overlapping_bodies():
 			state_chart.send_event("stop_walking")
 			state_chart.send_event("attack")
+	else:
+		var cooldown_timer = cooldown_timers[
+			in_cooldown.find(current_attack)
+		]
+		var max_cooldown_time = current_attack.cooldown * remap(
+			attributes.dexterity, 0, 1, 3, 0.25
+		)
+		buildup_bar.value = remap(
+			cooldown_timer.time_left,
+			max_cooldown_time, 0,
+			0, 100
+		)
 
-func _on_attacking_basic_attack_state_entered():
-	# TODO - map this to an enum that matches the attack names
-	var basic_attack = attacks[0]
-	_attack(basic_attack)
-	cooldown_timer.start(basic_attack.cooldown * remap(attributes.dexterity, 0, 1, 2, 0.25))
+
+func _on_attacking_buildup_state_entered():
+	buildup_bar.value = 0
+	buildup_timer.start(current_attack.attack_delay)
+
+
+func _on_buildup_state_physics_processing(delta):
+	if not buildup_timer.is_stopped():
+		buildup_bar.value = remap(
+			buildup_timer.time_left / current_attack.attack_delay,
+			0.0, current_attack.attack_delay,
+			0, 100
+		)
+
+func _on_attacking_buildup_state_exited():
+	buildup_bar.value = 0
+	buildup_timer.stop()
+
+
+func _on_attacking_attack_state_entered():
+	# TODO - logic to decide the attack here
+	current_attack = attacks[AttackNames.BASIC_ATTACK]
+	
+	if is_in_cooldown(current_attack):
+		return
+	
+	_attack(current_attack)
+	buildup_bar.value = 100
+
 
 func _on_hit_state_entered():
 	anim_player.play("hurt")
@@ -149,3 +199,7 @@ func _on_status_stunned_state_exited():
 func _on_stagger_stun_timer_timeout():
 	state_chart.send_event("recover_stagger")
 	state_chart.send_event("recover_stun")
+
+
+func _on_attack_buildup_timer_timeout():
+	state_chart.send_event("perform_attack")
