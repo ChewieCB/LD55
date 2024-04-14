@@ -313,18 +313,6 @@ texture = ExtResource("5_4uejn")
 [node name="RitualPoint" parent="RitualSites" instance=ExtResource("4_62qie")]
 position = Vector2(213, 396)
 
-[node name="RitualPoint2" parent="RitualSites" instance=ExtResource("4_62qie")]
-position = Vector2(460, 660)
-
-[node name="RitualPoint3" parent="RitualSites" instance=ExtResource("4_62qie")]
-position = Vector2(978, 640)
-
-[node name="RitualPoint4" parent="RitualSites" instance=ExtResource("4_62qie")]
-position = Vector2(807, 424)
-
-[node name="RitualPoint5" parent="RitualSites" instance=ExtResource("4_62qie")]
-position = Vector2(521, 101)
-
 [node name="Minions" type="Node2D" parent="."]
 
 [node name="Crusader" parent="." instance=ExtResource("4_udo82")]
