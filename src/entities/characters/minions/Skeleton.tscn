@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" path="res://src/entities/characters/minions/minion_base.gd" id="1_f3oue"]
 [ext_resource type="Script" path="res://src/entities/characters/character_attributes.gd" id="2_0sm28"]
-[ext_resource type="Script" path="res://src/entities/characters/attack_resource.gd" id="3_6fht3"]
-[ext_resource type="Texture2D" uid="uid://bhwjl6ea1koq2" path="res://assets/temp/juni_minion.png" id="4_frby6"]
+[ext_resource type="Resource" uid="uid://s6oc7lk4nbw0" path="res://src/entities/characters/minions/minion_attacks/minion_basic_attack.tres" id="3_t8ve3"]
+[ext_resource type="Texture2D" uid="uid://y0qxqxm531jg" path="res://assets/temp/yuya_bg.png" id="4_ec0mf"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/state_chart.gd" id="5_aa1q7"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/parallel_state.gd" id="6_4xj17"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/compound_state.gd" id="7_cvo53"]
@@ -25,14 +25,11 @@ speed = 170.0
 dexterity = 0.5
 rank = 1
 
-[sub_resource type="Resource" id="Resource_gqnnm"]
-script = ExtResource("3_6fht3")
-attack_range = 100
-cooldown = 1.0
-damage = 5
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ci4kf"]
 size = Vector2(32, 32)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_v6t7d"]
+radius = 40.0
 
 [sub_resource type="Resource" id="Resource_srrmh"]
 script = ExtResource("10_070dc")
@@ -156,7 +153,7 @@ collision_layer = 2
 collision_mask = 0
 script = ExtResource("1_f3oue")
 attributes = SubResource("Resource_axt78")
-attacks = Array[ExtResource("3_6fht3")]([SubResource("Resource_gqnnm")])
+attacks = Array[Resource("res://src/entities/characters/attack_resource.gd")]([ExtResource("3_t8ve3")])
 
 [node name="ColorRect" type="ColorRect" parent="."]
 anchors_preset = 8
@@ -173,12 +170,18 @@ grow_vertical = 2
 color = Color(0.431373, 0.427451, 0.415686, 1)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(2, 3)
-scale = Vector2(0.0997529, 0.106163)
-texture = ExtResource("4_frby6")
+position = Vector2(0.201749, -6.22304)
+scale = Vector2(0.0729711, 0.0776603)
+texture = ExtResource("4_ec0mf")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_ci4kf")
+
+[node name="AttackRange" type="Area2D" parent="."]
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackRange"]
+shape = SubResource("CircleShape2D_v6t7d")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 target_desired_distance = 64.0

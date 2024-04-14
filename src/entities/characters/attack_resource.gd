@@ -27,7 +27,7 @@ enum TargetingMode {
 @export var block_sfx: Array[AudioStream]
 
 
-func get_targets(attacker: AIAgent) -> Array[AIAgent]:
+func get_targets(attacker: AIAgent):
 	# Get target
 	var bodies_in_range = attacker.attack_range_area.get_overlapping_bodies()
 	bodies_in_range.filter(func(x): return x.current_health > 0)
@@ -38,6 +38,9 @@ func get_targets(attacker: AIAgent) -> Array[AIAgent]:
 			return false
 	)
 	
+	if not bodies_in_range:
+		return
+	
 	var target: AIAgent
 	match targeting_mode:
 		TargetingMode.SINGLE:
@@ -47,7 +50,7 @@ func get_targets(attacker: AIAgent) -> Array[AIAgent]:
 		TargetingMode.AREA:
 			return bodies_in_range
 	
-	return []
+	return null
 
 
 func play_attack_sfx():

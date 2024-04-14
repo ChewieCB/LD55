@@ -30,9 +30,7 @@ var current_attack: AttackResource
 @onready var state_chart: StateChart = $StateChart
 @onready var anim_player: AnimationPlayer = $AnimationPlayer
 
-@onready var attack_range_area = $AttackRange:
-	set(value):
-		attack_range_area = value
+@onready var attack_range_area = $AttackRange
 @onready var attack_range_collider = $AttackRange/CollisionShape2D
 
 @onready var attack_particles: GPUParticles2D = $AttackParticles
@@ -85,6 +83,8 @@ func _attack(attack: AttackResource):
 		# TODO - refactor this to generate and free a particle emitter per target
 		#    as well as an AoE particle emitter with the shape informed by the area
 		var _target = targets.front()
+		if not _target:
+			return
 		attack_particles.process_material = attack.attack_particles_process_mat
 		attack_particles.material = attack.attack_particles_canvas_mat
 		attack_particles.global_position = _target.global_position

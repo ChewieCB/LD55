@@ -165,6 +165,7 @@ _data = {
 radius = 64.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0pxk1"]
+radius = 48.0
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_81xv8"]
 particles_animation = true
