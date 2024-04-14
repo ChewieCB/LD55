@@ -21,6 +21,9 @@ enum TargetingMode {
 @export_range(0.0, 1.0) var control: float
 
 @export_category("Display")
+@export var name: String
+@export var particle_texture: Texture
+@export var particle_size: int = 64
 @export var attack_particles_process_mat: ParticleProcessMaterial
 @export var attack_particles_canvas_mat: CanvasItemMaterial
 @export var attack_sfx: Array[AudioStream]

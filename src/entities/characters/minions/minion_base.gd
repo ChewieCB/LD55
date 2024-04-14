@@ -52,11 +52,26 @@ func _on_attacking_idle_state_physics_processing(_delta):
 	# FIXME - dependency issue here with the crusader node not loading before this
 	if crusader == null:
 		return
-	if cooldown_timer.is_stopped():
-		if crusader.current_health > 0:
-			if global_position.distance_to(crusader.global_position) <= current_attack.attack_range:
-				state_chart.send_event("stop_walking")
-				state_chart.send_event("attack")
+	
+	# Generic cooldown for all attacks
+	if not cooldown_timer.is_stopped():
+		return
+	
+	# TODO - add attack choice logic in via stances
+	# TODO - add attack name enum
+	var attack_priority = [
+		attacks[0],
+	]
+	for _attack in attack_priority:
+		if not is_in_cooldown(_attack):
+			current_attack = _attack
+			break
+	
+	if current_attack:
+		if global_position.distance_to(crusader.global_position) <= current_attack.attack_range:
+			state_chart.send_event("stop_walking")
+			state_chart.send_event("attack")
+			return
 
 func _on_attacking_basic_attack_state_entered():
 	# TODO - map this to an enum that matches the attack names

@@ -12,11 +12,11 @@
 [ext_resource type="Script" path="res://addons/godot_state_charts/state_is_active_guard.gd" id="8_vemok"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/not_guard.gd" id="9_g2dqf"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/all_of_guard.gd" id="12_n7d5c"]
-[ext_resource type="Texture2D" uid="uid://43injemtwjgx" path="res://assets/particles/PoisonClaw_96x96.png" id="13_gdsiv"]
-[ext_resource type="Material" uid="uid://dyiav2l5wpxer" path="res://src/entities/characters/minions/minion_attacks/particle_resources/PoisonClawCanvasItemMaterial.tres" id="13_ubrq3"]
-[ext_resource type="Material" uid="uid://0rrnlgpw34g1" path="res://src/entities/characters/minions/minion_attacks/particle_resources/PoisonClowProcessMaterial.tres" id="14_44smk"]
+[ext_resource type="Texture2D" uid="uid://bahe05hl0e2sx" path="res://assets/particles/MagicBarrier_64x64.png" id="13_ftwt6"]
+[ext_resource type="Material" uid="uid://cxomekp5n5jv" path="res://src/entities/characters/crusader/crusader_attacks/particle_resources/AOECanvasItemMaterial.tres" id="13_rpevx"]
 [ext_resource type="Texture2D" uid="uid://brmlt6rgwrn1w" path="res://assets/particles/Explosion_2_64x64.png" id="14_78xok"]
 [ext_resource type="Texture2D" uid="uid://bixxqrw5c3q7e" path="res://assets/particles/SmallStar_64x64.png" id="14_tddq5"]
+[ext_resource type="Material" uid="uid://debt33v5ytb5v" path="res://src/entities/characters/crusader/crusader_attacks/particle_resources/AOEParticleProcessMaterial.tres" id="14_tv8qs"]
 [ext_resource type="PackedScene" uid="uid://crdcf3pu3urwg" path="res://src/ui/status/status_ui.tscn" id="15_q28fj"]
 [ext_resource type="Material" uid="uid://bo7kokarqmbwl" path="res://src/entities/characters/minions/minion_attacks/particle_resources/ExplosionParticleCanvasItemMaterial.tres" id="17_jocp2"]
 [ext_resource type="Material" uid="uid://5rp36woe5yso" path="res://src/entities/characters/minions/minion_attacks/particle_resources/ExplosionParticleProcessMaterial.tres" id="18_m238t"]
@@ -280,11 +280,11 @@ libraries = {
 }
 
 [node name="AttackParticles" type="GPUParticles2D" parent="."]
-material = ExtResource("13_ubrq3")
+material = ExtResource("13_rpevx")
 emitting = false
 amount = 1
-process_material = ExtResource("14_44smk")
-texture = ExtResource("13_gdsiv")
+process_material = ExtResource("14_tv8qs")
+texture = ExtResource("13_ftwt6")
 lifetime = 0.5
 one_shot = true
 speed_scale = 2.0

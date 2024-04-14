@@ -88,58 +88,69 @@ func _attack(attack: AttackResource):
 	# Get targets
 	var targets = attack.get_targets(self)
 	
-	if not targets:
-		return
-	
-	if targets.size() == 1:
-		# TODO - refactor this to generate and free a particle emitter per target
-		#    as well as an AoE particle emitter with the shape informed by the area
-		var _target = targets.front()
-		attack_particles.process_material = attack.attack_particles_process_mat
-		attack_particles.material = attack.attack_particles_canvas_mat
-		attack_particles.global_position = _target.global_position
-		#
-		block_particles.global_position = _target.global_position
-	
-	for target in targets:
-		if target.current_health <= 0:
-			continue
-		
-		# Calculate stagger or stun chance
-		# We need to pass 0.5 to stagger, and 0.9 to stun
-		# TODO - playtest and tweak this
-		var stagger_chance = clamp(
-			(0.8 - randf()) + attack.control + target.attributes.dexterity,
-			0.0,
-			1.0
-		)
-		if stagger_chance >= 0.9:
-			target._stun()
-		elif stagger_chance >= 0.5:
-			target._stagger()
-			
-		# Damage and armour penetration
-		# TODO - playtest and tweak armour damage reduction 
-		var modified_damage = attack.damage
-		# TODO - figure out an intuitive armour/armour penetration system
-		if attack.armour_penetration < target.attributes.armour:
-			modified_damage = clamp(
-				attack.damage / target.attributes.armour,
-				0,
-				attack.damage
-			)
-		target.current_health -= modified_damage
-		
-		if modified_damage > 0:
-			anim_player.play("attack")
-			attack.play_attack_sfx()
-		else:
-			anim_player.play("block")
-			attack.play_block_sfx()
-	
 	state_chart.send_event("finish_attack")
 	
+	if targets:
+		if attack.targeting_mode == AttackResource.TargetingMode.SINGLE:
+			# TODO - refactor this to generate and free a particle emitter per target
+			#    as well as an AoE particle emitter with the shape informed by the area
+			var _target = targets.front()
+			attack_particles.texture = attack.particle_texture
+			# TODO - work out scale
+			#attack_particles.scale = attack.attack_range
+			attack_particles.process_material = attack.attack_particles_process_mat
+			attack_particles.material = attack.attack_particles_canvas_mat
+			attack_particles.global_position = _target.global_position
+			#
+			block_particles.global_position = _target.global_position
+		elif attack.targeting_mode == AttackResource.TargetingMode.AREA:
+			attack_particles.texture = attack.particle_texture
+			attack_particles.process_material = attack.attack_particles_process_mat
+			attack_particles.material = attack.attack_particles_canvas_mat
+			attack_particles.global_position = global_position
+		
+		for target in targets:
+			if target.current_health <= 0:
+				continue
+			
+			# Calculate stagger or stun chance
+			# We need to pass 0.5 to stagger, and 0.9 to stun
+			# TODO - playtest and tweak this
+			var stagger_chance = clamp(
+				(0.8 - randf()) + attack.control + target.attributes.dexterity,
+				0.0,
+				1.0
+			)
+			if stagger_chance >= 0.9:
+				target._stun()
+			elif stagger_chance >= 0.5:
+				target._stagger()
+				
+			# Damage and armour penetration
+			# TODO - playtest and tweak armour damage reduction 
+			var modified_damage = attack.damage
+			# TODO - figure out an intuitive armour/armour penetration system
+			if attack.armour_penetration < target.attributes.armour:
+				modified_damage = clamp(
+					attack.damage / target.attributes.armour,
+					0,
+					attack.damage
+				)
+			target.current_health -= modified_damage
+			
+			if modified_damage > 0:
+				anim_player.play("attack")
+				attack.play_attack_sfx()
+			else:
+				anim_player.play("block")
+				attack.play_block_sfx()
+	
 	_attack_cooldown(attack)
+	status_ui._spawn_attack_indicator(attack.name, 0.6)
+	current_attack = null
+	
+	# Generic cooldown to prevent spamming inputs each frame
+	cooldown_timer.start(0.1)
 
 	await attack_particles.finished
 	attack_particles.global_position = Vector2.ZERO
@@ -157,8 +168,9 @@ func _attack_cooldown(attack: AttackResource):
 	in_cooldown.erase(attack)
 	cooldown_timers.erase(cooldown_timer)
 
+
 func is_in_cooldown(attack: AttackResource):
-	return in_cooldown.has(current_attack)
+	return in_cooldown.has(attack)
 
 
 func _stagger():

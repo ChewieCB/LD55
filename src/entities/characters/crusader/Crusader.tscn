@@ -1,10 +1,11 @@
-[gd_scene load_steps=44 format=3 uid="uid://bev1egpx7qcvi"]
+[gd_scene load_steps=45 format=3 uid="uid://bev1egpx7qcvi"]
 
 [ext_resource type="Script" path="res://src/entities/characters/crusader/crusader.gd" id="1_0cjda"]
 [ext_resource type="Resource" uid="uid://b5dljo4pci4to" path="res://src/entities/characters/crusader/crusader_attributes.tres" id="2_jwm8m"]
 [ext_resource type="Texture2D" uid="uid://tbaw03mlpcud" path="res://assets/temp/malina-bg.png" id="2_svunf"]
 [ext_resource type="Resource" uid="uid://cs0ahufxrbf1t" path="res://src/entities/characters/crusader/crusader_attacks/CrusaderBasicAttack.tres" id="3_au4vg"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/state_chart.gd" id="3_hr7jo"]
+[ext_resource type="Resource" uid="uid://bfr671pxbeh7j" path="res://src/entities/characters/crusader/crusader_attacks/CrusaderAOEAttack.tres" id="4_50p0w"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/parallel_state.gd" id="4_mr8e3"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/compound_state.gd" id="5_6ihxl"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/atomic_state.gd" id="6_w7y78"]
@@ -189,7 +190,7 @@ bg_color = Color(0.588235, 0.168627, 0.952941, 1)
 y_sort_enabled = true
 script = ExtResource("1_0cjda")
 resource_attributes = ExtResource("2_jwm8m")
-attacks = Array[Resource("res://src/entities/characters/attack_resource.gd")]([ExtResource("3_au4vg")])
+attacks = Array[Resource("res://src/entities/characters/attack_resource.gd")]([ExtResource("3_au4vg"), ExtResource("4_50p0w")])
 
 [node name="ColorRect" type="ColorRect" parent="."]
 anchors_preset = 8

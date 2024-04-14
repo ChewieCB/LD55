@@ -7,10 +7,10 @@ signal death
 # TODO - map this to an enum that matches the attack names
 enum AttackNames {
 	BASIC_ATTACK,
+	AOE,
 	POWER_ATTACK,
 	CLEAVE,
 	SPIN,
-	AOE,
 }
 
 # TODO - move to AIAgent base class
@@ -116,23 +116,37 @@ func _on_default_stance_state_physics_processing(delta):
 
 
 func _on_attacking_idle_state_physics_processing(delta):
-	# TODO - add attack choice logic in
-	if not is_in_cooldown(current_attack):
+	# Generic cooldown for all attacks
+	if not cooldown_timer.is_stopped():
+		return
+	
+	# TODO - add attack choice logic in via stances
+	var attack_priority = [
+		attacks[AttackNames.AOE],
+		attacks[AttackNames.BASIC_ATTACK]
+	]
+	for _attack in attack_priority:
+		if not is_in_cooldown(_attack):
+			current_attack = _attack
+			break
+	
+	if current_attack:
 		if attack_range_area.has_overlapping_bodies():
 			state_chart.send_event("stop_walking")
 			state_chart.send_event("attack")
-	else:
-		var cooldown_timer = cooldown_timers[
-			in_cooldown.find(current_attack)
-		]
-		var max_cooldown_time = current_attack.cooldown * remap(
-			attributes.dexterity, 0, 1, 3, 0.25
-		)
-		buildup_bar.value = remap(
-			cooldown_timer.time_left,
-			max_cooldown_time, 0,
-			0, 100
-		)
+			return
+		else:
+			var cooldown_timer_idx = in_cooldown.find(current_attack)
+			if cooldown_timer_idx != -1:
+				var cooldown_timer = cooldown_timers[cooldown_timer_idx]
+				var max_cooldown_time = current_attack.cooldown * remap(
+					attributes.dexterity, 0, 1, 3, 0.25
+				)
+				buildup_bar.value = remap(
+					cooldown_timer.time_left,
+					max_cooldown_time, 0,
+					0, 100
+				)
 
 
 func _on_attacking_buildup_state_entered():
@@ -154,10 +168,8 @@ func _on_attacking_buildup_state_exited():
 
 
 func _on_attacking_attack_state_entered():
-	# TODO - logic to decide the attack here
-	current_attack = attacks[AttackNames.BASIC_ATTACK]
-	
 	if is_in_cooldown(current_attack):
+		state_chart.send_event("finish_attack")
 		return
 	
 	_attack(current_attack)

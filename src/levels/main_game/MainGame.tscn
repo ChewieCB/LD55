@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://bjabavwsrnt0y"]
+[gd_scene load_steps=22 format=3 uid="uid://bjabavwsrnt0y"]
 
 [ext_resource type="Script" path="res://src/levels/main_game/main_game.gd" id="1_4qjmh"]
 [ext_resource type="Texture2D" uid="uid://8q5gyn8ex2wv" path="res://assets/sprite/square.png" id="1_vuavk"]
@@ -17,6 +17,7 @@
 [ext_resource type="Resource" uid="uid://cj3odtgn32j5g" path="res://src/entities/player/prefix/triangle.tres" id="13_4fnmm"]
 [ext_resource type="Resource" uid="uid://deu8alrv0hxfy" path="res://src/entities/player/prefix/agile.tres" id="14_qcq4r"]
 [ext_resource type="Resource" uid="uid://d002fmxjkp77y" path="res://src/entities/player/prefix/tough.tres" id="15_7hpi6"]
+[ext_resource type="PackedScene" uid="uid://bcwkugn6v3oy7" path="res://addons/godot_state_charts/utilities/state_chart_debugger.tscn" id="18_ej4d7"]
 
 [sub_resource type="Curve2D" id="Curve2D_g2yoo"]
 _data = {
@@ -350,3 +351,12 @@ crusader = NodePath("../Crusader")
 [node name="GameUI" parent="CanvasLayer" instance=ExtResource("6_k6rr8")]
 
 [node name="EndgameUI" parent="CanvasLayer" instance=ExtResource("12_jv3wu")]
+
+[node name="StateChartDebugger" parent="CanvasLayer" instance=ExtResource("18_ej4d7")]
+visible = false
+z_index = 2
+offset_left = 1246.0
+offset_top = 3.0
+offset_right = -11.0
+offset_bottom = -596.0
+initial_node_to_watch = NodePath("../../Crusader")
