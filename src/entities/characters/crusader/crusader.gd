@@ -7,11 +7,19 @@ signal death
 # TODO - map this to an enum that matches the attack names
 enum AttackNames {
 	BASIC_ATTACK,
-	AOE,
 	SPIN,
-	POWER_ATTACK,
+	AOE,
 	CLEAVE,
+	SMITE,
 }
+
+enum Stance {
+	FAST,
+	TANK,
+	DAMAGE
+}
+
+var current_stance: Stance = Stance.FAST
 
 # TODO - move to AIAgent base class
 @onready var buildup_bar = $AttackBuildup
@@ -111,16 +119,17 @@ func _on_action_cleansing_state_physics_processing(delta):
 	finish_cleanse()
 
 
+func _on_default_stance_state_entered():
+	current_speed = attributes.speed * 1.7
+
+
 func _on_default_stance_state_physics_processing(delta):
-	pass # Replace with function body.
-
-
-func _on_attacking_idle_state_physics_processing(delta):
+	# For dealing with hordes, lots of fast, low damage attacks with many targets
+	#
 	# Generic cooldown for all attacks
 	if not cooldown_timer.is_stopped():
 		return
 	
-	# TODO - add attack choice logic in via stances
 	var attack_priority = [
 		attacks[AttackNames.AOE],
 		attacks[AttackNames.SPIN],
@@ -136,18 +145,99 @@ func _on_attacking_idle_state_physics_processing(delta):
 			state_chart.send_event("stop_walking")
 			state_chart.send_event("attack")
 			return
-		else:
-			var cooldown_timer_idx = in_cooldown.find(current_attack)
-			if cooldown_timer_idx != -1:
-				var cooldown_timer = cooldown_timers[cooldown_timer_idx]
-				var max_cooldown_time = current_attack.cooldown * remap(
-					attributes.dexterity, 0, 1, 3, 0.25
-				)
-				buildup_bar.value = remap(
-					cooldown_timer.time_left,
-					max_cooldown_time, 0,
-					0, 100
-				)
+
+
+func _on_default_stance_state_exited():
+	current_speed = attributes.speed
+
+
+func _on_tank_stance_state_entered():
+	current_speed = attributes.speed * 0.35
+	current_armour = attributes.armour * 2
+
+
+func _on_tank_stance_state_physics_processing(delta):
+	# For dealing with elites, move slowly, increase armour
+	#
+	# Generic cooldown for all attacks
+	if not cooldown_timer.is_stopped():
+		return
+	
+	var attack_priority = [
+		attacks[AttackNames.SMITE],
+		attacks[AttackNames.CLEAVE],
+		attacks[AttackNames.BASIC_ATTACK]
+	]
+	for _attack in attack_priority:
+		if not is_in_cooldown(_attack):
+			current_attack = _attack
+			break
+	
+	if current_attack:
+		if attack_range_area.has_overlapping_bodies():
+			state_chart.send_event("stop_walking")
+			state_chart.send_event("attack")
+			return
+
+
+func _on_tank_stance_state_exited():
+	current_speed = attributes.speed
+	current_armour = attributes.armour
+
+
+func _on_attacking_idle_state_entered():
+	# TODO - remove random switching, replace with target type checks
+	if randf_range(0, 1) > 0.65:
+		var stance_str: String
+		match current_stance:
+			Stance.FAST:
+				stance_str = "tank_stance"
+				$StanceLabel.text = "Tank"
+				current_stance = Stance.TANK
+			Stance.TANK:
+				stance_str = "default_stance"
+				$StanceLabel.text = "Fast"
+				current_stance = Stance.FAST
+			Stance.DAMAGE:
+				stance_str = "damage_stance"
+				$StanceLabel.text = "Damage"
+		state_chart.send_event(stance_str)
+
+
+func _on_attacking_idle_state_physics_processing(delta):
+	pass
+	# FIXME - get buildup/cooldown UI working again and handle it here
+	# Generic cooldown for all attacks
+	#if not cooldown_timer.is_stopped():
+		#return
+	#
+	#var attack_priority = [
+		#attacks[AttackNames.AOE],
+		#attacks[AttackNames.SPIN],
+		#attacks[AttackNames.BASIC_ATTACK]
+	#]
+	#for _attack in attack_priority:
+		#if not is_in_cooldown(_attack):
+			#current_attack = _attack
+			#break
+	#
+	#if current_attack:
+		#if attack_range_area.has_overlapping_bodies():
+			#state_chart.send_event("stop_walking")
+			#state_chart.send_event("attack")
+			#return
+		#else:
+			#var cooldown_timer_idx = in_cooldown.find(current_attack)
+			#if cooldown_timer_idx != -1:
+				#var cooldown_timer = cooldown_timers[cooldown_timer_idx]
+				#var max_cooldown_time = current_attack.cooldown * remap(
+					#attributes.dexterity, 0, 1, 3, 0.25
+				#)
+				#buildup_bar.value = remap(
+					#cooldown_timer.time_left,
+					#max_cooldown_time, 0,
+					#0, 100
+				#)
 
 
 func _on_attacking_buildup_state_entered():
@@ -216,3 +306,4 @@ func _on_stagger_stun_timer_timeout():
 
 func _on_attack_buildup_timer_timeout():
 	state_chart.send_event("perform_attack")
+

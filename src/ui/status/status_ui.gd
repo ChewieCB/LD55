@@ -55,9 +55,11 @@ func _spawn_attack_indicator(attack_name: String, duration: float):
 	await get_tree().create_timer(duration).timeout
 	var tween = create_tween()
 	# TODO - add easing
-	tween.parallel().chain().tween_property(new_indicator, "modulate", Color(1, 1, 1, 0), 1.0)
-	tween.parallel().chain().tween_property(new_indicator, "position:y", new_indicator.position.y - 24, 1.0)
-	tween.tween_callback(new_indicator.queue_free)
+	# Catch for if the parent node is freed
+	if tween:
+		tween.parallel().chain().tween_property(new_indicator, "modulate", Color(1, 1, 1, 0), 1.0)
+		tween.parallel().chain().tween_property(new_indicator, "position:y", new_indicator.position.y - 24, 1.0)
+		tween.tween_callback(new_indicator.queue_free)
 
 
 func _spawn_damage_indicator(damage: int):

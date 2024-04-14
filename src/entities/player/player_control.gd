@@ -32,6 +32,7 @@ var raw_input: String = "":
 	set(value):
 		raw_input = value
 		var post_prefix = raw_input
+		# FIXME - current_prefix_str stays in input if you start deleting the prefix
 		if current_prefix_str:
 			if raw_input != current_prefix_str and raw_input in prefix_dict:
 				current_prefix_str = raw_input
@@ -98,6 +99,8 @@ func _input(event: InputEvent) -> void:
 
 func _process(_delta):
 	if is_casting:
+		# FIXME - why are we running this every frame? 
+		# Would be more sensible to run every time the relevant strings are updated
 		if current_prefix_str and current_spell:
 			input_arrow_repr = "{0} {1}".format([Utils.convert_text_to_arrow(current_prefix_str, "yellow"), Utils.convert_text_to_arrow(current_spell_str, "green")])
 		elif current_prefix_str:

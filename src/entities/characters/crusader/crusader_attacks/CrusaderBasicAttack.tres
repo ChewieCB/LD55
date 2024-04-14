@@ -11,7 +11,7 @@
 script = ExtResource("1_i0vad")
 targeting_mode = 0
 max_targets = 1
-attack_range = 48
+attack_range = 64
 attack_delay = 0.0
 cooldown = 1.0
 damage = 30

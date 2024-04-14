@@ -12,6 +12,7 @@ signal health_diff(diff)
 		attributes = resource_attributes.duplicate()
 		current_health = attributes.health
 		current_speed = attributes.speed
+		current_armour = attributes.armour
 var attributes: CharacterAttributes
 
 var current_health: int:
@@ -25,6 +26,7 @@ var current_health: int:
 		elif value < prev_health:
 			_hurt()
 var current_speed: float
+var current_armour: float
 var acceleration: float = 7
 
 @export var attacks: Array[AttackResource]
