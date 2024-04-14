@@ -161,7 +161,8 @@ func cast_readied_spell():
 				# Increase speed by 40%
 				var _minion = current_spell.scene.instantiate()
 				_minion.global_position = mouse_global_pos
-				_minion.speed *= 1.4
+				_minion.attributes.speed *= 1.4
+				_minion.attributes.dexterity *= 2.2
 				_minion.scale *= 0.7
 				_minion.crusader = crusader
 				GameManager.main_game.minion_spawn.add_child(_minion)

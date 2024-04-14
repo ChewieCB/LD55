@@ -4,8 +4,8 @@
 
 [resource]
 script = ExtResource("1_f35k2")
-health = 25
-armour = 0
+health = 35
+armour = 1
 speed = 150
 dexterity = 0.25
 rank = 0
