@@ -2,14 +2,22 @@ extends Node
 
 enum SpellMain {
 	NONE,
-	ZOMBIE,
-	MUMMY,
+	ZOMBIE = 1,
+	MUMMY = 2,
+	SKELETON = 3,
+}
+
+enum SpellType {
+	NONE,
+	MINION,
+	ELEMENT,
+	CONJURE
 }
 
 enum SpellPrefix {
 	NONE,
-	SQUARE,
-	TRIANGLE,
-	AGILE,
-	TOUGH
+	SQUARE = 1,
+	TRIANGLE = 2,
+	AGILE = 3,
+	TOUGH = 4,
 }
