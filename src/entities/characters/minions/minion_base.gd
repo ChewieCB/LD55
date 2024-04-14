@@ -57,6 +57,8 @@ func _on_walking_state_physics_processing(_delta):
 
 func _on_attacking_idle_state_physics_processing(_delta):
 	# FIXME - dependency issue here with the crusader node not loading before this
+	if crusader == null: 
+		return
 	if cooldown_timer.is_stopped():
 		if crusader.current_health > 0:
 			if global_position.distance_to(crusader.global_position) <= current_attack.attack_range:

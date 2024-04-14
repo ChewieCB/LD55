@@ -13,6 +13,3 @@ enum SpellPrefix {
 	AGILE,
 	TOUGH
 }
-
-func _ready() -> void:
-	print(SpellMain.keys()[SpellMain.ZOMBIE])
