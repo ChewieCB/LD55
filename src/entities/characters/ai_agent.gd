@@ -4,11 +4,15 @@ class_name AIAgent
 signal health_changed(health)
 signal health_diff(diff)
 
-@export var attributes: CharacterAttributes:
+@export var resource_attributes: CharacterAttributes:
 	set(value):
-		attributes = value
+		resource_attributes = value
+		# Duplicate the resource so we can modify an individual 
+		#  minion's attributes without changing all of them.
+		attributes = resource_attributes.duplicate()
 		current_health = attributes.health
 		current_speed = attributes.speed
+var attributes: CharacterAttributes
 
 var current_health: int:
 	set(value):
@@ -48,7 +52,9 @@ func _ready():
 	process_mode = Node.PROCESS_MODE_DISABLED
 	await get_tree().physics_frame
 	call_deferred("_wait_for_navigation_setup")
+	
 	health_diff.connect(status_ui._spawn_damage_indicator)
+	
 	_spawn()
 
 func _wait_for_navigation_setup():
@@ -79,12 +85,13 @@ func _attack(attack: AttackResource):
 	# Get targets
 	var targets = attack.get_targets(self)
 	
+	if not targets:
+		return
+	
 	if targets.size() == 1:
 		# TODO - refactor this to generate and free a particle emitter per target
 		#    as well as an AoE particle emitter with the shape informed by the area
 		var _target = targets.front()
-		if not _target:
-			return
 		attack_particles.process_material = attack.attack_particles_process_mat
 		attack_particles.material = attack.attack_particles_canvas_mat
 		attack_particles.global_position = _target.global_position
