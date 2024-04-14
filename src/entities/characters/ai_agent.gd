@@ -104,13 +104,12 @@ func _attack(attack: AttackResource, target: AIAgent):
 
 
 func _stagger():
-	pass
-	#status_ui._spawn_status_indicator("Staggered", 2.0)
+	state_chart.send_event("stagger")
 
 
 func _stun():
-	pass
-	#status_ui._spawn_status_indicator("Stunned", 2.0)
+	state_chart.send_event("stun")
+
 
 func _hurt():
 	pass

@@ -43,16 +43,6 @@ func _attack(attack: AttackResource, target: AIAgent):
 	SoundManager.play_sound(attack_sfx[randi_range(0, attack_sfx.size() - 1)])
 
 
-func _stagger():
-	# TODO - add dynamic status duration
-	state_chart.send_event("stagger")
-	
-
-
-func _stun():
-	state_chart.send_event("stun")
-
-
 func _hurt():
 	state_chart.send_event("take_damage")
 

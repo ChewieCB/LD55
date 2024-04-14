@@ -76,3 +76,30 @@ func _on_dead_state_entered():
 	anim_player.play("death")
 	await anim_player.animation_finished
 	queue_free()
+
+
+func _on_status_staggered_state_entered():
+	status_ui._spawn_status_indicator("Staggered", 2.0)
+	current_speed = attributes.speed * 0.25
+	stagger_stun_timer.start(2.0)
+
+
+func _on_status_staggered_state_exited():
+	current_speed = attributes.speed
+
+
+func _on_status_stunned_state_entered():
+	# TODO - add dynamic status duration
+	status_ui._spawn_status_indicator("Stunned", 2.0)
+	current_speed = 0
+	state_chart.send_event("stop_walking")
+	stagger_stun_timer.start(2.0)
+
+
+func _on_status_stunned_state_exited():
+	current_speed = attributes.speed
+
+
+func _on_stagger_stun_timer_timeout():
+	state_chart.send_event("recover_stagger")
+	state_chart.send_event("recover_stun")

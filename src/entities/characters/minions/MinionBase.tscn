@@ -253,6 +253,44 @@ event = &"death"
 [node name="Dead" type="Node" parent="StateChart/Root/Damage"]
 script = ExtResource("5_qt5d1")
 
+[node name="Status" type="Node" parent="StateChart/Root"]
+script = ExtResource("4_06cnh")
+initial_state = NodePath("Idle")
+
+[node name="Idle" type="Node" parent="StateChart/Root/Status"]
+script = ExtResource("5_qt5d1")
+
+[node name="toStaggered" type="Node" parent="StateChart/Root/Status/Idle"]
+script = ExtResource("6_wku5f")
+to = NodePath("../../Staggered")
+event = &"stagger"
+
+[node name="toStunned" type="Node" parent="StateChart/Root/Status/Idle"]
+script = ExtResource("6_wku5f")
+to = NodePath("../../Stunned")
+event = &"stun"
+
+[node name="Staggered" type="Node" parent="StateChart/Root/Status"]
+script = ExtResource("5_qt5d1")
+
+[node name="toIdle" type="Node" parent="StateChart/Root/Status/Staggered"]
+script = ExtResource("6_wku5f")
+to = NodePath("../../Idle")
+event = &"recover_stagger"
+
+[node name="toStunned" type="Node" parent="StateChart/Root/Status/Staggered"]
+script = ExtResource("6_wku5f")
+to = NodePath("../../Stunned")
+event = &"stun"
+
+[node name="Stunned" type="Node" parent="StateChart/Root/Status"]
+script = ExtResource("5_qt5d1")
+
+[node name="toIdle" type="Node" parent="StateChart/Root/Status/Stunned"]
+script = ExtResource("6_wku5f")
+to = NodePath("../../Idle")
+event = &"recover_stun"
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_lj4jm")
@@ -318,3 +356,8 @@ show_percentage = false
 [connection signal="state_physics_processing" from="StateChart/Root/Attacking/Idle" to="." method="_on_attacking_idle_state_physics_processing"]
 [connection signal="state_entered" from="StateChart/Root/Attacking/BasicAttack" to="." method="_on_attacking_basic_attack_state_entered"]
 [connection signal="state_entered" from="StateChart/Root/Damage/Dead" to="." method="_on_dead_state_entered"]
+[connection signal="state_entered" from="StateChart/Root/Status/Staggered" to="." method="_on_status_staggered_state_entered"]
+[connection signal="state_exited" from="StateChart/Root/Status/Staggered" to="." method="_on_status_staggered_state_exited"]
+[connection signal="state_entered" from="StateChart/Root/Status/Stunned" to="." method="_on_status_stunned_state_entered"]
+[connection signal="state_exited" from="StateChart/Root/Status/Stunned" to="." method="_on_status_stunned_state_exited"]
+[connection signal="timeout" from="StaggerStunTimer" to="." method="_on_stagger_stun_timer_timeout"]
