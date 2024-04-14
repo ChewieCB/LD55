@@ -22,8 +22,8 @@ var current_health: int:
 			# TODO - add new particle effect for blocking
 			#_block()
 			pass
-var current_speed: int
-var acceleration: int = 7
+var current_speed: float
+var acceleration: float = 7
 
 @export var attacks: Array[AttackResource]
 var current_attack: AttackResource
@@ -56,7 +56,7 @@ func _spawn():
 func _move(_delta):
 	if nav_agent.is_navigation_finished():
 		return
-	
+
 	var current_agent_position: Vector2 = global_position
 	var next_path_position: Vector2 = nav_agent.get_next_path_position()
 	var direction: Vector2 = current_agent_position.direction_to(next_path_position)
@@ -66,7 +66,7 @@ func _move(_delta):
 func _attack(attack: AttackResource, target: AIAgent):
 	attack_particles.global_position = target.global_position
 	block_particles.global_position = target.global_position
-	
+
 	# Calculate stagger or stun chance
 	# We need to pass 0.5 to stagger, and 0.9 to stun
 	# TODO - playtest and tweak this
@@ -79,37 +79,34 @@ func _attack(attack: AttackResource, target: AIAgent):
 		target._stun()
 	elif stagger_chance >= 0.5:
 		target._stagger()
-		
+
 	# Damage and armour penetration
-	# TODO - playtest and tweak armour damage reduction 
+	# TODO - playtest and tweak armour damage reduction
 	var modified_damage = attack.damage
 	# TODO - figure out an intuitive armour/armour penetration system
 	if attack.armour_penetration < target.attributes.armour:
 		modified_damage = clamp(
-			attack.damage / target.attributes.armour,
+			attack.damage / float(target.attributes.armour),
 			0,
 			attack.damage
 		)
 	target.current_health -= modified_damage
-	
+
 	if modified_damage > 0:
 		anim_player.play("attack")
 	else:
 		anim_player.play("block")
-	
+
 	state_chart.send_event("finish_attack")
-	
+
 	await attack_particles.finished
 	attack_particles.global_position = Vector2.ZERO
-
 
 func _stagger():
 	state_chart.send_event("stagger")
 
-
 func _stun():
 	state_chart.send_event("stun")
-
 
 func _hurt():
 	pass
