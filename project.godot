@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 EnumAutoload="*res://src/utils/singletons/enum_autoload.gd"
 GameManager="*res://src/utils/singletons/GameManager.tscn"
+Utils="*res://src/utils/singletons/utils.gd"
 SoundManager="*res://addons/sound_manager/sound_manager.gd"
 BuildThumbnail="*res://src/utils/singletons/build_thumbnail.gd"
 

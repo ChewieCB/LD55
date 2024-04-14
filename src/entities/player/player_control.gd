@@ -50,10 +50,10 @@ var raw_input: String = "":
 		# overspill being accepted
 		current_spell_str = ""
 		current_spell = null
-var raw_input_repr: String = "":
+var input_arrow_repr: String = "":
 	set(value):
-		raw_input_repr = value
-		GameManager.game_ui.spell_ui.set_spell_label("Input: %s" % raw_input_repr)
+		input_arrow_repr = value
+		GameManager.game_ui.spell_ui.set_spell_label("Input: %s" % input_arrow_repr)
 
 var is_casting = false
 var spell_ready = false
@@ -99,16 +99,14 @@ func _input(event: InputEvent) -> void:
 func _process(_delta):
 	if is_casting:
 		if current_prefix_str and current_spell:
-			raw_input_repr = "[color=yellow]%s[/color] [color=green]%s[/color]" % [current_prefix_str, current_spell_str]
+			input_arrow_repr = "{0} {1}".format([Utils.convert_text_to_arrow(current_prefix_str, "yellow"), Utils.convert_text_to_arrow(current_spell_str, "green")])
 		elif current_prefix_str:
-			raw_input_repr = "[color=yellow]%s[/color] %s" % [
-				current_prefix_str,
-				raw_input.trim_prefix(current_prefix_str)
-			]
+			var trimmed_input = raw_input.trim_prefix(current_prefix_str)
+			input_arrow_repr = "{0} {1}".format([Utils.convert_text_to_arrow(current_prefix_str, "yellow"), Utils.convert_text_to_arrow(trimmed_input)])
 		elif current_spell:
-			raw_input_repr = "[color=green]%s[/color]" % [current_spell_str]
+			input_arrow_repr = Utils.convert_text_to_arrow(current_spell_str, "green")
 		else:
-			raw_input_repr = "%s" % [raw_input]
+			input_arrow_repr = Utils.convert_text_to_arrow(raw_input)
 
 func start_cast():
 	GameManager.game_ui.spell_ui.set_spell_label("Input:")
@@ -218,5 +216,5 @@ func cast_input(input: String):
 		raw_input += input[0].to_upper()
 
 	# FIXME - emit a signal using the current_spell signal
-	GameManager.game_ui.spell_ui.set_spell_label("Input: " + raw_input)
+	# GameManager.game_ui.spell_ui.set_spell_label("Input: " + Utils.convert_text_to_arrow(raw_input))
 	SoundManager.play_sound(input_sfx[randi_range(0, input_sfx.size() - 1)])

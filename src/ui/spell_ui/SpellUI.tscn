@@ -1,11 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://dva6an46ov0oy"]
+[gd_scene load_steps=6 format=3 uid="uid://dva6an46ov0oy"]
 
 [ext_resource type="Script" path="res://src/ui/spell_ui/spell_ui.gd" id="1_uvawi"]
 [ext_resource type="Texture2D" uid="uid://klywda7vhx06" path="res://assets/ui/lef panel.png" id="2_00xkd"]
 [ext_resource type="Texture2D" uid="uid://c3ydalaynuwlg" path="res://assets/ui/right panel.png" id="3_rvh61"]
 [ext_resource type="FontFile" uid="uid://b21yg3y2byt8f" path="res://assets/fonts/AvQest.ttf" id="4_ghdfr"]
 [ext_resource type="PackedScene" uid="uid://cfx8vo87aq1aj" path="res://src/ui/spell_ui/SpellCompRow.tscn" id="5_f7kuw"]
-[ext_resource type="Texture2D" uid="uid://8q5gyn8ex2wv" path="res://assets/sprite/square.png" id="6_0x0tc"]
 
 [node name="SpellUI" type="Control"]
 layout_mode = 3
@@ -26,7 +25,7 @@ offset_left = 328.0
 offset_top = -120.0
 offset_right = 704.0
 grow_vertical = 0
-color = Color(0.117647, 0.482353, 0.0627451, 0.537255)
+color = Color(0.470588, 0.482353, 0.454902, 0.537255)
 
 [node name="Label" type="RichTextLabel" parent="SpellPanel"]
 layout_mode = 1
@@ -34,7 +33,7 @@ anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 24.0
-offset_top = 16.0
+offset_top = 8.0
 offset_right = -16.0
 offset_bottom = -16.0
 grow_horizontal = 2
@@ -42,26 +41,8 @@ grow_vertical = 2
 theme_override_fonts/normal_font = ExtResource("4_ghdfr")
 theme_override_font_sizes/normal_font_size = 24
 bbcode_enabled = true
-text = "Failed spell. Press space to cast  again"
+text = "Failed spell. Press space to cast again."
 scroll_active = false
-autowrap_mode = 2
-
-[node name="SpellCooldown" type="TextureProgressBar" parent="SpellPanel"]
-layout_mode = 1
-anchors_preset = 12
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = -8.0
-grow_horizontal = 2
-grow_vertical = 0
-min_value = 100.0
-value = 100.0
-nine_patch_stretch = true
-texture_under = ExtResource("6_0x0tc")
-texture_progress = ExtResource("6_0x0tc")
-tint_under = Color(0, 0, 0, 1)
-tint_progress = Color(0.184314, 1, 0.00784314, 1)
 
 [node name="BackgroundArt" type="MarginContainer" parent="."]
 layout_mode = 1
