@@ -45,7 +45,7 @@ func _on_walking_state_physics_processing(_delta):
 	var current_agent_position: Vector2 = global_position
 	var next_path_position: Vector2 = nav_agent.get_next_path_position()
 	var direction: Vector2 = current_agent_position.direction_to(next_path_position)
-	var intended_velocity: Vector2 = direction * speed
+	var intended_velocity: Vector2 = direction * current_speed
 	nav_agent.set_velocity(intended_velocity)
 
 func _on_attacking_idle_state_physics_processing(_delta):
@@ -61,7 +61,7 @@ func _on_attacking_idle_state_physics_processing(_delta):
 func _on_attacking_basic_attack_state_entered():
 	_attack(current_attack, crusader)
 	SoundManager.play_sound(attack_sfx[randi_range(0, attack_sfx.size() - 1)])
-	cooldown_timer.start(current_attack.cooldown)
+	cooldown_timer.start(current_attack.cooldown * remap(attributes.dexterity, 0, 1, 3, 0.25))
 
 func _on_dead_state_entered():
 	anim_player.play("death")
@@ -71,9 +71,32 @@ func _on_dead_state_entered():
 func apply_prefix(prefix: EnumAutoload.SpellPrefix):
 	match prefix:
 		EnumAutoload.SpellPrefix.AGILE:
-			speed = int(speed * 1.4)
+			attributes.speed = 1.4
+			attributes.dexterity *= 2.2
 			scale *= 0.7
 		EnumAutoload.SpellPrefix.TOUGH:
 			attributes.health *= 2
 			current_health = attributes.health
 			scale *= 1.4
+
+func _on_status_staggered_state_entered():
+	status_ui._spawn_status_indicator("Staggered", 2.0)
+	current_speed = attributes.speed * 0.25
+	stagger_stun_timer.start(2.0)
+
+func _on_status_staggered_state_exited():
+	current_speed = attributes.speed
+
+func _on_status_stunned_state_entered():
+	# TODO - add dynamic status duration
+	status_ui._spawn_status_indicator("Stunned", 2.0)
+	current_speed = 0
+	state_chart.send_event("stop_walking")
+	stagger_stun_timer.start(2.0)
+
+func _on_status_stunned_state_exited():
+	current_speed = attributes.speed
+
+func _on_stagger_stun_timer_timeout():
+	state_chart.send_event("recover_stagger")
+	state_chart.send_event("recover_stun")

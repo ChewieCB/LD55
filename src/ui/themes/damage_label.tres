@@ -1,0 +1,10 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://cw23r10sk8vwh"]
+
+[ext_resource type="FontFile" uid="uid://b21yg3y2byt8f" path="res://assets/fonts/AvQest.ttf" id="1_4lwk5"]
+
+[resource]
+default_font = ExtResource("1_4lwk5")
+default_font_size = 16
+Label/colors/font_color = Color(1, 1, 1, 1)
+Label/colors/font_outline_color = Color(0.85098, 0, 0, 1)
+Label/constants/outline_size = 5

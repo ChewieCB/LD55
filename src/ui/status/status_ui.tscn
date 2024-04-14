@@ -1,0 +1,56 @@
+[gd_scene load_steps=3 format=3 uid="uid://crdcf3pu3urwg"]
+
+[ext_resource type="Script" path="res://src/ui/status/status_ui.gd" id="1_s3vr1"]
+[ext_resource type="Texture2D" uid="uid://tbaw03mlpcud" path="res://assets/temp/malina-bg.png" id="2_skry5"]
+
+[node name="StatusUI" type="Node2D"]
+script = ExtResource("1_s3vr1")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[node name="StatusMarker" type="Marker2D" parent="."]
+position = Vector2(0, -24)
+
+[node name="DamageMarkers" type="Node2D" parent="."]
+
+[node name="DamageMarker1" type="Marker2D" parent="DamageMarkers"]
+position = Vector2(-8, -8)
+
+[node name="DamageMarker2" type="Marker2D" parent="DamageMarkers"]
+position = Vector2(-5, -12)
+
+[node name="DamageMarker3" type="Marker2D" parent="DamageMarkers"]
+position = Vector2(7, -11)
+
+[node name="DamageMarker4" type="Marker2D" parent="DamageMarkers"]
+position = Vector2(11, -3)
+
+[node name="DamageMarker5" type="Marker2D" parent="DamageMarkers"]
+position = Vector2(9, -9)
+
+[node name="DamageMarker6" type="Marker2D" parent="DamageMarkers"]
+position = Vector2(13, -7)
+
+[node name="DamageMarker7" type="Marker2D" parent="DamageMarkers"]
+position = Vector2(-11, -11)
+
+[node name="DamageMarker8" type="Marker2D" parent="DamageMarkers"]
+position = Vector2(-11, -4)
+
+[node name="DamageMarker9" type="Marker2D" parent="DamageMarkers"]
+position = Vector2(-13, -7)
+
+[node name="DamageMarker10" type="Marker2D" parent="DamageMarkers"]
+position = Vector2(19, -5)
+
+[node name="DamageMarker11" type="Marker2D" parent="DamageMarkers"]
+position = Vector2(-4, -7)
+
+[node name="DamageMarker12" type="Marker2D" parent="DamageMarkers"]
+position = Vector2(6, -6)
+
+[node name="RefSprite" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(0.0360824, 1.2815e-06)
+scale = Vector2(0.0619958, 0.0659794)
+texture = ExtResource("2_skry5")
