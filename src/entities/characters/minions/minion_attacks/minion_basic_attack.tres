@@ -1,11 +1,22 @@
-[gd_resource type="Resource" script_class="AttackResource" load_steps=2 format=3 uid="uid://s6oc7lk4nbw0"]
+[gd_resource type="Resource" script_class="AttackResource" load_steps=6 format=3 uid="uid://s6oc7lk4nbw0"]
 
+[ext_resource type="Material" uid="uid://dyiav2l5wpxer" path="res://src/entities/characters/minions/minion_attacks/particle_resources/PoisonClawCanvasItemMaterial.tres" id="1_qcjk0"]
 [ext_resource type="Script" path="res://src/entities/characters/attack_resource.gd" id="1_s4fto"]
+[ext_resource type="Material" uid="uid://0rrnlgpw34g1" path="res://src/entities/characters/minions/minion_attacks/particle_resources/PoisonClowProcessMaterial.tres" id="2_ct7t0"]
+[ext_resource type="AudioStream" uid="uid://dy7km5am11no" path="res://assets/sfx/Impact_.mp3" id="3_d3pug"]
+[ext_resource type="AudioStream" uid="uid://wgvkpfutqdgl" path="res://assets/sfx/Impact_2.mp3" id="4_dqm62"]
 
 [resource]
 script = ExtResource("1_s4fto")
+targeting_mode = 0
+max_targets = 1
 attack_range = 64
+attack_delay = 0.0
 cooldown = 1.2
 damage = 10
 armour_penetration = 0
-control = 0.0
+control = 0.3
+attack_particles_process_mat = ExtResource("2_ct7t0")
+attack_particles_canvas_mat = ExtResource("1_qcjk0")
+attack_sfx = Array[AudioStream]([ExtResource("3_d3pug"), ExtResource("4_dqm62")])
+block_sfx = Array[AudioStream]([])

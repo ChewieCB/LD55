@@ -67,9 +67,10 @@ func _on_attacking_idle_state_physics_processing(_delta):
 
 
 func _on_attacking_basic_attack_state_entered():
-	_attack(current_attack, crusader)
-	SoundManager.play_sound(attack_sfx[randi_range(0, attack_sfx.size() - 1)])
-	cooldown_timer.start(current_attack.cooldown * remap(attributes.dexterity, 0, 1, 3, 0.25))
+	# TODO - map this to an enum that matches the attack names
+	var basic_attack = attacks[0]
+	_attack(basic_attack)
+	cooldown_timer.start(basic_attack.cooldown * remap(attributes.dexterity, 0, 1, 3, 0.25))
 
 
 func _on_dead_state_entered():

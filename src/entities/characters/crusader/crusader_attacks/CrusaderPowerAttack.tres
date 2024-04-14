@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="AttackResource" load_steps=2 format=3 uid="uid://cnm5glaj5tfw6"]
+
+[ext_resource type="Script" path="res://src/entities/characters/attack_resource.gd" id="1_xsa7e"]
+
+[resource]
+script = ExtResource("1_xsa7e")
+attack_range = 40
+attack_delay = 1.2
+cooldown = 3.4
+damage = 50
+armour_penetration = 0
+control = 0.6

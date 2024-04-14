@@ -1,10 +1,10 @@
-[gd_scene load_steps=40 format=3 uid="uid://bev1egpx7qcvi"]
+[gd_scene load_steps=43 format=3 uid="uid://bev1egpx7qcvi"]
 
 [ext_resource type="Script" path="res://src/entities/characters/crusader/crusader.gd" id="1_0cjda"]
-[ext_resource type="Resource" uid="uid://b5dljo4pci4to" path="res://src/entities/characters/crusader/crusader_attributes.tres" id="2_agl2u"]
+[ext_resource type="Resource" uid="uid://b5dljo4pci4to" path="res://src/entities/characters/crusader/crusader_attributes.tres" id="2_jwm8m"]
 [ext_resource type="Texture2D" uid="uid://tbaw03mlpcud" path="res://assets/temp/malina-bg.png" id="2_svunf"]
+[ext_resource type="Resource" uid="uid://cs0ahufxrbf1t" path="res://src/entities/characters/crusader/crusader_attacks/CrusaderBasicAttack.tres" id="3_au4vg"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/state_chart.gd" id="3_hr7jo"]
-[ext_resource type="Resource" uid="uid://cs0ahufxrbf1t" path="res://src/entities/characters/crusader/crusader_attacks/CrusaderBasicAttack.tres" id="3_nwgsq"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/parallel_state.gd" id="4_mr8e3"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/compound_state.gd" id="5_6ihxl"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/atomic_state.gd" id="6_w7y78"]
@@ -13,7 +13,9 @@
 [ext_resource type="Script" path="res://addons/godot_state_charts/not_guard.gd" id="9_30nyi"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/all_of_guard.gd" id="10_slxhv"]
 [ext_resource type="Texture2D" uid="uid://1yqusuuwwuwh" path="res://assets/particles/LightCast_96.png" id="12_nti47"]
+[ext_resource type="Material" uid="uid://bye8rjpuib4pl" path="res://src/entities/characters/crusader/crusader_attacks/particle_resources/LightFlashCanvasItemMaterial.tres" id="13_oun38"]
 [ext_resource type="PackedScene" uid="uid://crdcf3pu3urwg" path="res://src/ui/status/status_ui.tscn" id="14_vj2d1"]
+[ext_resource type="Material" uid="uid://87mn72p5tmgm" path="res://src/entities/characters/crusader/crusader_attacks/particle_resources/LightFlashParticleProcessMaterial.tres" id="14_xpyg4"]
 [ext_resource type="Texture2D" uid="uid://bixxqrw5c3q7e" path="res://assets/particles/SmallStar_64x64.png" id="14_yo0hq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ci4kf"]
@@ -58,6 +60,18 @@ guard = SubResource("Resource_7lx5c")
 [sub_resource type="Resource" id="Resource_cdh38"]
 script = ExtResource("10_slxhv")
 guards = Array[Resource("res://addons/godot_state_charts/guard.gd")]([SubResource("Resource_7y0vb")])
+
+[sub_resource type="Resource" id="Resource_3gi8p"]
+script = ExtResource("8_6fl0h")
+state = NodePath("../../../Damage/Dead")
+
+[sub_resource type="Resource" id="Resource_jtrgx"]
+script = ExtResource("9_30nyi")
+guard = SubResource("Resource_3gi8p")
+
+[sub_resource type="Resource" id="Resource_02pa6"]
+script = ExtResource("10_slxhv")
+guards = Array[Resource("res://addons/godot_state_charts/guard.gd")]([SubResource("Resource_jtrgx")])
 
 [sub_resource type="Resource" id="Resource_p5ia4"]
 script = ExtResource("8_6fl0h")
@@ -152,20 +166,6 @@ radius = 64.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0pxk1"]
 
-[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_riogb"]
-particles_animation = true
-particles_anim_h_frames = 48
-particles_anim_v_frames = 1
-particles_anim_loop = true
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_q7emk"]
-particle_flag_disable_z = true
-gravity = Vector3(0, 0, 0)
-scale_min = 1.3
-scale_max = 1.3
-anim_speed_min = 1.0
-anim_speed_max = 1.0
-
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_81xv8"]
 particles_animation = true
 particles_anim_h_frames = 60
@@ -184,8 +184,8 @@ bg_color = Color(0.843137, 0.196078, 0.0666667, 1)
 [node name="Crusader" type="CharacterBody2D"]
 y_sort_enabled = true
 script = ExtResource("1_0cjda")
-attributes = ExtResource("2_agl2u")
-attacks = Array[Resource("res://src/entities/characters/attack_resource.gd")]([ExtResource("3_nwgsq")])
+attributes = ExtResource("2_jwm8m")
+attacks = Array[Resource("res://src/entities/characters/attack_resource.gd")]([ExtResource("3_au4vg")])
 
 [node name="ColorRect" type="ColorRect" parent="."]
 anchors_preset = 8
@@ -337,20 +337,31 @@ script = ExtResource("6_w7y78")
 
 [node name="toBasicAttack" type="Node" parent="StateChart/Root/Attacking/Idle"]
 script = ExtResource("7_v3ig5")
-to = NodePath("../../BasicAttack")
+to = NodePath("../../Attack")
 event = &"attack"
 guard = SubResource("Resource_cdh38")
 
-[node name="BasicAttack" type="Node" parent="StateChart/Root/Attacking"]
+[node name="Buildup" type="Node" parent="StateChart/Root/Attacking"]
 script = ExtResource("6_w7y78")
 
-[node name="toIdle" type="Node" parent="StateChart/Root/Attacking/BasicAttack"]
+[node name="toIdle" type="Node" parent="StateChart/Root/Attacking/Buildup"]
+script = ExtResource("7_v3ig5")
+to = NodePath("../../Idle")
+event = &"cancel_attack"
+
+[node name="toAttack" type="Node" parent="StateChart/Root/Attacking/Buildup"]
+script = ExtResource("7_v3ig5")
+to = NodePath("../../Attack")
+event = &"perform_attack"
+guard = SubResource("Resource_02pa6")
+
+[node name="Attack" type="Node" parent="StateChart/Root/Attacking"]
+script = ExtResource("6_w7y78")
+
+[node name="toIdle" type="Node" parent="StateChart/Root/Attacking/Attack"]
 script = ExtResource("7_v3ig5")
 to = NodePath("../../Idle")
 event = &"finish_attack"
-
-[node name="Cleave" type="Node" parent="StateChart/Root/Attacking"]
-script = ExtResource("6_w7y78")
 
 [node name="Action" type="Node" parent="StateChart/Root"]
 script = ExtResource("5_6ihxl")
@@ -397,10 +408,10 @@ one_shot = true
 one_shot = true
 
 [node name="AttackParticles" type="GPUParticles2D" parent="."]
-material = SubResource("CanvasItemMaterial_riogb")
+material = ExtResource("13_oun38")
 emitting = false
 amount = 1
-process_material = SubResource("ParticleProcessMaterial_q7emk")
+process_material = ExtResource("14_xpyg4")
 texture = ExtResource("12_nti47")
 one_shot = true
 speed_scale = 2.0
@@ -447,7 +458,7 @@ show_percentage = false
 [connection signal="state_entered" from="StateChart/Root/Status/Stunned" to="." method="_on_status_stunned_state_entered"]
 [connection signal="state_exited" from="StateChart/Root/Status/Stunned" to="." method="_on_status_stunned_state_exited"]
 [connection signal="state_physics_processing" from="StateChart/Root/Attacking/Idle" to="." method="_on_attacking_idle_state_physics_processing"]
-[connection signal="state_entered" from="StateChart/Root/Attacking/BasicAttack" to="." method="_on_attacking_basic_attack_state_entered"]
+[connection signal="state_entered" from="StateChart/Root/Attacking/Attack" to="." method="_on_attacking_basic_attack_state_entered"]
 [connection signal="state_entered" from="StateChart/Root/Action/Idle" to="." method="_on_action_idle_state_entered"]
 [connection signal="state_entered" from="StateChart/Root/Action/Cleansing" to="." method="_on_action_cleansing_state_entered"]
 [connection signal="state_physics_processing" from="StateChart/Root/Action/Cleansing" to="." method="_on_action_cleansing_state_physics_processing"]

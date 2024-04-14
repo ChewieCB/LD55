@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://sfxnk5e65vam"]
+[gd_scene load_steps=8 format=3 uid="uid://sfxnk5e65vam"]
 
 [ext_resource type="Texture2D" uid="uid://tbaw03mlpcud" path="res://assets/temp/malina-bg.png" id="1_aeg0n"]
 [ext_resource type="Script" path="res://src/entities/characters/ai_agent.gd" id="1_lj3uo"]
@@ -7,6 +7,9 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ci4kf"]
 size = Vector2(32, 32)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_i1jyv"]
+radius = 40.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wjj8f"]
 bg_color = Color(0.843137, 0.196078, 0.0666667, 1)
@@ -35,6 +38,12 @@ texture = ExtResource("1_aeg0n")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_ci4kf")
+
+[node name="AttackRange" type="Area2D" parent="."]
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackRange"]
+shape = SubResource("CircleShape2D_i1jyv")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 avoidance_enabled = true
