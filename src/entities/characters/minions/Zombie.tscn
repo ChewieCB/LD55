@@ -1,7 +1,7 @@
-[gd_scene load_steps=35 format=3 uid="uid://c7jvs3fcwp2j1"]
+[gd_scene load_steps=34 format=3 uid="uid://c7jvs3fcwp2j1"]
 
 [ext_resource type="Script" path="res://src/entities/characters/minions/minion_base.gd" id="1_56qy7"]
-[ext_resource type="Script" path="res://src/entities/characters/character_attributes.gd" id="2_3bav5"]
+[ext_resource type="Resource" uid="uid://c53bmthdbeicu" path="res://src/entities/characters/minions/base_minion_attributes.tres" id="2_hm111"]
 [ext_resource type="Resource" uid="uid://s6oc7lk4nbw0" path="res://src/entities/characters/minions/minion_attacks/minion_basic_attack.tres" id="3_yth42"]
 [ext_resource type="Texture2D" uid="uid://bhwjl6ea1koq2" path="res://assets/temp/juni_minion.png" id="4_njwdd"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/state_chart.gd" id="5_1gsmk"]
@@ -16,14 +16,6 @@
 [ext_resource type="Texture2D" uid="uid://43injemtwjgx" path="res://assets/particles/PoisonClaw_96x96.png" id="13_wqag5"]
 [ext_resource type="PackedScene" uid="uid://crdcf3pu3urwg" path="res://src/ui/status/status_ui.tscn" id="14_c7ah2"]
 [ext_resource type="Texture2D" uid="uid://brmlt6rgwrn1w" path="res://assets/particles/Explosion_2_64x64.png" id="14_u2fls"]
-
-[sub_resource type="Resource" id="Resource_hvjbr"]
-script = ExtResource("2_3bav5")
-health = 50
-armour = 0
-speed = 150.0
-dexterity = 0.5
-rank = 1
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ci4kf"]
 size = Vector2(32, 32)
@@ -152,7 +144,7 @@ y_sort_enabled = true
 collision_layer = 2
 collision_mask = 0
 script = ExtResource("1_56qy7")
-attributes = SubResource("Resource_hvjbr")
+resource_attributes = ExtResource("2_hm111")
 attacks = Array[Resource("res://src/entities/characters/attack_resource.gd")]([ExtResource("3_yth42")])
 
 [node name="ColorRect" type="ColorRect" parent="."]

@@ -185,7 +185,7 @@ bg_color = Color(0.843137, 0.196078, 0.0666667, 1)
 [node name="Crusader" type="CharacterBody2D"]
 y_sort_enabled = true
 script = ExtResource("1_0cjda")
-attributes = ExtResource("2_jwm8m")
+resource_attributes = ExtResource("2_jwm8m")
 attacks = Array[Resource("res://src/entities/characters/attack_resource.gd")]([ExtResource("3_au4vg")])
 
 [node name="ColorRect" type="ColorRect" parent="."]
