@@ -72,7 +72,7 @@ func _on_dead_state_entered():
 func apply_prefix(prefix: EnumAutoload.SpellPrefix):
 	match prefix:
 		EnumAutoload.SpellPrefix.AGILE:
-			attributes.speed = 1.4
+			attributes.speed *= 1.4
 			attributes.dexterity *= 2.2
 			scale *= 0.7
 		EnumAutoload.SpellPrefix.TOUGH:

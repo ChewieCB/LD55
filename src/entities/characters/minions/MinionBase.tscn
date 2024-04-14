@@ -117,7 +117,7 @@ y_sort_enabled = true
 collision_layer = 2
 collision_mask = 0
 script = ExtResource("1_etj48")
-attributes = ExtResource("2_leot4")
+resource_attributes = ExtResource("2_leot4")
 attacks = Array[Resource("res://src/entities/characters/attack_resource.gd")]([ExtResource("3_kbf6h")])
 
 [node name="ColorRect" type="ColorRect" parent="."]
