@@ -30,10 +30,10 @@ func _spawn():
 	add_to_group("crusader")
 	if attacks:
 		current_attack = attacks[0]
-		attack_range_collider.shape.radius = current_attack.range
+		attack_range_collider.shape.radius = current_attack.attack_range
 
 
-func _process(delta):
+func _process(_delta):
 	health_ui.value = current_health
 
 
@@ -87,13 +87,14 @@ func _on_idle_state_entered():
 	nav_agent.target_position = global_position
 
 
-func _on_idle_state_physics_processing(delta):
+func _on_idle_state_physics_processing(_delta):
 	if nav_agent.target_position:
 		state_chart.send_event("start_walking")
 	return
 
 
-func _on_walking_state_physics_processing(delta):
+func _on_walking_state_physics_processing(_delta):
+	await get_tree().process_frame
 	# If we're in range of a ritual point, move to that
 	if ritual_point:
 		nav_agent.target_position = ritual_point.global_position
@@ -131,7 +132,7 @@ func _on_action_cleansing_state_physics_processing(delta):
 	finish_cleanse()
 
 
-func _on_attacking_idle_state_physics_processing(delta):
+func _on_attacking_idle_state_physics_processing(_delta):
 	if cooldown_timer.is_stopped():
 		if attack_range_area.has_overlapping_bodies():
 			state_chart.send_event("stop_walking")

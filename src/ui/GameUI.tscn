@@ -15,6 +15,52 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_mbso5")
 
+[node name="SpellPanel" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 328.0
+offset_top = -120.0
+offset_right = 704.0
+grow_vertical = 0
+color = Color(0.117647, 0.482353, 0.0627451, 0.537255)
+
+[node name="Label" type="RichTextLabel" parent="SpellPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 24.0
+offset_top = 16.0
+offset_right = -16.0
+offset_bottom = -16.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("4_ptily")
+theme_override_font_sizes/normal_font_size = 24
+bbcode_enabled = true
+text = "Failed spell. Press space to cast  again"
+scroll_active = false
+autowrap_mode = 2
+
+[node name="SpellCooldown" type="TextureProgressBar" parent="SpellPanel"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -8.0
+grow_horizontal = 2
+grow_vertical = 0
+min_value = 100.0
+value = 100.0
+nine_patch_stretch = true
+texture_under = ExtResource("2_5ds5d")
+texture_progress = ExtResource("2_5ds5d")
+tint_under = Color(0, 0, 0, 1)
+tint_progress = Color(0.184314, 1, 0.00784314, 1)
+
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
@@ -229,47 +275,6 @@ theme_override_font_sizes/font_size = 24
 text = "Zombie | DDD"
 horizontal_alignment = 2
 vertical_alignment = 1
-
-[node name="SpellPanel" type="ColorRect" parent="."]
-layout_mode = 1
-anchors_preset = 9
-anchor_bottom = 1.0
-offset_left = 383.0
-offset_top = 984.0
-offset_right = 730.0
-grow_vertical = 2
-color = Color(0.117647, 0.482353, 0.0627451, 0.537255)
-
-[node name="Label" type="RichTextLabel" parent="SpellPanel"]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -120.0
-offset_top = 8.0
-offset_right = 120.0
-offset_bottom = 67.0
-grow_horizontal = 2
-bbcode_enabled = true
-text = "Failed spell. Press space to cast  again"
-autowrap_mode = 2
-
-[node name="SpellCooldown" type="TextureProgressBar" parent="SpellPanel"]
-layout_mode = 1
-anchors_preset = 12
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = -8.0
-grow_horizontal = 2
-grow_vertical = 0
-min_value = 100.0
-value = 100.0
-nine_patch_stretch = true
-texture_under = ExtResource("2_5ds5d")
-texture_progress = ExtResource("2_5ds5d")
-tint_under = Color(0, 0, 0, 1)
-tint_progress = Color(0.184314, 1, 0.00784314, 1)
 
 [node name="TimePanel" type="Panel" parent="."]
 layout_mode = 1

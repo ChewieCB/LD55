@@ -44,7 +44,7 @@ func _spawn():
 	pass
 
 
-func _move(delta):
+func _move(_delta):
 	if nav_agent.is_navigation_finished():
 		return
 	

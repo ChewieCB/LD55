@@ -9,4 +9,4 @@ func _ready() -> void:
 	spell_label.text = "Press Space to start"
 
 func set_spell_label(text: String):
-	spell_label.text = text
+	spell_label.text = "[center]" + text + "[/center]"

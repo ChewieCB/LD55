@@ -2,9 +2,9 @@
 
 [ext_resource type="Texture2D" uid="uid://cls1x1wx2icgw" path="res://assets/temp/Space Background.png" id="1_prdx4"]
 [ext_resource type="Script" path="res://src/levels/main_scene/main_scene.gd" id="1_vnu07"]
-[ext_resource type="FontFile" uid="uid://cok82atk4bnbl" path="res://assets/fonts/hf-scifi-complete/zapper-v1.1/Zapper.ttf" id="2_a4b4n"]
 [ext_resource type="Texture2D" uid="uid://b356n6j567g3d" path="res://assets/temp/juni-bg.png" id="3_xxgf2"]
 [ext_resource type="Texture2D" uid="uid://tbaw03mlpcud" path="res://assets/temp/malina-bg.png" id="4_xephx"]
+[ext_resource type="FontFile" uid="uid://b21yg3y2byt8f" path="res://assets/fonts/AvQest.ttf" id="5_7ycku"]
 
 [node name="MainScene" type="Node2D"]
 script = ExtResource("1_vnu07")
@@ -64,8 +64,8 @@ layout_mode = 2
 theme_override_colors/font_color = Color(0.545174, 0.427451, 0.611612, 1)
 theme_override_colors/font_outline_color = Color(0.282353, 0.297993, 0.489982, 1)
 theme_override_constants/outline_size = 32
-theme_override_fonts/font = ExtResource("2_a4b4n")
-theme_override_font_sizes/font_size = 164
+theme_override_fonts/font = ExtResource("5_7ycku")
+theme_override_font_sizes/font_size = 200
 text = "LD55"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -75,8 +75,8 @@ custom_minimum_size = Vector2(0, 64)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-theme_override_fonts/font = ExtResource("2_a4b4n")
-theme_override_font_sizes/font_size = 32
+theme_override_fonts/font = ExtResource("5_7ycku")
+theme_override_font_sizes/font_size = 40
 text = "Start"
 
 [connection signal="pressed" from="Temp/Control/MarginContainer/VBoxContainer/SummoningButton" to="." method="_on_summoning_button_pressed"]
