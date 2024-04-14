@@ -1,7 +1,8 @@
 extends CharacterBody2D
 class_name AIAgent
 
-signal health_changed(change)
+signal health_changed(health)
+signal health_diff(diff)
 
 @export var attributes: CharacterAttributes:
 	set(value):
@@ -13,7 +14,8 @@ var current_health: int:
 	set(value):
 		var prev_health = current_health
 		current_health = clamp(value, 0, attributes.health)
-		emit_signal("health_changed", current_health - prev_health)
+		emit_signal("health_diff", current_health - prev_health)
+		emit_signal("health_changed", current_health)
 		if current_health == 0:
 			_die()
 		elif value < prev_health:
@@ -44,7 +46,7 @@ var current_attack: AttackResource
 
 func _ready():
 	#await get_owner().ready
-	health_changed.connect(status_ui._spawn_damage_indicator)
+	health_diff.connect(status_ui._spawn_damage_indicator)
 	_spawn()
 
 func _physics_process(delta):

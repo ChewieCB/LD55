@@ -1,7 +1,38 @@
-[gd_scene load_steps=3 format=3 uid="uid://c3hse0gwreuje"]
+[gd_scene load_steps=12 format=3 uid="uid://c3hse0gwreuje"]
 
 [ext_resource type="Script" path="res://src/ui/game_ui.gd" id="1_mbso5"]
-[ext_resource type="PackedScene" uid="uid://dva6an46ov0oy" path="res://src/ui/spell_ui/SpellUI.tscn" id="2_hoqvk"]
+[ext_resource type="Texture2D" uid="uid://8q5gyn8ex2wv" path="res://assets/sprite/square.png" id="2_5ds5d"]
+[ext_resource type="Texture2D" uid="uid://klywda7vhx06" path="res://assets/ui/lef panel.png" id="2_doy7b"]
+[ext_resource type="Texture2D" uid="uid://c3ydalaynuwlg" path="res://assets/ui/right panel.png" id="3_sxvjh"]
+[ext_resource type="FontFile" uid="uid://b21yg3y2byt8f" path="res://assets/fonts/AvQest.ttf" id="4_ptily"]
+[ext_resource type="Texture2D" uid="uid://hpeahuv7g0ef" path="res://assets/ui/kenney_borders/Default/Divider Fade/divider-fade-000.png" id="6_7pevc"]
+
+[sub_resource type="Theme" id="Theme_gqrbp"]
+default_font = ExtResource("4_ptily")
+default_font_size = 32
+Label/colors/font_color = Color(1, 1, 1, 1)
+Label/colors/font_outline_color = Color(0, 0, 0, 1)
+Label/constants/outline_size = 2
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_sn3d8"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cv36d"]
+bg_color = Color(0.678431, 0.196078, 0.196078, 1)
+expand_margin_left = 2.0
+expand_margin_top = 1.0
+expand_margin_bottom = 1.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f7jyl"]
+bg_color = Color(0.113725, 0.113725, 0.113725, 1)
+expand_margin_left = 2.0
+expand_margin_top = 2.0
+expand_margin_right = 2.0
+expand_margin_bottom = 2.0
+shadow_color = Color(0, 0, 0, 0.27451)
+shadow_offset = Vector2(0, 2)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pojsn"]
+bg_color = Color(0.960784, 0.941176, 0.941176, 1)
 
 [node name="GameUI" type="Control"]
 layout_mode = 3
@@ -40,3 +71,107 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 20
 text = "12:44"
+
+[node name="CrusaderHealthContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 362.0
+offset_top = -213.0
+offset_right = -365.0
+offset_bottom = -136.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_right = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CrusaderHealthContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CrusaderHealthContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 64
+theme_override_constants/margin_right = 64
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CrusaderHealthContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="MarginContainer" type="MarginContainer" parent="CrusaderHealthContainer/VBoxContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="TextureRect" type="TextureRect" parent="CrusaderHealthContainer/VBoxContainer/MarginContainer/HBoxContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("6_7pevc")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="MarginContainer2" type="MarginContainer" parent="CrusaderHealthContainer/VBoxContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_right = 32
+
+[node name="Label" type="Label" parent="CrusaderHealthContainer/VBoxContainer/MarginContainer/HBoxContainer/MarginContainer2"]
+layout_mode = 2
+theme = SubResource("Theme_gqrbp")
+text = "Crusader"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MarginContainer3" type="MarginContainer" parent="CrusaderHealthContainer/VBoxContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="TextureRect" type="TextureRect" parent="CrusaderHealthContainer/VBoxContainer/MarginContainer/HBoxContainer/MarginContainer3"]
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("6_7pevc")
+expand_mode = 3
+stretch_mode = 5
+flip_h = true
+
+[node name="MarginContainer2" type="MarginContainer" parent="CrusaderHealthContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CrusaderHealthContainer/VBoxContainer/MarginContainer2"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="HealthBar" type="ProgressBar" parent="CrusaderHealthContainer/VBoxContainer/MarginContainer2/MarginContainer"]
+custom_minimum_size = Vector2(240, 40)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_styles/background = SubResource("StyleBoxEmpty_sn3d8")
+theme_override_styles/fill = SubResource("StyleBoxFlat_cv36d")
+value = 40.0
+show_percentage = false
+
+[node name="DamageBar" type="ProgressBar" parent="CrusaderHealthContainer/VBoxContainer/MarginContainer2/MarginContainer/HealthBar"]
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1.0
+offset_right = -1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_f7jyl")
+theme_override_styles/fill = SubResource("StyleBoxFlat_pojsn")
+value = 60.0
+show_percentage = false
+
+[node name="Timer" type="Timer" parent="CrusaderHealthContainer/VBoxContainer/MarginContainer2/MarginContainer/HealthBar"]
+wait_time = 0.4
+one_shot = true
+
+[connection signal="timeout" from="CrusaderHealthContainer/VBoxContainer/MarginContainer2/MarginContainer/HealthBar/Timer" to="." method="_on_timer_timeout"]
