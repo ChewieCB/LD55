@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://bjabavwsrnt0y"]
+[gd_scene load_steps=16 format=3 uid="uid://bjabavwsrnt0y"]
 
 [ext_resource type="Script" path="res://src/levels/main_game/main_game.gd" id="1_4qjmh"]
 [ext_resource type="Texture2D" uid="uid://8q5gyn8ex2wv" path="res://assets/sprite/square.png" id="1_vuavk"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://c3hse0gwreuje" path="res://src/ui/GameUI.tscn" id="6_k6rr8"]
 [ext_resource type="PackedScene" uid="uid://bl8brofna47l6" path="res://src/entities/player/PlayerControl.tscn" id="6_r66m5"]
 [ext_resource type="Resource" uid="uid://c7rxuxvpi8fdn" path="res://src/entities/characters/minions/resources/base_minion.tres" id="8_jh4ys"]
+[ext_resource type="PackedScene" uid="uid://vs2j5t7leoj0" path="res://src/ui/EndgameUI.tscn" id="12_jv3wu"]
 
 [sub_resource type="Curve2D" id="Curve2D_g2yoo"]
 _data = {
@@ -341,3 +342,5 @@ crusader = NodePath("../Crusader")
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="GameUI" parent="CanvasLayer" instance=ExtResource("6_k6rr8")]
+
+[node name="EndgameUI" parent="CanvasLayer" instance=ExtResource("12_jv3wu")]

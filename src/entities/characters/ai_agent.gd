@@ -30,19 +30,15 @@ var current_attack: AttackResource
 
 @onready var health_ui = $HealthBar
 
-
 func _ready():
 	#await get_owner().ready
 	_spawn()
 
-
 func _physics_process(delta):
 	_move(delta)
 
-
 func _spawn():
 	pass
-
 
 func _move(_delta):
 	if nav_agent.is_navigation_finished():
@@ -54,7 +50,6 @@ func _move(_delta):
 	var intended_velocity: Vector2 = direction * speed
 	nav_agent.set_velocity(intended_velocity)
 
-
 func _attack(attack: AttackResource, target: AIAgent):
 	attack_particles.global_position = target.global_position
 	anim_player.play("attack")
@@ -63,15 +58,11 @@ func _attack(attack: AttackResource, target: AIAgent):
 	await attack_particles.finished
 	attack_particles.global_position = Vector2.ZERO
 
-
 func _hurt():
 	pass
 
-
 func _die():
 	pass
-
-
 
 func _on_navigation_agent_2d_velocity_computed(safe_velocity):
 	velocity = safe_velocity
