@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://sfxnk5e65vam"]
+[gd_scene load_steps=7 format=3 uid="uid://sfxnk5e65vam"]
 
 [ext_resource type="Texture2D" uid="uid://tbaw03mlpcud" path="res://assets/temp/malina-bg.png" id="1_aeg0n"]
 [ext_resource type="Script" path="res://src/entities/characters/ai_agent.gd" id="1_lj3uo"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/state_chart.gd" id="3_1ilu4"]
+[ext_resource type="PackedScene" uid="uid://crdcf3pu3urwg" path="res://src/ui/status/status_ui.tscn" id="4_k3wwu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ci4kf"]
 size = Vector2(32, 32)
@@ -47,9 +48,14 @@ script = ExtResource("3_1ilu4")
 
 [node name="AttackParticles" type="GPUParticles2D" parent="."]
 
+[node name="BlockParticles" type="GPUParticles2D" parent="."]
+
 [node name="DeathParticles" type="GPUParticles2D" parent="."]
 
 [node name="AttackCooldownTimer" type="Timer" parent="."]
+
+[node name="StaggerStunTimer" type="Timer" parent="."]
+one_shot = true
 
 [node name="HealthBar" type="ProgressBar" parent="."]
 z_index = 1
@@ -66,5 +72,8 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_wjj8f")
 max_value = 500.0
 value = 500.0
 show_percentage = false
+
+[node name="StatusUI" parent="." instance=ExtResource("4_k3wwu")]
+position = Vector2(0, -13)
 
 [connection signal="velocity_computed" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_velocity_computed"]

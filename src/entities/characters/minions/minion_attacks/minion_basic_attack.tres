@@ -6,4 +6,6 @@
 script = ExtResource("1_s4fto")
 attack_range = 64
 cooldown = 1.2
-damage = 5
+damage = 10
+armour_penetration = 0
+control = 0.0

@@ -7,6 +7,5 @@ script = ExtResource("1_r802h")
 health = 500
 armour = 10
 speed = 100
-dexterity = 2
-control = 1
+dexterity = 0.5
 rank = 0
