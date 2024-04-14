@@ -8,9 +8,9 @@ signal death
 enum AttackNames {
 	BASIC_ATTACK,
 	AOE,
+	SPIN,
 	POWER_ATTACK,
 	CLEAVE,
-	SPIN,
 }
 
 # TODO - move to AIAgent base class
@@ -123,6 +123,7 @@ func _on_attacking_idle_state_physics_processing(delta):
 	# TODO - add attack choice logic in via stances
 	var attack_priority = [
 		attacks[AttackNames.AOE],
+		attacks[AttackNames.SPIN],
 		attacks[AttackNames.BASIC_ATTACK]
 	]
 	for _attack in attack_priority:

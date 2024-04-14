@@ -103,15 +103,20 @@ func _attack(attack: AttackResource):
 			attack_particles.global_position = _target.global_position
 			#
 			block_particles.global_position = _target.global_position
-		elif attack.targeting_mode == AttackResource.TargetingMode.AREA:
+		else:
 			attack_particles.texture = attack.particle_texture
 			attack_particles.process_material = attack.attack_particles_process_mat
 			attack_particles.material = attack.attack_particles_canvas_mat
 			attack_particles.global_position = global_position
 		
+		var target_count: int = 0
 		for target in targets:
 			if target.current_health <= 0:
 				continue
+			
+			if attack.targeting_mode == AttackResource.TargetingMode.MULTIPLE:
+				if target_count >= attack.max_targets:
+					break
 			
 			# Calculate stagger or stun chance
 			# We need to pass 0.5 to stagger, and 0.9 to stun
@@ -138,19 +143,22 @@ func _attack(attack: AttackResource):
 				)
 			target.current_health -= modified_damage
 			
-			if modified_damage > 0:
+			if modified_damage > 0: 
+				# TODO - spawn a particle emitter for each attack instance
 				anim_player.play("attack")
 				attack.play_attack_sfx()
 			else:
 				anim_player.play("block")
 				attack.play_block_sfx()
+			
+			target_count += 1
 	
 	_attack_cooldown(attack)
 	status_ui._spawn_attack_indicator(attack.name, 0.6)
 	current_attack = null
 	
 	# Generic cooldown to prevent spamming inputs each frame
-	cooldown_timer.start(0.1)
+	cooldown_timer.start(0.4)
 
 	await attack_particles.finished
 	attack_particles.global_position = Vector2.ZERO
