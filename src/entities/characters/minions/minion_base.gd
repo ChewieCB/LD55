@@ -51,7 +51,7 @@ func _on_walking_state_physics_processing(_delta):
 	var current_agent_position: Vector2 = global_position
 	var next_path_position: Vector2 = nav_agent.get_next_path_position()
 	var direction: Vector2 = current_agent_position.direction_to(next_path_position)
-	var intended_velocity: Vector2 = direction * speed
+	var intended_velocity: Vector2 = direction * current_speed
 	nav_agent.set_velocity(intended_velocity)
 
 
@@ -69,8 +69,7 @@ func _on_attacking_idle_state_physics_processing(_delta):
 func _on_attacking_basic_attack_state_entered():
 	_attack(current_attack, crusader)
 	SoundManager.play_sound(attack_sfx[randi_range(0, attack_sfx.size() - 1)])
-	cooldown_timer.start(current_attack.cooldown)
-
+	cooldown_timer.start(current_attack.cooldown * remap(attributes.dexterity, 0, 1, 3, 0.25))
 
 
 func _on_dead_state_entered():
