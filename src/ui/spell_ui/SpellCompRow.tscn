@@ -57,3 +57,8 @@ texture_under = ExtResource("3_khme5")
 texture_progress = ExtResource("3_khme5")
 tint_under = Color(0, 0, 0, 1)
 tint_progress = Color(0.168627, 1, 0.00784314, 1)
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -4,11 +4,15 @@ class_name SpellCompRow
 @onready var name_label: RichTextLabel = $VBoxContainer/Name
 @onready var input_label: RichTextLabel = $VBoxContainer/Input
 @onready var cooldown_bar: TextureProgressBar = $VBoxContainer/CooldownBar
+@onready var timer: Timer = $Timer
 
 var spell_data: SpellMainResource
 var prefix_data: SpellPrefixResource
 
 var tween: Tween
+
+func _ready() -> void:
+    cooldown_bar.value = 0
 
 func populate_spell_data(data: SpellMainResource):
     spell_data = data
@@ -41,3 +45,8 @@ func start_cooldown(duration: float):
     tween = get_tree().create_tween()
     cooldown_bar.value = 0
     tween.tween_property(cooldown_bar, "value", 100, duration).set_trans(Tween.TRANS_LINEAR)
+    timer.start(duration)
+    modulate = Color(1, 1, 1, 0.5)
+
+func _on_timer_timeout() -> void:
+    modulate = Color(1, 1, 1, 1)
