@@ -12,23 +12,21 @@ var prefix_data: SpellPrefixResource
 var tween: Tween
 
 func _ready() -> void:
-    cooldown_bar.value = 0
+    cooldown_bar.value = 100
 
 func populate_spell_data(data: SpellMainResource):
     spell_data = data
     prefix_data = null
     name_label.text = "[right][wave]{0}[/wave][/right]".format([data.name])
-    input_label.text = "[center]-{0}-[/center]".format([data.input])
+    input_label.text = "[center]-{0}-[/center]".format([Utils.convert_text_to_arrow(data.input, "black")])
     cooldown_bar.fill_mode = TextureProgressBar.FILL_RIGHT_TO_LEFT
-    start_cooldown(data.cooldown)
     GameManager.player_control.spell_casted.connect(check_cooldown)
 
 func populate_prefix_data(data: SpellPrefixResource):
     spell_data = null
     prefix_data = data
     name_label.text = "[wave]{0}[/wave]".format([data.name])
-    input_label.text = "[center]-{0}-[/center]".format([data.input])
-    start_cooldown(data.cooldown)
+    input_label.text = "[center]-{0}-[/center]".format([Utils.convert_text_to_arrow(data.input, "black")])
     GameManager.player_control.spell_casted.connect(check_cooldown)
 
 func check_cooldown(prefix_id: EnumAutoload.SpellPrefix, spell_id: EnumAutoload.SpellMain):
