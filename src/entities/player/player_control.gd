@@ -65,9 +65,9 @@ func _ready() -> void:
 	GameManager.player_control = self
 	for prefix in spell_prefixes:
 		prefix_dict[prefix.input] = prefix
-		prefix_used_timestamp[prefix.prefix_id] = Time.get_ticks_msec() / 1000.0
+		prefix_used_timestamp[prefix.prefix_id] = (Time.get_ticks_msec() / 1000.0) - 1000
 	for spell in spells:
-		spell_used_timestamp[spell.spell_id] = Time.get_ticks_msec() / 1000.0
+		spell_used_timestamp[spell.spell_id] = (Time.get_ticks_msec() / 1000.0) - 1000
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("start_cast"):
