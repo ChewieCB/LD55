@@ -1,9 +1,7 @@
-[gd_scene load_steps=12 format=3 uid="uid://c3hse0gwreuje"]
+[gd_scene load_steps=10 format=3 uid="uid://c3hse0gwreuje"]
 
 [ext_resource type="Script" path="res://src/ui/game_ui.gd" id="1_mbso5"]
-[ext_resource type="Texture2D" uid="uid://8q5gyn8ex2wv" path="res://assets/sprite/square.png" id="2_5ds5d"]
-[ext_resource type="Texture2D" uid="uid://klywda7vhx06" path="res://assets/ui/lef panel.png" id="2_doy7b"]
-[ext_resource type="Texture2D" uid="uid://c3ydalaynuwlg" path="res://assets/ui/right panel.png" id="3_sxvjh"]
+[ext_resource type="PackedScene" uid="uid://dva6an46ov0oy" path="res://src/ui/spell_ui/SpellUI.tscn" id="2_qvbhs"]
 [ext_resource type="FontFile" uid="uid://b21yg3y2byt8f" path="res://assets/fonts/AvQest.ttf" id="4_ptily"]
 [ext_resource type="Texture2D" uid="uid://hpeahuv7g0ef" path="res://assets/ui/kenney_borders/Default/Divider Fade/divider-fade-000.png" id="6_7pevc"]
 
@@ -43,7 +41,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_mbso5")
 
-[node name="SpellUI" parent="." instance=ExtResource("2_hoqvk")]
+[node name="SpellUI" parent="." instance=ExtResource("2_qvbhs")]
 layout_mode = 1
 
 [node name="TimePanel" type="Panel" parent="."]

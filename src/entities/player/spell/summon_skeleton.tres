@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="SpellMainResource" load_steps=3 format=3 uid="uid://ix73paims45p"]
 
-[ext_resource type="PackedScene" uid="uid://r5eos3xaxkoe" path="res://src/entities/characters/minions/Skeleton.tscn" id="1_i3si7"]
+[ext_resource type="PackedScene" uid="uid://iqw1g1onexq2" path="res://src/entities/characters/minions/Skeleton.tscn" id="1_i3si7"]
 [ext_resource type="Script" path="res://src/entities/player/spell/spell_main_resource.gd" id="2_h8q7d"]
 
 [resource]
