@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://d2svkvppb5iyv"
+path="res://.godot/imported/Magic Hit 3.mp3-c03cbd1542929fb212bfea76621f70fd.mp3str"
+
+[deps]
+
+source_file="res://assets/sfx/minions/Magic Hit 3.mp3"
+dest_files=["res://.godot/imported/Magic Hit 3.mp3-c03cbd1542929fb212bfea76621f70fd.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

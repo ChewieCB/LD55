@@ -11,5 +11,6 @@ summon_sfx = Array[AudioStream]([ExtResource("2_lr1jf"), ExtResource("3_monhr"),
 health = 35
 armour = 1
 speed = 100.0
+strength = 1.0
 dexterity = 0.25
 rank = 1

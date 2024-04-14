@@ -133,13 +133,13 @@ func _attack(attack: AttackResource):
 				
 			# Damage and armour penetration
 			# TODO - playtest and tweak armour damage reduction 
-			var modified_damage = attack.damage
+			var modified_damage = attack.damage * attributes.strength
 			# TODO - figure out an intuitive armour/armour penetration system
 			if attack.armour_penetration < target.attributes.armour:
 				modified_damage = clamp(
-					attack.damage / target.attributes.armour,
+					modified_damage / target.attributes.armour,
 					0,
-					attack.damage
+					modified_damage
 				)
 			target.current_health -= modified_damage
 			

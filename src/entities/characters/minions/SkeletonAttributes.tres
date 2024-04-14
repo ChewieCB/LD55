@@ -8,8 +8,9 @@
 [resource]
 script = ExtResource("1_8nmfj")
 summon_sfx = Array[AudioStream]([ExtResource("2_uy38a"), ExtResource("3_wgpui"), ExtResource("4_4q01r")])
-health = 50
-armour = 2
-speed = 160.0
-dexterity = 0.55
+health = 65
+armour = 4
+speed = 150.0
+strength = 2.0
+dexterity = 0.47
 rank = 2
