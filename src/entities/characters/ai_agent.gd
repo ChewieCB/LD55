@@ -99,6 +99,9 @@ func _attack(attack: AttackResource):
 		block_particles.global_position = _target.global_position
 	
 	for target in targets:
+		if target.current_health <= 0:
+			continue
+		
 		# Calculate stagger or stun chance
 		# We need to pass 0.5 to stagger, and 0.9 to stun
 		# TODO - playtest and tweak this
