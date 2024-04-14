@@ -5,6 +5,6 @@
 [resource]
 script = ExtResource("1_ad00o")
 name = "Triangle"
-input = "LUR"
+input = "ULR"
 prefix_id = 2
 cooldown = 4.0

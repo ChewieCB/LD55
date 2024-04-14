@@ -8,6 +8,8 @@ class_name SpellCompRow
 var spell_data: SpellMainResource
 var prefix_data: SpellPrefixResource
 
+var tween: Tween
+
 func populate_spell_data(data: SpellMainResource):
     spell_data = data
     prefix_data = null
@@ -34,6 +36,8 @@ func check_cooldown(prefix_id: EnumAutoload.SpellPrefix, spell_id: EnumAutoload.
             start_cooldown(spell_data.cooldown)
 
 func start_cooldown(duration: float):
-    var tween = get_tree().create_tween()
+    if tween:
+        tween.kill()
+    tween = get_tree().create_tween()
     cooldown_bar.value = 0
     tween.tween_property(cooldown_bar, "value", 100, duration).set_trans(Tween.TRANS_LINEAR)

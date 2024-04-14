@@ -187,6 +187,10 @@ func cast_readied_spell():
 
 	SoundManager.play_sound(summon_sfx[randi_range(0, summon_sfx.size() - 1)])
 	emit_signal("spell_casted", prefix_id, current_spell.spell_id)
+	spell_used_timestamp[current_spell.spell_id] = Time.get_ticks_msec() / 1000.0
+	if prefix_id != EnumAutoload.SpellPrefix.NONE:
+		prefix_used_timestamp[prefix_id] = Time.get_ticks_msec() / 1000.0
+
 	finish_cast()
 
 func finish_cast():
