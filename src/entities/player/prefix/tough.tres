@@ -1,9 +1,10 @@
 [gd_resource type="Resource" script_class="SpellPrefixResource" load_steps=2 format=3 uid="uid://d002fmxjkp77y"]
 
-[ext_resource type="Script" path="res://src/entities/player/modifier/spell_modifier_resource.gd" id="1_cmlvy"]
+[ext_resource type="Script" path="res://src/entities/player/prefix/spell_prefix_resource.gd" id="1_cmlvy"]
 
 [resource]
 script = ExtResource("1_cmlvy")
 name = "Tough"
 input = "UDLRDU"
 prefix_id = 4
+cooldown = 3.0

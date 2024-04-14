@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="SpellMainResource" load_steps=3 format=3 uid="uid://bhp86ov0smg50"]
 
 [ext_resource type="PackedScene" uid="uid://df1mankqa44ij" path="res://src/entities/characters/minions/Zombie.tscn" id="1_0lq4h"]
-[ext_resource type="Script" path="res://src/entities/player/spell/spell_resource.gd" id="1_fdbb7"]
+[ext_resource type="Script" path="res://src/entities/player/spell/spell_main_resource.gd" id="1_fdbb7"]
 
 [resource]
 script = ExtResource("1_fdbb7")

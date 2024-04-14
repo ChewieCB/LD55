@@ -1,9 +1,10 @@
 [gd_resource type="Resource" script_class="SpellPrefixResource" load_steps=2 format=3 uid="uid://deu8alrv0hxfy"]
 
-[ext_resource type="Script" path="res://src/entities/player/modifier/spell_modifier_resource.gd" id="1_0vgd8"]
+[ext_resource type="Script" path="res://src/entities/player/prefix/spell_prefix_resource.gd" id="1_0vgd8"]
 
 [resource]
 script = ExtResource("1_0vgd8")
 name = "Agile"
 input = "LRLRLR"
 prefix_id = 3
+cooldown = 3.0

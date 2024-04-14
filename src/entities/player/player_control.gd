@@ -1,6 +1,8 @@
 extends Node2D
 class_name PlayerControl
 
+signal spell_casted(prefix_id, spell_id)
+
 @export var spells: Array[SpellMainResource]
 @export var spell_prefixes: Array[SpellPrefixResource]
 @export var crusader: Crusader
@@ -23,6 +25,8 @@ var prefix_dict = {} # map input to SpellPrefixResource
 var current_spell: SpellMainResource
 var current_spell_str: String = ""
 var current_prefix_str: String = ""
+var spell_used_timestamp = {}
+var prefix_used_timestamp = {}
 
 var raw_input: String = "":
 	set(value):
@@ -49,7 +53,7 @@ var raw_input: String = "":
 var raw_input_repr: String = "":
 	set(value):
 		raw_input_repr = value
-		GameManager.game_ui.set_spell_label("Input: %s" % raw_input_repr)
+		GameManager.game_ui.spell_ui.set_spell_label("Input: %s" % raw_input_repr)
 
 var is_casting = false
 var spell_ready = false
@@ -61,6 +65,9 @@ func _ready() -> void:
 	GameManager.player_control = self
 	for prefix in spell_prefixes:
 		prefix_dict[prefix.input] = prefix
+		prefix_used_timestamp[prefix.prefix_id] = Time.get_ticks_msec() / 1000.0
+	for spell in spells:
+		spell_used_timestamp[spell.spell_id] = Time.get_ticks_msec() / 1000.0
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("start_cast"):
@@ -104,26 +111,44 @@ func _process(_delta):
 			raw_input_repr = "%s" % [raw_input]
 
 func start_cast():
-	GameManager.game_ui.set_spell_label("Input:")
+	GameManager.game_ui.spell_ui.set_spell_label("Input:")
 	is_casting = true
 	spell_ready = false
 
 func confirm_spell():
 	is_casting = false
-
 	if not current_spell:
-		GameManager.game_ui.set_spell_label("Failed spell. Press Space to cast again")
+		GameManager.game_ui.spell_ui.set_spell_label("Failed spell. Press Space to cast again")
 		# Clear the inputs
 		raw_input = ""
 		current_spell_str = ""
 		current_prefix_str = ""
 	else:
+		# Check cooldown
+		var current_time = Time.get_ticks_msec() / 1000.0
+		var spell_is_on_cd = false
+		var prefix_is_on_cd = false
+		if current_time - spell_used_timestamp[current_spell.spell_id] < current_spell.cooldown:
+			spell_is_on_cd = true
+		if current_prefix_str:
+			var prefix_data: SpellPrefixResource = prefix_dict[current_prefix_str]
+			if current_time - prefix_used_timestamp[prefix_data.prefix_id] < prefix_data.cooldown:
+				prefix_is_on_cd = true
+		if spell_is_on_cd or prefix_is_on_cd:
+			GameManager.game_ui.spell_ui.set_spell_label("Spell is on cooldown! Press Space to cast again!")
+			# Clear the inputs
+			raw_input = ""
+			current_spell_str = ""
+			current_prefix_str = ""
+			return
+
+		# All good, ready the spell
 		spell_ready = true
 		var ready_str = "Ready: "
 		if current_prefix_str:
 			ready_str += "[color=yellow](%s) [/color]" % [prefix_dict[current_prefix_str].name]
 		ready_str += "[color=green]%s[/color]" % [current_spell.name]
-		GameManager.game_ui.set_spell_label(ready_str)
+		GameManager.game_ui.spell_ui.set_spell_label(ready_str)
 
 func cast_readied_spell():
 	if not spell_ready:
@@ -131,9 +156,10 @@ func cast_readied_spell():
 
 	# Decide how we spawn it
 	var mouse_global_pos = get_global_mouse_position()
+	var prefix_id = EnumAutoload.SpellPrefix.NONE
 	if current_prefix_str:
-		var prefix_value = prefix_dict[current_prefix_str].prefix_id
-		match prefix_value:
+		prefix_id = prefix_dict[current_prefix_str].prefix_id
+		match prefix_id:
 			EnumAutoload.SpellPrefix.SQUARE:
 				# Will spawn 4 in each corner of square shape
 				for i in range(4):
@@ -150,9 +176,8 @@ func cast_readied_spell():
 			EnumAutoload.SpellPrefix.AGILE, EnumAutoload.SpellPrefix.TOUGH:
 				var _minion = current_spell.spawn_scene.instantiate()
 				_minion.global_position = mouse_global_pos
-
 				_minion.crusader = crusader
-				_minion.apply_prefix(prefix_value)
+				_minion.apply_prefix(prefix_id)
 				GameManager.main_game.minion_spawn.add_child(_minion)
 	else:
 		var _minion = current_spell.spawn_scene.instantiate()
@@ -161,11 +186,11 @@ func cast_readied_spell():
 		GameManager.main_game.minion_spawn.add_child(_minion)
 
 	SoundManager.play_sound(summon_sfx[randi_range(0, summon_sfx.size() - 1)])
-
+	emit_signal("spell_casted", prefix_id, current_spell.spell_id)
 	finish_cast()
 
 func finish_cast():
-	GameManager.game_ui.set_spell_label("Press Space to start")
+	GameManager.game_ui.spell_ui.set_spell_label("Press Space to start")
 	current_spell = null
 	is_casting = false
 	spell_ready = false
@@ -189,5 +214,5 @@ func cast_input(input: String):
 		raw_input += input[0].to_upper()
 
 	# FIXME - emit a signal using the current_spell signal
-	GameManager.game_ui.set_spell_label("Input: " + raw_input)
+	GameManager.game_ui.spell_ui.set_spell_label("Input: " + raw_input)
 	SoundManager.play_sound(input_sfx[randi_range(0, input_sfx.size() - 1)])

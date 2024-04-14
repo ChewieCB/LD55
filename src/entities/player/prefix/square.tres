@@ -1,9 +1,10 @@
 [gd_resource type="Resource" script_class="SpellPrefixResource" load_steps=2 format=3 uid="uid://divo10l1etcrb"]
 
-[ext_resource type="Script" path="res://src/entities/player/modifier/spell_modifier_resource.gd" id="1_vdtmh"]
+[ext_resource type="Script" path="res://src/entities/player/prefix/spell_prefix_resource.gd" id="1_vdtmh"]
 
 [resource]
 script = ExtResource("1_vdtmh")
 name = "Square"
 input = "ULDR"
 prefix_id = 1
+cooldown = 5.0
