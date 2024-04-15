@@ -248,7 +248,10 @@ func _on_attacking_idle_state_physics_processing(delta):
 					$StanceLabel.text = "Tank"
 					current_stance = Stance.TANK
 				CharacterAttributes.Rank.TANK:
-					pass
+					# TODO - add damage stance
+					stance_str = "tank_stance"
+					$StanceLabel.text = "Tank"
+					current_stance = Stance.TANK
 				_:
 					return
 				

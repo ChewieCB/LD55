@@ -51,6 +51,21 @@ func get_targets(attacker: AIAgent):
 					return true
 				return false
 		)
+	# Prioritise by enemy health
+	bodies_in_range.sort_custom(
+		func(a, b):
+			# Both enemies at max health, prioritise the higher health one
+			if a.current_health == a.attributes.health and b.current_health == b.attributes.health:
+				if a.current_health > b.current_health:
+					return true
+				return false
+			# If both or one enemies damaged, prioritise the lower health one
+			#elif a.current_health < a.attributes.health and b.current_health < b.attributes.health:
+			else:
+				if a.current_health < b.current_health:
+					return true
+				return false
+	)
 	
 	match targeting_mode:
 		TargetingMode.SINGLE:

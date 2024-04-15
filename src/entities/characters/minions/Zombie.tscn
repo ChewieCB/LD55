@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://src/entities/characters/minions/minion_base.gd" id="1_56qy7"]
 [ext_resource type="Resource" uid="uid://cctfuamkj3rqr" path="res://src/entities/characters/minions/ZombieAttributes.tres" id="2_c651r"]
 [ext_resource type="Resource" uid="uid://s6oc7lk4nbw0" path="res://src/entities/characters/minions/minion_attacks/minion_basic_attack.tres" id="3_yth42"]
-[ext_resource type="Texture2D" uid="uid://c5iybko3t607a" path="res://assets/sprite/zombie.png" id="4_18wwb"]
+[ext_resource type="Texture2D" uid="uid://c5iybko3t607a" path="res://assets/sprite/characters/minions/zombie.png" id="4_w3q0o"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/state_chart.gd" id="5_1gsmk"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/parallel_state.gd" id="6_gxvk7"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/compound_state.gd" id="7_qxutn"]
@@ -166,7 +166,7 @@ color = Color(0.0235294, 0.466667, 0.0117647, 1)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.2, 0.2)
-texture = ExtResource("4_18wwb")
+texture = ExtResource("4_w3q0o")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_ci4kf")

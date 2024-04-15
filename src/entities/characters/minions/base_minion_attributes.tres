@@ -4,8 +4,10 @@
 
 [resource]
 script = ExtResource("1_f35k2")
+summon_sfx = Array[AudioStream]([null])
 health = 35
 armour = 1
 speed = 150
+strength = 1.0
 dexterity = 0.25
 rank = 1
