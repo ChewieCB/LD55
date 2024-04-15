@@ -1,19 +1,20 @@
 extends Node2D
 class_name MainGame
 
+@export var minion_spawn: Node2D
+@export var crusader: Crusader
+@export var ritual_sites: Node2D
+
 @onready var main_ui: Control = $CanvasLayer/GameUI
-
 @onready var patrol_path = $Ground/Path2D
-@onready var minion_spawn = $Minions
-@onready var crusader = $Crusader
 
-@onready var ritual_sites = $RitualSites
-@onready var total_ritual_sites = ritual_sites.get_child_count()
+var total_ritual_sites: int
 var sites_cleansed: int = 0
 
 func _ready() -> void:
 	GameManager.main_game = self
-	
+	total_ritual_sites = ritual_sites.get_child_count()
+
 	for site in ritual_sites.get_children():
 		site.cleansed.connect(_on_ritual_site_cleansed)
 	crusader.death.connect(_on_crusader_killed)

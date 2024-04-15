@@ -19,7 +19,7 @@
 [ext_resource type="PackedScene" uid="uid://crdcf3pu3urwg" path="res://src/ui/status/status_ui.tscn" id="14_q5bwy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ci4kf"]
-size = Vector2(32, 32)
+size = Vector2(21, 44)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_v6t7d"]
 radius = 40.0
@@ -165,10 +165,11 @@ grow_vertical = 2
 color = Color(0.431373, 0.427451, 0.415686, 1)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.0529704, 0.0378617)
+scale = Vector2(0.08, 0.08)
 texture = ExtResource("4_xl27w")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, 1)
 shape = SubResource("RectangleShape2D_ci4kf")
 
 [node name="AttackRange" type="Area2D" parent="."]

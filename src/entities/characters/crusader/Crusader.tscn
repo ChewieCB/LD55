@@ -178,24 +178,9 @@ script = ExtResource("1_0cjda")
 resource_attributes = ExtResource("2_jwm8m")
 attacks = Array[Resource("res://src/entities/characters/attack_resource.gd")]([ExtResource("3_au4vg"), ExtResource("5_pbuhd"), ExtResource("4_50p0w"), ExtResource("6_0yoop"), ExtResource("7_m83wk")])
 
-[node name="ColorRect" type="ColorRect" parent="."]
-visible = false
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -17.0
-offset_top = -17.0
-offset_right = 17.0
-offset_bottom = 17.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0.403922, 0.756863, 0.894118, 1)
-
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(-2, -2)
-scale = Vector2(0.04, 0.04)
+scale = Vector2(0.1, 0.1)
 texture = ExtResource("8_thchg")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
