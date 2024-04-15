@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://src/ui/spell_ui/spell_ui.gd" id="1_uvawi"]
 [ext_resource type="Texture2D" uid="uid://klywda7vhx06" path="res://assets/ui/lef panel.png" id="2_00xkd"]
-[ext_resource type="Texture2D" uid="uid://bpx12m7d1tt0q" path="res://assets/ui/altar.png" id="3_px7ni"]
+[ext_resource type="Texture2D" uid="uid://b71fq4cv7mtv" path="res://assets/ui/spell_pedestal.png" id="3_1eqgo"]
 [ext_resource type="Texture2D" uid="uid://c3ydalaynuwlg" path="res://assets/ui/right panel.png" id="3_rvh61"]
 [ext_resource type="FontFile" uid="uid://b21yg3y2byt8f" path="res://assets/fonts/AvQest.ttf" id="4_ghdfr"]
 [ext_resource type="PackedScene" uid="uid://cfx8vo87aq1aj" path="res://src/ui/spell_ui/SpellCompRow.tscn" id="5_f7kuw"]
@@ -16,42 +16,6 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_uvawi")
 spell_comp_row_prefab = ExtResource("5_f7kuw")
-
-[node name="SpellPanel" type="TextureRect" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = 376.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("3_px7ni")
-expand_mode = 3
-stretch_mode = 5
-
-[node name="Panel" type="Panel" parent="SpellPanel"]
-layout_mode = 0
-offset_left = 339.0
-offset_top = 494.0
-offset_right = 734.0
-offset_bottom = 619.0
-
-[node name="Label" type="RichTextLabel" parent="SpellPanel"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 350.0
-offset_top = 522.0
-offset_right = -1158.0
-offset_bottom = -36.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_fonts/normal_font = ExtResource("4_ghdfr")
-theme_override_font_sizes/normal_font_size = 24
-bbcode_enabled = true
-text = "Failed spell. Press space to cast again."
-scroll_active = false
 
 [node name="BackgroundArt" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -142,3 +106,51 @@ grow_vertical = 2
 
 [node name="PrefixRow" parent="SpellContainer" instance=ExtResource("5_f7kuw")]
 layout_mode = 2
+
+[node name="SpellPanel" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -128.0
+offset_right = 449.0
+offset_bottom = 6.0
+grow_vertical = 0
+texture = ExtResource("3_1eqgo")
+expand_mode = 1
+
+[node name="Label" type="RichTextLabel" parent="SpellPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = 16.0
+offset_right = -73.0
+offset_bottom = -64.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_fonts/normal_font = ExtResource("4_ghdfr")
+theme_override_font_sizes/normal_font_size = 24
+bbcode_enabled = true
+text = "Failed spell. Press space to cast again."
+fit_content = true
+scroll_active = false
+
+[node name="MouseSpellIndicator" type="RichTextLabel" parent="."]
+modulate = Color(1, 1, 1, 0.643137)
+layout_mode = 0
+offset_left = 416.0
+offset_top = 24.0
+offset_right = 672.0
+offset_bottom = 100.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_fonts/normal_font = ExtResource("4_ghdfr")
+bbcode_enabled = true
+fit_content = true
+scroll_active = false

@@ -4,7 +4,6 @@ class_name MinionBase
 var crusader: Crusader
 var crusader_target: Vector2
 
-
 func _spawn():
 	resource_attributes.play_summon_sfx()
 	# TODO - play some animation or effect before beginning the movement
@@ -55,9 +54,9 @@ func _on_attacking_idle_state_physics_processing(_delta):
 	var attack_priority = [
 		attacks[0],
 	]
-	for _attack in attack_priority:
-		if not is_in_cooldown(_attack):
-			current_attack = _attack
+	for elem in attack_priority:
+		if not is_in_cooldown(elem):
+			current_attack = elem
 			break
 	
 	if current_attack:

@@ -2,10 +2,9 @@
 
 [ext_resource type="Script" path="res://src/entities/characters/crusader/crusader.gd" id="1_0cjda"]
 [ext_resource type="Resource" uid="uid://b5dljo4pci4to" path="res://src/entities/characters/crusader/crusader_attributes.tres" id="2_jwm8m"]
-[ext_resource type="Texture2D" uid="uid://tbaw03mlpcud" path="res://assets/temp/malina-bg.png" id="2_svunf"]
 [ext_resource type="Resource" uid="uid://cs0ahufxrbf1t" path="res://src/entities/characters/crusader/crusader_attacks/CrusaderBasicAttack.tres" id="3_au4vg"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/state_chart.gd" id="3_hr7jo"]
-[ext_resource type="Resource" uid="uid://bfr671pxbeh7j" path="res://src/entities/characters/crusader/crusader_attacks/CrusaderAOEAttack.tres" id="4_50p0w"]
+[ext_resource type="Resource" path="res://src/entities/characters/crusader/crusader_attacks/CrusaderAOEAttack.tres" id="4_50p0w"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/parallel_state.gd" id="4_mr8e3"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/compound_state.gd" id="5_6ihxl"]
 [ext_resource type="Resource" uid="uid://dc1uya6c085x5" path="res://src/entities/characters/crusader/crusader_attacks/CrusaderSpinAttack.tres" id="5_pbuhd"]
@@ -218,8 +217,8 @@ color = Color(0.403922, 0.756863, 0.894118, 1)
 [node name="CatSprite" type="Sprite2D" parent="."]
 visible = false
 position = Vector2(0.0360824, 1.2815e-06)
-scale = Vector2(0.0619958, 0.0659794)
-texture = ExtResource("2_svunf")
+scale = Vector2(0.03, 0.03)
+texture = ExtResource("6_rytx7")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.04, 0.04)

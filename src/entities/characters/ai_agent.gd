@@ -145,7 +145,7 @@ func _attack(attack: AttackResource):
 				)
 			target.current_health -= modified_damage
 			
-			if modified_damage > 0: 
+			if modified_damage > 0:
 				# TODO - spawn a particle emitter for each attack instance
 				anim_player.play("attack")
 				attack.play_attack_sfx()
@@ -165,23 +165,20 @@ func _attack(attack: AttackResource):
 	await attack_particles.finished
 	attack_particles.global_position = Vector2.ZERO
 
-
 func _attack_cooldown(attack: AttackResource):
 	in_cooldown.append(attack)
-	var cooldown_timer = get_tree().create_timer(
+	var cd_timer = get_tree().create_timer(
 		attack.cooldown * remap(attributes.dexterity, 0, 1, 3, 0.25)
 	)
-	cooldown_timers.append(cooldown_timer)
+	cooldown_timers.append(cd_timer)
 	
-	await cooldown_timer.timeout
+	await cd_timer.timeout
 	
 	in_cooldown.erase(attack)
-	cooldown_timers.erase(cooldown_timer)
-
+	cooldown_timers.erase(cd_timer)
 
 func is_in_cooldown(attack: AttackResource):
 	return in_cooldown.has(attack)
-
 
 func _stagger():
 	state_chart.send_event("stagger")

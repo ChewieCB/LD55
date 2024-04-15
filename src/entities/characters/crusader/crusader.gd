@@ -136,9 +136,9 @@ func _on_default_stance_state_physics_processing(delta):
 		attacks[AttackNames.SPIN],
 		attacks[AttackNames.BASIC_ATTACK]
 	]
-	for _attack in attack_priority:
-		if not is_in_cooldown(_attack):
-			current_attack = _attack
+	for elem in attack_priority:
+		if not is_in_cooldown(elem):
+			current_attack = elem
 			break
 	
 	if current_attack:
@@ -247,8 +247,7 @@ func _on_attacking_buildup_state_entered():
 	buildup_bar.value = 0
 	buildup_timer.start(current_attack.attack_delay)
 
-
-func _on_buildup_state_physics_processing(delta):
+func _on_buildup_state_physics_processing(_delta):
 	if not buildup_timer.is_stopped():
 		buildup_bar.value = remap(
 			buildup_timer.time_left / current_attack.attack_delay,
@@ -260,7 +259,6 @@ func _on_attacking_buildup_state_exited():
 	buildup_bar.value = 0
 	buildup_timer.stop()
 
-
 func _on_attacking_attack_state_entered():
 	if is_in_cooldown(current_attack):
 		state_chart.send_event("finish_attack")
@@ -268,7 +266,6 @@ func _on_attacking_attack_state_entered():
 	
 	_attack(current_attack)
 	buildup_bar.value = 100
-
 
 func _on_hit_state_entered():
 	anim_player.play("hurt")
@@ -305,7 +302,6 @@ func _on_status_stunned_state_exited():
 func _on_stagger_stun_timer_timeout():
 	state_chart.send_event("recover_stagger")
 	state_chart.send_event("recover_stun")
-
 
 func _on_attack_buildup_timer_timeout():
 	state_chart.send_event("perform_attack")

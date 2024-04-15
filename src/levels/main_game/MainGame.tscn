@@ -331,7 +331,7 @@ position = Vector2(491, 100)
 [node name="Minions" type="Node2D" parent="."]
 
 [node name="Crusader" parent="." instance=ExtResource("4_udo82")]
-position = Vector2(246, 39)
+position = Vector2(253, -148)
 
 [node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("player")]
 position_smoothing_enabled = true
