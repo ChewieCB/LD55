@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://cls1x1wx2icgw" path="res://assets/temp/Space Background.png" id="1_prdx4"]
 [ext_resource type="Script" path="res://src/levels/main_scene/main_scene.gd" id="1_vnu07"]
 [ext_resource type="Script" path="res://src/levels/main_scene/animated_button.gd" id="4_b7wsb"]
-[ext_resource type="PackedScene" uid="uid://dj18tmsspff4d" path="res://src/ui/common/BorderedButton.tscn" id="4_df5ml"]
+[ext_resource type="PackedScene" uid="uid://dj18tmsspff4d" path="res://src/ui/common/StyledButton.tscn" id="4_df5ml"]
 [ext_resource type="FontFile" uid="uid://b21yg3y2byt8f" path="res://assets/fonts/AvQest.ttf" id="5_7ycku"]
 [ext_resource type="Texture2D" uid="uid://bnyh2q7x1nuyk" path="res://assets/cutscene/tutorial.png" id="5_fhexy"]
 [ext_resource type="Texture2D" uid="uid://cahh042xli854" path="res://assets/ui/kenney_borders/Default/Border/panel-border-000.png" id="6_22r4t"]
