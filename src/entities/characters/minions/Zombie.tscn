@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://c7jvs3fcwp2j1"]
+[gd_scene load_steps=39 format=3 uid="uid://c7jvs3fcwp2j1"]
 
 [ext_resource type="Script" path="res://src/entities/characters/minions/minion_base.gd" id="1_56qy7"]
 [ext_resource type="Resource" uid="uid://cctfuamkj3rqr" path="res://src/entities/characters/minions/ZombieAttributes.tres" id="2_c651r"]
@@ -98,11 +98,46 @@ tracks/1/keys = {
 "values": [true]
 }
 
+[sub_resource type="Animation" id="Animation_vbusd"]
+resource_name = "default"
+length = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.2, 0.2)]
+}
+
+[sub_resource type="Animation" id="Animation_juc7o"]
+resource_name = "spawn_2"
+length = 0.3
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(0.63728, 0.450625, 1.93187, 1),
+"update": 0,
+"values": [Vector2(0.2, 0), Vector2(0.2, 0.2), Vector2(0.2, 0.25), Vector2(0.2, 0.2)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_lj4jm"]
 _data = {
 "attack": SubResource("Animation_a6hs8"),
 "death": SubResource("Animation_qcj21"),
-"hurt": ExtResource("13_y3j6l")
+"default": SubResource("Animation_vbusd"),
+"hurt": ExtResource("13_y3j6l"),
+"spawn": SubResource("Animation_juc7o")
 }
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_lb03b"]
@@ -173,7 +208,7 @@ color = Color(0.0235294, 0.466667, 0.0117647, 1)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_vlocc")
-scale = Vector2(0.2, 0.2)
+scale = Vector2(0.25, 1e-05)
 texture = ExtResource("4_w3q0o")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -314,6 +349,7 @@ event = &"recover_stun"
 libraries = {
 "": SubResource("AnimationLibrary_lj4jm")
 }
+autoplay = "default"
 
 [node name="AttackParticles" type="GPUParticles2D" parent="."]
 material = SubResource("CanvasItemMaterial_lb03b")

@@ -10,6 +10,7 @@ func _spawn():
 	health_ui.max_value = attributes.health
 	if attacks:
 		current_attack = attacks[0]
+	anim_player.play("spawn")
 
 func _process(_delta):
 	health_ui.value = current_health
@@ -27,6 +28,8 @@ func _on_idle_state_entered():
 
 func _on_idle_state_physics_processing(_delta):
 	if nav_agent.target_position:
+		# Wait for spawn anim to finish
+		await anim_player.animation_finished
 		state_chart.send_event("start_walking")
 	return
 
