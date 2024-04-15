@@ -17,6 +17,7 @@
 [ext_resource type="Animation" uid="uid://dbxt5qt54x8o" path="res://assets/anims/hurt.res" id="13_xvg8j"]
 [ext_resource type="Texture2D" uid="uid://brmlt6rgwrn1w" path="res://assets/particles/Explosion_2_64x64.png" id="14_eqdax"]
 [ext_resource type="PackedScene" uid="uid://crdcf3pu3urwg" path="res://src/ui/status/status_ui.tscn" id="14_q5bwy"]
+[ext_resource type="PackedScene" uid="uid://cklnh2ojwuuxe" path="res://src/entities/characters/minions/MinionHealthBar.tscn" id="17_ivnfs"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ci4kf"]
 size = Vector2(21, 44)
@@ -137,9 +138,6 @@ scale_min = 0.7
 scale_max = 1.3
 anim_speed_min = 1.0
 anim_speed_max = 1.0
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bif26"]
-bg_color = Color(0.843137, 0.196078, 0.0666667, 1)
 
 [node name="Skeleton" type="CharacterBody2D"]
 y_sort_enabled = true
@@ -348,21 +346,7 @@ one_shot = true
 [node name="StaggerStunTimer" type="Timer" parent="."]
 one_shot = true
 
-[node name="HealthBar" type="ProgressBar" parent="."]
-self_modulate = Color(1, 1, 1, 0.631373)
-z_index = 1
-custom_minimum_size = Vector2(0, 4)
-anchors_preset = 10
-anchor_right = 1.0
-offset_left = -32.0
-offset_top = -24.0
-offset_right = 31.0
-offset_bottom = -20.0
-grow_horizontal = 2
-size_flags_vertical = 4
-theme_override_styles/fill = SubResource("StyleBoxFlat_bif26")
-value = 100.0
-show_percentage = false
+[node name="HealthBar" parent="." instance=ExtResource("17_ivnfs")]
 
 [node name="StatusUI" parent="." instance=ExtResource("14_q5bwy")]
 

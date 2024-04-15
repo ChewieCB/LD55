@@ -4,6 +4,7 @@
 [ext_resource type="Script" path="res://src/entities/ritual_point/ritual_point.gd" id="1_smowv"]
 [ext_resource type="Texture2D" uid="uid://bwf2tcdl5xxjr" path="res://assets/environment/Altar_2x2_Tile1.png" id="2_njwho"]
 [ext_resource type="Texture2D" uid="uid://cewud2lc7rcrj" path="res://assets/particles/HolyExplosion_96x96_transparent.png" id="3_xpg1o"]
+[ext_resource type="Texture2D" uid="uid://2tmaxolkdoh3" path="res://assets/ui/kenney_borders/Default/Panel/panel-000.png" id="5_l7h55"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_t32jr"]
 radius = 128.0
@@ -94,9 +95,6 @@ _data = {
 "default": SubResource("Animation_yfe30")
 }
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5nkkn"]
-bg_color = Color(0.176471, 0.560784, 0.243137, 1)
-
 [node name="RitualPoint" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_smowv")
@@ -142,19 +140,28 @@ libraries = {
 }
 autoplay = "default"
 
-[node name="CleanseBar" type="ProgressBar" parent="."]
+[node name="CleanseBar" type="TextureProgressBar" parent="."]
+self_modulate = Color(1, 1, 1, 0.752941)
 z_index = 1
 custom_minimum_size = Vector2(0, 4)
 anchors_preset = 10
 anchor_right = 1.0
-offset_left = -31.0
-offset_top = -32.0
-offset_right = 32.0
-offset_bottom = -22.0
+offset_left = -40.0
+offset_top = -53.0
+offset_right = 40.0
+offset_bottom = -39.0
 grow_horizontal = 2
 size_flags_vertical = 4
-theme_override_styles/fill = SubResource("StyleBoxFlat_5nkkn")
-show_percentage = false
+value = 25.0
+nine_patch_stretch = true
+stretch_margin_left = 20
+stretch_margin_top = 7
+stretch_margin_right = 20
+stretch_margin_bottom = 7
+texture_under = ExtResource("5_l7h55")
+texture_progress = ExtResource("5_l7h55")
+tint_under = Color(0, 0, 0, 1)
+tint_progress = Color(0.0784314, 1, 0.054902, 1)
 
 [connection signal="body_entered" from="Range" to="." method="_on_range_body_entered"]
 [connection signal="body_entered" from="CleansingArea" to="." method="_on_cleansing_area_body_entered"]

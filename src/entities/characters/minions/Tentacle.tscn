@@ -22,6 +22,7 @@
 [ext_resource type="Material" uid="uid://5rp36woe5yso" path="res://src/entities/characters/minions/minion_attacks/particle_resources/ExplosionParticleProcessMaterial.tres" id="19_dufxh"]
 [ext_resource type="Texture2D" uid="uid://brmlt6rgwrn1w" path="res://assets/particles/Explosion_2_64x64.png" id="20_wo7v1"]
 [ext_resource type="PackedScene" uid="uid://crdcf3pu3urwg" path="res://src/ui/status/status_ui.tscn" id="21_xdnrx"]
+[ext_resource type="PackedScene" uid="uid://cklnh2ojwuuxe" path="res://src/entities/characters/minions/MinionHealthBar.tscn" id="22_aa55a"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ci4kf"]
 size = Vector2(64, 64)
@@ -111,9 +112,6 @@ particle_flag_disable_z = true
 gravity = Vector3(0, 0, 0)
 anim_speed_min = 1.0
 anim_speed_max = 1.0
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bif26"]
-bg_color = Color(0.843137, 0.196078, 0.0666667, 1)
 
 [node name="Tentacle" type="CharacterBody2D"]
 y_sort_enabled = true
@@ -307,20 +305,11 @@ one_shot = true
 [node name="StaggerStunTimer" type="Timer" parent="."]
 one_shot = true
 
-[node name="HealthBar" type="ProgressBar" parent="."]
-z_index = 1
-custom_minimum_size = Vector2(0, 4)
-anchors_preset = 10
-anchor_right = 1.0
-offset_left = -32.0
-offset_top = -24.0
-offset_right = 31.0
-offset_bottom = -20.0
-grow_horizontal = 2
-size_flags_vertical = 4
-theme_override_styles/fill = SubResource("StyleBoxFlat_bif26")
-value = 100.0
-show_percentage = false
+[node name="HealthBar" parent="." instance=ExtResource("22_aa55a")]
+offset_left = -31.0
+offset_top = -41.0
+offset_right = 33.0
+offset_bottom = -31.0
 
 [node name="StatusUI" parent="." instance=ExtResource("21_xdnrx")]
 
