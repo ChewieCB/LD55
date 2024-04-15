@@ -52,7 +52,10 @@ var raw_input: String = "":
 		current_spell = null
 var input_arrow_repr: String = "":
 	set(value):
+		if value == input_arrow_repr:
+			return
 		input_arrow_repr = value
+		play_spell_input_sfx()
 		GameManager.game_ui.spell_ui.set_spell_label("Input: %s" % input_arrow_repr)
 		GameManager.game_ui.spell_ui.set_mouse_indicator(input_arrow_repr)
 
@@ -109,6 +112,7 @@ func start_cast():
 	spell_ready = false
 
 func confirm_spell():
+	play_confirm_spell_sfx()
 	is_casting = false
 	if not current_spell:
 		GameManager.game_ui.spell_ui.set_spell_label("[color=red]Failed spell![/color]")
@@ -220,3 +224,11 @@ func cast_input(input: String):
 	# FIXME - emit a signal using the current_spell signal
 	# GameManager.game_ui.spell_ui.set_spell_label("Input: " + Utils.convert_text_to_arrow(raw_input))
 	SoundManager.play_sound(input_sfx[randi_range(0, input_sfx.size() - 1)])
+
+func play_spell_input_sfx():
+	# TODO: Replace with better sfx
+	Utils.play_button_hover_sfx()
+
+func play_confirm_spell_sfx():
+	# TODO: Replace with better sfx
+	Utils.play_button_click_sfx()
