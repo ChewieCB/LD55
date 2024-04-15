@@ -9,13 +9,10 @@ var game_ui: GameUI
 var main_game: MainGame
 var endgame_ui: EndgameUI
 var crusader: Crusader
+var setting_ui: SettingUI
 
 func _ready():
 	SoundManager.play_music(bgm, 0.0, "Music")
-
-func _input(_event):
-	if Input.is_action_just_pressed("ui_cancel"):
-		get_tree().change_scene_to_file("res://src/levels/main_scene/MainScene.tscn")
 
 func end_game(victory: bool):
 	emit_signal("game_ended")

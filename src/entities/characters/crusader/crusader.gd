@@ -23,7 +23,7 @@ var current_stance: Stance = Stance.FAST
 
 # TODO - move to AIAgent base class
 @onready var buildup_bar = $AttackBuildup
-@onready var stance_timer  = $StanceTimer
+@onready var stance_timer = $StanceTimer
 
 @onready var engagement_range = $EngagementRange
 
@@ -121,12 +121,10 @@ func _on_action_cleansing_state_physics_processing(delta):
 		return
 	finish_cleanse()
 
-
 func _on_default_stance_state_entered():
 	current_speed = attributes.speed * 1.7
 
-
-func _on_default_stance_state_physics_processing(delta):
+func _on_default_stance_state_physics_processing(_delta):
 	# For dealing with hordes, lots of fast, low damage attacks with many targets
 	#
 	# Generic cooldown for all attacks
@@ -149,17 +147,14 @@ func _on_default_stance_state_physics_processing(delta):
 			state_chart.send_event("attack")
 			return
 
-
 func _on_default_stance_state_exited():
 	current_speed = attributes.speed
-
 
 func _on_tank_stance_state_entered():
 	current_speed = attributes.speed * 0.35
 	current_armour = attributes.armour * 2
 
-
-func _on_tank_stance_state_physics_processing(delta):
+func _on_tank_stance_state_physics_processing(_delta):
 	# For dealing with elites, move slowly, increase armour
 	#
 	# Generic cooldown for all attacks
@@ -171,9 +166,9 @@ func _on_tank_stance_state_physics_processing(delta):
 		attacks[AttackNames.CLEAVE],
 		attacks[AttackNames.BASIC_ATTACK]
 	]
-	for _attack in attack_priority:
-		if not is_in_cooldown(_attack):
-			current_attack = _attack
+	for elem in attack_priority:
+		if not is_in_cooldown(elem):
+			current_attack = elem
 			break
 	
 	if current_attack:
@@ -182,15 +177,12 @@ func _on_tank_stance_state_physics_processing(delta):
 			state_chart.send_event("attack")
 			return
 
-
 func _on_tank_stance_state_exited():
 	current_speed = attributes.speed
 	current_armour = attributes.armour
 
-
 func _on_attacking_idle_state_entered():
 	pass
-
 
 func get_most_common_minion_type():
 	# Query the engagement radius around the crusader to get bodies
@@ -228,8 +220,7 @@ func get_most_common_minion_type():
 			priority_minions
 		]
 
-
-func _on_attacking_idle_state_physics_processing(delta):
+func _on_attacking_idle_state_physics_processing(_delta):
 	if stance_timer.is_stopped():
 		var most_common_minions = get_most_common_minion_type()
 		if most_common_minions:
@@ -276,7 +267,6 @@ func _on_attacking_idle_state_physics_processing(delta):
 					#max_cooldown_time, 0,
 					#0, 100
 				#)
-
 
 func _on_attacking_buildup_state_entered():
 	buildup_bar.value = 0
@@ -340,4 +330,3 @@ func _on_stagger_stun_timer_timeout():
 
 func _on_attack_buildup_timer_timeout():
 	state_chart.send_event("perform_attack")
-

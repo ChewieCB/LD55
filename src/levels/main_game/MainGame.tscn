@@ -1,8 +1,7 @@
-[gd_scene load_steps=19 format=3 uid="uid://bjabavwsrnt0y"]
+[gd_scene load_steps=18 format=3 uid="uid://bjabavwsrnt0y"]
 
 [ext_resource type="Script" path="res://src/levels/main_game/main_game.gd" id="1_4qjmh"]
 [ext_resource type="Texture2D" uid="uid://8q5gyn8ex2wv" path="res://assets/sprite/square.png" id="1_vuavk"]
-[ext_resource type="Texture2D" uid="uid://cjwi0pfmn0q6j" path="res://assets/sprite/home_building.png" id="2_ryj4c"]
 [ext_resource type="Script" path="res://src/levels/main_game/follow_camera.gd" id="3_nexuo"]
 [ext_resource type="PackedScene" uid="uid://binmlcu1tn3wn" path="res://src/entities/ritual_point/RitualPoint.tscn" id="4_62qie"]
 [ext_resource type="Texture2D" uid="uid://vm6e1lcvslcx" path="res://assets/environment/Tree._1x2_Tile1png.png" id="4_bwafd"]
@@ -15,6 +14,7 @@
 [ext_resource type="Resource" uid="uid://cj3odtgn32j5g" path="res://src/entities/player/prefix/triangle.tres" id="13_4fnmm"]
 [ext_resource type="Resource" uid="uid://deu8alrv0hxfy" path="res://src/entities/player/prefix/agile.tres" id="14_qcq4r"]
 [ext_resource type="Resource" uid="uid://d002fmxjkp77y" path="res://src/entities/player/prefix/tough.tres" id="15_7hpi6"]
+[ext_resource type="PackedScene" uid="uid://kvwa5lh7hoh2" path="res://src/ui/SettingUI.tscn" id="17_xfjr0"]
 
 [sub_resource type="Curve2D" id="Curve2D_g2yoo"]
 _data = {
@@ -27,9 +27,6 @@ vertices = PackedVector2Array(753, 424, 783, 333, 783, 334, 821, 243, 670, 16, 1
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2), PackedInt32Array(3, 4, 5, 6, 7), PackedInt32Array(4, 3, 8), PackedInt32Array(0, 2, 3, 7, 9), PackedInt32Array(0, 9, 10, 11), PackedInt32Array(11, 10, 12, 13), PackedInt32Array(14, 13, 12), PackedInt32Array(15, 14, 12, 16, 4), PackedInt32Array(17, 15, 4, 8)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(3, -1, 2, 765, 1359, 770, 747, 415, 390, 401, 332, 308, 333, 200, 526, 166, 753, 198, 673, -5), PackedVector2Array(1369, 3, 663, 7, 740, 183, 809, 246, 774, 330, 744, 423, 1321, 758, 1372, 768)])
 source_geometry_group_name = &"navigation_polygon_source_group"
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_w0twn"]
-size = Vector2(175, 63.5)
 
 [node name="MainGame" type="Node2D"]
 script = ExtResource("1_4qjmh")
@@ -55,19 +52,6 @@ navigation_polygon = SubResource("NavigationPolygon_e1llw")
 
 [node name="YSort" type="Node2D" parent="."]
 y_sort_enabled = true
-
-[node name="HomeBuilding" type="StaticBody2D" parent="YSort"]
-position = Vector2(556, 276)
-scale = Vector2(2, 2)
-collision_layer = 4
-collision_mask = 0
-
-[node name="Sprite2D" type="Sprite2D" parent="YSort/HomeBuilding"]
-texture = ExtResource("2_ryj4c")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="YSort/HomeBuilding"]
-position = Vector2(5.5, 21.75)
-shape = SubResource("RectangleShape2D_w0twn")
 
 [node name="ArtDecorations" type="Node2D" parent="YSort"]
 
@@ -133,6 +117,11 @@ texture = ExtResource("4_bwafd")
 
 [node name="Tree13" type="Sprite2D" parent="YSort/ArtDecorations"]
 position = Vector2(636, 823)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("4_bwafd")
+
+[node name="Tree38" type="Sprite2D" parent="YSort/ArtDecorations"]
+position = Vector2(513, 324)
 scale = Vector2(0.1, 0.1)
 texture = ExtResource("4_bwafd")
 
@@ -256,7 +245,7 @@ position = Vector2(1090, 20)
 scale = Vector2(0.1, 0.1)
 texture = ExtResource("4_bwafd")
 
-[node name="Sprite2D" type="Sprite2D" parent="YSort/ArtDecorations"]
+[node name="Tombstone" type="Sprite2D" parent="YSort/ArtDecorations"]
 position = Vector2(304, 540)
 scale = Vector2(0.1, 0.1)
 texture = ExtResource("5_4uejn")
@@ -347,3 +336,6 @@ crusader = NodePath("../Crusader")
 [node name="GameUI" parent="CanvasLayer" instance=ExtResource("6_k6rr8")]
 
 [node name="EndgameUI" parent="CanvasLayer" instance=ExtResource("12_jv3wu")]
+
+[node name="SettingUI" parent="CanvasLayer" instance=ExtResource("17_xfjr0")]
+visible = false

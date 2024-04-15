@@ -1,5 +1,8 @@
 extends Node
 
+@onready var button_click_sfx = preload ("res://assets/sfx/ui/button_click.ogg")
+@onready var button_hover_sfx = preload ("res://assets/sfx/ui/button_hover.ogg")
+
 func convert_text_to_arrow(text: String, color_str: String="", size: int=30):
 	var result = ""
 	for character in text:
@@ -13,3 +16,9 @@ func convert_text_to_arrow(text: String, color_str: String="", size: int=30):
 			"D":
 				result += "[img={0} color={1}]res://assets/sprite/arrow_down.png[/img]".format([size, color_str])
 	return result
+
+func play_button_click_sfx():
+	SoundManager.play_sound(button_click_sfx, "SFX", true)
+
+func play_button_hover_sfx():
+	SoundManager.play_sound(button_hover_sfx, "SFX", true)
