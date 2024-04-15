@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=3 uid="uid://bev1egpx7qcvi"]
+[gd_scene load_steps=50 format=3 uid="uid://bev1egpx7qcvi"]
 
 [ext_resource type="Script" path="res://src/entities/characters/crusader/crusader.gd" id="1_0cjda"]
 [ext_resource type="Resource" uid="uid://b5dljo4pci4to" path="res://src/entities/characters/crusader/crusader_attributes.tres" id="2_jwm8m"]
@@ -13,6 +13,7 @@
 [ext_resource type="Script" path="res://addons/godot_state_charts/atomic_state.gd" id="6_w7y78"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/transition.gd" id="7_v3ig5"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/state_is_active_guard.gd" id="8_6fl0h"]
+[ext_resource type="Texture2D" uid="uid://c2qttgl5gxlx5" path="res://assets/sprite/characters/crusader/crusader.png" id="8_thchg"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/not_guard.gd" id="9_30nyi"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/all_of_guard.gd" id="10_slxhv"]
 [ext_resource type="PackedScene" uid="uid://crdcf3pu3urwg" path="res://src/ui/status/status_ui.tscn" id="14_vj2d1"]
@@ -126,7 +127,7 @@ step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:modulate")
+tracks/0/path = NodePath("CatSprite:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -138,7 +139,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D:position")
+tracks/1/path = NodePath("CatSprite:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -199,6 +200,7 @@ resource_attributes = ExtResource("2_jwm8m")
 attacks = Array[Resource("res://src/entities/characters/attack_resource.gd")]([ExtResource("3_au4vg"), ExtResource("5_pbuhd"), ExtResource("4_50p0w"), ExtResource("6_0yoop"), null])
 
 [node name="ColorRect" type="ColorRect" parent="."]
+visible = false
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -212,10 +214,15 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.403922, 0.756863, 0.894118, 1)
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="CatSprite" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(0.0360824, 1.2815e-06)
 scale = Vector2(0.0619958, 0.0659794)
 texture = ExtResource("2_svunf")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.04, 0.04)
+texture = ExtResource("8_thchg")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_ci4kf")
