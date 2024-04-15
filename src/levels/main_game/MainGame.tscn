@@ -58,7 +58,7 @@ shader_parameter/overlay = true
 shader_parameter/scanlines_opacity = 0.4
 shader_parameter/scanlines_width = 0.25
 shader_parameter/grille_opacity = 0.0
-shader_parameter/resolution = Vector2(960, 480)
+shader_parameter/resolution = Vector2(640, 480)
 shader_parameter/pixelate = false
 shader_parameter/roll = false
 shader_parameter/roll_speed = 1.0
@@ -395,7 +395,6 @@ layer = 0
 motion_mirroring = Vector2(1920, 1080)
 
 [node name="FogShader" type="ColorRect" parent="ParallaxBackground/ParallaxLayer"]
-visible = false
 material = SubResource("ShaderMaterial_ndmxn")
 offset_right = 1920.0
 offset_bottom = 1080.0

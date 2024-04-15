@@ -108,17 +108,14 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("1_prdx4")
+expand_mode = 1
 
 [node name="Title" type="RichTextLabel" parent="CanvasLayer/Menu"]
 layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -848.0
+offset_left = 112.0
 offset_top = 56.0
-offset_right = -204.001
+offset_right = 732.0
 offset_bottom = 362.0
-grow_horizontal = 2
 theme_override_fonts/normal_font = ExtResource("5_7ycku")
 theme_override_font_sizes/normal_font_size = 120
 bbcode_enabled = true
@@ -141,29 +138,50 @@ grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
 [node name="StartButton" parent="CanvasLayer/Menu/ButtonBackground" instance=ExtResource("4_df5ml")]
-layout_mode = 0
-offset_left = 72.0
-offset_top = 832.0
-offset_right = 372.0
-offset_bottom = 917.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = 136.0
+offset_right = 150.0
+offset_bottom = 213.0
+grow_horizontal = 2
+grow_vertical = 2
 text = "Start"
 script = ExtResource("4_b7wsb")
 
 [node name="TutorialButton" parent="CanvasLayer/Menu/ButtonBackground" instance=ExtResource("4_df5ml")]
-layout_mode = 0
-offset_left = 72.0
-offset_top = 936.0
-offset_right = 372.0
-offset_bottom = 1021.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = 232.0
+offset_right = 150.0
+offset_bottom = 317.0
+grow_horizontal = 2
+grow_vertical = 2
 text = "Tutorial"
 script = ExtResource("4_b7wsb")
 
 [node name="QuitButton" parent="CanvasLayer/Menu/ButtonBackground" instance=ExtResource("4_df5ml")]
-layout_mode = 0
-offset_left = 72.0
-offset_top = 1040.0
-offset_right = 372.0
-offset_bottom = 1125.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = 336.0
+offset_right = 150.0
+offset_bottom = 421.0
+grow_horizontal = 2
+grow_vertical = 2
 text = "Quit"
 script = ExtResource("4_b7wsb")
 
@@ -175,9 +193,9 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -35.0
-offset_top = -223.0
+offset_top = -232.0
 offset_right = 35.0
-offset_bottom = -184.0
+offset_bottom = -193.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_fonts/font = ExtResource("5_7ycku")
@@ -209,11 +227,14 @@ color = Color(0, 0, 0, 0)
 
 [node name="Tutorial" type="Control" parent="CanvasLayer"]
 layout_mode = 3
-anchors_preset = 0
-offset_left = 128.0
-offset_top = 384.0
-offset_right = 1216.0
-offset_bottom = 960.0
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 64.0
+offset_top = -632.0
+offset_right = 1152.0
+offset_bottom = -56.0
+grow_vertical = 0
 
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer/Tutorial"]
 layout_mode = 1

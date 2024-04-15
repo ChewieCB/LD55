@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://src/ui/spell_ui/spell_comp_row.gd" id="1_2chlb"]
 [ext_resource type="FontFile" uid="uid://b21yg3y2byt8f" path="res://assets/fonts/AvQest.ttf" id="1_tx8xt"]
-[ext_resource type="Texture2D" uid="uid://8q5gyn8ex2wv" path="res://assets/sprite/square.png" id="3_khme5"]
+[ext_resource type="Texture2D" uid="uid://2tmaxolkdoh3" path="res://assets/ui/kenney_borders/Default/Panel/panel-000.png" id="3_du28f"]
 
 [node name="SpellCompRow" type="MarginContainer"]
 offset_right = 256.0
@@ -53,8 +53,12 @@ custom_minimum_size = Vector2(0, 5)
 layout_mode = 2
 value = 25.0
 nine_patch_stretch = true
-texture_under = ExtResource("3_khme5")
-texture_progress = ExtResource("3_khme5")
+stretch_margin_left = 12
+stretch_margin_top = 7
+stretch_margin_right = 12
+stretch_margin_bottom = 7
+texture_under = ExtResource("3_du28f")
+texture_progress = ExtResource("3_du28f")
 tint_under = Color(0, 0, 0, 1)
 tint_progress = Color(0.168627, 1, 0.00784314, 1)
 
