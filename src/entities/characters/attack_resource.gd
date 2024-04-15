@@ -13,7 +13,7 @@ enum TargetingMode {
 
 @export_category("Stats")
 @export var attack_range: int = 40
-@export var attack_delay: float = 0.0 
+@export var attack_delay: float = 0.0
 @export var cooldown: float = 1.0
 @export var damage: int = 10
 @export var armour_penetration: int = 0
@@ -29,7 +29,6 @@ enum TargetingMode {
 @export var attack_sfx: Array[AudioStream]
 @export var block_sfx: Array[AudioStream]
 
-
 func get_targets(attacker: AIAgent):
 	# Get target
 	var bodies_in_range = attacker.attack_range_area.get_overlapping_bodies()
@@ -44,7 +43,6 @@ func get_targets(attacker: AIAgent):
 	if not bodies_in_range:
 		return
 	
-	var target: AIAgent
 	match targeting_mode:
 		TargetingMode.SINGLE:
 			return [bodies_in_range.front()]
@@ -55,15 +53,12 @@ func get_targets(attacker: AIAgent):
 	
 	return null
 
-
 func play_attack_sfx():
 	# TODO - make these non-sequential
 	if attack_sfx:
 		SoundManager.play_sound(attack_sfx[randi_range(0, attack_sfx.size() - 1)])
 
-
 func play_block_sfx():
 	# TODO - make these non-sequential
 	if block_sfx:
 		SoundManager.play_sound(block_sfx[randi_range(0, block_sfx.size() - 1)])
-

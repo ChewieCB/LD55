@@ -54,6 +54,7 @@ var input_arrow_repr: String = "":
 	set(value):
 		input_arrow_repr = value
 		GameManager.game_ui.spell_ui.set_spell_label("Input: %s" % input_arrow_repr)
+		GameManager.game_ui.spell_ui.set_mouse_indicator(input_arrow_repr)
 
 var is_casting = false
 var spell_ready = false
@@ -70,16 +71,10 @@ func _ready() -> void:
 		spell_used_timestamp[spell.spell_id] = (Time.get_ticks_msec() / 1000.0) - 1000
 
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("start_cast"):
-		if not is_casting:
-			start_cast()
-		else:
-			confirm_spell()
+	if event.is_action_pressed("confirm_spell"):
+		confirm_spell()
 	if event.is_action_pressed("cast_readied_spell"):
 		cast_readied_spell()
-
-	if not is_casting:
-		return
 
 	var action
 	if event.is_action_pressed("up"):
@@ -116,7 +111,8 @@ func start_cast():
 func confirm_spell():
 	is_casting = false
 	if not current_spell:
-		GameManager.game_ui.spell_ui.set_spell_label("Failed spell. Press Space to cast again")
+		GameManager.game_ui.spell_ui.set_spell_label("[color=red]Failed spell![/color]")
+		GameManager.game_ui.spell_ui.set_mouse_indicator("")
 		# Clear the inputs
 		raw_input = ""
 		current_spell_str = ""
@@ -133,7 +129,8 @@ func confirm_spell():
 			if current_time - prefix_used_timestamp[prefix_data.prefix_id] < prefix_data.cooldown:
 				prefix_is_on_cd = true
 		if spell_is_on_cd or prefix_is_on_cd:
-			GameManager.game_ui.spell_ui.set_spell_label("Spell is on cooldown! Press Space to cast again!")
+			GameManager.game_ui.spell_ui.set_spell_label("[color=red]Spell is on cooldown![/color]")
+			GameManager.game_ui.spell_ui.set_mouse_indicator("[color=red]On cooldown![/color]")
 			# Clear the inputs
 			raw_input = ""
 			current_spell_str = ""
@@ -147,6 +144,7 @@ func confirm_spell():
 			ready_str += "[color=yellow](%s) [/color]" % [prefix_dict[current_prefix_str].name]
 		ready_str += "[color=green]%s[/color]" % [current_spell.name]
 		GameManager.game_ui.spell_ui.set_spell_label(ready_str)
+		GameManager.game_ui.spell_ui.set_mouse_indicator(ready_str.trim_prefix("Ready: "))
 
 func cast_readied_spell():
 	if not spell_ready:
@@ -192,7 +190,8 @@ func cast_readied_spell():
 	finish_cast()
 
 func finish_cast():
-	GameManager.game_ui.spell_ui.set_spell_label("Press Space to start")
+	GameManager.game_ui.spell_ui.set_spell_label("Use WASD to start casting")
+	GameManager.game_ui.spell_ui.set_mouse_indicator("")
 	current_spell = null
 	is_casting = false
 	spell_ready = false
@@ -203,6 +202,9 @@ func finish_cast():
 	current_prefix_str = ""
 
 func cast_input(input: String):
+	if not is_casting:
+		start_cast()
+
 	if len(raw_input) >= MAX_SPELL_LENGTH:
 		return
 

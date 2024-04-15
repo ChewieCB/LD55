@@ -110,12 +110,10 @@ func _on_action_cleansing_state_physics_processing(delta):
 		return
 	finish_cleanse()
 
-
-func _on_default_stance_state_physics_processing(delta):
+func _on_default_stance_state_physics_processing(_delta):
 	pass # Replace with function body.
 
-
-func _on_attacking_idle_state_physics_processing(delta):
+func _on_attacking_idle_state_physics_processing(_delta):
 	# Generic cooldown for all attacks
 	if not cooldown_timer.is_stopped():
 		return
@@ -126,9 +124,9 @@ func _on_attacking_idle_state_physics_processing(delta):
 		attacks[AttackNames.SPIN],
 		attacks[AttackNames.BASIC_ATTACK]
 	]
-	for _attack in attack_priority:
-		if not is_in_cooldown(_attack):
-			current_attack = _attack
+	for elem in attack_priority:
+		if not is_in_cooldown(elem):
+			current_attack = elem
 			break
 	
 	if current_attack:
@@ -138,24 +136,22 @@ func _on_attacking_idle_state_physics_processing(delta):
 			return
 		else:
 			var cooldown_timer_idx = in_cooldown.find(current_attack)
-			if cooldown_timer_idx != -1:
-				var cooldown_timer = cooldown_timers[cooldown_timer_idx]
+			if cooldown_timer_idx != - 1:
+				var cd_timer = cooldown_timers[cooldown_timer_idx]
 				var max_cooldown_time = current_attack.cooldown * remap(
 					attributes.dexterity, 0, 1, 3, 0.25
 				)
 				buildup_bar.value = remap(
-					cooldown_timer.time_left,
+					cd_timer.time_left,
 					max_cooldown_time, 0,
 					0, 100
 				)
-
 
 func _on_attacking_buildup_state_entered():
 	buildup_bar.value = 0
 	buildup_timer.start(current_attack.attack_delay)
 
-
-func _on_buildup_state_physics_processing(delta):
+func _on_buildup_state_physics_processing(_delta):
 	if not buildup_timer.is_stopped():
 		buildup_bar.value = remap(
 			buildup_timer.time_left / current_attack.attack_delay,
@@ -167,7 +163,6 @@ func _on_attacking_buildup_state_exited():
 	buildup_bar.value = 0
 	buildup_timer.stop()
 
-
 func _on_attacking_attack_state_entered():
 	if is_in_cooldown(current_attack):
 		state_chart.send_event("finish_attack")
@@ -175,7 +170,6 @@ func _on_attacking_attack_state_entered():
 	
 	_attack(current_attack)
 	buildup_bar.value = 100
-
 
 func _on_hit_state_entered():
 	anim_player.play("hurt")
@@ -212,7 +206,6 @@ func _on_status_stunned_state_exited():
 func _on_stagger_stun_timer_timeout():
 	state_chart.send_event("recover_stagger")
 	state_chart.send_event("recover_stun")
-
 
 func _on_attack_buildup_timer_timeout():
 	state_chart.send_event("perform_attack")
