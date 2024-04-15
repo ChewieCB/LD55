@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://bjabavwsrnt0y"]
+[gd_scene load_steps=26 format=3 uid="uid://bjabavwsrnt0y"]
 
 [ext_resource type="Script" path="res://src/levels/main_game/main_game.gd" id="1_4qjmh"]
 [ext_resource type="Texture2D" uid="uid://8q5gyn8ex2wv" path="res://assets/sprite/square.png" id="1_vuavk"]
@@ -16,6 +16,7 @@
 [ext_resource type="Resource" uid="uid://d002fmxjkp77y" path="res://src/entities/player/prefix/tough.tres" id="15_7hpi6"]
 [ext_resource type="Shader" path="res://src/utils/shaders/fog_overlay.gdshader" id="16_bw2li"]
 [ext_resource type="Shader" path="res://src/utils/shaders/crt_scanline.gdshader" id="16_w5sx6"]
+[ext_resource type="Shader" path="res://src/utils/shaders/rain_snow.gdshader" id="17_25k6b"]
 [ext_resource type="PackedScene" uid="uid://kvwa5lh7hoh2" path="res://src/ui/SettingUI.tscn" id="17_xfjr0"]
 
 [sub_resource type="Curve2D" id="Curve2D_g2yoo"]
@@ -42,13 +43,22 @@ shader_parameter/density = 0.1
 shader_parameter/speed = Vector2(0.02, 0.01)
 shader_parameter/noise_texture = SubResource("NoiseTexture2D_u2x75")
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_djl7n"]
+shader = ExtResource("17_25k6b")
+shader_parameter/count = 100
+shader_parameter/slant = -0.1
+shader_parameter/speed = 30.0
+shader_parameter/blur = 0.002
+shader_parameter/colour = Color(1, 1, 1, 1)
+shader_parameter/size = Vector2(0.005, 0.2)
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_2xknb"]
 shader = ExtResource("16_w5sx6")
 shader_parameter/overlay = true
 shader_parameter/scanlines_opacity = 0.4
 shader_parameter/scanlines_width = 0.25
 shader_parameter/grille_opacity = 0.0
-shader_parameter/resolution = Vector2(1366, 480)
+shader_parameter/resolution = Vector2(960, 480)
 shader_parameter/pixelate = false
 shader_parameter/roll = false
 shader_parameter/roll_speed = 1.0
@@ -66,13 +76,14 @@ shader_parameter/clip_warp = false
 shader_parameter/vignette_intensity = 0.2
 shader_parameter/vignette_opacity = 0.5
 
-[node name="MainGame" type="Node2D" node_paths=PackedStringArray("minion_spawn", "crusader", "ritual_sites", "crt_effect", "fog_effect")]
+[node name="MainGame" type="Node2D" node_paths=PackedStringArray("minion_spawn", "crusader", "ritual_sites", "crt_shader", "fog_effect", "rain_effect")]
 script = ExtResource("1_4qjmh")
 minion_spawn = NodePath("YSort/Minions")
 crusader = NodePath("YSort/Crusader")
 ritual_sites = NodePath("YSort/RitualSites")
-crt_effect = NodePath("CanvasLayer/CRTShader")
+crt_shader = NodePath("CanvasLayer/CRTShader")
 fog_effect = NodePath("ParallaxBackground/ParallaxLayer/FogShader")
+rain_effect = NodePath("CanvasLayer/RainShader")
 
 [node name="Ground" type="Sprite2D" parent="."]
 self_modulate = Color(0.22847, 0.129932, 0.144078, 1)
@@ -384,6 +395,7 @@ layer = 0
 motion_mirroring = Vector2(1920, 1080)
 
 [node name="FogShader" type="ColorRect" parent="ParallaxBackground/ParallaxLayer"]
+visible = false
 material = SubResource("ShaderMaterial_ndmxn")
 offset_right = 1920.0
 offset_bottom = 1080.0
@@ -397,6 +409,15 @@ mouse_filter = 2
 visible = false
 
 [node name="EndgameUI" parent="CanvasLayer" instance=ExtResource("12_jv3wu")]
+
+[node name="RainShader" type="ColorRect" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_djl7n")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
 
 [node name="CRTShader" type="ColorRect" parent="CanvasLayer"]
 material = SubResource("ShaderMaterial_2xknb")

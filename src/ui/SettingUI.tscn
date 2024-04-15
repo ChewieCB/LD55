@@ -181,21 +181,29 @@ offset_top = 56.0
 offset_right = 253.0
 offset_bottom = 103.0
 
-[node name="CRTCheck" type="CheckButton" parent="GraphicSection/VBoxContainer"]
+[node name="ScanlineCheck" type="CheckButton" parent="GraphicSection/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_constants/h_separation = 20
 theme_override_fonts/font = ExtResource("2_poo45")
 theme_override_font_sizes/font_size = 30
-text = "CRT Effect"
+text = "Scanline Effect"
 
-[node name="FogCheck" type="CheckButton" parent="GraphicSection/VBoxContainer"]
+[node name="AbberationCheck" type="CheckButton" parent="GraphicSection/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_constants/h_separation = 20
 theme_override_fonts/font = ExtResource("2_poo45")
 theme_override_font_sizes/font_size = 30
-text = "Fog Effect"
+text = "Chromatic Abberation"
+
+[node name="WeatherCheck" type="CheckButton" parent="GraphicSection/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_constants/h_separation = 20
+theme_override_fonts/font = ExtResource("2_poo45")
+theme_override_font_sizes/font_size = 30
+text = "Weather Effect"
 
 [node name="CloseButton" type="Button" parent="."]
 custom_minimum_size = Vector2(120, 0)
@@ -238,10 +246,12 @@ text = "Back to menu"
 [connection signal="value_changed" from="AudioSection/VBoxContainer/BGMLabel/BGMSlider" to="." method="_on_bgm_slider_value_changed"]
 [connection signal="mouse_entered" from="AudioSection/VBoxContainer/SFXLabel/SFXSlider" to="." method="play_ui_hover_sfx"]
 [connection signal="value_changed" from="AudioSection/VBoxContainer/SFXLabel/SFXSlider" to="." method="_on_sfx_slider_value_changed"]
-[connection signal="mouse_entered" from="GraphicSection/VBoxContainer/CRTCheck" to="." method="play_ui_hover_sfx"]
-[connection signal="pressed" from="GraphicSection/VBoxContainer/CRTCheck" to="." method="_on_crt_check_pressed"]
-[connection signal="mouse_entered" from="GraphicSection/VBoxContainer/FogCheck" to="." method="play_ui_hover_sfx"]
-[connection signal="pressed" from="GraphicSection/VBoxContainer/FogCheck" to="." method="_on_fog_check_pressed"]
+[connection signal="mouse_entered" from="GraphicSection/VBoxContainer/ScanlineCheck" to="." method="play_ui_hover_sfx"]
+[connection signal="pressed" from="GraphicSection/VBoxContainer/ScanlineCheck" to="." method="_on_crt_check_pressed"]
+[connection signal="mouse_entered" from="GraphicSection/VBoxContainer/AbberationCheck" to="." method="play_ui_hover_sfx"]
+[connection signal="pressed" from="GraphicSection/VBoxContainer/AbberationCheck" to="." method="_on_abberation_check_pressed"]
+[connection signal="mouse_entered" from="GraphicSection/VBoxContainer/WeatherCheck" to="." method="play_ui_hover_sfx"]
+[connection signal="pressed" from="GraphicSection/VBoxContainer/WeatherCheck" to="." method="_on_fog_check_pressed"]
 [connection signal="mouse_entered" from="CloseButton" to="." method="play_ui_hover_sfx"]
 [connection signal="pressed" from="CloseButton" to="." method="_on_close_button_pressed"]
 [connection signal="mouse_entered" from="BackMenuButton" to="." method="play_ui_hover_sfx"]
