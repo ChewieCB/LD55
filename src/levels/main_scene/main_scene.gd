@@ -19,6 +19,7 @@ func _ready():
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("left_click") and intro_cutscene.visible:
 		if intro_cutscene.current_tab < max_tab - 1:
+			Utils.play_button_click_sfx()
 			intro_cutscene.current_tab += 1
 		else:
 			get_tree().change_scene_to_file("res://src/levels/main_game/MainGame.tscn")

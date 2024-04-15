@@ -47,7 +47,7 @@ offset_right = 1119.0
 offset_bottom = 11.0
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("4_ptily")
-text = "WASD: Spell input - Space: Confirm spell - Q/Delete: Delete input - Esc: Open setting menu"
+text = "WASD: Spell input - Space: Confirm spell - LMB: Cast spell - Q/Delete: Delete input - Esc: Open setting menu"
 
 [node name="SpellUI" parent="." instance=ExtResource("2_qvbhs")]
 layout_mode = 1
