@@ -45,14 +45,14 @@ resource_name = "start"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("CanvasLayer/Menu/ButtonBackground:position")
+tracks/0/path = NodePath("CanvasLayer/Menu/ButtonBackgroundWrapper/ButtonBackground:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(0.5, 1),
 "update": 0,
-"values": [Vector2(1408, -1472), Vector2(1408, -152)]
+"values": [Vector2(0, -1472), Vector2(0, -144)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -88,7 +88,7 @@ _data = {
 
 [node name="MainScene" type="Node2D" node_paths=PackedStringArray("animated_buttons")]
 script = ExtResource("1_vnu07")
-animated_buttons = [NodePath("CanvasLayer/Menu/ButtonBackground/StartButton"), NodePath("CanvasLayer/Menu/ButtonBackground/TutorialButton"), NodePath("CanvasLayer/Menu/ButtonBackground/QuitButton")]
+animated_buttons = [NodePath("CanvasLayer/Menu/ButtonBackgroundWrapper/ButtonBackground/StartButton"), NodePath("CanvasLayer/Menu/ButtonBackgroundWrapper/ButtonBackground/TutorialButton"), NodePath("CanvasLayer/Menu/ButtonBackgroundWrapper/ButtonBackground/QuitButton")]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -108,66 +108,105 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("1_prdx4")
+expand_mode = 1
 
 [node name="Title" type="RichTextLabel" parent="CanvasLayer/Menu"]
 layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -848.0
+offset_left = 112.0
 offset_top = 56.0
-offset_right = -204.001
-offset_bottom = 362.0
-grow_horizontal = 2
+offset_right = 824.0
+offset_bottom = 440.0
 theme_override_fonts/normal_font = ExtResource("5_7ycku")
-theme_override_font_sizes/normal_font_size = 120
+theme_override_font_sizes/normal_font_size = 100
 bbcode_enabled = true
-text = "[center][wave]Crusader Survivor[/wave][/center]"
+text = "[center][wave][left]Death
+Death Resurrection[/left][/wave][/center]"
 fit_content = true
 scroll_active = false
 
-[node name="ButtonBackground" type="ColorRect" parent="CanvasLayer/Menu"]
+[node name="DontRemoveThisCRTNeedIt" type="ColorRect" parent="CanvasLayer/Menu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0)
+
+[node name="ButtonBackgroundWrapper" type="Control" parent="CanvasLayer/Menu"]
 layout_mode = 1
 anchors_preset = 11
 anchor_left = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -512.0
-offset_top = -152.0
-offset_right = -64.0
-offset_bottom = 176.0
+offset_left = -576.0
+offset_right = -576.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="ButtonBackground" type="ColorRect" parent="CanvasLayer/Menu/ButtonBackgroundWrapper"]
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -144.0
+offset_right = 448.0
+offset_bottom = 184.0
 grow_horizontal = 0
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
-[node name="StartButton" parent="CanvasLayer/Menu/ButtonBackground" instance=ExtResource("4_df5ml")]
-layout_mode = 0
-offset_left = 72.0
-offset_top = 832.0
-offset_right = 372.0
-offset_bottom = 917.0
+[node name="StartButton" parent="CanvasLayer/Menu/ButtonBackgroundWrapper/ButtonBackground" instance=ExtResource("4_df5ml")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = 136.0
+offset_right = 150.0
+offset_bottom = 213.0
+grow_horizontal = 2
+grow_vertical = 2
 text = "Start"
 script = ExtResource("4_b7wsb")
 
-[node name="TutorialButton" parent="CanvasLayer/Menu/ButtonBackground" instance=ExtResource("4_df5ml")]
-layout_mode = 0
-offset_left = 72.0
-offset_top = 936.0
-offset_right = 372.0
-offset_bottom = 1021.0
+[node name="TutorialButton" parent="CanvasLayer/Menu/ButtonBackgroundWrapper/ButtonBackground" instance=ExtResource("4_df5ml")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = 232.0
+offset_right = 150.0
+offset_bottom = 317.0
+grow_horizontal = 2
+grow_vertical = 2
 text = "Tutorial"
 script = ExtResource("4_b7wsb")
 
-[node name="QuitButton" parent="CanvasLayer/Menu/ButtonBackground" instance=ExtResource("4_df5ml")]
-layout_mode = 0
-offset_left = 72.0
-offset_top = 1040.0
-offset_right = 372.0
-offset_bottom = 1125.0
+[node name="QuitButton" parent="CanvasLayer/Menu/ButtonBackgroundWrapper/ButtonBackground" instance=ExtResource("4_df5ml")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = 336.0
+offset_right = 150.0
+offset_bottom = 421.0
+grow_horizontal = 2
+grow_vertical = 2
 text = "Quit"
 script = ExtResource("4_b7wsb")
 
-[node name="VersionLabel" type="Label" parent="CanvasLayer/Menu/ButtonBackground"]
+[node name="VersionLabel" type="Label" parent="CanvasLayer/Menu/ButtonBackgroundWrapper/ButtonBackground"]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -175,16 +214,16 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -35.0
-offset_top = -223.0
+offset_top = -232.0
 offset_right = 35.0
-offset_bottom = -184.0
+offset_bottom = -193.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_fonts/font = ExtResource("5_7ycku")
 theme_override_font_sizes/font_size = 30
 text = "v0.5"
 
-[node name="NinePatchRect" type="NinePatchRect" parent="CanvasLayer/Menu/ButtonBackground"]
+[node name="NinePatchRect" type="NinePatchRect" parent="CanvasLayer/Menu/ButtonBackgroundWrapper/ButtonBackground"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -197,23 +236,16 @@ patch_margin_top = 20
 patch_margin_right = 20
 patch_margin_bottom = 20
 
-[node name="DontRemoveThisCRTNeedIt" type="ColorRect" parent="CanvasLayer/Menu"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-color = Color(0, 0, 0, 0)
-
 [node name="Tutorial" type="Control" parent="CanvasLayer"]
 layout_mode = 3
-anchors_preset = 0
-offset_left = 128.0
-offset_top = 384.0
-offset_right = 1216.0
-offset_bottom = 960.0
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 64.0
+offset_top = -632.0
+offset_right = 1152.0
+offset_bottom = -56.0
+grow_vertical = 0
 
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer/Tutorial"]
 layout_mode = 1
@@ -452,9 +484,9 @@ libraries = {
 }
 autoplay = "start"
 
-[connection signal="mouse_entered" from="CanvasLayer/Menu/ButtonBackground/StartButton" to="." method="play_ui_hover_sfx"]
-[connection signal="pressed" from="CanvasLayer/Menu/ButtonBackground/StartButton" to="." method="_on_start_button_pressed"]
-[connection signal="mouse_entered" from="CanvasLayer/Menu/ButtonBackground/TutorialButton" to="." method="play_ui_hover_sfx"]
-[connection signal="pressed" from="CanvasLayer/Menu/ButtonBackground/TutorialButton" to="." method="_on_tutorial_button_pressed"]
-[connection signal="mouse_entered" from="CanvasLayer/Menu/ButtonBackground/QuitButton" to="." method="play_ui_hover_sfx"]
-[connection signal="pressed" from="CanvasLayer/Menu/ButtonBackground/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="mouse_entered" from="CanvasLayer/Menu/ButtonBackgroundWrapper/ButtonBackground/StartButton" to="." method="play_ui_hover_sfx"]
+[connection signal="pressed" from="CanvasLayer/Menu/ButtonBackgroundWrapper/ButtonBackground/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="mouse_entered" from="CanvasLayer/Menu/ButtonBackgroundWrapper/ButtonBackground/TutorialButton" to="." method="play_ui_hover_sfx"]
+[connection signal="pressed" from="CanvasLayer/Menu/ButtonBackgroundWrapper/ButtonBackground/TutorialButton" to="." method="_on_tutorial_button_pressed"]
+[connection signal="mouse_entered" from="CanvasLayer/Menu/ButtonBackgroundWrapper/ButtonBackground/QuitButton" to="." method="play_ui_hover_sfx"]
+[connection signal="pressed" from="CanvasLayer/Menu/ButtonBackgroundWrapper/ButtonBackground/QuitButton" to="." method="_on_quit_button_pressed"]

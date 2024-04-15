@@ -5,8 +5,8 @@ class_name SpellUI
 
 @onready var spell_label: RichTextLabel = $SpellPanel/Label
 @onready var mouse_spell_indicator: RichTextLabel = $MouseSpellIndicator
-@onready var prefix_container = $PrefixContainer
-@onready var spell_container = $SpellContainer
+@onready var prefix_container = $BackgroundArt/LeftScroll/PrefixContainer
+@onready var spell_container = $BackgroundArt/RightScroll/SpellContainer
 
 func _ready() -> void:
 	set_spell_label("Use WASD to start casting")
