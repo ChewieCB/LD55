@@ -30,6 +30,12 @@ var prefix_used_timestamp = {}
 
 var raw_input: String = "":
 	set(value):
+		if len(value) < len(raw_input):
+			# Mean we just deleted a character. Reset spell.
+			current_spell_str = ""
+			if current_prefix_str and len(value) < len(current_prefix_str):
+				# We deleted part of prefix, so reset it.
+				current_prefix_str = ""
 		raw_input = value
 		var post_prefix = raw_input
 		if current_prefix_str:
