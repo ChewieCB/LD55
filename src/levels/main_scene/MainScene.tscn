@@ -1,9 +1,12 @@
-[gd_scene load_steps=14 format=3 uid="uid://yqaf1cxr4njr"]
+[gd_scene load_steps=17 format=3 uid="uid://yqaf1cxr4njr"]
 
 [ext_resource type="Texture2D" uid="uid://cls1x1wx2icgw" path="res://assets/temp/Space Background.png" id="1_prdx4"]
 [ext_resource type="Script" path="res://src/levels/main_scene/main_scene.gd" id="1_vnu07"]
 [ext_resource type="Script" path="res://src/levels/main_scene/animated_button.gd" id="4_b7wsb"]
+[ext_resource type="PackedScene" uid="uid://dj18tmsspff4d" path="res://src/ui/common/BorderedButton.tscn" id="4_df5ml"]
 [ext_resource type="FontFile" uid="uid://b21yg3y2byt8f" path="res://assets/fonts/AvQest.ttf" id="5_7ycku"]
+[ext_resource type="Texture2D" uid="uid://bnyh2q7x1nuyk" path="res://assets/cutscene/tutorial.png" id="5_fhexy"]
+[ext_resource type="Texture2D" uid="uid://cahh042xli854" path="res://assets/ui/kenney_borders/Default/Border/panel-border-000.png" id="6_22r4t"]
 [ext_resource type="Texture2D" uid="uid://d1ihhw8wqqnye" path="res://assets/cutscene/evil_overlord.png" id="6_mtqh4"]
 [ext_resource type="Texture2D" uid="uid://bdpyqwvtcccb7" path="res://assets/cutscene/crusader.png" id="7_ab3xk"]
 [ext_resource type="Shader" path="res://src/utils/shaders/crt_scanline.gdshader" id="7_ruhtu"]
@@ -85,7 +88,7 @@ _data = {
 
 [node name="MainScene" type="Node2D" node_paths=PackedStringArray("animated_buttons")]
 script = ExtResource("1_vnu07")
-animated_buttons = [NodePath("CanvasLayer/Menu/ButtonBackground/StartButton"), NodePath("CanvasLayer/Menu/ButtonBackground/ExtraButton"), NodePath("CanvasLayer/Menu/ButtonBackground/QuitButton")]
+animated_buttons = [NodePath("CanvasLayer/Menu/ButtonBackground/StartButton"), NodePath("CanvasLayer/Menu/ButtonBackground/TutorialButton"), NodePath("CanvasLayer/Menu/ButtonBackground/QuitButton")]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -137,67 +140,30 @@ grow_horizontal = 0
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
-[node name="StartButton" type="Button" parent="CanvasLayer/Menu/ButtonBackground"]
-custom_minimum_size = Vector2(300, 0)
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -150.0
-offset_top = 88.0
-offset_right = 150.0
-offset_bottom = 173.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-theme_override_fonts/font = ExtResource("5_7ycku")
-theme_override_font_sizes/font_size = 60
+[node name="StartButton" parent="CanvasLayer/Menu/ButtonBackground" instance=ExtResource("4_df5ml")]
+layout_mode = 0
+offset_left = 72.0
+offset_top = 832.0
+offset_right = 372.0
+offset_bottom = 917.0
 text = "Start"
 script = ExtResource("4_b7wsb")
 
-[node name="ExtraButton" type="Button" parent="CanvasLayer/Menu/ButtonBackground"]
-custom_minimum_size = Vector2(300, 0)
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -150.0
-offset_top = 200.0
-offset_right = 150.0
-offset_bottom = 285.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-theme_override_fonts/font = ExtResource("5_7ycku")
-theme_override_font_sizes/font_size = 60
-disabled = true
-text = "???"
+[node name="TutorialButton" parent="CanvasLayer/Menu/ButtonBackground" instance=ExtResource("4_df5ml")]
+layout_mode = 0
+offset_left = 72.0
+offset_top = 936.0
+offset_right = 372.0
+offset_bottom = 1021.0
+text = "Tutorial"
 script = ExtResource("4_b7wsb")
 
-[node name="QuitButton" type="Button" parent="CanvasLayer/Menu/ButtonBackground"]
-custom_minimum_size = Vector2(300, 0)
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -150.0
-offset_top = 304.0
-offset_right = 150.0
-offset_bottom = 389.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-theme_override_fonts/font = ExtResource("5_7ycku")
-theme_override_font_sizes/font_size = 60
+[node name="QuitButton" parent="CanvasLayer/Menu/ButtonBackground" instance=ExtResource("4_df5ml")]
+layout_mode = 0
+offset_left = 72.0
+offset_top = 1040.0
+offset_right = 372.0
+offset_bottom = 1125.0
 text = "Quit"
 script = ExtResource("4_b7wsb")
 
@@ -218,6 +184,19 @@ theme_override_fonts/font = ExtResource("5_7ycku")
 theme_override_font_sizes/font_size = 30
 text = "v0.5"
 
+[node name="NinePatchRect" type="NinePatchRect" parent="CanvasLayer/Menu/ButtonBackground"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("6_22r4t")
+patch_margin_left = 20
+patch_margin_top = 20
+patch_margin_right = 20
+patch_margin_bottom = 20
+
 [node name="DontRemoveThisCRTNeedIt" type="ColorRect" parent="CanvasLayer/Menu"]
 layout_mode = 1
 anchors_preset = 15
@@ -227,6 +206,70 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 color = Color(0, 0, 0, 0)
+
+[node name="Tutorial" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 128.0
+offset_top = 384.0
+offset_right = 1216.0
+offset_bottom = 960.0
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/Tutorial"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.882353)
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Tutorial"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 56.0
+offset_top = -240.0
+offset_right = 336.0
+offset_bottom = 232.0
+grow_vertical = 2
+texture = ExtResource("5_fhexy")
+
+[node name="Label" type="Label" parent="CanvasLayer/Tutorial"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -168.0
+offset_top = -256.0
+offset_right = 512.0
+offset_bottom = 256.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("5_7ycku")
+theme_override_font_sizes/font_size = 34
+text = "- Use a sequence of arrows (WASD by default) to prepare spells.
+- There's a list of prefix and main spell components on both side of the screen.
+- You can cast a spell alone, or combine them with a prefixe to enhance its power.
+- After input the correct sequence, press [Space] to confirm it, and use [Left-mouse button] to cast it on screen.
+"
+autowrap_mode = 2
+
+[node name="NinePatchRect" type="NinePatchRect" parent="CanvasLayer/Tutorial"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("6_22r4t")
+patch_margin_left = 20
+patch_margin_top = 20
+patch_margin_right = 20
+patch_margin_bottom = 20
 
 [node name="Cutscene" type="TabContainer" parent="CanvasLayer"]
 visible = false
@@ -411,6 +454,7 @@ autoplay = "start"
 
 [connection signal="mouse_entered" from="CanvasLayer/Menu/ButtonBackground/StartButton" to="." method="play_ui_hover_sfx"]
 [connection signal="pressed" from="CanvasLayer/Menu/ButtonBackground/StartButton" to="." method="_on_start_button_pressed"]
-[connection signal="mouse_entered" from="CanvasLayer/Menu/ButtonBackground/ExtraButton" to="." method="play_ui_hover_sfx"]
+[connection signal="mouse_entered" from="CanvasLayer/Menu/ButtonBackground/TutorialButton" to="." method="play_ui_hover_sfx"]
+[connection signal="pressed" from="CanvasLayer/Menu/ButtonBackground/TutorialButton" to="." method="_on_tutorial_button_pressed"]
 [connection signal="mouse_entered" from="CanvasLayer/Menu/ButtonBackground/QuitButton" to="." method="play_ui_hover_sfx"]
 [connection signal="pressed" from="CanvasLayer/Menu/ButtonBackground/QuitButton" to="." method="_on_quit_button_pressed"]
