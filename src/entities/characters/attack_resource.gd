@@ -32,6 +32,10 @@ enum TargetingMode {
 func get_targets(attacker: AIAgent):
 	# Get target
 	var bodies_in_range = attacker.attack_range_area.get_overlapping_bodies()
+	
+	if not bodies_in_range:
+		return
+	
 	bodies_in_range.filter(func(x): return x.current_health > 0)
 	bodies_in_range.sort_custom(
 		func(a, b):
@@ -39,9 +43,14 @@ func get_targets(attacker: AIAgent):
 				return true
 			return false
 	)
-	
-	if not bodies_in_range:
-		return
+	# Sort again to prioritise targets
+	if attacker.priority_targets:
+		bodies_in_range.sort_custom(
+			func(a, b):
+				if a in attacker.priority_targets and b not in attacker.priority_targets:
+					return true
+				return false
+		)
 	
 	match targeting_mode:
 		TargetingMode.SINGLE:

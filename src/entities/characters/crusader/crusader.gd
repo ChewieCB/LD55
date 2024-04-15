@@ -192,11 +192,11 @@ func _on_attacking_idle_state_entered():
 	pass
 
 
-func _on_attacking_idle_state_physics_processing(delta):
-	if stance_timer.is_stopped():
-		# Query the engagement radius around the crusader to get bodies
-		var nearby_minions = engagement_range.get_overlapping_bodies()
-		
+func get_most_common_minion_type():
+	# Query the engagement radius around the crusader to get bodies
+	var nearby_minions = engagement_range.get_overlapping_bodies()
+	
+	if nearby_minions:
 		# Map each minion to the string representation of its rank
 		var minion_type_hash = nearby_minions.map(
 			func(_minion):
@@ -214,27 +214,46 @@ func _on_attacking_idle_state_physics_processing(delta):
 					return true
 				return false
 		)
-		var mode_type_string = sorted_count[0][0]
-		var minion_type_mode = CharacterAttributes.Rank.get(mode_type_string)
+		var most_common_rank_string = sorted_count[0][0]
+		var most_common_rank_index = CharacterAttributes.Rank.get(most_common_rank_string)
 		
-		# Match against highest minion type to decide stance
-		var stance_str: String
-		match minion_type_mode:
-			CharacterAttributes.Rank.HORDE:
-				stance_str = "default_stance"
-				$StanceLabel.text = "Fast"
-				current_stance = Stance.FAST
-			CharacterAttributes.Rank.ELITE:
-				stance_str = "tank_stance"
-				$StanceLabel.text = "Tank"
-				current_stance = Stance.TANK
-			CharacterAttributes.Rank.TANK:
-				pass
-			_:
-				return
+		# Get the minions to focus attacks on in this stance
+		var priority_minions = nearby_minions.filter(
+			func(_minion):
+				return _minion.attributes.rank == most_common_rank_index
+		)
+		
+		return [
+			most_common_rank_index,
+			priority_minions
+		]
+
+
+func _on_attacking_idle_state_physics_processing(delta):
+	if stance_timer.is_stopped():
+		var most_common_minions = get_most_common_minion_type()
+		if most_common_minions:
+			var minion_type_mode: CharacterAttributes.Rank = most_common_minions[0]
+			priority_targets = most_common_minions[1]
 			
-		state_chart.send_event(stance_str)
-		#stance_timer.start(5.0)
+			# Match against highest minion type to decide stance
+			var stance_str: String
+			match minion_type_mode:
+				CharacterAttributes.Rank.HORDE:
+					stance_str = "default_stance"
+					$StanceLabel.text = "Fast"
+					current_stance = Stance.FAST
+				CharacterAttributes.Rank.ELITE:
+					stance_str = "tank_stance"
+					$StanceLabel.text = "Tank"
+					current_stance = Stance.TANK
+				CharacterAttributes.Rank.TANK:
+					pass
+				_:
+					return
+				
+			state_chart.send_event(stance_str)
+			#stance_timer.start(5.0)
 	
 	# FIXME - get buildup/cooldown UI working again and handle it here
 	#if current_attack:

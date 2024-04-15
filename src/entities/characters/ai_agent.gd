@@ -33,6 +33,7 @@ var acceleration: float = 7
 var current_attack: AttackResource
 var in_cooldown: Array[AttackResource]
 var cooldown_timers: Array
+var priority_targets = []
 
 @onready var nav_agent = $NavigationAgent2D
 @onready var state_chart: StateChart = $StateChart
@@ -114,6 +115,8 @@ func _attack(attack: AttackResource):
 		var target_count: int = 0
 		for target in targets:
 			if target.current_health <= 0:
+				if target in priority_targets:
+					priority_targets.erase(target)
 				continue
 			
 			if attack.targeting_mode == AttackResource.TargetingMode.MULTIPLE:
