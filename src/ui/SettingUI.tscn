@@ -4,8 +4,8 @@
 [ext_resource type="Script" path="res://src/ui/setting_ui.gd" id="1_qpkih"]
 [ext_resource type="FontFile" uid="uid://b21yg3y2byt8f" path="res://assets/fonts/AvQest.ttf" id="2_poo45"]
 [ext_resource type="Texture2D" uid="uid://n60adhap0kur" path="res://assets/ui/skull_demon_white.png" id="5_wxsrr"]
+[ext_resource type="PackedScene" uid="uid://dj18tmsspff4d" path="res://src/ui/common/StyledButton.tscn" id="6_nsin3"]
 [ext_resource type="Texture2D" uid="uid://b1ec430e0iamf" path="res://assets/ui/skull_demon_gray.png" id="6_po8h7"]
-[ext_resource type="PackedScene" uid="uid://dj18tmsspff4d" path="res://src/ui/common/BorderedButton.tscn" id="6_pq5yn"]
 
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_e176o"]
 grow_begin = 0.0
@@ -206,7 +206,7 @@ theme_override_fonts/font = ExtResource("2_poo45")
 theme_override_font_sizes/font_size = 30
 text = "Weather Effect"
 
-[node name="CloseButton" parent="." instance=ExtResource("6_pq5yn")]
+[node name="CloseButton" parent="." instance=ExtResource("6_nsin3")]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 0
 offset_left = 192.0
@@ -216,7 +216,7 @@ offset_bottom = 559.0
 theme_override_font_sizes/font_size = 30
 text = "Close"
 
-[node name="BackMenuButton" parent="." instance=ExtResource("6_pq5yn")]
+[node name="BackMenuButton" parent="." instance=ExtResource("6_nsin3")]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 0
 offset_left = 448.0
