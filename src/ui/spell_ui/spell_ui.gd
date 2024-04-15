@@ -8,7 +8,7 @@ class_name SpellUI
 @onready var spell_container = $SpellContainer
 
 func _ready() -> void:
-	set_spell_label("Press Space to start")
+	set_spell_label("Use WASD to start casting")
 	await get_tree().process_frame
 	await get_tree().process_frame
 	generate_spell_comp_row()
