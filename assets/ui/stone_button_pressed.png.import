@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://mwwr0ghg1ty"
-path="res://.godot/imported/left rolled panel.png-7fdaee70f150bc11996a6663342b6cd0.ctex"
+uid="uid://ofp3adqqofou"
+path="res://.godot/imported/stone_button_pressed.png-4f73ea11cbdc14dfab435d805b433b37.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/ui/left rolled panel.png"
-dest_files=["res://.godot/imported/left rolled panel.png-7fdaee70f150bc11996a6663342b6cd0.ctex"]
+source_file="res://assets/ui/stone_button_pressed.png"
+dest_files=["res://.godot/imported/stone_button_pressed.png-4f73ea11cbdc14dfab435d805b433b37.ctex"]
 
 [params]
 

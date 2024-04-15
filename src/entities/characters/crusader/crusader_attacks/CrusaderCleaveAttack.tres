@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="AttackResource" load_steps=6 format=3 uid="uid://cflp4ui5e2o13"]
+[gd_resource type="Resource" script_class="AttackResource" load_steps=6 format=3 uid="uid://c0u1ckvhjc2i1"]
 
 [ext_resource type="Script" path="res://src/entities/characters/attack_resource.gd" id="1_t0i5s"]
 [ext_resource type="Material" uid="uid://cqldxisj3whbq" path="res://src/entities/characters/crusader/crusader_attacks/particle_resources/CleaveCanvasItemMaterial.tres" id="1_vmahq"]

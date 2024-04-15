@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://pl4a26m8odew"
-path="res://.godot/imported/right rolled panel.png-c02421c693629319ac960ec86304b5f3.ctex"
+uid="uid://bnyh2q7x1nuyk"
+path="res://.godot/imported/tutorial.png-71a25134834bf45fcaa5894a0a4628fa.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/ui/right rolled panel.png"
-dest_files=["res://.godot/imported/right rolled panel.png-c02421c693629319ac960ec86304b5f3.ctex"]
+source_file="res://assets/cutscene/tutorial.png"
+dest_files=["res://.godot/imported/tutorial.png-71a25134834bf45fcaa5894a0a4628fa.ctex"]
 
 [params]
 

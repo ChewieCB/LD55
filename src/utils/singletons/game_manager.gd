@@ -11,6 +11,12 @@ var endgame_ui: EndgameUI
 var crusader: Crusader
 var setting_ui: SettingUI
 
+# setting saved here to persist across screen
+var scanline_enabled = true
+var weather_enabled = true
+var rain_enabled = true
+var abberation_enabled = true
+
 func _ready():
 	SoundManager.play_music(bgm, 0.0, "Music")
 

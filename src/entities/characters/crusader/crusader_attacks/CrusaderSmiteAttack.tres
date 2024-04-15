@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="AttackResource" load_steps=7 format=3 uid="uid://cnm5glaj5tfw6"]
+[gd_resource type="Resource" script_class="AttackResource" load_steps=7 format=3 uid="uid://d13khbb1k34kj"]
 
 [ext_resource type="Material" uid="uid://c1wps48b1ojmj" path="res://src/entities/characters/crusader/crusader_attacks/particle_resources/SmiteCanvasItemMaterial.tres" id="1_gqepe"]
 [ext_resource type="Material" uid="uid://ldpgyopy5v8d" path="res://src/entities/characters/crusader/crusader_attacks/particle_resources/SmiteParticleProcessMaterial.tres" id="2_xsbj8"]
