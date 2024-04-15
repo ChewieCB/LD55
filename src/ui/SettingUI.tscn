@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://kvwa5lh7hoh2"]
+[gd_scene load_steps=10 format=3 uid="uid://kvwa5lh7hoh2"]
 
 [ext_resource type="Texture2D" uid="uid://pw15xmm3fvkr" path="res://assets/ui/kenney_borders/Double/Border/panel-border-000.png" id="1_mh45j"]
 [ext_resource type="Script" path="res://src/ui/setting_ui.gd" id="1_qpkih"]
 [ext_resource type="FontFile" uid="uid://b21yg3y2byt8f" path="res://assets/fonts/AvQest.ttf" id="2_poo45"]
 [ext_resource type="Texture2D" uid="uid://n60adhap0kur" path="res://assets/ui/skull_demon_white.png" id="5_wxsrr"]
 [ext_resource type="Texture2D" uid="uid://b1ec430e0iamf" path="res://assets/ui/skull_demon_gray.png" id="6_po8h7"]
+[ext_resource type="PackedScene" uid="uid://dj18tmsspff4d" path="res://src/ui/common/BorderedButton.tscn" id="6_pq5yn"]
 
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_e176o"]
 grow_begin = 0.0
@@ -205,40 +206,25 @@ theme_override_fonts/font = ExtResource("2_poo45")
 theme_override_font_sizes/font_size = 30
 text = "Weather Effect"
 
-[node name="CloseButton" type="Button" parent="."]
-custom_minimum_size = Vector2(120, 0)
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -144.0
-offset_top = -72.0
-offset_right = -24.0
-offset_bottom = -25.0
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_fonts/font = ExtResource("2_poo45")
+[node name="CloseButton" parent="." instance=ExtResource("6_pq5yn")]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 0
+offset_left = 192.0
+offset_top = 512.0
+offset_right = 392.0
+offset_bottom = 559.0
 theme_override_font_sizes/font_size = 30
 text = "Close"
 
-[node name="BackMenuButton" type="Button" parent="."]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = 24.0
-offset_top = -72.0
-offset_right = 219.0
-offset_bottom = -25.0
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_fonts/font = ExtResource("2_poo45")
+[node name="BackMenuButton" parent="." instance=ExtResource("6_pq5yn")]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 0
+offset_left = 448.0
+offset_top = 512.0
+offset_right = 739.0
+offset_bottom = 559.0
 theme_override_font_sizes/font_size = 30
-text = "Back to menu"
+text = " Back to main menu "
 
 [connection signal="mouse_entered" from="AudioSection/VBoxContainer/MasterLabel/MasterSlider" to="." method="play_ui_hover_sfx"]
 [connection signal="value_changed" from="AudioSection/VBoxContainer/MasterLabel/MasterSlider" to="." method="_on_master_slider_value_changed"]
