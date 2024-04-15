@@ -1,0 +1,17 @@
+[gd_resource type="ParticleProcessMaterial" load_steps=3 format=3 uid="uid://ch8i2x5j845pb"]
+
+[sub_resource type="Curve" id="Curve_qbc4r"]
+_data = [Vector2(0.0197044, 0), 0.0, 0.0, 0, 0, Vector2(0.197044, 0.505494), 0.0, 0.0, 0, 0, Vector2(0.389163, 1), 0.0, 0.0, 0, 0, Vector2(0.571429, 0.89011), 0.0, 0.0, 0, 0, Vector2(0.802956, 0.681319), 0.0, 0.0, 0, 0, Vector2(0.985222, 0), 0.0, 0.0, 0, 0]
+point_count = 6
+
+[sub_resource type="CurveTexture" id="CurveTexture_xoadm"]
+curve = SubResource("Curve_qbc4r")
+
+[resource]
+particle_flag_disable_z = true
+gravity = Vector3(0, 0, 0)
+scale_min = 0.3
+scale_max = 0.3
+scale_curve = SubResource("CurveTexture_xoadm")
+anim_speed_min = 1.0
+anim_speed_max = 1.0

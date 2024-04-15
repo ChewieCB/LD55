@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bh3kxowh6mb0x"
+path="res://.godot/imported/Control Point Draining 2.mp3-c23a1aa22137ff101d9cad93b99118da.mp3str"
+
+[deps]
+
+source_file="res://assets/sfx/ritual/Control Point Draining 2.mp3"
+dest_files=["res://.godot/imported/Control Point Draining 2.mp3-c23a1aa22137ff101d9cad93b99118da.mp3str"]
+
+[params]
+
+loop=true
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

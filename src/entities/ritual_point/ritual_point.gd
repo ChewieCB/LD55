@@ -8,6 +8,7 @@ signal cleansed
 @onready var cleanse_sfx_1: AudioStream = load("res://assets/sfx/cleanse/Angelic_Chant_1.mp3")
 @onready var cleanse_sfx_2: AudioStream = load("res://assets/sfx/cleanse/Angelic_Chant_2.mp3")
 @onready var cleanse_sfx = [cleanse_sfx_1, cleanse_sfx_2]
+@onready var ritual_sfx: AudioStream = load("res://assets/sfx/ritual/Control Point Draining 1.mp3")
 
 
 var cleanse_progress: float = 0:
@@ -23,10 +24,12 @@ func _process(_delta):
 
 func cleanse():
 	anim_player.play("cleansing")
+	SoundManager.play_sound(ritual_sfx)
 
 
 func cleanse_complete():
 	# TODO - add buffs to crusader/update loss counter/UI
+	SoundManager.stop_sound(ritual_sfx)
 	SoundManager.play_sound(cleanse_sfx[randi_range(0, cleanse_sfx.size() - 1)])
 	anim_player.play("cleanse_complete")
 	await particles.finished

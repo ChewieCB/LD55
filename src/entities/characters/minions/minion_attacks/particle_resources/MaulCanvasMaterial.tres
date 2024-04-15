@@ -1,0 +1,7 @@
+[gd_resource type="CanvasItemMaterial" format=3 uid="uid://da57eu7k40v6l"]
+
+[resource]
+particles_animation = true
+particles_anim_h_frames = 7
+particles_anim_v_frames = 6
+particles_anim_loop = true

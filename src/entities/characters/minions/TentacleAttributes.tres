@@ -10,5 +10,5 @@ health = 100
 armour = 10
 speed = 40.0
 strength = 5.0
-dexterity = 0.1
+dexterity = 0.3
 rank = 3
