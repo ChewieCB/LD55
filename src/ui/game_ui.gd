@@ -4,8 +4,8 @@ class_name GameUI
 @onready var spell_ui: SpellUI = $SpellUI
 @onready var time_panel: Label = $TimePanel/Label
 
-@onready var health_bar: ProgressBar = $CrusaderHealthContainer/VBoxContainer/MarginContainer2/MarginContainer/HealthBar
-@onready var damage_bar: ProgressBar = $CrusaderHealthContainer/VBoxContainer/MarginContainer2/MarginContainer/HealthBar/DamageBar
+@onready var health_bar: TextureProgressBar = $CrusaderHealthContainer/VBoxContainer/MarginContainer2/MarginContainer/HealthBar
+@onready var damage_bar: TextureProgressBar = $CrusaderHealthContainer/VBoxContainer/MarginContainer2/MarginContainer/HealthBar/DamageBar
 @onready var damage_timer: Timer = $CrusaderHealthContainer/VBoxContainer/MarginContainer2/MarginContainer/HealthBar/Timer
 
 var health: int = 0: set = _set_health
