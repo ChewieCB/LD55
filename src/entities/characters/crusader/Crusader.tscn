@@ -4,7 +4,7 @@
 [ext_resource type="Resource" uid="uid://b5dljo4pci4to" path="res://src/entities/characters/crusader/crusader_attributes.tres" id="2_jwm8m"]
 [ext_resource type="Resource" uid="uid://cs0ahufxrbf1t" path="res://src/entities/characters/crusader/crusader_attacks/CrusaderBasicAttack.tres" id="3_au4vg"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/state_chart.gd" id="3_hr7jo"]
-[ext_resource type="Resource" path="res://src/entities/characters/crusader/crusader_attacks/CrusaderAOEAttack.tres" id="4_50p0w"]
+[ext_resource type="Resource" uid="uid://bfr671pxbeh7j" path="res://src/entities/characters/crusader/crusader_attacks/CrusaderAOEAttack.tres" id="4_50p0w"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/parallel_state.gd" id="4_mr8e3"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/compound_state.gd" id="5_6ihxl"]
 [ext_resource type="Resource" uid="uid://dc1uya6c085x5" path="res://src/entities/characters/crusader/crusader_attacks/CrusaderSpinAttack.tres" id="5_pbuhd"]
@@ -169,10 +169,13 @@ _data = {
 "spin": ExtResource("15_sulxg")
 }
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_6c0yh"]
-radius = 64.0
+[sub_resource type="CircleShape2D" id="CircleShape2D_uxqin"]
+radius = 128.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0pxk1"]
+radius = 64.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6c0yh"]
 radius = 64.0
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_81xv8"]
@@ -213,12 +216,6 @@ offset_bottom = 17.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.403922, 0.756863, 0.894118, 1)
-
-[node name="CatSprite" type="Sprite2D" parent="."]
-visible = false
-position = Vector2(0.0360824, 1.2815e-06)
-scale = Vector2(0.03, 0.03)
-texture = ExtResource("6_rytx7")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.04, 0.04)
@@ -477,17 +474,25 @@ libraries = {
 "": SubResource("AnimationLibrary_utllu")
 }
 
-[node name="MinionAttackArea" type="Area2D" parent="."]
-collision_mask = 3
+[node name="EngagementRange" type="Area2D" parent="."]
+collision_mask = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="MinionAttackArea"]
-shape = SubResource("CircleShape2D_6c0yh")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EngagementRange"]
+shape = SubResource("CircleShape2D_uxqin")
+debug_color = Color(0.996078, 0, 0.203922, 0.419608)
 
 [node name="AttackRange" type="Area2D" parent="."]
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackRange"]
 shape = SubResource("CircleShape2D_0pxk1")
+debug_color = Color(0, 0.639216, 0.364706, 0.419608)
+
+[node name="MinionAttackArea" type="Area2D" parent="."]
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MinionAttackArea"]
+shape = SubResource("CircleShape2D_6c0yh")
 
 [node name="AttackBuildupTimer" type="Timer" parent="."]
 one_shot = true

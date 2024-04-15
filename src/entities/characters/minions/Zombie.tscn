@@ -1,7 +1,7 @@
 [gd_scene load_steps=34 format=3 uid="uid://c7jvs3fcwp2j1"]
 
 [ext_resource type="Script" path="res://src/entities/characters/minions/minion_base.gd" id="1_56qy7"]
-[ext_resource type="Resource" path="res://src/entities/characters/minions/ZombieAttributes.tres" id="2_c651r"]
+[ext_resource type="Resource" uid="uid://cctfuamkj3rqr" path="res://src/entities/characters/minions/ZombieAttributes.tres" id="2_c651r"]
 [ext_resource type="Resource" uid="uid://s6oc7lk4nbw0" path="res://src/entities/characters/minions/minion_attacks/minion_basic_attack.tres" id="3_yth42"]
 [ext_resource type="Texture2D" uid="uid://c5iybko3t607a" path="res://assets/sprite/zombie.png" id="4_18wwb"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/state_chart.gd" id="5_1gsmk"]

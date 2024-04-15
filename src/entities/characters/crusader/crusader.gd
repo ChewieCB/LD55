@@ -25,6 +25,8 @@ var current_stance: Stance = Stance.FAST
 @onready var buildup_bar = $AttackBuildup
 @onready var stance_timer  = $StanceTimer
 
+@onready var engagement_range = $EngagementRange
+
 var path: Curve2D
 var path_points: PackedVector2Array
 var path_index: int = 0:
@@ -187,43 +189,54 @@ func _on_tank_stance_state_exited():
 
 
 func _on_attacking_idle_state_entered():
-	# TODO - remove random switching, replace with target type checks
-	if stance_timer.is_stopped():
-		#if randf_range(0, 1) > 0.65:
-		var stance_str: String
-		match current_stance:
-			Stance.FAST:
-				stance_str = "tank_stance"
-				$StanceLabel.text = "Tank"
-				current_stance = Stance.TANK
-			Stance.TANK:
-				stance_str = "default_stance"
-				$StanceLabel.text = "Fast"
-				current_stance = Stance.FAST
-			Stance.DAMAGE:
-				stance_str = "damage_stance"
-				$StanceLabel.text = "Damage"
-		state_chart.send_event(stance_str)
-		stance_timer.start(20.0)
+	pass
 
 
 func _on_attacking_idle_state_physics_processing(delta):
-	pass
+	if stance_timer.is_stopped():
+		# Query the engagement radius around the crusader to get bodies
+		var nearby_minions = engagement_range.get_overlapping_bodies()
+		
+		# Map each minion to the string representation of its rank
+		var minion_type_hash = nearby_minions.map(
+			func(_minion):
+				return CharacterAttributes.Rank.keys()[_minion.attributes.rank]
+		)
+		
+		# Count the number of minions of each type
+		var rank_count_arr = []
+		for _rank in CharacterAttributes.Rank:
+			rank_count_arr.append([_rank, minion_type_hash.count(_rank)])
+		var sorted_count = rank_count_arr
+		sorted_count.sort_custom(
+			func(a, b):
+				if a[1] > b[1]:
+					return true
+				return false
+		)
+		var mode_type_string = sorted_count[0][0]
+		var minion_type_mode = CharacterAttributes.Rank.get(mode_type_string)
+		
+		# Match against highest minion type to decide stance
+		var stance_str: String
+		match minion_type_mode:
+			CharacterAttributes.Rank.HORDE:
+				stance_str = "default_stance"
+				$StanceLabel.text = "Fast"
+				current_stance = Stance.FAST
+			CharacterAttributes.Rank.ELITE:
+				stance_str = "tank_stance"
+				$StanceLabel.text = "Tank"
+				current_stance = Stance.TANK
+			CharacterAttributes.Rank.TANK:
+				pass
+			_:
+				return
+			
+		state_chart.send_event(stance_str)
+		#stance_timer.start(5.0)
+	
 	# FIXME - get buildup/cooldown UI working again and handle it here
-	# Generic cooldown for all attacks
-	#if not cooldown_timer.is_stopped():
-		#return
-	#
-	#var attack_priority = [
-		#attacks[AttackNames.AOE],
-		#attacks[AttackNames.SPIN],
-		#attacks[AttackNames.BASIC_ATTACK]
-	#]
-	#for _attack in attack_priority:
-		#if not is_in_cooldown(_attack):
-			#current_attack = _attack
-			#break
-	#
 	#if current_attack:
 		#if attack_range_area.has_overlapping_bodies():
 			#state_chart.send_event("stop_walking")
