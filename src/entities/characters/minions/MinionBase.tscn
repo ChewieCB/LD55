@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://y43wlad4886x"]
+[gd_scene load_steps=35 format=3 uid="uid://y43wlad4886x"]
 
 [ext_resource type="Script" path="res://src/entities/characters/minions/minion_base.gd" id="1_etj48"]
 [ext_resource type="Resource" uid="uid://llrg3w5kjfl0" path="res://src/entities/characters/minions/base_minion_attributes.tres" id="2_leot4"]
@@ -12,6 +12,7 @@
 [ext_resource type="Script" path="res://addons/godot_state_charts/state_is_active_guard.gd" id="8_vemok"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/not_guard.gd" id="9_g2dqf"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/all_of_guard.gd" id="12_n7d5c"]
+[ext_resource type="Animation" uid="uid://dbxt5qt54x8o" path="res://assets/anims/hurt.res" id="13_ajw73"]
 [ext_resource type="Material" uid="uid://dxigui4aepso1" path="res://src/entities/characters/minions/minion_attacks/particle_resources/IcePickCanvasItemMaterial.tres" id="13_etpix"]
 [ext_resource type="Texture2D" uid="uid://brmlt6rgwrn1w" path="res://assets/particles/Explosion_2_64x64.png" id="14_78xok"]
 [ext_resource type="Material" uid="uid://dh5drr46te2fc" path="res://src/entities/characters/minions/minion_attacks/particle_resources/IcePickParticleProcessMaterial.tres" id="14_isxlb"]
@@ -94,7 +95,8 @@ tracks/1/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_lj4jm"]
 _data = {
 "attack": SubResource("Animation_a6hs8"),
-"death": SubResource("Animation_qcj21")
+"death": SubResource("Animation_qcj21"),
+"hurt": ExtResource("13_ajw73")
 }
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_pbyd6"]
@@ -120,22 +122,7 @@ script = ExtResource("1_etj48")
 resource_attributes = ExtResource("2_leot4")
 attacks = Array[Resource("res://src/entities/characters/attack_resource.gd")]([ExtResource("3_kbf6h")])
 
-[node name="ColorRect" type="ColorRect" parent="."]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -17.0
-offset_top = -17.0
-offset_right = 17.0
-offset_bottom = 17.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0.403922, 0.756863, 0.894118, 1)
-
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(2, 3)
 scale = Vector2(0.0997529, 0.106163)
 texture = ExtResource("2_n7sds")
 

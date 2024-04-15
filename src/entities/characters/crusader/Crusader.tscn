@@ -1,4 +1,4 @@
-[gd_scene load_steps=51 format=3 uid="uid://bev1egpx7qcvi"]
+[gd_scene load_steps=52 format=3 uid="uid://bev1egpx7qcvi"]
 
 [ext_resource type="Script" path="res://src/entities/characters/crusader/crusader.gd" id="1_0cjda"]
 [ext_resource type="Resource" uid="uid://b5dljo4pci4to" path="res://src/entities/characters/crusader/crusader_attributes.tres" id="2_jwm8m"]
@@ -21,6 +21,7 @@
 [ext_resource type="Animation" uid="uid://416js6etq1ua" path="res://src/entities/characters/crusader/crusader_attacks/attack_anims/spin.res" id="15_sulxg"]
 [ext_resource type="Material" uid="uid://xmkfohc74i6y" path="res://src/entities/characters/crusader/crusader_attacks/particle_resources/CleaveCanvasItemMaterial.tres" id="16_2bjtj"]
 [ext_resource type="Texture2D" uid="uid://dlsl4vycxk1wp" path="res://assets/particles/IceCast_96x96.png" id="16_5hi2q"]
+[ext_resource type="Animation" uid="uid://dbxt5qt54x8o" path="res://assets/anims/hurt.res" id="17_hxo7c"]
 [ext_resource type="Material" uid="uid://balgrp68nidpr" path="res://src/entities/characters/crusader/crusader_attacks/particle_resources/CleaveParticleProcessMaterial.tres" id="17_v0ayw"]
 [ext_resource type="Theme" uid="uid://crnxmpykwrhqn" path="res://src/ui/themes/status_label.tres" id="21_dl3nj"]
 
@@ -120,52 +121,27 @@ tracks/0/keys = {
 "values": [true]
 }
 
-[sub_resource type="Animation" id="Animation_mykda"]
-resource_name = "hurt"
-length = 0.25
-step = 0.05
+[sub_resource type="Animation" id="Animation_45p3i"]
+length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("CatSprite:modulate")
+tracks/0/path = NodePath("Sprite2D:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.15, 0.25),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Color(1, 1, 1, 1), Color(100, 1, 1, 1), Color(100, 1, 1, 1), Color(1, 1, 1, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("CatSprite:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(0.0360824, 1.2815e-06), Vector2(-4, -2), Vector2(0.0360824, 1.2815e-06), Vector2(5, 1), Vector2(0.0360824, 1.2815e-06), Vector2(0.0360824, 1.2815e-06)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("ColorRect:color")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.15, 0.25),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Color(0.403922, 0.756863, 0.894118, 1), Color(0.701961, 0.247059, 0.243137, 1), Color(0.701961, 0.247059, 0.243137, 1), Color(0.403922, 0.756863, 0.894118, 1)]
+"values": [Vector2(-2, -2)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_utllu"]
 _data = {
+"RESET": SubResource("Animation_45p3i"),
 "attack": SubResource("Animation_45lpn"),
 "block": SubResource("Animation_c2uu4"),
-"hurt": SubResource("Animation_mykda"),
+"hurt": ExtResource("17_hxo7c"),
 "spin": ExtResource("15_sulxg")
 }
 
@@ -218,10 +194,12 @@ grow_vertical = 2
 color = Color(0.403922, 0.756863, 0.894118, 1)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-2, -2)
 scale = Vector2(0.04, 0.04)
 texture = ExtResource("8_thchg")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 shape = SubResource("RectangleShape2D_ci4kf")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
@@ -475,6 +453,7 @@ libraries = {
 }
 
 [node name="EngagementRange" type="Area2D" parent="."]
+visible = false
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EngagementRange"]
@@ -482,6 +461,7 @@ shape = SubResource("CircleShape2D_uxqin")
 debug_color = Color(0.996078, 0, 0.203922, 0.419608)
 
 [node name="AttackRange" type="Area2D" parent="."]
+visible = false
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackRange"]
@@ -489,6 +469,7 @@ shape = SubResource("CircleShape2D_0pxk1")
 debug_color = Color(0, 0.639216, 0.364706, 0.419608)
 
 [node name="MinionAttackArea" type="Area2D" parent="."]
+visible = false
 collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="MinionAttackArea"]
