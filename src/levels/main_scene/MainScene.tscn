@@ -18,7 +18,7 @@ script = ExtResource("1_vnu07")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="Control" type="Control" parent="CanvasLayer"]
+[node name="Menu" type="Control" parent="CanvasLayer"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -26,7 +26,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Control"]
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Menu"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -36,55 +36,55 @@ grow_vertical = 2
 texture = ExtResource("1_prdx4")
 stretch_mode = 5
 
-[node name="JuniSprite" type="Sprite2D" parent="CanvasLayer/Control"]
+[node name="JuniSprite" type="Sprite2D" parent="CanvasLayer/Menu"]
+visible = false
 position = Vector2(1626, 205)
 scale = Vector2(1.18591, 1.18591)
 texture = ExtResource("3_xxgf2")
 
-[node name="MalinaSprite" type="Sprite2D" parent="CanvasLayer/Control"]
+[node name="MalinaSprite" type="Sprite2D" parent="CanvasLayer/Menu"]
+visible = false
 position = Vector2(209, 894)
 scale = Vector2(0.790206, 0.790206)
 texture = ExtResource("4_xephx")
 
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Control"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 362.0
-offset_top = 78.0
-offset_right = -449.0
-offset_bottom = -102.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/margin_bottom = 0
-
-[node name="Panel" type="Panel" parent="CanvasLayer/Control/MarginContainer"]
+[node name="StartButton" type="Button" parent="CanvasLayer/Menu"]
 layout_mode = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control/MarginContainer"]
-layout_mode = 2
-theme_override_constants/separation = 16
-
-[node name="Label" type="Label" parent="CanvasLayer/Control/MarginContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0.545174, 0.427451, 0.611612, 1)
-theme_override_colors/font_outline_color = Color(0.282353, 0.297993, 0.489982, 1)
-theme_override_constants/outline_size = 32
-theme_override_fonts/font = ExtResource("5_7ycku")
-theme_override_font_sizes/font_size = 200
-text = "LD55"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="StartButton" type="Button" parent="CanvasLayer/Control/MarginContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 64)
-layout_mode = 2
+offset_left = 1536.0
+offset_top = 752.0
+offset_right = 1701.0
+offset_bottom = 837.0
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_fonts/font = ExtResource("5_7ycku")
-theme_override_font_sizes/font_size = 40
+theme_override_font_sizes/font_size = 60
 text = "Start"
+
+[node name="ExtraButton" type="Button" parent="CanvasLayer/Menu"]
+layout_mode = 2
+offset_left = 1576.0
+offset_top = 848.0
+offset_right = 1741.0
+offset_bottom = 933.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_fonts/font = ExtResource("5_7ycku")
+theme_override_font_sizes/font_size = 60
+disabled = true
+text = "???"
+
+[node name="QuitButton" type="Button" parent="CanvasLayer/Menu"]
+custom_minimum_size = Vector2(125, 0)
+layout_mode = 2
+offset_left = 1608.0
+offset_top = 944.0
+offset_right = 1773.0
+offset_bottom = 1029.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_fonts/font = ExtResource("5_7ycku")
+theme_override_font_sizes/font_size = 60
+text = "Quit"
 
 [node name="Cutscene" type="TabContainer" parent="CanvasLayer"]
 visible = false
@@ -252,4 +252,5 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("8_vts4h")
 
-[connection signal="pressed" from="CanvasLayer/Control/MarginContainer/VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/Menu/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/Menu/QuitButton" to="." method="_on_quit_button_pressed"]

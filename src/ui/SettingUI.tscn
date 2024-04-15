@@ -84,29 +84,28 @@ anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -384.0
-offset_top = 88.0
+offset_top = 80.0
 offset_right = -273.0
-offset_bottom = 139.0
+offset_bottom = 131.0
 grow_horizontal = 2
 theme_override_fonts/font = ExtResource("2_poo45")
 theme_override_font_sizes/font_size = 40
 text = "Audio"
 
-[node name="MasterLabel" type="Label" parent="AudioSection"]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -23.5
+[node name="VBoxContainer" type="VBoxContainer" parent="AudioSection"]
+layout_mode = 0
+offset_left = 32.0
 offset_top = 56.0
-offset_right = 75.5
-offset_bottom = 95.0
-grow_horizontal = 2
+offset_right = 131.0
+offset_bottom = 181.0
+
+[node name="MasterLabel" type="Label" parent="AudioSection/VBoxContainer"]
+layout_mode = 2
 theme_override_fonts/font = ExtResource("2_poo45")
 theme_override_font_sizes/font_size = 30
 text = "Master"
 
-[node name="MasterSlider" type="HSlider" parent="AudioSection/MasterLabel"]
+[node name="MasterSlider" type="HSlider" parent="AudioSection/VBoxContainer/MasterLabel"]
 layout_mode = 0
 offset_left = 120.0
 offset_right = 696.0
@@ -120,21 +119,13 @@ theme_override_styles/grabber_area_highlight = SubResource("StyleBoxLine_cgqnn")
 step = 5.0
 value = 50.0
 
-[node name="BGMLabel" type="Label" parent="AudioSection"]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -23.5
-offset_top = 104.0
-offset_right = 43.5
-offset_bottom = 143.0
-grow_horizontal = 2
+[node name="BGMLabel" type="Label" parent="AudioSection/VBoxContainer"]
+layout_mode = 2
 theme_override_fonts/font = ExtResource("2_poo45")
 theme_override_font_sizes/font_size = 30
 text = "BGM"
 
-[node name="BGMSlider" type="HSlider" parent="AudioSection/BGMLabel"]
+[node name="BGMSlider" type="HSlider" parent="AudioSection/VBoxContainer/BGMLabel"]
 layout_mode = 0
 offset_left = 120.0
 offset_right = 696.0
@@ -148,21 +139,13 @@ theme_override_styles/grabber_area_highlight = SubResource("StyleBoxLine_cgqnn")
 step = 5.0
 value = 50.0
 
-[node name="SFXLabel" type="Label" parent="AudioSection"]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -23.5
-offset_top = 152.0
-offset_right = 43.5
-offset_bottom = 191.0
-grow_horizontal = 2
+[node name="SFXLabel" type="Label" parent="AudioSection/VBoxContainer"]
+layout_mode = 2
 theme_override_fonts/font = ExtResource("2_poo45")
 theme_override_font_sizes/font_size = 30
 text = "SFX"
 
-[node name="SFXSlider" type="HSlider" parent="AudioSection/SFXLabel"]
+[node name="SFXSlider" type="HSlider" parent="AudioSection/VBoxContainer/SFXLabel"]
 layout_mode = 0
 offset_left = 120.0
 offset_right = 696.0
@@ -175,6 +158,44 @@ theme_override_styles/grabber_area = SubResource("StyleBoxLine_p814v")
 theme_override_styles/grabber_area_highlight = SubResource("StyleBoxLine_cgqnn")
 step = 5.0
 value = 50.0
+
+[node name="GraphicSection" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -384.0
+offset_top = 288.0
+offset_right = -249.0
+offset_bottom = 339.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("2_poo45")
+theme_override_font_sizes/font_size = 40
+text = "Graphic
+"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GraphicSection"]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 56.0
+offset_right = 253.0
+offset_bottom = 103.0
+
+[node name="CRTCheck" type="CheckButton" parent="GraphicSection/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_constants/h_separation = 20
+theme_override_fonts/font = ExtResource("2_poo45")
+theme_override_font_sizes/font_size = 30
+text = "CRT Effect"
+
+[node name="FogCheck" type="CheckButton" parent="GraphicSection/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_constants/h_separation = 20
+theme_override_fonts/font = ExtResource("2_poo45")
+theme_override_font_sizes/font_size = 30
+text = "Fog Effect"
 
 [node name="CloseButton" type="Button" parent="."]
 custom_minimum_size = Vector2(120, 0)
@@ -211,12 +232,16 @@ theme_override_fonts/font = ExtResource("2_poo45")
 theme_override_font_sizes/font_size = 30
 text = "Back to menu"
 
-[connection signal="mouse_entered" from="AudioSection/MasterLabel/MasterSlider" to="." method="play_ui_hover_sfx"]
-[connection signal="value_changed" from="AudioSection/MasterLabel/MasterSlider" to="." method="_on_master_slider_value_changed"]
-[connection signal="mouse_entered" from="AudioSection/BGMLabel/BGMSlider" to="." method="play_ui_hover_sfx"]
-[connection signal="value_changed" from="AudioSection/BGMLabel/BGMSlider" to="." method="_on_bgm_slider_value_changed"]
-[connection signal="mouse_entered" from="AudioSection/SFXLabel/SFXSlider" to="." method="play_ui_hover_sfx"]
-[connection signal="value_changed" from="AudioSection/SFXLabel/SFXSlider" to="." method="_on_sfx_slider_value_changed"]
+[connection signal="mouse_entered" from="AudioSection/VBoxContainer/MasterLabel/MasterSlider" to="." method="play_ui_hover_sfx"]
+[connection signal="value_changed" from="AudioSection/VBoxContainer/MasterLabel/MasterSlider" to="." method="_on_master_slider_value_changed"]
+[connection signal="mouse_entered" from="AudioSection/VBoxContainer/BGMLabel/BGMSlider" to="." method="play_ui_hover_sfx"]
+[connection signal="value_changed" from="AudioSection/VBoxContainer/BGMLabel/BGMSlider" to="." method="_on_bgm_slider_value_changed"]
+[connection signal="mouse_entered" from="AudioSection/VBoxContainer/SFXLabel/SFXSlider" to="." method="play_ui_hover_sfx"]
+[connection signal="value_changed" from="AudioSection/VBoxContainer/SFXLabel/SFXSlider" to="." method="_on_sfx_slider_value_changed"]
+[connection signal="mouse_entered" from="GraphicSection/VBoxContainer/CRTCheck" to="." method="play_ui_hover_sfx"]
+[connection signal="pressed" from="GraphicSection/VBoxContainer/CRTCheck" to="." method="_on_crt_check_pressed"]
+[connection signal="mouse_entered" from="GraphicSection/VBoxContainer/FogCheck" to="." method="play_ui_hover_sfx"]
+[connection signal="pressed" from="GraphicSection/VBoxContainer/FogCheck" to="." method="_on_fog_check_pressed"]
 [connection signal="mouse_entered" from="CloseButton" to="." method="play_ui_hover_sfx"]
 [connection signal="pressed" from="CloseButton" to="." method="_on_close_button_pressed"]
 [connection signal="mouse_entered" from="BackMenuButton" to="." method="play_ui_hover_sfx"]

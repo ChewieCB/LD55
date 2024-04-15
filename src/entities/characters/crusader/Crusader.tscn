@@ -510,6 +510,7 @@ show_percentage = false
 [node name="StatusUI" parent="." instance=ExtResource("14_vj2d1")]
 
 [node name="AttackBuildup" type="ProgressBar" parent="."]
+visible = false
 custom_minimum_size = Vector2(50, 6)
 anchors_preset = 5
 anchor_left = 0.5

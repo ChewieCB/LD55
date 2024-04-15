@@ -5,7 +5,7 @@ extends Node2D
 var max_tab: int
 
 func _ready():
-	BuildThumbnail.capture_viewport()
+	# BuildThumbnail.capture_viewport()
 	max_tab = intro_cutscene.get_tab_count()
 	intro_cutscene.visible = false
 	intro_cutscene.current_tab = 0
@@ -18,4 +18,15 @@ func _input(event: InputEvent) -> void:
 			get_tree().change_scene_to_file("res://src/levels/main_game/MainGame.tscn")
 
 func _on_start_button_pressed() -> void:
+	Utils.play_button_click_sfx()
 	intro_cutscene.visible = true
+
+func _on_quit_button_pressed() -> void:
+	Utils.play_button_click_sfx()
+	get_tree().quit()
+
+func play_ui_hover_sfx():
+	Utils.play_button_hover_sfx()
+
+func play_ui_click_sfx():
+	Utils.play_button_click_sfx()

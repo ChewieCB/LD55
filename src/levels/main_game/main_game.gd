@@ -5,6 +5,9 @@ class_name MainGame
 @export var crusader: Crusader
 @export var ritual_sites: Node2D
 
+@export var crt_effect: Control
+@export var fog_effect: Control
+
 @onready var main_ui: Control = $CanvasLayer/GameUI
 @onready var patrol_path = $Ground/Path2D
 
