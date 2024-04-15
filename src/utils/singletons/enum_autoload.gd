@@ -5,6 +5,7 @@ enum SpellMain {
 	ZOMBIE = 1,
 	MUMMY = 2,
 	SKELETON = 3,
+	TENTACLE = 4,
 }
 
 enum SpellType {

@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="AttackResource" load_steps=5 format=3 uid="uid://cnm5glaj5tfw6"]
+
+[ext_resource type="Material" uid="uid://euhixxl3c1ew" path="res://src/entities/characters/crusader/crusader_attacks/particle_resources/SmiteCanvasItemMaterial.tres" id="1_gqepe"]
+[ext_resource type="Material" uid="uid://cjnt7033i3sxa" path="res://src/entities/characters/crusader/crusader_attacks/particle_resources/SmiteParticleProcessMaterial.tres" id="2_xsbj8"]
+[ext_resource type="Texture2D" uid="uid://boxc0wrl0i32l" path="res://assets/particles/IceShatter_96x96.png" id="3_ucv3q"]
+[ext_resource type="Script" path="res://src/entities/characters/attack_resource.gd" id="4_ikjrt"]
+
+[resource]
+script = ExtResource("4_ikjrt")
+targeting_mode = 0
+max_targets = 1
+attack_range = 86
+attack_delay = 0.0
+cooldown = 5.6
+damage = 100
+armour_penetration = 10
+control = 0.8
+name = "Smite"
+particle_texture = ExtResource("3_ucv3q")
+particle_size = 64
+attack_particles_process_mat = ExtResource("2_xsbj8")
+attack_particles_canvas_mat = ExtResource("1_gqepe")
+attack_sfx = Array[AudioStream]([])
+block_sfx = Array[AudioStream]([])

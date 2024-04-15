@@ -9,4 +9,4 @@ name = "Zombie"
 input = "DDD"
 spell_id = 1
 spawn_scene = ExtResource("1_0lq4h")
-cooldown = 0.9
+cooldown = 0.5

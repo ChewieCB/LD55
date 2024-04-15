@@ -1,9 +1,9 @@
-[gd_scene load_steps=34 format=3 uid="uid://c7jvs3fcwp2j1"]
+[gd_scene load_steps=35 format=3 uid="uid://c7jvs3fcwp2j1"]
 
 [ext_resource type="Script" path="res://src/entities/characters/minions/minion_base.gd" id="1_56qy7"]
-[ext_resource type="Resource" path="res://src/entities/characters/minions/ZombieAttributes.tres" id="2_c651r"]
+[ext_resource type="Resource" uid="uid://cctfuamkj3rqr" path="res://src/entities/characters/minions/ZombieAttributes.tres" id="2_c651r"]
 [ext_resource type="Resource" uid="uid://s6oc7lk4nbw0" path="res://src/entities/characters/minions/minion_attacks/minion_basic_attack.tres" id="3_yth42"]
-[ext_resource type="Texture2D" uid="uid://c5iybko3t607a" path="res://assets/sprite/zombie.png" id="4_18wwb"]
+[ext_resource type="Texture2D" uid="uid://c5iybko3t607a" path="res://assets/sprite/characters/minions/zombie.png" id="4_w3q0o"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/state_chart.gd" id="5_1gsmk"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/parallel_state.gd" id="6_gxvk7"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/compound_state.gd" id="7_qxutn"]
@@ -14,6 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://bixxqrw5c3q7e" path="res://assets/particles/SmallStar_64x64.png" id="12_cyya0"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/all_of_guard.gd" id="12_t2foq"]
 [ext_resource type="Texture2D" uid="uid://43injemtwjgx" path="res://assets/particles/PoisonClaw_96x96.png" id="13_wqag5"]
+[ext_resource type="Animation" uid="uid://dbxt5qt54x8o" path="res://assets/anims/hurt.res" id="13_y3j6l"]
 [ext_resource type="PackedScene" uid="uid://crdcf3pu3urwg" path="res://src/ui/status/status_ui.tscn" id="14_c7ah2"]
 [ext_resource type="Texture2D" uid="uid://brmlt6rgwrn1w" path="res://assets/particles/Explosion_2_64x64.png" id="14_u2fls"]
 
@@ -90,7 +91,8 @@ tracks/1/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_lj4jm"]
 _data = {
 "attack": SubResource("Animation_a6hs8"),
-"death": SubResource("Animation_qcj21")
+"death": SubResource("Animation_qcj21"),
+"hurt": ExtResource("13_y3j6l")
 }
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_lb03b"]
@@ -163,9 +165,8 @@ grow_vertical = 2
 color = Color(0.0235294, 0.466667, 0.0117647, 1)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(7.10543e-15, 1.42109e-14)
 scale = Vector2(0.2, 0.2)
-texture = ExtResource("4_18wwb")
+texture = ExtResource("4_w3q0o")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_ci4kf")

@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="CharacterAttributes" load_steps=3 format=3 uid="uid://die7cn7suuqmr"]
+
+[ext_resource type="Script" path="res://src/entities/characters/character_attributes.gd" id="1_ajx63"]
+[ext_resource type="AudioStream" uid="uid://dmpdiide0gx27" path="res://assets/sfx/minions/tentacle/Tentacle_Sound.mp3" id="2_bti8k"]
+
+[resource]
+script = ExtResource("1_ajx63")
+summon_sfx = Array[AudioStream]([ExtResource("2_bti8k")])
+health = 100
+armour = 10
+speed = 40.0
+strength = 5.0
+dexterity = 0.1
+rank = 3

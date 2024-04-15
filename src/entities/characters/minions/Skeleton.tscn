@@ -1,9 +1,9 @@
-[gd_scene load_steps=34 format=3 uid="uid://iqw1g1onexq2"]
+[gd_scene load_steps=35 format=3 uid="uid://iqw1g1onexq2"]
 
 [ext_resource type="Script" path="res://src/entities/characters/minions/minion_base.gd" id="1_f3oue"]
 [ext_resource type="Resource" uid="uid://cjg214btamq4q" path="res://src/entities/characters/minions/SkeletonAttributes.tres" id="2_0u02g"]
 [ext_resource type="Resource" uid="uid://nir8erbl55hp" path="res://src/entities/characters/minions/minion_attacks/MinionMaulAttack.tres" id="3_3aqsd"]
-[ext_resource type="Texture2D" uid="uid://y0qxqxm531jg" path="res://assets/temp/yuya_bg.png" id="4_ec0mf"]
+[ext_resource type="Texture2D" uid="uid://bsuu6r0m8wm5g" path="res://assets/sprite/characters/minions/skeleton_TEMP_WIP.png" id="4_xl27w"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/state_chart.gd" id="5_aa1q7"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/parallel_state.gd" id="6_4xj17"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/compound_state.gd" id="7_cvo53"]
@@ -14,6 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://bixxqrw5c3q7e" path="res://assets/particles/SmallStar_64x64.png" id="12_6vtvd"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/all_of_guard.gd" id="12_7x0ji"]
 [ext_resource type="Texture2D" uid="uid://43injemtwjgx" path="res://assets/particles/PoisonClaw_96x96.png" id="13_eaou2"]
+[ext_resource type="Animation" uid="uid://dbxt5qt54x8o" path="res://assets/anims/hurt.res" id="13_xvg8j"]
 [ext_resource type="Texture2D" uid="uid://brmlt6rgwrn1w" path="res://assets/particles/Explosion_2_64x64.png" id="14_eqdax"]
 [ext_resource type="PackedScene" uid="uid://crdcf3pu3urwg" path="res://src/ui/status/status_ui.tscn" id="14_q5bwy"]
 
@@ -90,7 +91,8 @@ tracks/1/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_lj4jm"]
 _data = {
 "attack": SubResource("Animation_a6hs8"),
-"death": SubResource("Animation_qcj21")
+"death": SubResource("Animation_qcj21"),
+"hurt": ExtResource("13_xvg8j")
 }
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_lb03b"]
@@ -148,6 +150,7 @@ resource_attributes = ExtResource("2_0u02g")
 attacks = Array[Resource("res://src/entities/characters/attack_resource.gd")]([ExtResource("3_3aqsd")])
 
 [node name="ColorRect" type="ColorRect" parent="."]
+visible = false
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -162,9 +165,8 @@ grow_vertical = 2
 color = Color(0.431373, 0.427451, 0.415686, 1)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(0.201749, -6.22304)
-scale = Vector2(0.0729711, 0.0776603)
-texture = ExtResource("4_ec0mf")
+scale = Vector2(0.0529704, 0.0378617)
+texture = ExtResource("4_xl27w")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_ci4kf")

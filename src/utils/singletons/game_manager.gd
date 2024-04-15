@@ -12,7 +12,7 @@ var crusader: Crusader
 var setting_ui: SettingUI
 
 func _ready():
-	SoundManager.play_music(bgm)
+	SoundManager.play_music(bgm, 0.0, "Music")
 
 func end_game(victory: bool):
 	emit_signal("game_ended")

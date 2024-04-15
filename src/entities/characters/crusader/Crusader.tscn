@@ -1,25 +1,29 @@
-[gd_scene load_steps=47 format=3 uid="uid://bev1egpx7qcvi"]
+[gd_scene load_steps=52 format=3 uid="uid://bev1egpx7qcvi"]
 
 [ext_resource type="Script" path="res://src/entities/characters/crusader/crusader.gd" id="1_0cjda"]
 [ext_resource type="Resource" uid="uid://b5dljo4pci4to" path="res://src/entities/characters/crusader/crusader_attributes.tres" id="2_jwm8m"]
 [ext_resource type="Resource" uid="uid://cs0ahufxrbf1t" path="res://src/entities/characters/crusader/crusader_attacks/CrusaderBasicAttack.tres" id="3_au4vg"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/state_chart.gd" id="3_hr7jo"]
-[ext_resource type="Resource" path="res://src/entities/characters/crusader/crusader_attacks/CrusaderAOEAttack.tres" id="4_50p0w"]
+[ext_resource type="Resource" uid="uid://bfr671pxbeh7j" path="res://src/entities/characters/crusader/crusader_attacks/CrusaderAOEAttack.tres" id="4_50p0w"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/parallel_state.gd" id="4_mr8e3"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/compound_state.gd" id="5_6ihxl"]
-[ext_resource type="Resource" path="res://src/entities/characters/crusader/crusader_attacks/CrusaderSpinAttack.tres" id="5_pbuhd"]
-[ext_resource type="Texture2D" uid="uid://crlmmotvop2xq" path="res://assets/sprite/crusader.png" id="6_rytx7"]
+[ext_resource type="Resource" uid="uid://dc1uya6c085x5" path="res://src/entities/characters/crusader/crusader_attacks/CrusaderSpinAttack.tres" id="5_pbuhd"]
+[ext_resource type="Resource" uid="uid://cflp4ui5e2o13" path="res://src/entities/characters/crusader/crusader_attacks/CrusaderCleaveAttack.tres" id="6_0yoop"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/atomic_state.gd" id="6_w7y78"]
+[ext_resource type="Resource" uid="uid://cnm5glaj5tfw6" path="res://src/entities/characters/crusader/crusader_attacks/CrusaderSmiteAttack.tres" id="7_m83wk"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/transition.gd" id="7_v3ig5"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/state_is_active_guard.gd" id="8_6fl0h"]
+[ext_resource type="Texture2D" uid="uid://c2qttgl5gxlx5" path="res://assets/sprite/characters/crusader/crusader.png" id="8_thchg"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/not_guard.gd" id="9_30nyi"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/all_of_guard.gd" id="10_slxhv"]
-[ext_resource type="Material" path="res://src/entities/characters/crusader/crusader_attacks/particle_resources/SpinCanvasItemMaterial.tres" id="14_offsl"]
 [ext_resource type="PackedScene" uid="uid://crdcf3pu3urwg" path="res://src/ui/status/status_ui.tscn" id="14_vj2d1"]
 [ext_resource type="Texture2D" uid="uid://bixxqrw5c3q7e" path="res://assets/particles/SmallStar_64x64.png" id="14_yo0hq"]
-[ext_resource type="Material" path="res://src/entities/characters/crusader/crusader_attacks/particle_resources/SpinParticleProcessMaterial.tres" id="15_4uj6q"]
 [ext_resource type="Animation" uid="uid://416js6etq1ua" path="res://src/entities/characters/crusader/crusader_attacks/attack_anims/spin.res" id="15_sulxg"]
+[ext_resource type="Material" uid="uid://xmkfohc74i6y" path="res://src/entities/characters/crusader/crusader_attacks/particle_resources/CleaveCanvasItemMaterial.tres" id="16_2bjtj"]
 [ext_resource type="Texture2D" uid="uid://dlsl4vycxk1wp" path="res://assets/particles/IceCast_96x96.png" id="16_5hi2q"]
+[ext_resource type="Animation" uid="uid://dbxt5qt54x8o" path="res://assets/anims/hurt.res" id="17_hxo7c"]
+[ext_resource type="Material" uid="uid://balgrp68nidpr" path="res://src/entities/characters/crusader/crusader_attacks/particle_resources/CleaveParticleProcessMaterial.tres" id="17_v0ayw"]
+[ext_resource type="Theme" uid="uid://crnxmpykwrhqn" path="res://src/ui/themes/status_label.tres" id="21_dl3nj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ci4kf"]
 size = Vector2(32, 32)
@@ -117,60 +121,38 @@ tracks/0/keys = {
 "values": [true]
 }
 
-[sub_resource type="Animation" id="Animation_mykda"]
-resource_name = "hurt"
-length = 0.25
-step = 0.05
+[sub_resource type="Animation" id="Animation_45p3i"]
+length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:modulate")
+tracks/0/path = NodePath("Sprite2D:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.15, 0.25),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Color(1, 1, 1, 1), Color(100, 1, 1, 1), Color(100, 1, 1, 1), Color(1, 1, 1, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(0.0360824, 1.2815e-06), Vector2(-4, -2), Vector2(0.0360824, 1.2815e-06), Vector2(5, 1), Vector2(0.0360824, 1.2815e-06), Vector2(0.0360824, 1.2815e-06)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("ColorRect:color")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.15, 0.25),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Color(0.403922, 0.756863, 0.894118, 1), Color(0.701961, 0.247059, 0.243137, 1), Color(0.701961, 0.247059, 0.243137, 1), Color(0.403922, 0.756863, 0.894118, 1)]
+"values": [Vector2(-2, -2)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_utllu"]
 _data = {
+"RESET": SubResource("Animation_45p3i"),
 "attack": SubResource("Animation_45lpn"),
 "block": SubResource("Animation_c2uu4"),
-"hurt": SubResource("Animation_mykda"),
+"hurt": ExtResource("17_hxo7c"),
 "spin": ExtResource("15_sulxg")
 }
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_6c0yh"]
-radius = 64.0
+[sub_resource type="CircleShape2D" id="CircleShape2D_uxqin"]
+radius = 128.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0pxk1"]
-radius = 48.0
+radius = 64.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6c0yh"]
+radius = 64.0
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_81xv8"]
 particles_animation = true
@@ -194,7 +176,7 @@ bg_color = Color(0.588235, 0.168627, 0.952941, 1)
 y_sort_enabled = true
 script = ExtResource("1_0cjda")
 resource_attributes = ExtResource("2_jwm8m")
-attacks = Array[Resource("res://src/entities/characters/attack_resource.gd")]([ExtResource("3_au4vg"), ExtResource("4_50p0w"), ExtResource("5_pbuhd")])
+attacks = Array[Resource("res://src/entities/characters/attack_resource.gd")]([ExtResource("3_au4vg"), ExtResource("5_pbuhd"), ExtResource("4_50p0w"), ExtResource("6_0yoop"), ExtResource("7_m83wk")])
 
 [node name="ColorRect" type="ColorRect" parent="."]
 visible = false
@@ -212,11 +194,12 @@ grow_vertical = 2
 color = Color(0.403922, 0.756863, 0.894118, 1)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(0.0360824, 1.2815e-06)
-scale = Vector2(0.03, 0.03)
-texture = ExtResource("6_rytx7")
+position = Vector2(-2, -2)
+scale = Vector2(0.04, 0.04)
+texture = ExtResource("8_thchg")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 shape = SubResource("RectangleShape2D_ci4kf")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
@@ -258,14 +241,41 @@ initial_state = NodePath("DefaultStance")
 [node name="DefaultStance" type="Node" parent="StateChart/Root/Stances"]
 script = ExtResource("6_w7y78")
 
+[node name="toTankStance" type="Node" parent="StateChart/Root/Stances/DefaultStance"]
+script = ExtResource("7_v3ig5")
+to = NodePath("../../TankStance")
+event = &"tank_stance"
+
+[node name="toDamageStance" type="Node" parent="StateChart/Root/Stances/DefaultStance"]
+script = ExtResource("7_v3ig5")
+to = NodePath("../../DamageStance")
+event = &"damage_stance"
+
 [node name="TankStance" type="Node" parent="StateChart/Root/Stances"]
 script = ExtResource("6_w7y78")
 
-[node name="FastStance" type="Node" parent="StateChart/Root/Stances"]
-script = ExtResource("6_w7y78")
+[node name="toDefaultStance" type="Node" parent="StateChart/Root/Stances/TankStance"]
+script = ExtResource("7_v3ig5")
+to = NodePath("../../DefaultStance")
+event = &"default_stance"
+
+[node name="toDamageStance" type="Node" parent="StateChart/Root/Stances/TankStance"]
+script = ExtResource("7_v3ig5")
+to = NodePath("../../DamageStance")
+event = &"damage_stance"
 
 [node name="DamageStance" type="Node" parent="StateChart/Root/Stances"]
 script = ExtResource("6_w7y78")
+
+[node name="toDefaultStance" type="Node" parent="StateChart/Root/Stances/DamageStance"]
+script = ExtResource("7_v3ig5")
+to = NodePath("../../DefaultStance")
+event = &"default_stance"
+
+[node name="toTankStance" type="Node" parent="StateChart/Root/Stances/DamageStance"]
+script = ExtResource("7_v3ig5")
+to = NodePath("../../TankStance")
+event = &"tank_stance"
 
 [node name="Damage" type="Node" parent="StateChart/Root"]
 script = ExtResource("5_6ihxl")
@@ -442,17 +452,28 @@ libraries = {
 "": SubResource("AnimationLibrary_utllu")
 }
 
-[node name="MinionAttackArea" type="Area2D" parent="."]
-collision_mask = 3
+[node name="EngagementRange" type="Area2D" parent="."]
+visible = false
+collision_mask = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="MinionAttackArea"]
-shape = SubResource("CircleShape2D_6c0yh")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EngagementRange"]
+shape = SubResource("CircleShape2D_uxqin")
+debug_color = Color(0.996078, 0, 0.203922, 0.419608)
 
 [node name="AttackRange" type="Area2D" parent="."]
+visible = false
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackRange"]
 shape = SubResource("CircleShape2D_0pxk1")
+debug_color = Color(0, 0.639216, 0.364706, 0.419608)
+
+[node name="MinionAttackArea" type="Area2D" parent="."]
+visible = false
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MinionAttackArea"]
+shape = SubResource("CircleShape2D_6c0yh")
 
 [node name="AttackBuildupTimer" type="Timer" parent="."]
 one_shot = true
@@ -464,10 +485,10 @@ one_shot = true
 one_shot = true
 
 [node name="AttackParticles" type="GPUParticles2D" parent="."]
-material = ExtResource("14_offsl")
+material = ExtResource("16_2bjtj")
 emitting = false
 amount = 1
-process_material = ExtResource("15_4uj6q")
+process_material = ExtResource("17_v0ayw")
 texture = ExtResource("16_5hi2q")
 one_shot = true
 speed_scale = 2.0
@@ -517,17 +538,44 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_wevtv")
 value = 100.0
 show_percentage = false
 
+[node name="StanceLabel" type="Label" parent="."]
+z_index = 5
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -25.0
+offset_top = -3.5
+offset_right = 25.0
+offset_bottom = 19.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("21_dl3nj")
+text = "Stance"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="StanceTimer" type="Timer" parent="."]
+one_shot = true
+
 [connection signal="velocity_computed" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_velocity_computed"]
 [connection signal="state_entered" from="StateChart/Root/Movement/Idle" to="." method="_on_idle_state_entered"]
 [connection signal="state_physics_processing" from="StateChart/Root/Movement/Idle" to="." method="_on_idle_state_physics_processing"]
 [connection signal="state_physics_processing" from="StateChart/Root/Movement/Walking" to="." method="_on_walking_state_physics_processing"]
+[connection signal="state_entered" from="StateChart/Root/Stances/DefaultStance" to="." method="_on_default_stance_state_entered"]
+[connection signal="state_exited" from="StateChart/Root/Stances/DefaultStance" to="." method="_on_default_stance_state_exited"]
 [connection signal="state_physics_processing" from="StateChart/Root/Stances/DefaultStance" to="." method="_on_default_stance_state_physics_processing"]
+[connection signal="state_entered" from="StateChart/Root/Stances/TankStance" to="." method="_on_tank_stance_state_entered"]
+[connection signal="state_exited" from="StateChart/Root/Stances/TankStance" to="." method="_on_tank_stance_state_exited"]
+[connection signal="state_physics_processing" from="StateChart/Root/Stances/TankStance" to="." method="_on_tank_stance_state_physics_processing"]
 [connection signal="state_entered" from="StateChart/Root/Damage/Hit" to="." method="_on_hit_state_entered"]
 [connection signal="state_entered" from="StateChart/Root/Damage/Dead" to="." method="_on_dead_state_entered"]
 [connection signal="state_entered" from="StateChart/Root/Status/Staggered" to="." method="_on_status_staggered_state_entered"]
 [connection signal="state_exited" from="StateChart/Root/Status/Staggered" to="." method="_on_status_staggered_state_exited"]
 [connection signal="state_entered" from="StateChart/Root/Status/Stunned" to="." method="_on_status_stunned_state_entered"]
 [connection signal="state_exited" from="StateChart/Root/Status/Stunned" to="." method="_on_status_stunned_state_exited"]
+[connection signal="state_entered" from="StateChart/Root/Attacking/Idle" to="." method="_on_attacking_idle_state_entered"]
 [connection signal="state_physics_processing" from="StateChart/Root/Attacking/Idle" to="." method="_on_attacking_idle_state_physics_processing"]
 [connection signal="state_entered" from="StateChart/Root/Attacking/Buildup" to="." method="_on_attacking_buildup_state_entered"]
 [connection signal="state_exited" from="StateChart/Root/Attacking/Buildup" to="." method="_on_attacking_buildup_state_exited"]
