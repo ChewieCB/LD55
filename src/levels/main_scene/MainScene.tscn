@@ -1,24 +1,98 @@
-[gd_scene load_steps=11 format=3 uid="uid://yqaf1cxr4njr"]
+[gd_scene load_steps=17 format=3 uid="uid://yqaf1cxr4njr"]
 
 [ext_resource type="Texture2D" uid="uid://cls1x1wx2icgw" path="res://assets/temp/Space Background.png" id="1_prdx4"]
 [ext_resource type="Script" path="res://src/levels/main_scene/main_scene.gd" id="1_vnu07"]
-[ext_resource type="Texture2D" uid="uid://b356n6j567g3d" path="res://assets/temp/juni-bg.png" id="3_xxgf2"]
-[ext_resource type="Texture2D" uid="uid://tbaw03mlpcud" path="res://assets/temp/malina-bg.png" id="4_xephx"]
+[ext_resource type="Script" path="res://src/levels/main_scene/animated_button.gd" id="4_b7wsb"]
+[ext_resource type="PackedScene" uid="uid://dj18tmsspff4d" path="res://src/ui/common/StyledButton.tscn" id="4_df5ml"]
 [ext_resource type="FontFile" uid="uid://b21yg3y2byt8f" path="res://assets/fonts/AvQest.ttf" id="5_7ycku"]
+[ext_resource type="Texture2D" uid="uid://bnyh2q7x1nuyk" path="res://assets/cutscene/tutorial.png" id="5_fhexy"]
+[ext_resource type="Texture2D" uid="uid://cahh042xli854" path="res://assets/ui/kenney_borders/Default/Border/panel-border-000.png" id="6_22r4t"]
 [ext_resource type="Texture2D" uid="uid://d1ihhw8wqqnye" path="res://assets/cutscene/evil_overlord.png" id="6_mtqh4"]
 [ext_resource type="Texture2D" uid="uid://bdpyqwvtcccb7" path="res://assets/cutscene/crusader.png" id="7_ab3xk"]
+[ext_resource type="Shader" path="res://src/utils/shaders/crt_scanline.gdshader" id="7_ruhtu"]
 [ext_resource type="Texture2D" uid="uid://cliqc7b5doypy" path="res://assets/cutscene/defend_lair.png" id="8_vts4h"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_t43mp"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6p53p"]
 
-[node name="MainScene" type="Node2D"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ytrxn"]
+shader = ExtResource("7_ruhtu")
+shader_parameter/overlay = true
+shader_parameter/scanlines_opacity = 0.4
+shader_parameter/scanlines_width = 0.25
+shader_parameter/grille_opacity = 0.0
+shader_parameter/resolution = Vector2(960, 480)
+shader_parameter/pixelate = false
+shader_parameter/roll = false
+shader_parameter/roll_speed = 0.0
+shader_parameter/roll_size = 0.0
+shader_parameter/roll_variation = 0.1
+shader_parameter/distort_intensity = 0.0
+shader_parameter/noise_opacity = 0.2
+shader_parameter/noise_speed = 5.0
+shader_parameter/static_noise_intensity = 0.06
+shader_parameter/aberration = 0.00500005
+shader_parameter/brightness = 1.4
+shader_parameter/discolor = false
+shader_parameter/warp_amount = 0.0
+shader_parameter/clip_warp = false
+shader_parameter/vignette_intensity = 0.4
+shader_parameter/vignette_opacity = 0.5
+
+[sub_resource type="Animation" id="Animation_ibdon"]
+resource_name = "start"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/Menu/ButtonBackground:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(0.5, 1),
+"update": 0,
+"values": [Vector2(1408, -1472), Vector2(1408, -152)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasLayer/Menu/Title:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(0.5, 1),
+"update": 0,
+"values": [Vector2(-704, 56), Vector2(112, 56)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"finished_startup_animation"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_t3ipv"]
+_data = {
+"start": SubResource("Animation_ibdon")
+}
+
+[node name="MainScene" type="Node2D" node_paths=PackedStringArray("animated_buttons")]
 script = ExtResource("1_vnu07")
+animated_buttons = [NodePath("CanvasLayer/Menu/ButtonBackground/StartButton"), NodePath("CanvasLayer/Menu/ButtonBackground/TutorialButton"), NodePath("CanvasLayer/Menu/ButtonBackground/QuitButton")]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="Control" type="Control" parent="CanvasLayer"]
+[node name="Menu" type="Control" parent="CanvasLayer"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -26,7 +100,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Control"]
+[node name="Background" type="TextureRect" parent="CanvasLayer/Menu"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -34,57 +108,168 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("1_prdx4")
-stretch_mode = 5
 
-[node name="JuniSprite" type="Sprite2D" parent="CanvasLayer/Control"]
-position = Vector2(1626, 205)
-scale = Vector2(1.18591, 1.18591)
-texture = ExtResource("3_xxgf2")
+[node name="Title" type="RichTextLabel" parent="CanvasLayer/Menu"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -848.0
+offset_top = 56.0
+offset_right = -204.001
+offset_bottom = 362.0
+grow_horizontal = 2
+theme_override_fonts/normal_font = ExtResource("5_7ycku")
+theme_override_font_sizes/normal_font_size = 120
+bbcode_enabled = true
+text = "[center][wave]Crusader Survivor[/wave][/center]"
+fit_content = true
+scroll_active = false
 
-[node name="MalinaSprite" type="Sprite2D" parent="CanvasLayer/Control"]
-position = Vector2(209, 894)
-scale = Vector2(0.790206, 0.790206)
-texture = ExtResource("4_xephx")
+[node name="ButtonBackground" type="ColorRect" parent="CanvasLayer/Menu"]
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -512.0
+offset_top = -152.0
+offset_right = -64.0
+offset_bottom = 176.0
+grow_horizontal = 0
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
 
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Control"]
+[node name="StartButton" parent="CanvasLayer/Menu/ButtonBackground" instance=ExtResource("4_df5ml")]
+layout_mode = 0
+offset_left = 72.0
+offset_top = 832.0
+offset_right = 372.0
+offset_bottom = 917.0
+text = "Start"
+script = ExtResource("4_b7wsb")
+
+[node name="TutorialButton" parent="CanvasLayer/Menu/ButtonBackground" instance=ExtResource("4_df5ml")]
+layout_mode = 0
+offset_left = 72.0
+offset_top = 936.0
+offset_right = 372.0
+offset_bottom = 1021.0
+text = "Tutorial"
+script = ExtResource("4_b7wsb")
+
+[node name="QuitButton" parent="CanvasLayer/Menu/ButtonBackground" instance=ExtResource("4_df5ml")]
+layout_mode = 0
+offset_left = 72.0
+offset_top = 1040.0
+offset_right = 372.0
+offset_bottom = 1125.0
+text = "Quit"
+script = ExtResource("4_b7wsb")
+
+[node name="VersionLabel" type="Label" parent="CanvasLayer/Menu/ButtonBackground"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -35.0
+offset_top = -223.0
+offset_right = 35.0
+offset_bottom = -184.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("5_7ycku")
+theme_override_font_sizes/font_size = 30
+text = "v0.5"
+
+[node name="NinePatchRect" type="NinePatchRect" parent="CanvasLayer/Menu/ButtonBackground"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 362.0
-offset_top = 78.0
-offset_right = -449.0
-offset_bottom = -102.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_bottom = 0
+texture = ExtResource("6_22r4t")
+patch_margin_left = 20
+patch_margin_top = 20
+patch_margin_right = 20
+patch_margin_bottom = 20
 
-[node name="Panel" type="Panel" parent="CanvasLayer/Control/MarginContainer"]
-layout_mode = 2
+[node name="DontRemoveThisCRTNeedIt" type="ColorRect" parent="CanvasLayer/Menu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0)
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control/MarginContainer"]
-layout_mode = 2
-theme_override_constants/separation = 16
+[node name="Tutorial" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 128.0
+offset_top = 384.0
+offset_right = 1216.0
+offset_bottom = 960.0
 
-[node name="Label" type="Label" parent="CanvasLayer/Control/MarginContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0.545174, 0.427451, 0.611612, 1)
-theme_override_colors/font_outline_color = Color(0.282353, 0.297993, 0.489982, 1)
-theme_override_constants/outline_size = 32
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/Tutorial"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.882353)
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Tutorial"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 56.0
+offset_top = -240.0
+offset_right = 336.0
+offset_bottom = 232.0
+grow_vertical = 2
+texture = ExtResource("5_fhexy")
+
+[node name="Label" type="Label" parent="CanvasLayer/Tutorial"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -168.0
+offset_top = -256.0
+offset_right = 512.0
+offset_bottom = 256.0
+grow_horizontal = 2
+grow_vertical = 2
 theme_override_fonts/font = ExtResource("5_7ycku")
-theme_override_font_sizes/font_size = 200
-text = "LD55"
-horizontal_alignment = 1
-vertical_alignment = 1
+theme_override_font_sizes/font_size = 34
+text = "- Use a sequence of arrows (WASD by default) to prepare spells.
+- There's a list of prefix and main spell components on both side of the screen.
+- You can cast a spell alone, or combine them with a prefixe to enhance its power.
+- After input the correct sequence, press [Space] to confirm it, and use [Left-mouse button] to cast it on screen.
+"
+autowrap_mode = 2
 
-[node name="StartButton" type="Button" parent="CanvasLayer/Control/MarginContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 64)
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-theme_override_fonts/font = ExtResource("5_7ycku")
-theme_override_font_sizes/font_size = 40
-text = "Start"
+[node name="NinePatchRect" type="NinePatchRect" parent="CanvasLayer/Tutorial"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("6_22r4t")
+patch_margin_left = 20
+patch_margin_top = 20
+patch_margin_right = 20
+patch_margin_bottom = 20
 
 [node name="Cutscene" type="TabContainer" parent="CanvasLayer"]
 visible = false
@@ -252,4 +437,24 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("8_vts4h")
 
-[connection signal="pressed" from="CanvasLayer/Control/MarginContainer/VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
+[node name="CRTShader" type="ColorRect" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_ytrxn")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_t3ipv")
+}
+autoplay = "start"
+
+[connection signal="mouse_entered" from="CanvasLayer/Menu/ButtonBackground/StartButton" to="." method="play_ui_hover_sfx"]
+[connection signal="pressed" from="CanvasLayer/Menu/ButtonBackground/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="mouse_entered" from="CanvasLayer/Menu/ButtonBackground/TutorialButton" to="." method="play_ui_hover_sfx"]
+[connection signal="pressed" from="CanvasLayer/Menu/ButtonBackground/TutorialButton" to="." method="_on_tutorial_button_pressed"]
+[connection signal="mouse_entered" from="CanvasLayer/Menu/ButtonBackground/QuitButton" to="." method="play_ui_hover_sfx"]
+[connection signal="pressed" from="CanvasLayer/Menu/ButtonBackground/QuitButton" to="." method="_on_quit_button_pressed"]

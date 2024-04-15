@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://bjabavwsrnt0y"]
+[gd_scene load_steps=26 format=3 uid="uid://bjabavwsrnt0y"]
 
 [ext_resource type="Script" path="res://src/levels/main_game/main_game.gd" id="1_4qjmh"]
 [ext_resource type="Texture2D" uid="uid://8q5gyn8ex2wv" path="res://assets/sprite/square.png" id="1_vuavk"]
@@ -14,6 +14,9 @@
 [ext_resource type="Resource" uid="uid://cj3odtgn32j5g" path="res://src/entities/player/prefix/triangle.tres" id="13_4fnmm"]
 [ext_resource type="Resource" uid="uid://deu8alrv0hxfy" path="res://src/entities/player/prefix/agile.tres" id="14_qcq4r"]
 [ext_resource type="Resource" uid="uid://d002fmxjkp77y" path="res://src/entities/player/prefix/tough.tres" id="15_7hpi6"]
+[ext_resource type="Shader" path="res://src/utils/shaders/fog_overlay.gdshader" id="16_bw2li"]
+[ext_resource type="Shader" path="res://src/utils/shaders/crt_scanline.gdshader" id="16_w5sx6"]
+[ext_resource type="Shader" path="res://src/utils/shaders/rain_snow.gdshader" id="17_25k6b"]
 [ext_resource type="PackedScene" uid="uid://kvwa5lh7hoh2" path="res://src/ui/SettingUI.tscn" id="17_xfjr0"]
 
 [sub_resource type="Curve2D" id="Curve2D_g2yoo"]
@@ -28,8 +31,59 @@ polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2), PackedInt32Array(
 outlines = Array[PackedVector2Array]([PackedVector2Array(3, -1, 2, 765, 1359, 770, 747, 415, 390, 401, 332, 308, 333, 200, 526, 166, 753, 198, 673, -5), PackedVector2Array(1369, 3, 663, 7, 740, 183, 809, 246, 774, 330, 744, 423, 1321, 758, 1372, 768)])
 source_geometry_group_name = &"navigation_polygon_source_group"
 
-[node name="MainGame" type="Node2D"]
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_ytest"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_u2x75"]
+seamless = true
+noise = SubResource("FastNoiseLite_ytest")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ndmxn"]
+shader = ExtResource("16_bw2li")
+shader_parameter/density = 0.1
+shader_parameter/speed = Vector2(0.02, 0.01)
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_u2x75")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_djl7n"]
+shader = ExtResource("17_25k6b")
+shader_parameter/count = 100
+shader_parameter/slant = -0.1
+shader_parameter/speed = 30.0
+shader_parameter/blur = 0.002
+shader_parameter/colour = Color(1, 1, 1, 1)
+shader_parameter/size = Vector2(0.005, 0.2)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2xknb"]
+shader = ExtResource("16_w5sx6")
+shader_parameter/overlay = true
+shader_parameter/scanlines_opacity = 0.4
+shader_parameter/scanlines_width = 0.25
+shader_parameter/grille_opacity = 0.0
+shader_parameter/resolution = Vector2(960, 480)
+shader_parameter/pixelate = false
+shader_parameter/roll = false
+shader_parameter/roll_speed = 1.0
+shader_parameter/roll_size = 0.0
+shader_parameter/roll_variation = 0.1
+shader_parameter/distort_intensity = 0.0
+shader_parameter/noise_opacity = 0.2
+shader_parameter/noise_speed = 5.0
+shader_parameter/static_noise_intensity = 0.02
+shader_parameter/aberration = 0.00500005
+shader_parameter/brightness = 1.2
+shader_parameter/discolor = false
+shader_parameter/warp_amount = 0.0
+shader_parameter/clip_warp = false
+shader_parameter/vignette_intensity = 0.2
+shader_parameter/vignette_opacity = 0.5
+
+[node name="MainGame" type="Node2D" node_paths=PackedStringArray("minion_spawn", "crusader", "ritual_sites", "crt_shader", "fog_effect", "rain_effect")]
 script = ExtResource("1_4qjmh")
+minion_spawn = NodePath("YSort/Minions")
+crusader = NodePath("YSort/Crusader")
+ritual_sites = NodePath("YSort/RitualSites")
+crt_shader = NodePath("CanvasLayer/CRTShader")
+fog_effect = NodePath("ParallaxBackground/ParallaxLayer/FogShader")
+rain_effect = NodePath("CanvasLayer/RainShader")
 
 [node name="Ground" type="Sprite2D" parent="."]
 self_modulate = Color(0.22847, 0.129932, 0.144078, 1)
@@ -53,7 +107,31 @@ navigation_polygon = SubResource("NavigationPolygon_e1llw")
 [node name="YSort" type="Node2D" parent="."]
 y_sort_enabled = true
 
+[node name="Crusader" parent="YSort" instance=ExtResource("4_udo82")]
+position = Vector2(253, -148)
+
+[node name="Minions" type="Node2D" parent="YSort"]
+y_sort_enabled = true
+
+[node name="RitualSites" type="Node2D" parent="YSort"]
+
+[node name="RitualPoint" parent="YSort/RitualSites" instance=ExtResource("4_62qie")]
+position = Vector2(213, 396)
+
+[node name="RitualPoint2" parent="YSort/RitualSites" instance=ExtResource("4_62qie")]
+position = Vector2(598, 588)
+
+[node name="RitualPoint3" parent="YSort/RitualSites" instance=ExtResource("4_62qie")]
+position = Vector2(1218, 455)
+
+[node name="RitualPoint4" parent="YSort/RitualSites" instance=ExtResource("4_62qie")]
+position = Vector2(809, 349)
+
+[node name="RitualPoint5" parent="YSort/RitualSites" instance=ExtResource("4_62qie")]
+position = Vector2(491, 100)
+
 [node name="ArtDecorations" type="Node2D" parent="YSort"]
+y_sort_enabled = true
 
 [node name="Tree" type="Sprite2D" parent="YSort/ArtDecorations"]
 position = Vector2(440, 772)
@@ -300,42 +378,53 @@ position = Vector2(775, 671)
 scale = Vector2(0.1, 0.1)
 texture = ExtResource("5_4uejn")
 
-[node name="RitualSites" type="Node2D" parent="."]
-
-[node name="RitualPoint" parent="RitualSites" instance=ExtResource("4_62qie")]
-position = Vector2(213, 396)
-
-[node name="RitualPoint2" parent="RitualSites" instance=ExtResource("4_62qie")]
-position = Vector2(598, 588)
-
-[node name="RitualPoint3" parent="RitualSites" instance=ExtResource("4_62qie")]
-position = Vector2(1218, 455)
-
-[node name="RitualPoint4" parent="RitualSites" instance=ExtResource("4_62qie")]
-position = Vector2(809, 349)
-
-[node name="RitualPoint5" parent="RitualSites" instance=ExtResource("4_62qie")]
-position = Vector2(491, 100)
-
-[node name="Minions" type="Node2D" parent="."]
-
-[node name="Crusader" parent="." instance=ExtResource("4_udo82")]
-position = Vector2(253, -148)
-
 [node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("player")]
+zoom = Vector2(1.2, 1.2)
 position_smoothing_enabled = true
 script = ExtResource("3_nexuo")
-player = NodePath("../Crusader")
+player = NodePath("../YSort/Crusader")
 
 [node name="PlayerControl" parent="." node_paths=PackedStringArray("crusader") instance=ExtResource("6_r66m5")]
 spell_prefixes = Array[Resource("res://src/entities/player/prefix/spell_prefix_resource.gd")]([ExtResource("12_cq8wj"), ExtResource("13_4fnmm"), ExtResource("14_qcq4r"), ExtResource("15_7hpi6")])
-crusader = NodePath("../Crusader")
+crusader = NodePath("../YSort/Crusader")
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+layer = 0
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_mirroring = Vector2(1920, 1080)
+
+[node name="FogShader" type="ColorRect" parent="ParallaxBackground/ParallaxLayer"]
+visible = false
+material = SubResource("ShaderMaterial_ndmxn")
+offset_right = 1920.0
+offset_bottom = 1080.0
+mouse_filter = 2
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="GameUI" parent="CanvasLayer" instance=ExtResource("6_k6rr8")]
-
-[node name="EndgameUI" parent="CanvasLayer" instance=ExtResource("12_jv3wu")]
+mouse_filter = 1
 
 [node name="SettingUI" parent="CanvasLayer" instance=ExtResource("17_xfjr0")]
 visible = false
+
+[node name="EndgameUI" parent="CanvasLayer" instance=ExtResource("12_jv3wu")]
+
+[node name="RainShader" type="ColorRect" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_djl7n")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="CRTShader" type="ColorRect" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_2xknb")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2

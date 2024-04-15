@@ -19,7 +19,7 @@
 [ext_resource type="PackedScene" uid="uid://crdcf3pu3urwg" path="res://src/ui/status/status_ui.tscn" id="14_vj2d1"]
 [ext_resource type="Texture2D" uid="uid://bixxqrw5c3q7e" path="res://assets/particles/SmallStar_64x64.png" id="14_yo0hq"]
 [ext_resource type="Animation" uid="uid://416js6etq1ua" path="res://src/entities/characters/crusader/crusader_attacks/attack_anims/spin.res" id="15_sulxg"]
-[ext_resource type="Material" uid="uid://xmkfohc74i6y" path="res://src/entities/characters/crusader/crusader_attacks/particle_resources/CleaveCanvasItemMaterial.tres" id="16_2bjtj"]
+[ext_resource type="Material" uid="uid://cqldxisj3whbq" path="res://src/entities/characters/crusader/crusader_attacks/particle_resources/CleaveCanvasItemMaterial.tres" id="16_2bjtj"]
 [ext_resource type="Animation" uid="uid://dbxt5qt54x8o" path="res://assets/anims/hurt.res" id="17_hxo7c"]
 [ext_resource type="Material" uid="uid://5q7lgb7dqosx" path="res://src/entities/characters/crusader/crusader_attacks/particle_resources/CleaveParticleProcessMaterial.tres" id="17_v0ayw"]
 [ext_resource type="Theme" uid="uid://crnxmpykwrhqn" path="res://src/ui/themes/status_label.tres" id="21_dl3nj"]
@@ -178,24 +178,9 @@ script = ExtResource("1_0cjda")
 resource_attributes = ExtResource("2_jwm8m")
 attacks = Array[Resource("res://src/entities/characters/attack_resource.gd")]([ExtResource("3_au4vg"), ExtResource("5_pbuhd"), ExtResource("4_50p0w"), ExtResource("6_0yoop"), ExtResource("7_m83wk")])
 
-[node name="ColorRect" type="ColorRect" parent="."]
-visible = false
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -17.0
-offset_top = -17.0
-offset_right = 17.0
-offset_bottom = 17.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0.403922, 0.756863, 0.894118, 1)
-
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(-2, -2)
-scale = Vector2(0.04, 0.04)
+scale = Vector2(0.1, 0.1)
 texture = ExtResource("8_thchg")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -525,6 +510,7 @@ show_percentage = false
 [node name="StatusUI" parent="." instance=ExtResource("14_vj2d1")]
 
 [node name="AttackBuildup" type="ProgressBar" parent="."]
+visible = false
 custom_minimum_size = Vector2(50, 6)
 anchors_preset = 5
 anchor_left = 0.5
