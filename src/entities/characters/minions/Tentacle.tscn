@@ -1,10 +1,11 @@
-[gd_scene load_steps=36 format=3 uid="uid://p4y5na38iohw"]
+[gd_scene load_steps=38 format=3 uid="uid://p4y5na38iohw"]
 
 [ext_resource type="Script" path="res://src/entities/characters/minions/minion_base.gd" id="1_lviwh"]
 [ext_resource type="Resource" uid="uid://bq44g14i2xeof" path="res://src/entities/characters/minions/TentacleAttributes.tres" id="2_0iv1e"]
 [ext_resource type="Resource" uid="uid://cfv3alq5a0pe4" path="res://src/entities/characters/minions/minion_attacks/MinionEnsnareAttack.tres" id="3_8h3iy"]
 [ext_resource type="Resource" uid="uid://2vnd3mmage2u" path="res://src/entities/characters/minions/minion_attacks/MinionSlamAttack.tres" id="4_2ov3d"]
 [ext_resource type="Texture2D" uid="uid://bsyg5rcv87bfk" path="res://assets/sprite/characters/minions/tentacle.png" id="4_8ic58"]
+[ext_resource type="Shader" path="res://src/utils/shaders/outbound_shadow.gdshader" id="5_4f736"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/state_chart.gd" id="5_hlvj5"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/parallel_state.gd" id="6_m1mgy"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/compound_state.gd" id="7_4ua0i"]
@@ -23,6 +24,14 @@
 [ext_resource type="Texture2D" uid="uid://brmlt6rgwrn1w" path="res://assets/particles/Explosion_2_64x64.png" id="20_wo7v1"]
 [ext_resource type="PackedScene" uid="uid://crdcf3pu3urwg" path="res://src/ui/status/status_ui.tscn" id="21_xdnrx"]
 [ext_resource type="PackedScene" uid="uid://cklnh2ojwuuxe" path="res://src/entities/characters/minions/MinionHealthBar.tscn" id="22_aa55a"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6onvs"]
+shader = ExtResource("5_4f736")
+shader_parameter/deform = Vector2(1, 1)
+shader_parameter/offset = Vector2(14.575, 16.155)
+shader_parameter/modulate = Color(0, 0, 0, 0.5)
+shader_parameter/x_buffer = 2.0
+shader_parameter/y_buffer = 2.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ci4kf"]
 size = Vector2(64, 64)
@@ -122,6 +131,7 @@ resource_attributes = ExtResource("2_0iv1e")
 attacks = Array[Resource("res://src/entities/characters/attack_resource.gd")]([ExtResource("3_8h3iy"), ExtResource("4_2ov3d")])
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_6onvs")
 position = Vector2(0, 3)
 scale = Vector2(0.245189, 0.260945)
 texture = ExtResource("4_8ic58")

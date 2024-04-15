@@ -1,8 +1,9 @@
-[gd_scene load_steps=35 format=3 uid="uid://iqw1g1onexq2"]
+[gd_scene load_steps=37 format=3 uid="uid://iqw1g1onexq2"]
 
 [ext_resource type="Script" path="res://src/entities/characters/minions/minion_base.gd" id="1_f3oue"]
 [ext_resource type="Resource" uid="uid://cjg214btamq4q" path="res://src/entities/characters/minions/SkeletonAttributes.tres" id="2_0u02g"]
 [ext_resource type="Resource" uid="uid://nir8erbl55hp" path="res://src/entities/characters/minions/minion_attacks/MinionMaulAttack.tres" id="3_3aqsd"]
+[ext_resource type="Shader" path="res://src/utils/shaders/outbound_shadow.gdshader" id="4_6air7"]
 [ext_resource type="Texture2D" uid="uid://bsuu6r0m8wm5g" path="res://assets/sprite/characters/minions/skeleton_TEMP_WIP.png" id="4_xl27w"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/state_chart.gd" id="5_aa1q7"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/parallel_state.gd" id="6_4xj17"]
@@ -18,6 +19,14 @@
 [ext_resource type="Texture2D" uid="uid://brmlt6rgwrn1w" path="res://assets/particles/Explosion_2_64x64.png" id="14_eqdax"]
 [ext_resource type="PackedScene" uid="uid://crdcf3pu3urwg" path="res://src/ui/status/status_ui.tscn" id="14_q5bwy"]
 [ext_resource type="PackedScene" uid="uid://cklnh2ojwuuxe" path="res://src/entities/characters/minions/MinionHealthBar.tscn" id="17_ivnfs"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_negqm"]
+shader = ExtResource("4_6air7")
+shader_parameter/deform = Vector2(1, 1)
+shader_parameter/offset = Vector2(12.145, 24.075)
+shader_parameter/modulate = Color(0, 0, 0, 0.5)
+shader_parameter/x_buffer = 2.0
+shader_parameter/y_buffer = 2.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ci4kf"]
 size = Vector2(21, 44)
@@ -163,6 +172,7 @@ grow_vertical = 2
 color = Color(0.431373, 0.427451, 0.415686, 1)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_negqm")
 scale = Vector2(0.08, 0.08)
 texture = ExtResource("4_xl27w")
 
