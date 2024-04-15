@@ -24,6 +24,10 @@ func _on_close_button_pressed() -> void:
 	play_ui_click_sfx()
 	visible = false
 
+func _on_back_menu_button_pressed() -> void:
+	play_ui_click_sfx()
+	get_tree().change_scene_to_file("res://src/levels/main_scene/MainScene.tscn")
+	
 func _on_sfx_slider_value_changed(value: float) -> void:
 	if not is_starting_up:
 		play_ui_click_sfx()

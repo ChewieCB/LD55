@@ -177,21 +177,39 @@ step = 5.0
 value = 50.0
 
 [node name="CloseButton" type="Button" parent="."]
+custom_minimum_size = Vector2(120, 0)
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -42.5
+offset_left = -144.0
 offset_top = -72.0
-offset_right = 42.5
+offset_right = -24.0
 offset_bottom = -25.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_fonts/font = ExtResource("2_poo45")
 theme_override_font_sizes/font_size = 30
 text = "Close"
+
+[node name="BackMenuButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 24.0
+offset_top = -72.0
+offset_right = 219.0
+offset_bottom = -25.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("2_poo45")
+theme_override_font_sizes/font_size = 30
+text = "Back to menu"
 
 [connection signal="mouse_entered" from="AudioSection/MasterLabel/MasterSlider" to="." method="play_ui_hover_sfx"]
 [connection signal="value_changed" from="AudioSection/MasterLabel/MasterSlider" to="." method="_on_master_slider_value_changed"]
@@ -201,3 +219,5 @@ text = "Close"
 [connection signal="value_changed" from="AudioSection/SFXLabel/SFXSlider" to="." method="_on_sfx_slider_value_changed"]
 [connection signal="mouse_entered" from="CloseButton" to="." method="play_ui_hover_sfx"]
 [connection signal="pressed" from="CloseButton" to="." method="_on_close_button_pressed"]
+[connection signal="mouse_entered" from="BackMenuButton" to="." method="play_ui_hover_sfx"]
+[connection signal="pressed" from="BackMenuButton" to="." method="_on_back_menu_button_pressed"]
