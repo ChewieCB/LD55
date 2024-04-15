@@ -1,11 +1,15 @@
 extends Node2D
 
+@export var animated_buttons: Array[Button] = []
+
 @onready var intro_cutscene: TabContainer = $CanvasLayer/Cutscene
 
 var max_tab: int
 
 func _ready():
 	# BuildThumbnail.capture_viewport()
+	for elem in animated_buttons:
+		elem.disabled = true
 	max_tab = intro_cutscene.get_tab_count()
 	intro_cutscene.visible = false
 	intro_cutscene.current_tab = 0
@@ -30,3 +34,7 @@ func play_ui_hover_sfx():
 
 func play_ui_click_sfx():
 	Utils.play_button_click_sfx()
+
+func finished_startup_animation():
+	for elem in animated_buttons:
+		elem.disabled = false
