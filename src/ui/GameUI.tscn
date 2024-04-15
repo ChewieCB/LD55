@@ -77,9 +77,9 @@ anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 362.0
-offset_top = -213.0
+offset_top = -218.0
 offset_right = -365.0
-offset_bottom = -136.0
+offset_bottom = -117.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_constants/margin_left = 16
@@ -145,7 +145,7 @@ theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 8
 
 [node name="HealthBar" type="ProgressBar" parent="CrusaderHealthContainer/VBoxContainer/MarginContainer2/MarginContainer"]
-custom_minimum_size = Vector2(240, 40)
+custom_minimum_size = Vector2(240, 20)
 layout_mode = 2
 size_flags_vertical = 4
 theme_override_styles/background = SubResource("StyleBoxEmpty_sn3d8")

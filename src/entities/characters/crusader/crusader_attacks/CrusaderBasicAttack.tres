@@ -1,11 +1,10 @@
-[gd_resource type="Resource" script_class="AttackResource" load_steps=7 format=3 uid="uid://cs0ahufxrbf1t"]
+[gd_resource type="Resource" script_class="AttackResource" load_steps=6 format=3 uid="uid://cs0ahufxrbf1t"]
 
 [ext_resource type="Script" path="res://src/entities/characters/attack_resource.gd" id="1_i0vad"]
 [ext_resource type="Material" uid="uid://bye8rjpuib4pl" path="res://src/entities/characters/crusader/crusader_attacks/particle_resources/LightFlashCanvasItemMaterial.tres" id="1_uw137"]
 [ext_resource type="Material" uid="uid://87mn72p5tmgm" path="res://src/entities/characters/crusader/crusader_attacks/particle_resources/LightFlashParticleProcessMaterial.tres" id="2_wove2"]
 [ext_resource type="AudioStream" uid="uid://dtmb5v3r5moad" path="res://assets/sfx/attacks/Blade_Impact.wav" id="3_qmjtu"]
 [ext_resource type="AudioStream" uid="uid://bs481xin3diux" path="res://assets/sfx/attacks/Blade_Impact_2.wav" id="4_auj2l"]
-[ext_resource type="Texture2D" uid="uid://1yqusuuwwuwh" path="res://assets/particles/LightCast_96.png" id="5_v30c0"]
 
 [resource]
 script = ExtResource("1_i0vad")
@@ -17,9 +16,6 @@ cooldown = 1.0
 damage = 30
 armour_penetration = 0
 control = 0.2
-name = "Stab"
-particle_texture = ExtResource("5_v30c0")
-particle_size = 96
 attack_particles_process_mat = ExtResource("2_wove2")
 attack_particles_canvas_mat = ExtResource("1_uw137")
 attack_sfx = Array[AudioStream]([ExtResource("3_qmjtu"), ExtResource("4_auj2l")])
