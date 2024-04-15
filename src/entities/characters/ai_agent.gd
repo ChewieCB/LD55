@@ -94,23 +94,37 @@ func _attack(attack: AttackResource):
 	state_chart.send_event("finish_attack")
 	
 	if targets:
+		#
+		var particles = GPUParticles2D.new()
+		particles.amount = 1
+		particles.speed_scale = 2
+		particles.process_material = attack.attack_particles_process_mat
+		particles.material = attack.attack_particles_canvas_mat
+		particles.texture = attack.particle_texture
+		particles.one_shot = true
+		
 		if attack.targeting_mode == AttackResource.TargetingMode.SINGLE:
-			# TODO - refactor this to generate and free a particle emitter per target
-			#    as well as an AoE particle emitter with the shape informed by the area
 			var _target = targets.front()
-			attack_particles.texture = attack.particle_texture
 			# TODO - work out scale
 			#attack_particles.scale = attack.attack_range
-			attack_particles.process_material = attack.attack_particles_process_mat
-			attack_particles.material = attack.attack_particles_canvas_mat
-			attack_particles.global_position = _target.global_position
-			#
-			block_particles.global_position = _target.global_position
+			_target.add_child(particles)
+		elif attack.targeting_mode == AttackResource.TargetingMode.MULTIPLE:
+			for _target in targets:
+				var _particles_clone = particles.duplicate()
+				_target.add_child(_particles_clone)
+				_particles_clone.finished.connect(
+					func(): 
+					particles.queue_free()
+				)
+				particles.queue_free()
 		else:
-			attack_particles.texture = attack.particle_texture
-			attack_particles.process_material = attack.attack_particles_process_mat
-			attack_particles.material = attack.attack_particles_canvas_mat
-			attack_particles.global_position = global_position
+			add_child(particles)
+		
+		if particles:
+			particles.finished.connect(
+				func(): 
+				particles.queue_free()
+			)
 		
 		var target_count: int = 0
 		for target in targets:
@@ -150,7 +164,8 @@ func _attack(attack: AttackResource):
 			
 			if modified_damage > 0:
 				# TODO - spawn a particle emitter for each attack instance
-				anim_player.play("attack")
+				particles.emitting = true
+				#anim_player.play("attack")
 				attack.play_attack_sfx()
 			else:
 				anim_player.play("block")
@@ -158,15 +173,12 @@ func _attack(attack: AttackResource):
 			
 			target_count += 1
 	
-	_attack_cooldown(attack)
-	status_ui._spawn_attack_indicator(attack.name, 0.6)
-	current_attack = null
-	
-	# Generic cooldown to prevent spamming inputs each frame
-	cooldown_timer.start(0.4)
-
-	await attack_particles.finished
-	attack_particles.global_position = Vector2.ZERO
+		_attack_cooldown(attack)
+		status_ui._spawn_attack_indicator(attack.name, 0.6)
+		current_attack = null
+		
+		# Generic cooldown to prevent spamming inputs each frame
+		cooldown_timer.start(0.4)
 
 func _attack_cooldown(attack: AttackResource):
 	in_cooldown.append(attack)

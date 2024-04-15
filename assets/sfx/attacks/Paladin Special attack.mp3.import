@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://djdql4xu18h8e"
+path="res://.godot/imported/Paladin Special attack.mp3-788688d0762086e3072a8a33269cf9cd.mp3str"
+
+[deps]
+
+source_file="res://assets/sfx/attacks/Paladin Special attack.mp3"
+dest_files=["res://.godot/imported/Paladin Special attack.mp3-788688d0762086e3072a8a33269cf9cd.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

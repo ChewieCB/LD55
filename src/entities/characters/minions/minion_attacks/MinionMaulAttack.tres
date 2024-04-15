@@ -1,30 +1,30 @@
 [gd_resource type="Resource" script_class="AttackResource" load_steps=11 format=3 uid="uid://nir8erbl55hp"]
 
-[ext_resource type="Material" uid="uid://dxigui4aepso1" path="res://src/entities/characters/minions/minion_attacks/particle_resources/IcePickCanvasItemMaterial.tres" id="1_cyvdi"]
-[ext_resource type="Material" uid="uid://dh5drr46te2fc" path="res://src/entities/characters/minions/minion_attacks/particle_resources/IcePickParticleProcessMaterial.tres" id="2_eua6m"]
+[ext_resource type="Material" uid="uid://da57eu7k40v6l" path="res://src/entities/characters/minions/minion_attacks/particle_resources/MaulCanvasMaterial.tres" id="1_gcwii"]
+[ext_resource type="Material" uid="uid://dh5drr46te2fc" path="res://src/entities/characters/minions/minion_attacks/particle_resources/MaulParticleProcessMaterial.tres" id="2_1ca4b"]
 [ext_resource type="AudioStream" uid="uid://damx11cewdhbu" path="res://assets/sfx/minions/Magic Hit 1.mp3" id="3_tok0q"]
 [ext_resource type="AudioStream" uid="uid://bgh3ag1wgdpcs" path="res://assets/sfx/minions/Magic Hit 2.mp3" id="4_5do08"]
 [ext_resource type="AudioStream" uid="uid://d2svkvppb5iyv" path="res://assets/sfx/minions/Magic Hit 3.mp3" id="5_mlg6b"]
 [ext_resource type="AudioStream" uid="uid://bxarv20xjs7bc" path="res://assets/sfx/minions/Magic Hit 4.mp3" id="6_duga4"]
 [ext_resource type="AudioStream" uid="uid://6i3n8c3qwr34" path="res://assets/sfx/minions/Magic Hit 5.mp3" id="7_sfii0"]
 [ext_resource type="AudioStream" uid="uid://drbi7lnqmrq4p" path="res://assets/sfx/minions/Magic Hit 6.mp3" id="8_nx4mn"]
-[ext_resource type="Texture2D" uid="uid://cb1775mrrc0jd" path="res://assets/particles/IcePick_64x64.png" id="10_0uywu"]
+[ext_resource type="Texture2D" uid="uid://bgyxffrldjerr" path="res://assets/particles/maul/Effect_PuffAndStars_1_120x109.png" id="9_c2dtl"]
 [ext_resource type="Script" path="res://src/entities/characters/attack_resource.gd" id="11_pttu1"]
 
 [resource]
 script = ExtResource("11_pttu1")
 targeting_mode = 0
 max_targets = 1
-attack_range = 50
+attack_range = 64
 attack_delay = 0.0
 cooldown = 2.6
 damage = 43
 armour_penetration = 3
 control = 0.22
 name = "Maul"
-particle_texture = ExtResource("10_0uywu")
+particle_texture = ExtResource("9_c2dtl")
 particle_size = 64
-attack_particles_process_mat = ExtResource("2_eua6m")
-attack_particles_canvas_mat = ExtResource("1_cyvdi")
+attack_particles_process_mat = ExtResource("2_1ca4b")
+attack_particles_canvas_mat = ExtResource("1_gcwii")
 attack_sfx = Array[AudioStream]([ExtResource("3_tok0q"), ExtResource("4_5do08"), ExtResource("5_mlg6b"), ExtResource("6_duga4"), ExtResource("7_sfii0"), ExtResource("8_nx4mn")])
 block_sfx = Array[AudioStream]([])

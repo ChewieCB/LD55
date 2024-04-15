@@ -55,9 +55,7 @@ func _on_attacking_idle_state_physics_processing(_delta):
 	
 	# TODO - add attack choice logic in via stances
 	# TODO - add attack name enum
-	var attack_priority = [
-		attacks[0],
-	]
+	var attack_priority = attacks
 	for elem in attack_priority:
 		if not is_in_cooldown(elem):
 			current_attack = elem
@@ -70,10 +68,11 @@ func _on_attacking_idle_state_physics_processing(_delta):
 			return
 
 func _on_attacking_basic_attack_state_entered():
-	# TODO - map this to an enum that matches the attack names
-	var basic_attack = attacks[0]
-	_attack(basic_attack)
-	cooldown_timer.start(basic_attack.cooldown * remap(attributes.dexterity, 0, 1, 3, 0.25))
+	if is_in_cooldown(current_attack):
+		state_chart.send_event("finish_attack")
+		return
+	
+	_attack(current_attack)
 
 func _on_dead_state_entered():
 	anim_player.play("death")
