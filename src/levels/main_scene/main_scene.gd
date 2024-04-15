@@ -44,4 +44,5 @@ func play_ui_click_sfx():
 
 func finished_startup_animation():
 	for elem in animated_buttons:
+		elem.original_pos = elem.global_position
 		elem.disabled = false

@@ -346,6 +346,10 @@ one_shot = true
 one_shot = true
 
 [node name="HealthBar" parent="." instance=ExtResource("17_347xt")]
+offset_left = -24.0
+offset_top = -32.0
+offset_right = 24.0
+offset_bottom = -18.0
 
 [node name="StatusUI" parent="." instance=ExtResource("14_c7ah2")]
 
