@@ -1,4 +1,4 @@
-[gd_scene load_steps=74 format=3 uid="uid://bjabavwsrnt0y"]
+[gd_scene load_steps=76 format=3 uid="uid://bjabavwsrnt0y"]
 
 [ext_resource type="Script" path="res://src/levels/main_game/main_game.gd" id="1_4qjmh"]
 [ext_resource type="Texture2D" uid="uid://d3cgna0tvv81s" path="res://assets/environment/scatter/scatter_misc_0.png" id="3_mewxh"]
@@ -22,6 +22,7 @@
 [ext_resource type="Resource" uid="uid://divo10l1etcrb" path="res://src/entities/player/prefix/square.tres" id="12_cq8wj"]
 [ext_resource type="PackedScene" uid="uid://vs2j5t7leoj0" path="res://src/ui/EndgameUI.tscn" id="12_jv3wu"]
 [ext_resource type="Resource" uid="uid://cj3odtgn32j5g" path="res://src/entities/player/prefix/triangle.tres" id="13_4fnmm"]
+[ext_resource type="Texture2D" uid="uid://0df4c252odge" path="res://src/levels/main_game/mask_texture.tres" id="13_wg6tx"]
 [ext_resource type="Resource" uid="uid://deu8alrv0hxfy" path="res://src/entities/player/prefix/agile.tres" id="14_qcq4r"]
 [ext_resource type="Resource" uid="uid://d002fmxjkp77y" path="res://src/entities/player/prefix/tough.tres" id="15_7hpi6"]
 [ext_resource type="Shader" path="res://src/utils/shaders/fog_overlay.gdshader" id="16_bw2li"]
@@ -41,6 +42,8 @@
 [ext_resource type="Texture2D" uid="uid://bs2tndj3mtd3q" path="res://assets/environment/rock_1.png" id="26_f0u6f"]
 [ext_resource type="Texture2D" uid="uid://c0ubklbi86qx1" path="res://assets/environment/broken_wall_2.png" id="27_pskvl"]
 [ext_resource type="Texture2D" uid="uid://bblyib8pth16b" path="res://assets/environment/grave_32.png" id="33_7o728"]
+[ext_resource type="Shader" path="res://src/levels/main_game/vignette.gdshader" id="42_8ndve"]
+[ext_resource type="Texture2D" uid="uid://bxw82a7i5eohh" path="res://assets/area_mask.png" id="44_x68rp"]
 
 [sub_resource type="Curve2D" id="Curve2D_abl5w"]
 _data = {
@@ -192,19 +195,6 @@ sources/0 = SubResource("TileSetAtlasSource_gvwku")
 sources/1 = SubResource("TileSetAtlasSource_uiw5p")
 sources/3 = SubResource("TileSetAtlasSource_jgs6e")
 
-[sub_resource type="Gradient" id="Gradient_v1q1k"]
-interpolation_mode = 2
-offsets = PackedFloat32Array(0.240803, 0.424749, 0.518395, 0.749164)
-colors = PackedColorArray(1, 1, 1, 1, 0.658863, 0.658863, 0.658863, 1, 0.471572, 0.471572, 0.471572, 1, 0, 0, 0, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_n1wvh"]
-gradient = SubResource("Gradient_v1q1k")
-width = 512
-height = 512
-fill = 1
-fill_from = Vector2(0.5, 0.5)
-metadata/_snap_enabled = true
-
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_oogn7"]
 vertices = PackedVector2Array(2399, 971, 2399, 970, 2405, 1221, 318, 956, 54, 935, 55, 935, -304, 636, -304, 637, -337, 376, 386, -340, 378, -285, 378, -286, 1943, 938, 1943, 939, 1919, 816, 1072, 22, 1071, 22, 1208, -65, 81, -266, 81, -367, 378, -369, 362, -197, 340, -76, 12, -151, 347, -1, 335, 68, 273, 44, 265, 437, 245, 411, 229, 377, 291, 341, 343, 448, 389, 479, 344, 285, 532, 266, 606, 301, 639, 331, 421, 537, 664, 355, 660, 397, 491, 497, 1989, 1870, 1809, 1769, 1697, 1624, 1782, 1472, 1914, 1351, 2385, 1856, 359, 96, 362, 134, 341, 146, 313, 143, 297, 103, 200, 33, 164, 49, -196, 8, 135, 108, -272, 124, 125, 149, -272, 125, 137, 202, 157, 231, 150, 274, 134, 317, 124, 383, -211, 863, -275, 779, 138, 496, -109, 888, -44, 919, 162, 531, 233, 569, 234, 569, 280, 589, 603, 790, 596, 890, 522, 967, 455, 1009, 355, 592, 579, 694, 561, 612, 403, 583, 505, 590, 480, 553, 548, 480, 590, 504, 668, 426, 636, 519, 677, 572, 793, 468, 750, 621, 2545, 1265, 2655, 1417, 2603, 1597, 2517, 1784, 1996, 1266, 1986, 1150, 1982, 1076, 2273, 432, 2375, 756, 1919, 815, 1854, 608, 2191, 300, 2273, 431, 1853, 607, 1819, 518, 2038, 149, 1757, 410, 1770, -5, 1677, 329, 1551, -68, 1539, 264, 1452, 294, 904, 170, 971, 96, 1374, 335, 896, 354, 1374, 347, 871, 434, 1622, 973, 1512, 1032, 1469, 1055, 1294, 1092, 1115, 1101, 933, 1036, 866, 958, 780, 755, 1497, 408, 1675, 919, 1780, 840, 1722, 887, 1498, 408, 1611, 492, 1675, 540, 1780, 679, 1807, 750)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2), PackedInt32Array(3, 4, 5), PackedInt32Array(6, 7, 8), PackedInt32Array(9, 10, 11), PackedInt32Array(12, 13, 14), PackedInt32Array(15, 16, 17), PackedInt32Array(18, 19, 20, 9, 11, 21, 22), PackedInt32Array(23, 18, 22, 24, 25, 26), PackedInt32Array(27, 28, 29, 30, 31), PackedInt32Array(32, 31, 30, 33, 34, 35, 36), PackedInt32Array(37, 32, 36, 38, 39, 40), PackedInt32Array(41, 42, 43, 44, 45, 46), PackedInt32Array(47, 48, 49, 50, 51, 25), PackedInt32Array(25, 51, 26), PackedInt32Array(23, 26, 52), PackedInt32Array(23, 52, 53, 54), PackedInt32Array(54, 53, 55), PackedInt32Array(56, 54, 55, 57, 58), PackedInt32Array(8, 58, 57, 59, 6), PackedInt32Array(6, 59, 60, 61, 62), PackedInt32Array(6, 62, 63), PackedInt32Array(64, 65, 6, 63, 66, 67), PackedInt32Array(68, 67, 66, 69, 5), PackedInt32Array(5, 69, 70, 3), PackedInt32Array(3, 70, 71, 72), PackedInt32Array(73, 74, 75, 76, 3, 72, 77, 78), PackedInt32Array(79, 78, 77, 80, 81), PackedInt32Array(82, 81, 80, 37), PackedInt32Array(40, 82, 37), PackedInt32Array(83, 40, 39), PackedInt32Array(84, 83, 39, 85, 86), PackedInt32Array(87, 86, 85, 88, 89), PackedInt32Array(90, 91, 92, 93, 46, 45, 94, 2), PackedInt32Array(0, 2, 94, 95, 96), PackedInt32Array(97, 98, 0, 96, 12, 14, 99), PackedInt32Array(97, 99, 100), PackedInt32Array(101, 102, 97, 100, 103, 104, 105), PackedInt32Array(105, 104, 106, 107), PackedInt32Array(107, 106, 108), PackedInt32Array(109, 107, 108, 110, 17), PackedInt32Array(17, 110, 111), PackedInt32Array(112, 113, 15, 17, 111, 114, 115), PackedInt32Array(115, 114, 116, 117), PackedInt32Array(118, 119, 120, 121, 122, 123, 124, 125, 89, 88, 117, 116, 126, 127), PackedInt32Array(128, 129, 127, 126, 130, 131, 132, 133, 134)])
@@ -256,6 +246,12 @@ shader_parameter/clip_warp = false
 shader_parameter/vignette_intensity = 0.2
 shader_parameter/vignette_opacity = 0.5
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_c4syi"]
+shader = ExtResource("42_8ndve")
+shader_parameter/alpha = 1.0
+shader_parameter/inner_radius = 0.8
+shader_parameter/outer_radius = 1.04
+
 [sub_resource type="Environment" id="Environment_8qn3o"]
 background_mode = 1
 background_color = Color(0.168627, 0.168627, 0.34902, 1)
@@ -306,7 +302,7 @@ position = Vector2(81, 73)
 [node name="PointLight2D47" type="PointLight2D" parent="YSort/Crusader"]
 light_mask = 2
 visibility_layer = 2
-texture = SubResource("GradientTexture2D_n1wvh")
+texture = ExtResource("13_wg6tx")
 
 [node name="Statue1" type="Sprite2D" parent="YSort"]
 position = Vector2(437, 293)
@@ -1403,18 +1399,7 @@ grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="GameUI" parent="CanvasLayer" instance=ExtResource("6_k6rr8")]
-offset_left = -8.0
-offset_top = 4.0
-offset_right = -8.0
-offset_bottom = 4.0
-mouse_filter = 1
-
-[node name="SettingUI" parent="CanvasLayer" instance=ExtResource("17_xfjr0")]
 visible = false
-
-[node name="EndgameUI" parent="CanvasLayer" instance=ExtResource("12_jv3wu")]
 
 [node name="RainShader" type="ColorRect" parent="CanvasLayer"]
 material = SubResource("ShaderMaterial_djl7n")
@@ -1434,252 +1419,169 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
+[node name="Vignette" type="ColorRect" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_c4syi")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GameUI" parent="CanvasLayer" instance=ExtResource("6_k6rr8")]
+offset_left = -8.0
+offset_top = 4.0
+offset_right = -8.0
+offset_bottom = 4.0
+mouse_filter = 1
+
+[node name="SettingUI" parent="CanvasLayer" instance=ExtResource("17_xfjr0")]
+visible = false
+
+[node name="EndgameUI" parent="CanvasLayer" instance=ExtResource("12_jv3wu")]
+
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_8qn3o")
 
-[node name="Lights" type="Node2D" parent="."]
+[node name="AreaMasks" type="Node2D" parent="."]
 
-[node name="PointLight2D2" type="PointLight2D" parent="Lights"]
-position = Vector2(-593, 165)
-blend_mode = 1
-texture = SubResource("GradientTexture2D_n1wvh")
-metadata/_edit_lock_ = true
+[node name="BlackMask1" type="Sprite2D" parent="AreaMasks"]
+top_level = true
+position = Vector2(-653, -414)
+scale = Vector2(2.75409, 3.26802)
+texture = ExtResource("44_x68rp")
 
-[node name="PointLight2D3" type="PointLight2D" parent="Lights"]
-position = Vector2(-567, 490)
-blend_mode = 1
-texture = SubResource("GradientTexture2D_n1wvh")
-metadata/_edit_lock_ = true
+[node name="BlackMask2" type="Sprite2D" parent="AreaMasks"]
+top_level = true
+position = Vector2(-873, 169)
+scale = Vector2(2.75409, 3.26802)
+texture = ExtResource("44_x68rp")
 
-[node name="PointLight2D4" type="PointLight2D" parent="Lights"]
-position = Vector2(-448, 807)
-blend_mode = 1
-texture = SubResource("GradientTexture2D_n1wvh")
-metadata/_edit_lock_ = true
+[node name="BlackMask3" type="Sprite2D" parent="AreaMasks"]
+top_level = true
+position = Vector2(-822, 688)
+scale = Vector2(2.75409, 3.26802)
+texture = ExtResource("44_x68rp")
 
-[node name="PointLight2D5" type="PointLight2D" parent="Lights"]
-position = Vector2(-256, 1064)
-blend_mode = 1
-texture = SubResource("GradientTexture2D_n1wvh")
-metadata/_edit_lock_ = true
+[node name="BlackMask4" type="Sprite2D" parent="AreaMasks"]
+top_level = true
+position = Vector2(-366, 1364)
+scale = Vector2(2.75409, 3.26802)
+texture = ExtResource("44_x68rp")
 
-[node name="PointLight2D6" type="PointLight2D" parent="Lights"]
-position = Vector2(14, 1162)
-blend_mode = 1
-texture = SubResource("GradientTexture2D_n1wvh")
-metadata/_edit_lock_ = true
+[node name="BlackMask5" type="Sprite2D" parent="AreaMasks"]
+top_level = true
+position = Vector2(172, 1606)
+scale = Vector2(2.75409, 3.26802)
+texture = ExtResource("44_x68rp")
 
-[node name="PointLight2D7" type="PointLight2D" parent="Lights"]
-position = Vector2(266, 1219)
-blend_mode = 1
-texture = SubResource("GradientTexture2D_n1wvh")
-metadata/_edit_lock_ = true
+[node name="BlackMask9" type="Sprite2D" parent="AreaMasks"]
+top_level = true
+position = Vector2(741, 2059)
+scale = Vector2(2.75409, 3.26802)
+texture = ExtResource("44_x68rp")
 
-[node name="PointLight2D8" type="PointLight2D" parent="Lights"]
-position = Vector2(493, 1230)
-blend_mode = 1
-texture = SubResource("GradientTexture2D_n1wvh")
-metadata/_edit_lock_ = true
+[node name="BlackMask10" type="Sprite2D" parent="AreaMasks"]
+top_level = true
+position = Vector2(1159, 2606)
+scale = Vector2(2.75409, 3.26802)
+texture = ExtResource("44_x68rp")
 
-[node name="PointLight2D9" type="PointLight2D" parent="Lights"]
-position = Vector2(801, 1232)
-blend_mode = 1
-texture = SubResource("GradientTexture2D_n1wvh")
-metadata/_edit_lock_ = true
+[node name="BlackMask11" type="Sprite2D" parent="AreaMasks"]
+top_level = true
+position = Vector2(2195, 2593)
+scale = Vector2(2.75409, 3.26802)
+texture = ExtResource("44_x68rp")
 
-[node name="PointLight2D10" type="PointLight2D" parent="Lights"]
-position = Vector2(-549, -176)
-blend_mode = 1
-texture = SubResource("GradientTexture2D_n1wvh")
-metadata/_edit_lock_ = true
+[node name="BlackMask12" type="Sprite2D" parent="AreaMasks"]
+top_level = true
+position = Vector2(1603, 2638)
+scale = Vector2(2.75409, 3.26802)
+texture = ExtResource("44_x68rp")
 
-[node name="PointLight2D11" type="PointLight2D" parent="Lights"]
-position = Vector2(-423, -361)
-blend_mode = 1
-texture = SubResource("GradientTexture2D_n1wvh")
-metadata/_edit_lock_ = true
+[node name="BlackMask13" type="Sprite2D" parent="AreaMasks"]
+top_level = true
+position = Vector2(2735, 2383)
+scale = Vector2(2.75409, 3.26802)
+texture = ExtResource("44_x68rp")
 
-[node name="PointLight2D12" type="PointLight2D" parent="Lights"]
-position = Vector2(-169, -425)
-blend_mode = 1
-texture = SubResource("GradientTexture2D_n1wvh")
-metadata/_edit_lock_ = true
+[node name="BlackMask14" type="Sprite2D" parent="AreaMasks"]
+top_level = true
+position = Vector2(3174, 1773)
+scale = Vector2(2.75409, 3.26802)
+texture = ExtResource("44_x68rp")
 
-[node name="PointLight2D13" type="PointLight2D" parent="Lights"]
-position = Vector2(135, -464)
-blend_mode = 1
-texture = SubResource("GradientTexture2D_n1wvh")
-metadata/_edit_lock_ = true
+[node name="BlackMask15" type="Sprite2D" parent="AreaMasks"]
+top_level = true
+position = Vector2(3150, 1243)
+scale = Vector2(2.75409, 3.26802)
+texture = ExtResource("44_x68rp")
 
-[node name="PointLight2D14" type="PointLight2D" parent="Lights"]
-position = Vector2(387, -407)
-blend_mode = 1
-texture = SubResource("GradientTexture2D_n1wvh")
-metadata/_edit_lock_ = true
+[node name="BlackMask16" type="Sprite2D" parent="AreaMasks"]
+top_level = true
+position = Vector2(3072, 763)
+scale = Vector2(2.75409, 3.26802)
+texture = ExtResource("44_x68rp")
 
-[node name="PointLight2D15" type="PointLight2D" parent="Lights"]
-position = Vector2(516, -261)
-blend_mode = 1
-texture = SubResource("GradientTexture2D_n1wvh")
-metadata/_edit_lock_ = true
+[node name="BlackMask17" type="Sprite2D" parent="AreaMasks"]
+top_level = true
+position = Vector2(3013, 364)
+scale = Vector2(2.75409, 3.26802)
+texture = ExtResource("44_x68rp")
 
-[node name="PointLight2D16" type="PointLight2D" parent="Lights"]
-position = Vector2(666, -299)
-blend_mode = 1
-texture = SubResource("GradientTexture2D_n1wvh")
-metadata/_edit_lock_ = true
+[node name="BlackMask18" type="Sprite2D" parent="AreaMasks"]
+top_level = true
+position = Vector2(2704, -147)
+scale = Vector2(2.75409, 3.26802)
+texture = ExtResource("44_x68rp")
 
-[node name="PointLight2D17" type="PointLight2D" parent="Lights"]
-position = Vector2(861, -277)
-blend_mode = 1
-texture = SubResource("GradientTexture2D_n1wvh")
-metadata/_edit_lock_ = true
+[node name="BlackMask19" type="Sprite2D" parent="AreaMasks"]
+top_level = true
+position = Vector2(2038, -494)
+scale = Vector2(2.75409, 3.26802)
+texture = ExtResource("44_x68rp")
 
-[node name="PointLight2D18" type="PointLight2D" parent="Lights"]
-position = Vector2(1051, -299)
-blend_mode = 1
-texture = SubResource("GradientTexture2D_n1wvh")
-metadata/_edit_lock_ = true
+[node name="BlackMask20" type="Sprite2D" parent="AreaMasks"]
+top_level = true
+position = Vector2(1374, -746)
+scale = Vector2(2.75409, 3.26802)
+texture = ExtResource("44_x68rp")
 
-[node name="PointLight2D19" type="PointLight2D" parent="Lights"]
-position = Vector2(1190, -461)
-blend_mode = 1
-texture = SubResource("GradientTexture2D_n1wvh")
+[node name="BlackMask21" type="Sprite2D" parent="AreaMasks"]
+top_level = true
+position = Vector2(817, -596)
+scale = Vector2(2.75409, 3.26802)
+texture = ExtResource("44_x68rp")
 
-[node name="PointLight2D20" type="PointLight2D" parent="Lights"]
-position = Vector2(1734, -256)
-blend_mode = 1
-texture = SubResource("GradientTexture2D_n1wvh")
+[node name="BlackMask22" type="Sprite2D" parent="AreaMasks"]
+top_level = true
+position = Vector2(108, -822)
+scale = Vector2(2.75409, 3.26802)
+texture = ExtResource("44_x68rp")
 
-[node name="PointLight2D21" type="PointLight2D" parent="Lights"]
-position = Vector2(2008, -148)
-blend_mode = 1
-texture = SubResource("GradientTexture2D_n1wvh")
+[node name="BlackMask23" type="Sprite2D" parent="AreaMasks"]
+top_level = true
+position = Vector2(-318, -827)
+scale = Vector2(2.75409, 3.26802)
+texture = ExtResource("44_x68rp")
 
-[node name="PointLight2D22" type="PointLight2D" parent="Lights"]
-position = Vector2(2282, -130)
-blend_mode = 1
-texture = SubResource("GradientTexture2D_n1wvh")
+[node name="BlackMask6" type="Sprite2D" parent="AreaMasks"]
+top_level = true
+position = Vector2(596, 1583)
+scale = Vector2(2.75409, 3.26802)
+texture = ExtResource("44_x68rp")
 
-[node name="PointLight2D23" type="PointLight2D" parent="Lights"]
-position = Vector2(2668, 628)
-blend_mode = 1
-texture = SubResource("GradientTexture2D_n1wvh")
+[node name="BlackMask7" type="Sprite2D" parent="AreaMasks"]
+top_level = true
+position = Vector2(1102, 1395)
+scale = Vector2(1.8754, 1.85964)
+texture = ExtResource("44_x68rp")
 
-[node name="PointLight2D24" type="PointLight2D" parent="Lights"]
-position = Vector2(2722, 890)
-blend_mode = 1
-texture = SubResource("GradientTexture2D_n1wvh")
-
-[node name="PointLight2D25" type="PointLight2D" parent="Lights"]
-position = Vector2(2804, 1156)
-blend_mode = 1
-texture = SubResource("GradientTexture2D_n1wvh")
-
-[node name="PointLight2D26" type="PointLight2D" parent="Lights"]
-position = Vector2(2881, 1456)
-blend_mode = 1
-texture = SubResource("GradientTexture2D_n1wvh")
-
-[node name="PointLight2D27" type="PointLight2D" parent="Lights"]
-position = Vector2(2868, 1783)
-blend_mode = 1
-texture = SubResource("GradientTexture2D_n1wvh")
-
-[node name="PointLight2D28" type="PointLight2D" parent="Lights"]
-position = Vector2(2738, 2044)
-blend_mode = 1
-texture = SubResource("GradientTexture2D_n1wvh")
-
-[node name="PointLight2D29" type="PointLight2D" parent="Lights"]
-position = Vector2(2549, 2210)
-blend_mode = 1
-texture = SubResource("GradientTexture2D_n1wvh")
-
-[node name="PointLight2D30" type="PointLight2D" parent="Lights"]
-position = Vector2(2285, 2331)
-blend_mode = 1
-texture = SubResource("GradientTexture2D_n1wvh")
-
-[node name="PointLight2D31" type="PointLight2D" parent="Lights"]
-position = Vector2(1015, 1306)
-blend_mode = 1
-texture = SubResource("GradientTexture2D_n1wvh")
-
-[node name="PointLight2D32" type="PointLight2D" parent="Lights"]
-position = Vector2(1225, 1306)
-blend_mode = 1
-texture = SubResource("GradientTexture2D_n1wvh")
-
-[node name="PointLight2D33" type="PointLight2D" parent="Lights"]
-position = Vector2(1463, 1290)
-blend_mode = 1
-texture = SubResource("GradientTexture2D_n1wvh")
-
-[node name="PointLight2D34" type="PointLight2D" parent="Lights"]
-position = Vector2(1720, 1173)
-blend_mode = 1
-texture = SubResource("GradientTexture2D_n1wvh")
-
-[node name="PointLight2D35" type="PointLight2D" parent="Lights"]
-position = Vector2(1364, 1398)
-blend_mode = 1
-texture = SubResource("GradientTexture2D_n1wvh")
-
-[node name="PointLight2D36" type="PointLight2D" parent="Lights"]
-position = Vector2(1164, 1617)
-blend_mode = 1
-texture = SubResource("GradientTexture2D_n1wvh")
-
-[node name="PointLight2D37" type="PointLight2D" parent="Lights"]
-position = Vector2(1024, 1887)
-blend_mode = 1
-texture = SubResource("GradientTexture2D_n1wvh")
-
-[node name="PointLight2D38" type="PointLight2D" parent="Lights"]
-position = Vector2(1014, 2109)
-blend_mode = 1
-texture = SubResource("GradientTexture2D_n1wvh")
-
-[node name="PointLight2D39" type="PointLight2D" parent="Lights"]
-position = Vector2(1151, 2293)
-blend_mode = 1
-texture = SubResource("GradientTexture2D_n1wvh")
-
-[node name="PointLight2D40" type="PointLight2D" parent="Lights"]
-position = Vector2(2529, -2)
-blend_mode = 1
-texture = SubResource("GradientTexture2D_n1wvh")
-
-[node name="PointLight2D41" type="PointLight2D" parent="Lights"]
-position = Vector2(2704, 94)
-blend_mode = 1
-texture = SubResource("GradientTexture2D_n1wvh")
-
-[node name="PointLight2D42" type="PointLight2D" parent="Lights"]
-position = Vector2(2824, 244)
-blend_mode = 1
-texture = SubResource("GradientTexture2D_n1wvh")
-
-[node name="PointLight2D43" type="PointLight2D" parent="Lights"]
-position = Vector2(2840, 386)
-blend_mode = 1
-texture = SubResource("GradientTexture2D_n1wvh")
-
-[node name="PointLight2D44" type="PointLight2D" parent="Lights"]
-position = Vector2(1310, -528)
-blend_mode = 1
-texture = SubResource("GradientTexture2D_n1wvh")
-
-[node name="PointLight2D45" type="PointLight2D" parent="Lights"]
-position = Vector2(1480, -480)
-blend_mode = 1
-texture = SubResource("GradientTexture2D_n1wvh")
-
-[node name="PointLight2D46" type="PointLight2D" parent="Lights"]
-position = Vector2(1653, -522)
-blend_mode = 1
-texture = SubResource("GradientTexture2D_n1wvh")
+[node name="BlackMask8" type="Sprite2D" parent="AreaMasks"]
+top_level = true
+position = Vector2(1510, 1258)
+rotation = -0.192104
+scale = Vector2(2.10872, 1.00917)
+texture = ExtResource("44_x68rp")
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 color = Color(0.572549, 0.54902, 0.631373, 1)

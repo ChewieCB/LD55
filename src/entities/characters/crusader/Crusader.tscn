@@ -260,6 +260,7 @@ bg_color = Color(0.843137, 0.196078, 0.0666667, 1)
 bg_color = Color(0.588235, 0.168627, 0.952941, 1)
 
 [node name="Crusader" type="CharacterBody2D"]
+z_index = 1
 y_sort_enabled = true
 script = ExtResource("1_0cjda")
 resource_attributes = ExtResource("2_jwm8m")
@@ -280,7 +281,6 @@ shape = SubResource("RectangleShape2D_ci4kf")
 avoidance_enabled = true
 radius = 16.0
 avoidance_layers = 3
-debug_enabled = true
 
 [node name="StateChart" type="Node" parent="."]
 script = ExtResource("3_hr7jo")

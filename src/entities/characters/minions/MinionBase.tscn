@@ -115,6 +115,7 @@ anim_speed_max = 1.0
 bg_color = Color(0.843137, 0.196078, 0.0666667, 1)
 
 [node name="MinionBase" type="CharacterBody2D"]
+z_index = 1
 y_sort_enabled = true
 collision_layer = 2
 collision_mask = 0
