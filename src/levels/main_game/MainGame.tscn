@@ -69,7 +69,7 @@ shader_parameter/noise_opacity = 0.2
 shader_parameter/noise_speed = 5.0
 shader_parameter/static_noise_intensity = 0.02
 shader_parameter/aberration = 0.00500005
-shader_parameter/brightness = 1.4
+shader_parameter/brightness = 1.2
 shader_parameter/discolor = false
 shader_parameter/warp_amount = 0.0
 shader_parameter/clip_warp = false
@@ -404,6 +404,7 @@ mouse_filter = 2
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="GameUI" parent="CanvasLayer" instance=ExtResource("6_k6rr8")]
+mouse_filter = 1
 
 [node name="SettingUI" parent="CanvasLayer" instance=ExtResource("17_xfjr0")]
 visible = false
