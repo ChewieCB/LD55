@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="AttackResource" load_steps=12 format=3 uid="uid://cnnf1h02qbqhr"]
+[gd_resource type="Resource" script_class="AttackResource" load_steps=12 format=3 uid="uid://cfv3alq5a0pe4"]
 
 [ext_resource type="Material" uid="uid://dyiav2l5wpxer" path="res://src/entities/characters/minions/minion_attacks/particle_resources/PoisonClawCanvasItemMaterial.tres" id="1_o6uu1"]
 [ext_resource type="Material" uid="uid://0rrnlgpw34g1" path="res://src/entities/characters/minions/minion_attacks/particle_resources/PoisonClowProcessMaterial.tres" id="2_bwkxr"]

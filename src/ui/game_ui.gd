@@ -2,7 +2,6 @@ extends Control
 class_name GameUI
 
 @onready var spell_ui: SpellUI = $SpellUI
-@onready var time_panel: Label = $TimePanel/Label
 
 @onready var health_bar: TextureProgressBar = $CrusaderHealthContainer/VBoxContainer/MarginContainer2/MarginContainer/HealthBar
 @onready var damage_bar: TextureProgressBar = $CrusaderHealthContainer/VBoxContainer/MarginContainer2/MarginContainer/HealthBar/DamageBar

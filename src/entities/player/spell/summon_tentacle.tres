@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="SpellMainResource" load_steps=3 format=3 uid="uid://yw0dtaru5w0d"]
+[gd_resource type="Resource" script_class="SpellMainResource" load_steps=3 format=3 uid="uid://bn2w8ekgluaum"]
 
 [ext_resource type="Script" path="res://src/entities/player/spell/spell_main_resource.gd" id="1_3jjh5"]
 [ext_resource type="PackedScene" uid="uid://p4y5na38iohw" path="res://src/entities/characters/minions/Tentacle.tscn" id="2_sgmer"]

@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://src/entities/player/player_control.gd" id="1_p87se"]
 [ext_resource type="Resource" uid="uid://bhp86ov0smg50" path="res://src/entities/player/spell/summon_zombie.tres" id="2_fceie"]
 [ext_resource type="Resource" uid="uid://ix73paims45p" path="res://src/entities/player/spell/summon_skeleton.tres" id="3_qgmpw"]
-[ext_resource type="Resource" uid="uid://yw0dtaru5w0d" path="res://src/entities/player/spell/summon_tentacle.tres" id="4_vamhw"]
+[ext_resource type="Resource" uid="uid://bn2w8ekgluaum" path="res://src/entities/player/spell/summon_tentacle.tres" id="4_vamhw"]
 [ext_resource type="Resource" uid="uid://cj3odtgn32j5g" path="res://src/entities/player/prefix/triangle.tres" id="4_ww1ne"]
 [ext_resource type="Resource" uid="uid://divo10l1etcrb" path="res://src/entities/player/prefix/square.tres" id="5_0c47t"]
 [ext_resource type="Resource" uid="uid://deu8alrv0hxfy" path="res://src/entities/player/prefix/agile.tres" id="6_h8o74"]
