@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="AttackResource" load_steps=12 format=3 uid="uid://cnnf1h02qbqhr"]
+[gd_resource type="Resource" script_class="AttackResource" load_steps=12 format=3 uid="uid://cfv3alq5a0pe4"]
 
 [ext_resource type="Material" uid="uid://diu2a3513a1mx" path="res://src/entities/characters/minions/minion_attacks/particle_resources/EnsnareCanvasMaterial.tres" id="1_jdtm2"]
 [ext_resource type="Material" uid="uid://ch8i2x5j845pb" path="res://src/entities/characters/minions/minion_attacks/particle_resources/EnsnareParticleProcessMaterial.tres" id="2_rvsfa"]

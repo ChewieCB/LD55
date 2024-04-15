@@ -17,9 +17,8 @@ enum Rank {
 # Scales damage of attacks
 @export var strength: float = 1.0
 # Affects attack speed, how much agent is slowed by attacks
-@export_range(0.0, 1.0) var dexterity: float = 0.5 
+@export_range(0.0, 1.0) var dexterity: float = 0.5
 @export var rank: Rank
-
 
 func play_summon_sfx():
 	# TODO - make these non-sequential

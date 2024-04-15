@@ -1,9 +1,9 @@
 [gd_scene load_steps=36 format=3 uid="uid://p4y5na38iohw"]
 
 [ext_resource type="Script" path="res://src/entities/characters/minions/minion_base.gd" id="1_lviwh"]
-[ext_resource type="Resource" uid="uid://die7cn7suuqmr" path="res://src/entities/characters/minions/TentacleAttributes.tres" id="2_0iv1e"]
-[ext_resource type="Resource" uid="uid://cnnf1h02qbqhr" path="res://src/entities/characters/minions/minion_attacks/MinionEnsnareAttack.tres" id="3_8h3iy"]
-[ext_resource type="Resource" uid="uid://iykddcyqqs7x" path="res://src/entities/characters/minions/minion_attacks/MinionSlamAttack.tres" id="4_2ov3d"]
+[ext_resource type="Resource" uid="uid://bq44g14i2xeof" path="res://src/entities/characters/minions/TentacleAttributes.tres" id="2_0iv1e"]
+[ext_resource type="Resource" uid="uid://cfv3alq5a0pe4" path="res://src/entities/characters/minions/minion_attacks/MinionEnsnareAttack.tres" id="3_8h3iy"]
+[ext_resource type="Resource" uid="uid://2vnd3mmage2u" path="res://src/entities/characters/minions/minion_attacks/MinionSlamAttack.tres" id="4_2ov3d"]
 [ext_resource type="Texture2D" uid="uid://bsyg5rcv87bfk" path="res://assets/sprite/characters/minions/tentacle.png" id="4_8ic58"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/state_chart.gd" id="5_hlvj5"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/parallel_state.gd" id="6_m1mgy"]

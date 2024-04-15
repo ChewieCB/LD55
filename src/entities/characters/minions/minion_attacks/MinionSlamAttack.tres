@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="AttackResource" load_steps=12 format=3 uid="uid://iykddcyqqs7x"]
+[gd_resource type="Resource" script_class="AttackResource" load_steps=12 format=3 uid="uid://2vnd3mmage2u"]
 
 [ext_resource type="Material" uid="uid://d0q1eiy6ogu7y" path="res://src/entities/characters/minions/minion_attacks/particle_resources/SlamCanvasItemMaterial.tres" id="1_6d1q2"]
 [ext_resource type="AudioStream" uid="uid://dk142jibce6fm" path="res://assets/sfx/minions/minion_attacks/Hit 1.mp3" id="3_5itio"]

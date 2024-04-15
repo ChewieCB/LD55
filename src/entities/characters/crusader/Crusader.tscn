@@ -8,9 +8,9 @@
 [ext_resource type="Script" path="res://addons/godot_state_charts/parallel_state.gd" id="4_mr8e3"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/compound_state.gd" id="5_6ihxl"]
 [ext_resource type="Resource" uid="uid://dc1uya6c085x5" path="res://src/entities/characters/crusader/crusader_attacks/CrusaderSpinAttack.tres" id="5_pbuhd"]
-[ext_resource type="Resource" uid="uid://cflp4ui5e2o13" path="res://src/entities/characters/crusader/crusader_attacks/CrusaderCleaveAttack.tres" id="6_0yoop"]
+[ext_resource type="Resource" uid="uid://c0u1ckvhjc2i1" path="res://src/entities/characters/crusader/crusader_attacks/CrusaderCleaveAttack.tres" id="6_0yoop"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/atomic_state.gd" id="6_w7y78"]
-[ext_resource type="Resource" uid="uid://cnm5glaj5tfw6" path="res://src/entities/characters/crusader/crusader_attacks/CrusaderSmiteAttack.tres" id="7_m83wk"]
+[ext_resource type="Resource" uid="uid://d13khbb1k34kj" path="res://src/entities/characters/crusader/crusader_attacks/CrusaderSmiteAttack.tres" id="7_m83wk"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/transition.gd" id="7_v3ig5"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/state_is_active_guard.gd" id="8_6fl0h"]
 [ext_resource type="Texture2D" uid="uid://c2qttgl5gxlx5" path="res://assets/sprite/characters/crusader/crusader.png" id="8_thchg"]
@@ -21,7 +21,7 @@
 [ext_resource type="Animation" uid="uid://416js6etq1ua" path="res://src/entities/characters/crusader/crusader_attacks/attack_anims/spin.res" id="15_sulxg"]
 [ext_resource type="Material" uid="uid://xmkfohc74i6y" path="res://src/entities/characters/crusader/crusader_attacks/particle_resources/CleaveCanvasItemMaterial.tres" id="16_2bjtj"]
 [ext_resource type="Animation" uid="uid://dbxt5qt54x8o" path="res://assets/anims/hurt.res" id="17_hxo7c"]
-[ext_resource type="Material" uid="uid://balgrp68nidpr" path="res://src/entities/characters/crusader/crusader_attacks/particle_resources/CleaveParticleProcessMaterial.tres" id="17_v0ayw"]
+[ext_resource type="Material" uid="uid://5q7lgb7dqosx" path="res://src/entities/characters/crusader/crusader_attacks/particle_resources/CleaveParticleProcessMaterial.tres" id="17_v0ayw"]
 [ext_resource type="Theme" uid="uid://crnxmpykwrhqn" path="res://src/ui/themes/status_label.tres" id="21_dl3nj"]
 [ext_resource type="Texture2D" uid="uid://lam5wapthbyq" path="res://assets/particles/cleave/Effect_FastPixelFire_1_173x193.png" id="21_qsipl"]
 
@@ -88,6 +88,21 @@ state = NodePath("../../../Damage/Dead")
 script = ExtResource("9_30nyi")
 guard = SubResource("Resource_p5ia4")
 
+[sub_resource type="Animation" id="Animation_45p3i"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-2, -2)]
+}
+
 [sub_resource type="Animation" id="Animation_45lpn"]
 resource_name = "attack"
 length = 0.05
@@ -119,21 +134,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
-}
-
-[sub_resource type="Animation" id="Animation_45p3i"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(-2, -2)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_utllu"]
