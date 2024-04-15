@@ -23,6 +23,7 @@ var current_stance: Stance = Stance.FAST
 
 # TODO - move to AIAgent base class
 @onready var buildup_bar = $AttackBuildup
+@onready var stance_timer  = $StanceTimer
 
 var path: Curve2D
 var path_points: PackedVector2Array
@@ -187,7 +188,8 @@ func _on_tank_stance_state_exited():
 
 func _on_attacking_idle_state_entered():
 	# TODO - remove random switching, replace with target type checks
-	if randf_range(0, 1) > 0.65:
+	if stance_timer.is_stopped():
+		#if randf_range(0, 1) > 0.65:
 		var stance_str: String
 		match current_stance:
 			Stance.FAST:
@@ -202,6 +204,7 @@ func _on_attacking_idle_state_entered():
 				stance_str = "damage_stance"
 				$StanceLabel.text = "Damage"
 		state_chart.send_event(stance_str)
+		stance_timer.start(20.0)
 
 
 func _on_attacking_idle_state_physics_processing(delta):

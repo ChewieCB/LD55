@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=3 uid="uid://bev1egpx7qcvi"]
+[gd_scene load_steps=51 format=3 uid="uid://bev1egpx7qcvi"]
 
 [ext_resource type="Script" path="res://src/entities/characters/crusader/crusader.gd" id="1_0cjda"]
 [ext_resource type="Resource" uid="uid://b5dljo4pci4to" path="res://src/entities/characters/crusader/crusader_attributes.tres" id="2_jwm8m"]
@@ -11,6 +11,7 @@
 [ext_resource type="Resource" uid="uid://dc1uya6c085x5" path="res://src/entities/characters/crusader/crusader_attacks/CrusaderSpinAttack.tres" id="5_pbuhd"]
 [ext_resource type="Resource" uid="uid://cflp4ui5e2o13" path="res://src/entities/characters/crusader/crusader_attacks/CrusaderCleaveAttack.tres" id="6_0yoop"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/atomic_state.gd" id="6_w7y78"]
+[ext_resource type="Resource" uid="uid://cnm5glaj5tfw6" path="res://src/entities/characters/crusader/crusader_attacks/CrusaderSmiteAttack.tres" id="7_m83wk"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/transition.gd" id="7_v3ig5"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/state_is_active_guard.gd" id="8_6fl0h"]
 [ext_resource type="Texture2D" uid="uid://c2qttgl5gxlx5" path="res://assets/sprite/characters/crusader/crusader.png" id="8_thchg"]
@@ -173,7 +174,7 @@ _data = {
 radius = 64.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0pxk1"]
-radius = 48.0
+radius = 64.0
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_81xv8"]
 particles_animation = true
@@ -197,7 +198,7 @@ bg_color = Color(0.588235, 0.168627, 0.952941, 1)
 y_sort_enabled = true
 script = ExtResource("1_0cjda")
 resource_attributes = ExtResource("2_jwm8m")
-attacks = Array[Resource("res://src/entities/characters/attack_resource.gd")]([ExtResource("3_au4vg"), ExtResource("5_pbuhd"), ExtResource("4_50p0w"), ExtResource("6_0yoop"), null])
+attacks = Array[Resource("res://src/entities/characters/attack_resource.gd")]([ExtResource("3_au4vg"), ExtResource("5_pbuhd"), ExtResource("4_50p0w"), ExtResource("6_0yoop"), ExtResource("7_m83wk")])
 
 [node name="ColorRect" type="ColorRect" parent="."]
 visible = false
@@ -569,6 +570,9 @@ theme = ExtResource("21_dl3nj")
 text = "Stance"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="StanceTimer" type="Timer" parent="."]
+one_shot = true
 
 [connection signal="velocity_computed" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_velocity_computed"]
 [connection signal="state_entered" from="StateChart/Root/Movement/Idle" to="." method="_on_idle_state_entered"]
