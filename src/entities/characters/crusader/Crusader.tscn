@@ -1,4 +1,4 @@
-[gd_scene load_steps=58 format=3 uid="uid://bev1egpx7qcvi"]
+[gd_scene load_steps=62 format=3 uid="uid://bev1egpx7qcvi"]
 
 [ext_resource type="Script" path="res://src/entities/characters/crusader/crusader.gd" id="1_0cjda"]
 [ext_resource type="Shader" path="res://src/utils/shaders/outbound_shadow.gdshader" id="1_q13hr"]
@@ -25,6 +25,7 @@
 [ext_resource type="Material" uid="uid://5q7lgb7dqosx" path="res://src/entities/characters/crusader/crusader_attacks/particle_resources/CleaveParticleProcessMaterial.tres" id="17_v0ayw"]
 [ext_resource type="Theme" uid="uid://crnxmpykwrhqn" path="res://src/ui/themes/status_label.tres" id="21_dl3nj"]
 [ext_resource type="Texture2D" uid="uid://lam5wapthbyq" path="res://assets/particles/cleave/Effect_FastPixelFire_1_173x193.png" id="21_qsipl"]
+[ext_resource type="Texture2D" uid="uid://d2ojginv2gs1f" path="res://assets/particles/spin/Effect_BloodImpact_1_69x60.png" id="24_ap37g"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_c218b"]
 shader = ExtResource("1_q13hr")
@@ -161,11 +162,53 @@ tracks/0/keys = {
 "values": [true]
 }
 
+[sub_resource type="Animation" id="Animation_j6qyy"]
+resource_name = "death"
+length = 1.3
+step = 0.025
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.15, 0.25, 0.35, 0.4, 0.5, 0.6, 0.65, 0.75, 0.85, 0.9, 1, 1.3),
+"transitions": PackedFloat32Array(0.535887, 1, 1.41421, 1, 1, 1.41421, 1, 1, 1.41421, 1, 1, 1.41421, 1.68179, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0.741176, 0.184314, 0.184314, 1), Color(0.741176, 0.184314, 0.184314, 1), Color(1, 1, 1, 1), Color(0.741176, 0.184314, 0.184314, 1), Color(0.741176, 0.184314, 0.184314, 1), Color(1, 1, 1, 1), Color(0.741176, 0.184314, 0.184314, 1), Color(0.741176, 0.184314, 0.184314, 1), Color(1, 1, 1, 1), Color(0.741176, 0.184314, 0.184314, 1), Color(0.741176, 0.184314, 0.184314, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.025, 0.05, 0.075, 0.1, 0.125, 0.15, 0.175, 0.2, 0.25, 0.275, 0.3, 0.325, 0.35, 0.375, 0.4, 0.425, 0.45, 0.5, 0.525, 0.55, 0.575, 0.6, 0.625, 0.65, 0.675, 0.7, 0.75, 0.775, 0.8, 0.825, 0.85, 0.875, 0.9, 0.925, 0.95, 1, 1.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1.68, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(-2, -2), Vector2(0, 0), Vector2(2, 2), Vector2(0, 0), Vector2(-2, -2), Vector2(0, 0), Vector2(2, 2), Vector2(0, 0), Vector2(0, 0), Vector2(-2, -2), Vector2(0, 0), Vector2(2, 2), Vector2(0, 0), Vector2(-2, -2), Vector2(0, 0), Vector2(2, 2), Vector2(0, 0), Vector2(0, 0), Vector2(-2, -2), Vector2(0, 0), Vector2(2, 2), Vector2(0, 0), Vector2(-2, -2), Vector2(0, 0), Vector2(2, 2), Vector2(0, 0), Vector2(0, 0), Vector2(-2, -2), Vector2(0, 0), Vector2(2, 2), Vector2(0, 0), Vector2(-2, -2), Vector2(0, 0), Vector2(2, 2), Vector2(0, 0), Vector2(0, 0), Vector2(0, 10)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("DeathParticles:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_utllu"]
 _data = {
 "RESET": SubResource("Animation_45p3i"),
 "attack": SubResource("Animation_45lpn"),
 "block": SubResource("Animation_c2uu4"),
+"death": SubResource("Animation_j6qyy"),
 "hurt": ExtResource("17_hxo7c"),
 "spin": ExtResource("15_sulxg")
 }
@@ -191,6 +234,25 @@ gravity = Vector3(0, 0, 0)
 anim_speed_min = 1.0
 anim_speed_max = 1.0
 
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_gtasx"]
+particles_animation = true
+particles_anim_h_frames = 6
+particles_anim_v_frames = 5
+particles_anim_loop = false
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_34ywv"]
+particle_flag_disable_z = true
+emission_shape_offset = Vector3(-8, -8, 0)
+emission_shape = 3
+emission_box_extents = Vector3(8, 8, 1)
+gravity = Vector3(0, 0, 0)
+scale_min = 0.9
+scale_max = 1.1
+anim_speed_min = 2.0
+anim_speed_max = 2.0
+sub_emitter_mode = 2
+sub_emitter_amount_at_end = 1
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mttwg"]
 bg_color = Color(0.843137, 0.196078, 0.0666667, 1)
 
@@ -204,6 +266,7 @@ resource_attributes = ExtResource("2_jwm8m")
 attacks = Array[Resource("res://src/entities/characters/attack_resource.gd")]([ExtResource("3_au4vg"), ExtResource("5_pbuhd"), ExtResource("4_50p0w"), ExtResource("6_0yoop"), ExtResource("7_m83wk")])
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.984688)
 material = SubResource("ShaderMaterial_c218b")
 position = Vector2(-2, -2)
 scale = Vector2(0.1, 0.1)
@@ -518,6 +581,13 @@ one_shot = true
 explosiveness = 0.19
 
 [node name="DeathParticles" type="GPUParticles2D" parent="."]
+material = SubResource("CanvasItemMaterial_gtasx")
+emitting = false
+amount = 7
+process_material = SubResource("ParticleProcessMaterial_34ywv")
+texture = ExtResource("24_ap37g")
+lifetime = 2.0
+one_shot = true
 
 [node name="HealthBar" type="ProgressBar" parent="."]
 visible = false

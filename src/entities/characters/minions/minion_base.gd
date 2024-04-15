@@ -55,6 +55,9 @@ func _on_attacking_idle_state_physics_processing(_delta):
 	if crusader == null:
 		return
 	
+	if crusader.current_health == 0:
+		state_chart.send_event("finish_attack")
+	
 	# Generic cooldown for all attacks
 	if not cooldown_timer.is_stopped():
 		return

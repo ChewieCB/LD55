@@ -301,7 +301,8 @@ func _on_hit_state_entered():
 
 func _on_dead_state_entered():
 	state_chart.send_event("stop_walking")
-	#anim_player.play("death")
+	state_chart.send_event("stop_cleansing")
+	anim_player.play("death")
 	emit_signal("death")
 
 func _on_minion_attack_area_body_entered(body):
