@@ -12,6 +12,7 @@ signal health_diff(diff)
 		attributes = resource_attributes.duplicate()
 		current_health = attributes.health
 		current_speed = attributes.speed
+		current_armour = attributes.armour
 var attributes: CharacterAttributes
 
 var current_health: int:
@@ -25,12 +26,14 @@ var current_health: int:
 		elif value < prev_health:
 			_hurt()
 var current_speed: float
+var current_armour: float
 var acceleration: float = 7
 
 @export var attacks: Array[AttackResource]
 var current_attack: AttackResource
 var in_cooldown: Array[AttackResource]
 var cooldown_timers: Array
+var priority_targets = []
 
 @onready var nav_agent = $NavigationAgent2D
 @onready var state_chart: StateChart = $StateChart
@@ -112,6 +115,8 @@ func _attack(attack: AttackResource):
 		var target_count: int = 0
 		for target in targets:
 			if target.current_health <= 0:
+				if target in priority_targets:
+					priority_targets.erase(target)
 				continue
 			
 			if attack.targeting_mode == AttackResource.TargetingMode.MULTIPLE:

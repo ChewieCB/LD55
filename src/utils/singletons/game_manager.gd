@@ -11,7 +11,7 @@ var endgame_ui: EndgameUI
 var crusader: Crusader
 
 func _ready():
-	SoundManager.play_music(bgm)
+	SoundManager.play_music(bgm, 0.0, "Music")
 
 func _input(_event):
 	if Input.is_action_just_pressed("ui_cancel"):

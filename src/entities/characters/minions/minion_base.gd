@@ -14,6 +14,10 @@ func _spawn():
 func _process(_delta):
 	health_ui.value = current_health
 
+
+func _hurt():
+	anim_player.play("hurt")
+
 func _die():
 	state_chart.send_event("stop_walking")
 	state_chart.send_event("death")

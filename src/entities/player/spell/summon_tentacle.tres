@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="SpellMainResource" load_steps=3 format=3 uid="uid://yw0dtaru5w0d"]
+
+[ext_resource type="Script" path="res://src/entities/player/spell/spell_main_resource.gd" id="1_3jjh5"]
+[ext_resource type="PackedScene" uid="uid://p4y5na38iohw" path="res://src/entities/characters/minions/Tentacle.tscn" id="2_sgmer"]
+
+[resource]
+script = ExtResource("1_3jjh5")
+name = "Tentacle"
+input = "RRLLUD"
+spell_id = 4
+spawn_scene = ExtResource("2_sgmer")
+cooldown = 8.2

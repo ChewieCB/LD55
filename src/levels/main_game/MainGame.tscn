@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://bjabavwsrnt0y"]
+[gd_scene load_steps=19 format=3 uid="uid://bjabavwsrnt0y"]
 
 [ext_resource type="Script" path="res://src/levels/main_game/main_game.gd" id="1_4qjmh"]
 [ext_resource type="Texture2D" uid="uid://8q5gyn8ex2wv" path="res://assets/sprite/square.png" id="1_vuavk"]
@@ -10,8 +10,6 @@
 [ext_resource type="Texture2D" uid="uid://bgb07l8q8unj0" path="res://assets/environment/Grave_1.png" id="5_4uejn"]
 [ext_resource type="PackedScene" uid="uid://c3hse0gwreuje" path="res://src/ui/GameUI.tscn" id="6_k6rr8"]
 [ext_resource type="PackedScene" uid="uid://bl8brofna47l6" path="res://src/entities/player/PlayerControl.tscn" id="6_r66m5"]
-[ext_resource type="Resource" uid="uid://bhp86ov0smg50" path="res://src/entities/player/spell/summon_zombie.tres" id="10_1blgb"]
-[ext_resource type="Resource" uid="uid://ix73paims45p" path="res://src/entities/player/spell/summon_skeleton.tres" id="11_8cavn"]
 [ext_resource type="Resource" uid="uid://divo10l1etcrb" path="res://src/entities/player/prefix/square.tres" id="12_cq8wj"]
 [ext_resource type="PackedScene" uid="uid://vs2j5t7leoj0" path="res://src/ui/EndgameUI.tscn" id="12_jv3wu"]
 [ext_resource type="Resource" uid="uid://cj3odtgn32j5g" path="res://src/entities/player/prefix/triangle.tres" id="13_4fnmm"]
@@ -341,7 +339,6 @@ script = ExtResource("3_nexuo")
 player = NodePath("../Crusader")
 
 [node name="PlayerControl" parent="." node_paths=PackedStringArray("crusader") instance=ExtResource("6_r66m5")]
-spells = Array[Resource("res://src/entities/player/spell/spell_main_resource.gd")]([ExtResource("10_1blgb"), ExtResource("11_8cavn")])
 spell_prefixes = Array[Resource("res://src/entities/player/prefix/spell_prefix_resource.gd")]([ExtResource("12_cq8wj"), ExtResource("13_4fnmm"), ExtResource("14_qcq4r"), ExtResource("15_7hpi6")])
 crusader = NodePath("../Crusader")
 
