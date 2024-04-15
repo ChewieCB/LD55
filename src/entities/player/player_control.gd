@@ -175,24 +175,24 @@ func cast_readied_spell():
 					var _minion = current_spell.spawn_scene.instantiate()
 					_minion.global_position = mouse_global_pos + Vector2( - 20, -20).rotated(PI / 2 * i)
 					_minion.crusader = crusader
-					GameManager.main_game.minion_spawn.add_child(_minion)
+					GameManager.spawn_minion(_minion)
 			EnumAutoload.SpellPrefix.TRIANGLE:
 				for i in range(3):
 					var _minion = current_spell.spawn_scene.instantiate()
 					_minion.global_position = mouse_global_pos + Vector2( - 20, -20).rotated(PI / 2 * i)
 					_minion.crusader = crusader
-					GameManager.main_game.minion_spawn.add_child(_minion)
+					GameManager.spawn_minion(_minion)
 			EnumAutoload.SpellPrefix.AGILE, EnumAutoload.SpellPrefix.TOUGH:
 				var _minion = current_spell.spawn_scene.instantiate()
 				_minion.global_position = mouse_global_pos
 				_minion.crusader = crusader
 				_minion.apply_prefix(prefix_id)
-				GameManager.main_game.minion_spawn.add_child(_minion)
+				GameManager.spawn_minion(_minion)
 	else:
 		var _minion = current_spell.spawn_scene.instantiate()
 		_minion.global_position = mouse_global_pos
 		_minion.crusader = crusader
-		GameManager.main_game.minion_spawn.add_child(_minion)
+		GameManager.spawn_minion(_minion)
 
 	SoundManager.play_sound(summon_sfx[randi_range(0, summon_sfx.size() - 1)])
 	emit_signal("spell_casted", prefix_id, current_spell.spell_id)

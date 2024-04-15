@@ -23,7 +23,7 @@
 [ext_resource type="Material" uid="uid://5rp36woe5yso" path="res://src/entities/characters/minions/minion_attacks/particle_resources/ExplosionParticleProcessMaterial.tres" id="19_dufxh"]
 [ext_resource type="Texture2D" uid="uid://brmlt6rgwrn1w" path="res://assets/particles/Explosion_2_64x64.png" id="20_wo7v1"]
 [ext_resource type="PackedScene" uid="uid://crdcf3pu3urwg" path="res://src/ui/status/status_ui.tscn" id="21_xdnrx"]
-[ext_resource type="PackedScene" uid="uid://cklnh2ojwuuxe" path="res://src/entities/characters/minions/MinionHealthBar.tscn" id="22_aa55a"]
+[ext_resource type="PackedScene" path="res://src/entities/characters/minions/MinionHealthBar.tscn" id="22_aa55a"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_6onvs"]
 shader = ExtResource("5_4f736")

@@ -20,6 +20,11 @@ var abberation_enabled = true
 func _ready():
 	SoundManager.play_music(bgm, 0.0, "Music")
 
+
+func spawn_minion(minion: MinionBase):
+	minion.crusader = crusader
+	main_game.minion_spawn.add_child(minion)
+
 func end_game(victory: bool):
 	emit_signal("game_ended")
 	if victory:

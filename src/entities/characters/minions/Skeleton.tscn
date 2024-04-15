@@ -18,7 +18,7 @@
 [ext_resource type="Animation" uid="uid://dbxt5qt54x8o" path="res://assets/anims/hurt.res" id="13_xvg8j"]
 [ext_resource type="Texture2D" uid="uid://brmlt6rgwrn1w" path="res://assets/particles/Explosion_2_64x64.png" id="14_eqdax"]
 [ext_resource type="PackedScene" uid="uid://crdcf3pu3urwg" path="res://src/ui/status/status_ui.tscn" id="14_q5bwy"]
-[ext_resource type="PackedScene" uid="uid://cklnh2ojwuuxe" path="res://src/entities/characters/minions/MinionHealthBar.tscn" id="17_ivnfs"]
+[ext_resource type="PackedScene" path="res://src/entities/characters/minions/MinionHealthBar.tscn" id="17_ivnfs"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_negqm"]
 shader = ExtResource("4_6air7")

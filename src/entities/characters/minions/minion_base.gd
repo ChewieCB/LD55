@@ -32,6 +32,9 @@ func _on_idle_state_physics_processing(_delta):
 
 func _on_walking_state_physics_processing(_delta):
 	# FIXME - dependency issue here with the crusader node not loading before this
+	if not crusader:
+		return
+	
 	crusader_target = crusader.global_position
 	nav_agent.target_position = crusader_target
 	

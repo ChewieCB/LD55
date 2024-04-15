@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://src/entities/characters/attack_resource.gd" id="1_t0i5s"]
 [ext_resource type="Material" uid="uid://cqldxisj3whbq" path="res://src/entities/characters/crusader/crusader_attacks/particle_resources/CleaveCanvasItemMaterial.tres" id="1_vmahq"]
-[ext_resource type="Material" uid="uid://balgrp68nidpr" path="res://src/entities/characters/crusader/crusader_attacks/particle_resources/CleaveParticleProcessMaterial.tres" id="2_3meec"]
+[ext_resource type="Material" uid="uid://5q7lgb7dqosx" path="res://src/entities/characters/crusader/crusader_attacks/particle_resources/CleaveParticleProcessMaterial.tres" id="2_3meec"]
 [ext_resource type="AudioStream" uid="uid://djdql4xu18h8e" path="res://assets/sfx/attacks/Paladin Special attack.mp3" id="3_587bq"]
 [ext_resource type="Texture2D" uid="uid://lam5wapthbyq" path="res://assets/particles/cleave/Effect_FastPixelFire_1_173x193.png" id="4_f7qwt"]
 
