@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="AttackResource" load_steps=7 format=3 uid="uid://cnm5glaj5tfw6"]
 
-[ext_resource type="Material" uid="uid://euhixxl3c1ew" path="res://src/entities/characters/crusader/crusader_attacks/particle_resources/SmiteCanvasItemMaterial.tres" id="1_gqepe"]
-[ext_resource type="Material" uid="uid://cjnt7033i3sxa" path="res://src/entities/characters/crusader/crusader_attacks/particle_resources/SmiteParticleProcessMaterial.tres" id="2_xsbj8"]
+[ext_resource type="Material" uid="uid://c1wps48b1ojmj" path="res://src/entities/characters/crusader/crusader_attacks/particle_resources/SmiteCanvasItemMaterial.tres" id="1_gqepe"]
+[ext_resource type="Material" uid="uid://ldpgyopy5v8d" path="res://src/entities/characters/crusader/crusader_attacks/particle_resources/SmiteParticleProcessMaterial.tres" id="2_xsbj8"]
 [ext_resource type="Texture2D" uid="uid://cg5bgeu52dwsw" path="res://assets/particles/smite/Effect_BigHit_1_557x553.png" id="3_8qoii"]
 [ext_resource type="AudioStream" uid="uid://dpywyaf2b4ohp" path="res://assets/sfx/cleanse/Angelic_Chant_1.mp3" id="3_wvs1h"]
 [ext_resource type="AudioStream" uid="uid://c1kkvv4hodfoy" path="res://assets/sfx/cleanse/Angelic_Chant_2.mp3" id="4_hhpax"]

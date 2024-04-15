@@ -3,9 +3,9 @@ class_name MainGame
 
 @onready var main_ui: Control = $CanvasLayer/GameUI
 
-@onready var patrol_path = $Ground/Path2D
-@onready var minion_spawn = $Minions
-@onready var crusader = $Crusader
+@onready var patrol_path = $Path2D
+@onready var minion_spawn = $YSort
+@onready var crusader = $YSort/Crusader
 
 @onready var ritual_sites = $RitualSites
 @onready var total_ritual_sites = ritual_sites.get_child_count()
@@ -25,7 +25,9 @@ func _ready() -> void:
 	crusader.health_changed.connect(main_ui._set_health)
 	
 	for minion in minion_spawn.get_children():
-		minion.crusader = crusader
+		# HACK - do this better, we're looping through the whole y-sort here
+		if minion is MinionBase:
+			minion.crusader = crusader
 
 func _on_ritual_site_cleansed():
 	sites_cleansed += 1

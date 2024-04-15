@@ -152,7 +152,8 @@ func _on_default_stance_state_exited():
 
 func _on_tank_stance_state_entered():
 	current_speed = attributes.speed * 0.35
-	current_armour = attributes.armour * 2
+	current_armour = attributes.armour * 5
+	current_strength = attributes.strength * 2
 
 func _on_tank_stance_state_physics_processing(_delta):
 	# For dealing with elites, move slowly, increase armour
@@ -180,6 +181,7 @@ func _on_tank_stance_state_physics_processing(_delta):
 func _on_tank_stance_state_exited():
 	current_speed = attributes.speed
 	current_armour = attributes.armour
+	current_strength = attributes.strength
 
 func _on_attacking_idle_state_entered():
 	pass

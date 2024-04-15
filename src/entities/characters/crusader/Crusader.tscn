@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=3 uid="uid://bev1egpx7qcvi"]
+[gd_scene load_steps=56 format=3 uid="uid://bev1egpx7qcvi"]
 
 [ext_resource type="Script" path="res://src/entities/characters/crusader/crusader.gd" id="1_0cjda"]
 [ext_resource type="Resource" uid="uid://b5dljo4pci4to" path="res://src/entities/characters/crusader/crusader_attributes.tres" id="2_jwm8m"]
@@ -8,9 +8,9 @@
 [ext_resource type="Script" path="res://addons/godot_state_charts/parallel_state.gd" id="4_mr8e3"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/compound_state.gd" id="5_6ihxl"]
 [ext_resource type="Resource" uid="uid://dc1uya6c085x5" path="res://src/entities/characters/crusader/crusader_attacks/CrusaderSpinAttack.tres" id="5_pbuhd"]
-[ext_resource type="Resource" uid="uid://c0u1ckvhjc2i1" path="res://src/entities/characters/crusader/crusader_attacks/CrusaderCleaveAttack.tres" id="6_0yoop"]
+[ext_resource type="Resource" uid="uid://cflp4ui5e2o13" path="res://src/entities/characters/crusader/crusader_attacks/CrusaderCleaveAttack.tres" id="6_0yoop"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/atomic_state.gd" id="6_w7y78"]
-[ext_resource type="Resource" uid="uid://d13khbb1k34kj" path="res://src/entities/characters/crusader/crusader_attacks/CrusaderSmiteAttack.tres" id="7_m83wk"]
+[ext_resource type="Resource" uid="uid://cnm5glaj5tfw6" path="res://src/entities/characters/crusader/crusader_attacks/CrusaderSmiteAttack.tres" id="7_m83wk"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/transition.gd" id="7_v3ig5"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/state_is_active_guard.gd" id="8_6fl0h"]
 [ext_resource type="Texture2D" uid="uid://c2qttgl5gxlx5" path="res://assets/sprite/characters/crusader/crusader.png" id="8_thchg"]
@@ -19,9 +19,9 @@
 [ext_resource type="PackedScene" uid="uid://crdcf3pu3urwg" path="res://src/ui/status/status_ui.tscn" id="14_vj2d1"]
 [ext_resource type="Texture2D" uid="uid://bixxqrw5c3q7e" path="res://assets/particles/SmallStar_64x64.png" id="14_yo0hq"]
 [ext_resource type="Animation" uid="uid://416js6etq1ua" path="res://src/entities/characters/crusader/crusader_attacks/attack_anims/spin.res" id="15_sulxg"]
-[ext_resource type="Material" uid="uid://xmkfohc74i6y" path="res://src/entities/characters/crusader/crusader_attacks/particle_resources/CleaveCanvasItemMaterial.tres" id="16_2bjtj"]
+[ext_resource type="Material" uid="uid://cqldxisj3whbq" path="res://src/entities/characters/crusader/crusader_attacks/particle_resources/CleaveCanvasItemMaterial.tres" id="16_2bjtj"]
 [ext_resource type="Animation" uid="uid://dbxt5qt54x8o" path="res://assets/anims/hurt.res" id="17_hxo7c"]
-[ext_resource type="Material" uid="uid://5q7lgb7dqosx" path="res://src/entities/characters/crusader/crusader_attacks/particle_resources/CleaveParticleProcessMaterial.tres" id="17_v0ayw"]
+[ext_resource type="Material" uid="uid://balgrp68nidpr" path="res://src/entities/characters/crusader/crusader_attacks/particle_resources/CleaveParticleProcessMaterial.tres" id="17_v0ayw"]
 [ext_resource type="Theme" uid="uid://crnxmpykwrhqn" path="res://src/ui/themes/status_label.tres" id="21_dl3nj"]
 [ext_resource type="Texture2D" uid="uid://lam5wapthbyq" path="res://assets/particles/cleave/Effect_FastPixelFire_1_173x193.png" id="21_qsipl"]
 
@@ -55,6 +55,22 @@ guard = SubResource("Resource_8dd2w")
 [sub_resource type="Resource" id="Resource_auvi3"]
 script = ExtResource("10_slxhv")
 guards = Array[Resource("res://addons/godot_state_charts/guard.gd")]([SubResource("Resource_ovjto"), SubResource("Resource_ap0hw"), SubResource("Resource_l43w5")])
+
+[sub_resource type="Resource" id="Resource_nnr6m"]
+script = ExtResource("8_6fl0h")
+state = NodePath("../../../Stances/TankStance")
+
+[sub_resource type="Resource" id="Resource_w63yq"]
+script = ExtResource("9_30nyi")
+guard = SubResource("Resource_nnr6m")
+
+[sub_resource type="Resource" id="Resource_2v31m"]
+script = ExtResource("8_6fl0h")
+state = NodePath("../../../Stances/TankStance")
+
+[sub_resource type="Resource" id="Resource_16xh3"]
+script = ExtResource("9_30nyi")
+guard = SubResource("Resource_2v31m")
 
 [sub_resource type="Resource" id="Resource_7lx5c"]
 script = ExtResource("8_6fl0h")
@@ -206,6 +222,7 @@ shape = SubResource("RectangleShape2D_ci4kf")
 avoidance_enabled = true
 radius = 16.0
 avoidance_layers = 3
+debug_enabled = true
 
 [node name="StateChart" type="Node" parent="."]
 script = ExtResource("3_hr7jo")
@@ -326,6 +343,7 @@ event = &"stagger"
 script = ExtResource("7_v3ig5")
 to = NodePath("../../Stunned")
 event = &"stun"
+guard = SubResource("Resource_w63yq")
 
 [node name="Staggered" type="Node" parent="StateChart/Root/Status"]
 script = ExtResource("6_w7y78")
@@ -339,6 +357,7 @@ event = &"recover_stagger"
 script = ExtResource("7_v3ig5")
 to = NodePath("../../Stunned")
 event = &"stun"
+guard = SubResource("Resource_16xh3")
 
 [node name="Stunned" type="Node" parent="StateChart/Root/Status"]
 script = ExtResource("6_w7y78")
