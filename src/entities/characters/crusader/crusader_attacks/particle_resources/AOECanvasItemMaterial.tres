@@ -2,6 +2,6 @@
 
 [resource]
 particles_animation = true
-particles_anim_h_frames = 33
-particles_anim_v_frames = 1
+particles_anim_h_frames = 6
+particles_anim_v_frames = 5
 particles_anim_loop = true

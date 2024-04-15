@@ -1,16 +1,23 @@
 [gd_resource type="Resource" script_class="AttackResource" load_steps=12 format=3 uid="uid://iykddcyqqs7x"]
 
-[ext_resource type="Material" uid="uid://dyiav2l5wpxer" path="res://src/entities/characters/minions/minion_attacks/particle_resources/PoisonClawCanvasItemMaterial.tres" id="1_scnm6"]
-[ext_resource type="Material" uid="uid://0rrnlgpw34g1" path="res://src/entities/characters/minions/minion_attacks/particle_resources/PoisonClowProcessMaterial.tres" id="2_ud8ws"]
+[ext_resource type="Material" uid="uid://d0q1eiy6ogu7y" path="res://src/entities/characters/minions/minion_attacks/particle_resources/SlamCanvasItemMaterial.tres" id="1_6d1q2"]
 [ext_resource type="AudioStream" uid="uid://dk142jibce6fm" path="res://assets/sfx/minions/minion_attacks/Hit 1.mp3" id="3_5itio"]
 [ext_resource type="AudioStream" uid="uid://dukmgtnlkafrw" path="res://assets/sfx/minions/minion_attacks/Hit 2.mp3" id="4_cky2x"]
 [ext_resource type="AudioStream" uid="uid://cuicov57lqsqr" path="res://assets/sfx/minions/minion_attacks/Hit 3.mp3" id="5_80d0o"]
 [ext_resource type="AudioStream" uid="uid://p74c0hljixa8" path="res://assets/sfx/minions/minion_attacks/Hit 4.mp3" id="6_1wtpl"]
 [ext_resource type="AudioStream" uid="uid://dg7f6c0hu07cn" path="res://assets/sfx/minions/minion_attacks/Hit 5.mp3" id="7_muo63"]
+[ext_resource type="Texture2D" uid="uid://csoelmjkmec4t" path="res://assets/particles/FireCast_96x96.png" id="8_s01vl"]
 [ext_resource type="AudioStream" uid="uid://dc7yeqx0textd" path="res://assets/sfx/minions/minion_attacks/Hit 6.mp3" id="8_vfqon"]
 [ext_resource type="AudioStream" uid="uid://c2a4gjo87eorj" path="res://assets/sfx/minions/minion_attacks/Hit 7.mp3" id="9_6f8yc"]
-[ext_resource type="Texture2D" uid="uid://43injemtwjgx" path="res://assets/particles/PoisonClaw_96x96.png" id="10_odpth"]
 [ext_resource type="Script" path="res://src/entities/characters/attack_resource.gd" id="11_fdwa3"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ucrbj"]
+particle_flag_disable_z = true
+gravity = Vector3(0, 0, 0)
+scale_min = 0.7
+scale_max = 0.7
+anim_speed_min = 1.0
+anim_speed_max = 1.0
 
 [resource]
 script = ExtResource("11_fdwa3")
@@ -23,9 +30,9 @@ damage = 65
 armour_penetration = 2
 control = 0.22
 name = "Slam"
-particle_texture = ExtResource("10_odpth")
+particle_texture = ExtResource("8_s01vl")
 particle_size = 96
-attack_particles_process_mat = ExtResource("2_ud8ws")
-attack_particles_canvas_mat = ExtResource("1_scnm6")
+attack_particles_process_mat = SubResource("ParticleProcessMaterial_ucrbj")
+attack_particles_canvas_mat = ExtResource("1_6d1q2")
 attack_sfx = Array[AudioStream]([ExtResource("3_5itio"), ExtResource("4_cky2x"), ExtResource("5_80d0o"), ExtResource("6_1wtpl"), ExtResource("7_muo63"), ExtResource("8_vfqon"), ExtResource("9_6f8yc")])
 block_sfx = Array[AudioStream]([])

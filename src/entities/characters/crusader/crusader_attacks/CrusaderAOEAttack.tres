@@ -3,8 +3,8 @@
 [ext_resource type="Script" path="res://src/entities/characters/attack_resource.gd" id="1_5stwv"]
 [ext_resource type="Material" uid="uid://cxomekp5n5jv" path="res://src/entities/characters/crusader/crusader_attacks/particle_resources/AOECanvasItemMaterial.tres" id="1_dsopl"]
 [ext_resource type="Material" uid="uid://debt33v5ytb5v" path="res://src/entities/characters/crusader/crusader_attacks/particle_resources/AOEParticleProcessMaterial.tres" id="2_m5ge0"]
-[ext_resource type="Texture2D" uid="uid://bahe05hl0e2sx" path="res://assets/particles/MagicBarrier_64x64.png" id="3_dsm8e"]
-[ext_resource type="AudioStream" uid="uid://x83aygr7bkpq" path="res://assets/sfx/Magic Sound.mp3" id="3_ueqdr"]
+[ext_resource type="AudioStream" uid="uid://drjprerj5o71q" path="res://assets/sfx/attacks/AOE Attack 1.mp3" id="3_2duf8"]
+[ext_resource type="Texture2D" uid="uid://cgf0twjemtkbe" path="res://assets/particles/aoe_shield/Effect_ElectricShield_1_265x265.png" id="4_2mauc"]
 
 [resource]
 script = ExtResource("1_5stwv")
@@ -17,9 +17,9 @@ damage = 40
 armour_penetration = 1
 control = 0.7
 name = "AoE"
-particle_texture = ExtResource("3_dsm8e")
+particle_texture = ExtResource("4_2mauc")
 particle_size = 64
 attack_particles_process_mat = ExtResource("2_m5ge0")
 attack_particles_canvas_mat = ExtResource("1_dsopl")
-attack_sfx = Array[AudioStream]([ExtResource("3_ueqdr")])
+attack_sfx = Array[AudioStream]([ExtResource("3_2duf8")])
 block_sfx = Array[AudioStream]([])

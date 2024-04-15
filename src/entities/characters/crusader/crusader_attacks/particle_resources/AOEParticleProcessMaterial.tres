@@ -1,9 +1,16 @@
-[gd_resource type="ParticleProcessMaterial" format=3 uid="uid://debt33v5ytb5v"]
+[gd_resource type="ParticleProcessMaterial" load_steps=3 format=3 uid="uid://debt33v5ytb5v"]
+
+[sub_resource type="Curve" id="Curve_bf34u"]
+_data = [Vector2(0.0147783, 0), 0.0, 0.0, 0, 0, Vector2(0.655172, 0.989011), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_3syja"]
+curve = SubResource("Curve_bf34u")
 
 [resource]
 particle_flag_disable_z = true
 gravity = Vector3(0, 0, 0)
-scale_min = 4.0
-scale_max = 4.0
+scale_max = 2.0
+scale_curve = SubResource("CurveTexture_3syja")
 anim_speed_min = 1.0
 anim_speed_max = 1.0

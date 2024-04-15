@@ -13,12 +13,12 @@
 [ext_resource type="Script" path="res://addons/godot_state_charts/not_guard.gd" id="9_g2dqf"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/all_of_guard.gd" id="12_n7d5c"]
 [ext_resource type="Animation" uid="uid://dbxt5qt54x8o" path="res://assets/anims/hurt.res" id="13_ajw73"]
-[ext_resource type="Material" uid="uid://dxigui4aepso1" path="res://src/entities/characters/minions/minion_attacks/particle_resources/IcePickCanvasItemMaterial.tres" id="13_etpix"]
 [ext_resource type="Texture2D" uid="uid://brmlt6rgwrn1w" path="res://assets/particles/Explosion_2_64x64.png" id="14_78xok"]
-[ext_resource type="Material" uid="uid://dh5drr46te2fc" path="res://src/entities/characters/minions/minion_attacks/particle_resources/IcePickParticleProcessMaterial.tres" id="14_isxlb"]
+[ext_resource type="Material" uid="uid://dh5drr46te2fc" path="res://src/entities/characters/minions/minion_attacks/particle_resources/MaulParticleProcessMaterial.tres" id="14_isxlb"]
+[ext_resource type="Material" uid="uid://da57eu7k40v6l" path="res://src/entities/characters/minions/minion_attacks/particle_resources/MaulCanvasMaterial.tres" id="14_qsv7v"]
 [ext_resource type="Texture2D" uid="uid://bixxqrw5c3q7e" path="res://assets/particles/SmallStar_64x64.png" id="14_tddq5"]
-[ext_resource type="Texture2D" uid="uid://cb1775mrrc0jd" path="res://assets/particles/IcePick_64x64.png" id="15_n2j61"]
 [ext_resource type="PackedScene" uid="uid://crdcf3pu3urwg" path="res://src/ui/status/status_ui.tscn" id="15_q28fj"]
+[ext_resource type="Texture2D" uid="uid://bgyxffrldjerr" path="res://assets/particles/maul/Effect_PuffAndStars_1_120x109.png" id="16_elc68"]
 [ext_resource type="Material" uid="uid://bo7kokarqmbwl" path="res://src/entities/characters/minions/minion_attacks/particle_resources/ExplosionParticleCanvasItemMaterial.tres" id="17_jocp2"]
 [ext_resource type="Material" uid="uid://5rp36woe5yso" path="res://src/entities/characters/minions/minion_attacks/particle_resources/ExplosionParticleProcessMaterial.tres" id="18_m238t"]
 
@@ -133,6 +133,7 @@ shape = SubResource("RectangleShape2D_ci4kf")
 collision_layer = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackRange"]
+position = Vector2(-158, 36)
 shape = SubResource("CircleShape2D_h6ul2")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
@@ -267,13 +268,12 @@ libraries = {
 }
 
 [node name="AttackParticles" type="GPUParticles2D" parent="."]
-material = ExtResource("13_etpix")
+material = ExtResource("14_qsv7v")
 emitting = false
 amount = 1
 process_material = ExtResource("14_isxlb")
-texture = ExtResource("15_n2j61")
+texture = ExtResource("16_elc68")
 lifetime = 0.5
-one_shot = true
 speed_scale = 2.0
 
 [node name="BlockParticles" type="GPUParticles2D" parent="."]
