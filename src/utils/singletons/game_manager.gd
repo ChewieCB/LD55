@@ -20,6 +20,7 @@ var rain_enabled = true
 var abberation_enabled = true
 
 func _ready():
+	SoundManager.set_sound_volume(0.4)
 	SoundManager.play_music(bgm, 0.0, "Music")
 
 func spawn_minion(minion: MinionBase):
