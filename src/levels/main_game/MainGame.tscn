@@ -1433,9 +1433,11 @@ offset_bottom = 4.0
 mouse_filter = 1
 
 [node name="SettingUI" parent="CanvasLayer" instance=ExtResource("17_xfjr0")]
+process_mode = 3
 visible = false
 
 [node name="EndgameUI" parent="CanvasLayer" instance=ExtResource("12_jv3wu")]
+process_mode = 3
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_8qn3o")

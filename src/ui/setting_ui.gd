@@ -21,15 +21,18 @@ func _ready() -> void:
 	scanline_check.button_pressed = GameManager.scanline_enabled
 	abberation_check.button_pressed = GameManager.abberation_enabled
 	weather_check.button_pressed = GameManager.weather_enabled
+	get_tree().paused = false
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("open_setting"):
 		visible = not visible
 		play_ui_click_sfx()
+		get_tree().paused = visible
 
 func _on_close_button_pressed() -> void:
 	play_ui_click_sfx()
 	visible = false
+	get_tree().paused = false
 
 func _on_back_menu_button_pressed() -> void:
 	play_ui_click_sfx()

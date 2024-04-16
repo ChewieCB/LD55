@@ -87,6 +87,7 @@ _data = {
 }
 
 [node name="MainScene" type="Node2D" node_paths=PackedStringArray("animated_buttons")]
+process_mode = 3
 script = ExtResource("1_vnu07")
 animated_buttons = [NodePath("CanvasLayer/Menu/ButtonBackgroundWrapper/ButtonBackground/StartButton"), NodePath("CanvasLayer/Menu/ButtonBackgroundWrapper/ButtonBackground/TutorialButton"), NodePath("CanvasLayer/Menu/ButtonBackgroundWrapper/ButtonBackground/QuitButton")]
 
