@@ -348,7 +348,7 @@ grow_horizontal = 2
 grow_vertical = 0
 theme_override_fonts/font = ExtResource("5_7ycku")
 theme_override_font_sizes/font_size = 40
-text = "You, an evil overlord, enjoying your peaceful days at your domain. Ocassionally, you go to town and summon some undead for fun. Life is as good as a villain can get."
+text = "You, an evil overlord, enjoy peaceful days in your domain. Occasionally you may venture into town and raise the dead - for a little fun. Life as a villain is as good as it gets."
 autowrap_mode = 2
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer/Cutscene/YouEvil"]
@@ -400,7 +400,8 @@ grow_horizontal = 2
 grow_vertical = 0
 theme_override_fonts/font = ExtResource("5_7ycku")
 theme_override_font_sizes/font_size = 40
-text = "Out of nowhere, a powerful crusader appear and decided to attack your domain, determined to get rid of all evil in this land."
+text = "Then, as if out of nowhere, a powerful crusader from some holy order enters your domain, resolving to purge all evil from this land. 
+"
 autowrap_mode = 2
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer/Cutscene/CrusaderAppear"]
@@ -452,7 +453,8 @@ grow_horizontal = 2
 grow_vertical = 0
 theme_override_fonts/font = ExtResource("5_7ycku")
 theme_override_font_sizes/font_size = 40
-text = "This is one of those rare times that you are on the defend side. Summon your undead and abomination to punish this crusader!"
+text = "On this rare and interesting occasion you find yourself on the defensive. Summon your undead hordes and nightmare abominations to destroy this crusading fool.
+"
 autowrap_mode = 2
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer/Cutscene/Defend"]

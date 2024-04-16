@@ -946,12 +946,6 @@ navigation_polygon = SubResource("NavigationPolygon_oogn7")
 [node name="RitualPoint" parent="RitualSites" instance=ExtResource("4_62qie")]
 position = Vector2(443, 459)
 
-[node name="RitualPoint2" parent="RitualSites" instance=ExtResource("4_62qie")]
-position = Vector2(1512, 870)
-
-[node name="RitualPoint3" parent="RitualSites" instance=ExtResource("4_62qie")]
-position = Vector2(2203, 1577)
-
 [node name="TreeBorders" type="Node2D" parent="."]
 
 [node name="TreeCluster19" type="Sprite2D" parent="TreeBorders"]
