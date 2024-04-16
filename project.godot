@@ -10,10 +10,11 @@ config_version=5
 
 [application]
 
-config/name="LD55"
+config/name="Death Death Resurrection"
+config/version="1.0"
 run/main_scene="res://src/levels/main_scene/MainScene.tscn"
 config/features=PackedStringArray("4.2", "GL Compatibility")
-config/icon="res://icon.svg"
+config/icon="res://assets/ui/icon.png"
 
 [autoload]
 

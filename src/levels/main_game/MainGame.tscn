@@ -1,4 +1,4 @@
-[gd_scene load_steps=78 format=3 uid="uid://bjabavwsrnt0y"]
+[gd_scene load_steps=77 format=3 uid="uid://bjabavwsrnt0y"]
 
 [ext_resource type="Script" path="res://src/levels/main_game/main_game.gd" id="1_4qjmh"]
 [ext_resource type="Texture2D" uid="uid://d3cgna0tvv81s" path="res://assets/environment/scatter/scatter_misc_0.png" id="3_mewxh"]
@@ -37,9 +37,8 @@
 [ext_resource type="Texture2D" uid="uid://bomcu88gfslyg" path="res://assets/environment/scatter/scatter_misc_2.png" id="20_kgg0e"]
 [ext_resource type="Texture2D" uid="uid://d2xm1fy8kyfmk" path="res://assets/environment/scatter/dirt_1.png" id="21_chhq8"]
 [ext_resource type="Texture2D" uid="uid://calf3t1b08vyr" path="res://assets/environment/nature/tree_cluster.png" id="21_fcwke"]
-[ext_resource type="Texture2D" uid="uid://mwqwdm3ub0b" path="res://assets/environment/Rock_1.png" id="25_vqfwe"]
+[ext_resource type="Texture2D" uid="uid://mwqwdm3ub0b" path="res://assets/environment/rock.png" id="25_vqfwe"]
 [ext_resource type="Texture2D" uid="uid://dqjdwnekg2tu" path="res://assets/environment/broken_wall_1.png" id="26_anud6"]
-[ext_resource type="Texture2D" uid="uid://mwqwdm3ub0b" path="res://assets/environment/rock_1.png" id="26_f0u6f"]
 [ext_resource type="Texture2D" uid="uid://c0ubklbi86qx1" path="res://assets/environment/broken_wall_2.png" id="27_pskvl"]
 [ext_resource type="Texture2D" uid="uid://bblyib8pth16b" path="res://assets/environment/grave_32.png" id="33_7o728"]
 [ext_resource type="Shader" path="res://src/levels/main_game/vignette.gdshader" id="42_8ndve"]
@@ -346,12 +345,12 @@ texture = ExtResource("19_ed0ox")
 [node name="Rock3" type="Sprite2D" parent="YSort"]
 position = Vector2(-18, 451)
 scale = Vector2(0.488353, 0.488353)
-texture = ExtResource("26_f0u6f")
+texture = ExtResource("25_vqfwe")
 
 [node name="Rock2" type="Sprite2D" parent="YSort"]
 position = Vector2(246, 168)
 scale = Vector2(0.488353, 0.488353)
-texture = ExtResource("26_f0u6f")
+texture = ExtResource("25_vqfwe")
 
 [node name="Rock1" type="Sprite2D" parent="YSort"]
 position = Vector2(216, 128)
