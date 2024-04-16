@@ -5,9 +5,9 @@
 [resource]
 script = ExtResource("1_r802h")
 summon_sfx = Array[AudioStream]([])
-health = 1500
+health = 1400
 armour = 10
-speed = 80.0
+speed = 50.0
 strength = 1.0
 dexterity = 0.5
 rank = 0

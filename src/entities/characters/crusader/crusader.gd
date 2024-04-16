@@ -32,7 +32,7 @@ var current_stance: Stance = Stance.FAST:
 
 @onready var engagement_range = $EngagementRange
 
-const CLEANSE_SPEED = 8
+const CLEANSE_SPEED = 6
 
 var path: Curve2D
 var path_points: PackedVector2Array
