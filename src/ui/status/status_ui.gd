@@ -8,14 +8,19 @@ extends Node2D
 @onready var damage_markers = $DamageMarkers
 var damage_markers_in_use = []
 
-func _spawn_status_indicator(status: String, duration: float):
+func _spawn_status_indicator(
+	status: String, duration: float, 
+	offset: Vector2 = Vector2.ZERO,
+	color: Color = Color.WHITE
+):
 	var new_indicator = Label.new()
 	new_indicator.theme = status_theme
 	new_indicator.text = status
+	new_indicator.add_theme_color_override("font_color", color)
 	new_indicator.z_index = 3
 	#
 	status_marker.add_child(new_indicator)
-	status_marker.position = Vector2(0, -25)
+	status_marker.position = Vector2(0, -25) + offset
 	# Center the label's anchors
 	new_indicator.set_anchors_and_offsets_preset(Control.PRESET_CENTER)
 	# Set the alignment
@@ -27,8 +32,7 @@ func _spawn_status_indicator(status: String, duration: float):
 	await get_tree().create_timer(duration).timeout
 	var tween = create_tween()
 	# TODO - add easing
-	tween.parallel().chain().tween_property(new_indicator, "modulate", Color(1, 1, 1, 0), 1.0)
-	tween.parallel().chain().tween_property(new_indicator, "position:y", new_indicator.position.y - 24, 1.0)
+	tween.tween_property(new_indicator, "modulate", Color(1, 1, 1, 0), 1.0)
 	tween.tween_callback(new_indicator.queue_free)
 
 

@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="AttackResource" load_steps=12 format=3 uid="uid://cfv3alq5a0pe4"]
 
-[ext_resource type="Material" path="res://src/entities/characters/minions/minion_attacks/particle_resources/EnsnareCanvasMaterial.tres" id="1_jdtm2"]
-[ext_resource type="Material" path="res://src/entities/characters/minions/minion_attacks/particle_resources/EnsnareParticleProcessMaterial.tres" id="2_rvsfa"]
+[ext_resource type="Material" uid="uid://diu2a3513a1mx" path="res://src/entities/characters/minions/minion_attacks/particle_resources/EnsnareCanvasMaterial.tres" id="1_jdtm2"]
+[ext_resource type="Material" uid="uid://45bvflpxe3e3" path="res://src/entities/characters/minions/minion_attacks/particle_resources/EnsnareParticleProcessMaterial.tres" id="2_rvsfa"]
 [ext_resource type="AudioStream" uid="uid://dk142jibce6fm" path="res://assets/sfx/minions/minion_attacks/Hit 1.mp3" id="3_7bc0g"]
 [ext_resource type="AudioStream" uid="uid://dukmgtnlkafrw" path="res://assets/sfx/minions/minion_attacks/Hit 2.mp3" id="4_tfliv"]
 [ext_resource type="AudioStream" uid="uid://cuicov57lqsqr" path="res://assets/sfx/minions/minion_attacks/Hit 3.mp3" id="5_uia1r"]
@@ -21,7 +21,7 @@ attack_delay = 0.0
 cooldown = 6.0
 damage = 12
 armour_penetration = 5
-control = 0.1
+control = 0.3
 name = "Ensnare"
 particle_texture = ExtResource("10_orvvv")
 particle_size = 96

@@ -10,6 +10,8 @@ func _spawn():
 	health_ui.max_value = attributes.health
 	if attacks:
 		current_attack = attacks[0]
+	# FIXME - why aren't we entering the spawn state?
+	anim_player.play("spawn")
 
 func _process(_delta):
 	health_ui.value = current_health
@@ -32,6 +34,9 @@ func _on_idle_state_physics_processing(_delta):
 
 func _on_walking_state_physics_processing(_delta):
 	# FIXME - dependency issue here with the crusader node not loading before this
+	if not crusader:
+		return
+	
 	crusader_target = crusader.global_position
 	nav_agent.target_position = crusader_target
 	
@@ -48,6 +53,9 @@ func _on_attacking_idle_state_physics_processing(_delta):
 	# FIXME - dependency issue here with the crusader node not loading before this
 	if crusader == null:
 		return
+	
+	if crusader.current_health == 0:
+		state_chart.send_event("finish_attack")
 	
 	# Generic cooldown for all attacks
 	if not cooldown_timer.is_stopped():
@@ -111,3 +119,17 @@ func _on_status_stunned_state_exited():
 func _on_stagger_stun_timer_timeout():
 	state_chart.send_event("recover_stagger")
 	state_chart.send_event("recover_stun")
+
+
+func _on_walking_state_entered():
+	anim_player.play("walk")
+
+
+func _on_walking_state_exited():
+	anim_player.stop()
+
+
+func _on_spawning_state_entered():
+	anim_player.play("spawn")
+	await anim_player.animation_finished
+	state_chart.send_event("finish_spawn")

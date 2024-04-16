@@ -19,7 +19,12 @@ enum Stance {
 	DAMAGE
 }
 
-var current_stance: Stance = Stance.FAST
+# HACK
+var initial_stance_label_flag: bool = true
+var current_stance: Stance = Stance.FAST:
+	set(value):
+		current_stance = value
+		anim_player.play("stance_change")
 
 # TODO - move to AIAgent base class
 @onready var buildup_bar = $AttackBuildup
@@ -152,7 +157,8 @@ func _on_default_stance_state_exited():
 
 func _on_tank_stance_state_entered():
 	current_speed = attributes.speed * 0.35
-	current_armour = attributes.armour * 2
+	current_armour = attributes.armour * 5
+	current_strength = attributes.strength * 2
 
 func _on_tank_stance_state_physics_processing(_delta):
 	# For dealing with elites, move slowly, increase armour
@@ -180,6 +186,7 @@ func _on_tank_stance_state_physics_processing(_delta):
 func _on_tank_stance_state_exited():
 	current_speed = attributes.speed
 	current_armour = attributes.armour
+	current_strength = attributes.strength
 
 func _on_attacking_idle_state_entered():
 	pass
@@ -231,18 +238,42 @@ func _on_attacking_idle_state_physics_processing(_delta):
 			var stance_str: String
 			match minion_type_mode:
 				CharacterAttributes.Rank.HORDE:
-					stance_str = "default_stance"
-					$StanceLabel.text = "Fast"
-					current_stance = Stance.FAST
+					if current_stance != Stance.FAST or initial_stance_label_flag:
+						if initial_stance_label_flag:
+							initial_stance_label_flag = false
+						stance_str = "default_stance"
+						status_ui._spawn_status_indicator(
+							"Hordebreaker", 2.0,
+							Vector2(0, 50), Color.TEAL
+						)
+						$GlowSprite.modulate = Color.TEAL
+						$StanceChangeParticles.modulate = Color.TEAL
+						current_stance = Stance.FAST
 				CharacterAttributes.Rank.ELITE:
-					stance_str = "tank_stance"
-					$StanceLabel.text = "Tank"
-					current_stance = Stance.TANK
+					if current_stance != Stance.TANK or initial_stance_label_flag:
+						if initial_stance_label_flag:
+							initial_stance_label_flag = false
+						stance_str = "tank_stance"
+						status_ui._spawn_status_indicator(
+							"Bulwark", 2.0, 
+							Vector2(0, 50), Color.GOLD
+						)
+						$GlowSprite.modulate = Color.GOLD
+						$StanceChangeParticles.modulate = Color.GOLD
+						current_stance = Stance.TANK
 				CharacterAttributes.Rank.TANK:
-					# TODO - add damage stance
-					stance_str = "tank_stance"
-					$StanceLabel.text = "Tank"
-					current_stance = Stance.TANK
+					if current_stance != Stance.TANK or initial_stance_label_flag:
+						if initial_stance_label_flag:
+							initial_stance_label_flag = false
+						# TODO - add damage stance
+						stance_str = "tank_stance"
+						status_ui._spawn_status_indicator(
+							"Penitent", 2.0, 
+							Vector2(0, 50), Color.CRIMSON
+						)
+						$GlowSprite.modulate = Color.CRIMSON
+						$StanceChangeParticles.modulate = Color.CRIMSON
+						current_stance = Stance.TANK
 				_:
 					return
 				
@@ -299,7 +330,8 @@ func _on_hit_state_entered():
 
 func _on_dead_state_entered():
 	state_chart.send_event("stop_walking")
-	#anim_player.play("death")
+	state_chart.send_event("stop_cleansing")
+	anim_player.play("death")
 	emit_signal("death")
 
 func _on_minion_attack_area_body_entered(body):
@@ -307,7 +339,7 @@ func _on_minion_attack_area_body_entered(body):
 		body.crusader_target = body.global_position
 
 func _on_status_staggered_state_entered():
-	status_ui._spawn_status_indicator("Staggered", 2.0)
+	status_ui._spawn_attack_indicator("Staggered", 2.0)
 	current_speed = attributes.speed * 0.25
 	stagger_stun_timer.start(2.0)
 
@@ -316,7 +348,7 @@ func _on_status_staggered_state_exited():
 
 func _on_status_stunned_state_entered():
 	# TODO - add dynamic status duration
-	status_ui._spawn_status_indicator("Stunned", 2.0)
+	status_ui._spawn_attack_indicator("Stunned", 2.0)
 	current_speed = 0
 	state_chart.send_event("stop_walking")
 	stagger_stun_timer.start(2.0)
@@ -330,3 +362,11 @@ func _on_stagger_stun_timer_timeout():
 
 func _on_attack_buildup_timer_timeout():
 	state_chart.send_event("perform_attack")
+
+
+func _on_walking_state_entered():
+	anim_player.play("walk")
+
+
+func _on_walking_state_exited():
+	anim_player.stop()

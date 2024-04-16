@@ -13,6 +13,7 @@ signal health_diff(diff)
 		current_health = attributes.health
 		current_speed = attributes.speed
 		current_armour = attributes.armour
+		current_strength = attributes.strength
 var attributes: CharacterAttributes
 
 var current_health: int:
@@ -27,6 +28,7 @@ var current_health: int:
 			_hurt()
 var current_speed: float
 var current_armour: float
+var current_strength: float
 var acceleration: float = 7
 
 @export var attacks: Array[AttackResource]
@@ -141,7 +143,7 @@ func _attack(attack: AttackResource):
 			# We need to pass 0.5 to stagger, and 0.9 to stun
 			# TODO - playtest and tweak this
 			var stagger_chance = clamp(
-				(0.8 - randf()) + attack.control + target.attributes.dexterity,
+				(0.8 - randf()) + attack.control,# + target.attributes.dexterity,
 				0.0,
 				1.0
 			)
@@ -174,7 +176,7 @@ func _attack(attack: AttackResource):
 			target_count += 1
 	
 		_attack_cooldown(attack)
-		status_ui._spawn_attack_indicator(attack.name, 0.6)
+		#status_ui._spawn_attack_indicator(attack.name, 0.6)
 		current_attack = null
 		
 		# Generic cooldown to prevent spamming inputs each frame

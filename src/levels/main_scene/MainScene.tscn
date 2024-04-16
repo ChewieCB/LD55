@@ -1,7 +1,7 @@
 [gd_scene load_steps=17 format=3 uid="uid://yqaf1cxr4njr"]
 
-[ext_resource type="Texture2D" uid="uid://cls1x1wx2icgw" path="res://assets/temp/Space Background.png" id="1_prdx4"]
 [ext_resource type="Script" path="res://src/levels/main_scene/main_scene.gd" id="1_vnu07"]
+[ext_resource type="Texture2D" uid="uid://da7l7aali17mh" path="res://assets/cutscene/menu_background.jpg" id="2_o0nl0"]
 [ext_resource type="Script" path="res://src/levels/main_scene/animated_button.gd" id="4_b7wsb"]
 [ext_resource type="PackedScene" uid="uid://dj18tmsspff4d" path="res://src/ui/common/StyledButton.tscn" id="4_df5ml"]
 [ext_resource type="FontFile" uid="uid://b21yg3y2byt8f" path="res://assets/fonts/AvQest.ttf" id="5_7ycku"]
@@ -87,6 +87,7 @@ _data = {
 }
 
 [node name="MainScene" type="Node2D" node_paths=PackedStringArray("animated_buttons")]
+process_mode = 3
 script = ExtResource("1_vnu07")
 animated_buttons = [NodePath("CanvasLayer/Menu/ButtonBackgroundWrapper/ButtonBackground/StartButton"), NodePath("CanvasLayer/Menu/ButtonBackgroundWrapper/ButtonBackground/TutorialButton"), NodePath("CanvasLayer/Menu/ButtonBackgroundWrapper/ButtonBackground/QuitButton")]
 
@@ -107,8 +108,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("1_prdx4")
-expand_mode = 1
+texture = ExtResource("2_o0nl0")
+expand_mode = 3
 
 [node name="Title" type="RichTextLabel" parent="CanvasLayer/Menu"]
 layout_mode = 1

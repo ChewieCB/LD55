@@ -9,10 +9,12 @@ func _ready():
 
 func show_win_screen():
 	visible = true
+	get_tree().paused = true
 	tab_container.current_tab = 0
 
 func show_lose_screen():
 	visible = true
+	get_tree().paused = true
 	tab_container.current_tab = 1
 
 func _on_menu_button_pressed():

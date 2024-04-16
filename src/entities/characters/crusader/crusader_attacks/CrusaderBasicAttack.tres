@@ -1,8 +1,8 @@
 [gd_resource type="Resource" script_class="AttackResource" load_steps=7 format=3 uid="uid://cs0ahufxrbf1t"]
 
 [ext_resource type="Script" path="res://src/entities/characters/attack_resource.gd" id="1_i0vad"]
-[ext_resource type="Material" path="res://src/entities/characters/minions/minion_attacks/particle_resources/StabCanvasMaterial.tres" id="1_tx6ko"]
-[ext_resource type="Material" path="res://src/entities/characters/minions/minion_attacks/particle_resources/StabParticleProcessMaterial.tres" id="2_uxx10"]
+[ext_resource type="Material" uid="uid://na080ejjq50m" path="res://src/entities/characters/minions/minion_attacks/particle_resources/StabCanvasMaterial.tres" id="1_tx6ko"]
+[ext_resource type="Material" uid="uid://dyjevelr3stxo" path="res://src/entities/characters/minions/minion_attacks/particle_resources/StabParticleProcessMaterial.tres" id="2_uxx10"]
 [ext_resource type="AudioStream" uid="uid://dtmb5v3r5moad" path="res://assets/sfx/attacks/Blade_Impact.wav" id="3_qmjtu"]
 [ext_resource type="AudioStream" uid="uid://bs481xin3diux" path="res://assets/sfx/attacks/Blade_Impact_2.wav" id="4_auj2l"]
 [ext_resource type="Texture2D" uid="uid://byvwxl1p2l1aw" path="res://assets/particles/impact/Effect_Impact_1_291x301.png" id="5_rlajc"]

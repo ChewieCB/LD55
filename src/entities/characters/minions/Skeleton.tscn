@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://iqw1g1onexq2"]
+[gd_scene load_steps=40 format=3 uid="uid://iqw1g1onexq2"]
 
 [ext_resource type="Script" path="res://src/entities/characters/minions/minion_base.gd" id="1_f3oue"]
 [ext_resource type="Resource" uid="uid://cjg214btamq4q" path="res://src/entities/characters/minions/SkeletonAttributes.tres" id="2_0u02g"]
@@ -18,7 +18,8 @@
 [ext_resource type="Animation" uid="uid://dbxt5qt54x8o" path="res://assets/anims/hurt.res" id="13_xvg8j"]
 [ext_resource type="Texture2D" uid="uid://brmlt6rgwrn1w" path="res://assets/particles/Explosion_2_64x64.png" id="14_eqdax"]
 [ext_resource type="PackedScene" uid="uid://crdcf3pu3urwg" path="res://src/ui/status/status_ui.tscn" id="14_q5bwy"]
-[ext_resource type="PackedScene" uid="uid://cklnh2ojwuuxe" path="res://src/entities/characters/minions/MinionHealthBar.tscn" id="17_ivnfs"]
+[ext_resource type="Animation" uid="uid://bsm1jgdoh0k47" path="res://assets/anims/walk.res" id="15_u2ci8"]
+[ext_resource type="PackedScene" path="res://src/entities/characters/minions/MinionHealthBar.tscn" id="17_ivnfs"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_negqm"]
 shader = ExtResource("4_6air7")
@@ -98,11 +99,48 @@ tracks/1/keys = {
 "values": [true]
 }
 
+[sub_resource type="Animation" id="Animation_hp0am"]
+resource_name = "default_2"
+length = 0.05
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(0.63728),
+"update": 0,
+"values": [Vector2(0.08, 0.08)]
+}
+
+[sub_resource type="Animation" id="Animation_25s2w"]
+resource_name = "spawn_2"
+length = 0.3
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(0.63728, 0.450625, 1.93187, 1),
+"update": 0,
+"values": [Vector2(0.08, 0), Vector2(0.08, 0.08), Vector2(0.08, 0.1), Vector2(0.08, 0.08)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_lj4jm"]
 _data = {
 "attack": SubResource("Animation_a6hs8"),
 "death": SubResource("Animation_qcj21"),
-"hurt": ExtResource("13_xvg8j")
+"default": SubResource("Animation_hp0am"),
+"hurt": ExtResource("13_xvg8j"),
+"spawn": SubResource("Animation_25s2w"),
+"walk": ExtResource("15_u2ci8")
 }
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_lb03b"]
@@ -149,6 +187,7 @@ anim_speed_min = 1.0
 anim_speed_max = 1.0
 
 [node name="Skeleton" type="CharacterBody2D"]
+z_index = 1
 y_sort_enabled = true
 collision_layer = 2
 collision_mask = 0
@@ -315,6 +354,7 @@ event = &"recover_stun"
 libraries = {
 "": SubResource("AnimationLibrary_lj4jm")
 }
+autoplay = "default"
 
 [node name="AttackParticles" type="GPUParticles2D" parent="."]
 material = SubResource("CanvasItemMaterial_lb03b")

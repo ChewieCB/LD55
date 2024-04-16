@@ -10,7 +10,8 @@ class_name MainGame
 @export var rain_effect: Control
 
 @onready var main_ui: Control = $CanvasLayer/GameUI
-@onready var patrol_path = $Ground/Path2D
+
+@onready var patrol_path = $Path2D
 
 var total_ritual_sites: int
 var sites_cleansed: int = 0
@@ -30,8 +31,6 @@ func _ready() -> void:
 	main_ui.init_health(crusader.current_health)
 	crusader.health_changed.connect(main_ui._set_health)
 
-	for minion in minion_spawn.get_children():
-		minion.crusader = crusader
 
 func sync_graphic_setting():
 	fog_effect.visible = GameManager.weather_enabled
