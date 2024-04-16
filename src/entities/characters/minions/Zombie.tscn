@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://c7jvs3fcwp2j1"]
+[gd_scene load_steps=40 format=3 uid="uid://c7jvs3fcwp2j1"]
 
 [ext_resource type="Script" path="res://src/entities/characters/minions/minion_base.gd" id="1_56qy7"]
 [ext_resource type="Resource" uid="uid://cctfuamkj3rqr" path="res://src/entities/characters/minions/ZombieAttributes.tres" id="2_c651r"]
@@ -18,6 +18,7 @@
 [ext_resource type="Animation" uid="uid://dbxt5qt54x8o" path="res://assets/anims/hurt.res" id="13_y3j6l"]
 [ext_resource type="PackedScene" uid="uid://crdcf3pu3urwg" path="res://src/ui/status/status_ui.tscn" id="14_c7ah2"]
 [ext_resource type="Texture2D" uid="uid://brmlt6rgwrn1w" path="res://assets/particles/Explosion_2_64x64.png" id="14_u2fls"]
+[ext_resource type="Animation" uid="uid://bsm1jgdoh0k47" path="res://assets/anims/walk.res" id="15_w7y6a"]
 [ext_resource type="PackedScene" path="res://src/entities/characters/minions/MinionHealthBar.tscn" id="17_347xt"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_vlocc"]
@@ -137,7 +138,8 @@ _data = {
 "death": SubResource("Animation_qcj21"),
 "default": SubResource("Animation_vbusd"),
 "hurt": ExtResource("13_y3j6l"),
-"spawn": SubResource("Animation_juc7o")
+"spawn": SubResource("Animation_juc7o"),
+"walk": ExtResource("15_w7y6a")
 }
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_lb03b"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=62 format=3 uid="uid://bev1egpx7qcvi"]
+[gd_scene load_steps=69 format=3 uid="uid://bev1egpx7qcvi"]
 
 [ext_resource type="Script" path="res://src/entities/characters/crusader/crusader.gd" id="1_0cjda"]
 [ext_resource type="Shader" path="res://src/utils/shaders/outbound_shadow.gdshader" id="1_q13hr"]
@@ -16,6 +16,7 @@
 [ext_resource type="Script" path="res://addons/godot_state_charts/state_is_active_guard.gd" id="8_6fl0h"]
 [ext_resource type="Texture2D" uid="uid://c2qttgl5gxlx5" path="res://assets/sprite/characters/crusader/crusader.png" id="8_thchg"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/not_guard.gd" id="9_30nyi"]
+[ext_resource type="Texture2D" uid="uid://ddgxual3hifsq" path="res://assets/sprite/characters/crusader/sword_glow.png" id="10_dy8i7"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/all_of_guard.gd" id="10_slxhv"]
 [ext_resource type="PackedScene" uid="uid://crdcf3pu3urwg" path="res://src/ui/status/status_ui.tscn" id="14_vj2d1"]
 [ext_resource type="Texture2D" uid="uid://bixxqrw5c3q7e" path="res://assets/particles/SmallStar_64x64.png" id="14_yo0hq"]
@@ -23,9 +24,10 @@
 [ext_resource type="Material" uid="uid://cqldxisj3whbq" path="res://src/entities/characters/crusader/crusader_attacks/particle_resources/CleaveCanvasItemMaterial.tres" id="16_2bjtj"]
 [ext_resource type="Animation" uid="uid://dbxt5qt54x8o" path="res://assets/anims/hurt.res" id="17_hxo7c"]
 [ext_resource type="Material" uid="uid://5q7lgb7dqosx" path="res://src/entities/characters/crusader/crusader_attacks/particle_resources/CleaveParticleProcessMaterial.tres" id="17_v0ayw"]
-[ext_resource type="Theme" uid="uid://crnxmpykwrhqn" path="res://src/ui/themes/status_label.tres" id="21_dl3nj"]
+[ext_resource type="Animation" uid="uid://bsm1jgdoh0k47" path="res://assets/anims/walk.res" id="20_bd8s1"]
 [ext_resource type="Texture2D" uid="uid://lam5wapthbyq" path="res://assets/particles/cleave/Effect_FastPixelFire_1_173x193.png" id="21_qsipl"]
 [ext_resource type="Texture2D" uid="uid://d2ojginv2gs1f" path="res://assets/particles/spin/Effect_BloodImpact_1_69x60.png" id="24_ap37g"]
+[ext_resource type="Texture2D" uid="uid://u7i8j2lwnjpp" path="res://assets/particles/stance/Effect_Anima_1_437x437.png" id="28_sgaac"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_c218b"]
 shader = ExtResource("1_q13hr")
@@ -128,6 +130,30 @@ tracks/0/keys = {
 "update": 0,
 "values": [Vector2(-2, -2)]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("GlowSprite:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("GlowSprite:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.035, 0.035)]
+}
 
 [sub_resource type="Animation" id="Animation_45lpn"]
 resource_name = "attack"
@@ -203,6 +229,58 @@ tracks/2/keys = {
 "values": [true]
 }
 
+[sub_resource type="Animation" id="Animation_1v30u"]
+resource_name = "stance_change"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GlowSprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("GlowSprite:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0.03, 0.03), Vector2(0.057, 0.05), Vector2(0.03, 0.03)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("GlowSprite:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(10, 11), Vector2(10, 11), Vector2(10, 11)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("StanceChangeParticles:emitting")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_utllu"]
 _data = {
 "RESET": SubResource("Animation_45p3i"),
@@ -210,7 +288,9 @@ _data = {
 "block": SubResource("Animation_c2uu4"),
 "death": SubResource("Animation_j6qyy"),
 "hurt": ExtResource("17_hxo7c"),
-"spin": ExtResource("15_sulxg")
+"spin": ExtResource("15_sulxg"),
+"stance_change": SubResource("Animation_1v30u"),
+"walk": ExtResource("20_bd8s1")
 }
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_uxqin"]
@@ -259,6 +339,28 @@ bg_color = Color(0.843137, 0.196078, 0.0666667, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wevtv"]
 bg_color = Color(0.588235, 0.168627, 0.952941, 1)
 
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_6w2uw"]
+particles_animation = true
+particles_anim_h_frames = 6
+particles_anim_v_frames = 5
+particles_anim_loop = true
+
+[sub_resource type="Curve" id="Curve_tlm3e"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.728814, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_y0ghe"]
+curve = SubResource("Curve_tlm3e")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_j8ctj"]
+particle_flag_disable_z = true
+gravity = Vector3(0, -60, 0)
+scale_min = 0.1
+scale_max = 0.1
+scale_curve = SubResource("CurveTexture_y0ghe")
+anim_speed_min = 1.0
+anim_speed_max = 1.0
+
 [node name="Crusader" type="CharacterBody2D"]
 z_index = 1
 y_sort_enabled = true
@@ -272,6 +374,12 @@ material = SubResource("ShaderMaterial_c218b")
 position = Vector2(-2, -2)
 scale = Vector2(0.1, 0.1)
 texture = ExtResource("8_thchg")
+
+[node name="GlowSprite" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(10, 11)
+scale = Vector2(0.035, 0.035)
+texture = ExtResource("10_dy8i7")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
@@ -623,30 +731,24 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_wevtv")
 value = 100.0
 show_percentage = false
 
-[node name="StanceLabel" type="Label" parent="."]
-z_index = 5
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -25.0
-offset_top = -3.5
-offset_right = 25.0
-offset_bottom = 19.5
-grow_horizontal = 2
-grow_vertical = 2
-theme = ExtResource("21_dl3nj")
-text = "Stance"
-horizontal_alignment = 1
-vertical_alignment = 1
-
 [node name="StanceTimer" type="Timer" parent="."]
 one_shot = true
+
+[node name="StanceChangeParticles" type="GPUParticles2D" parent="."]
+material = SubResource("CanvasItemMaterial_6w2uw")
+emitting = false
+amount = 1
+process_material = SubResource("ParticleProcessMaterial_j8ctj")
+texture = ExtResource("28_sgaac")
+one_shot = true
+speed_scale = 2.4
+explosiveness = 0.1
 
 [connection signal="velocity_computed" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_velocity_computed"]
 [connection signal="state_entered" from="StateChart/Root/Movement/Idle" to="." method="_on_idle_state_entered"]
 [connection signal="state_physics_processing" from="StateChart/Root/Movement/Idle" to="." method="_on_idle_state_physics_processing"]
+[connection signal="state_entered" from="StateChart/Root/Movement/Walking" to="." method="_on_walking_state_entered"]
+[connection signal="state_exited" from="StateChart/Root/Movement/Walking" to="." method="_on_walking_state_exited"]
 [connection signal="state_physics_processing" from="StateChart/Root/Movement/Walking" to="." method="_on_walking_state_physics_processing"]
 [connection signal="state_entered" from="StateChart/Root/Stances/DefaultStance" to="." method="_on_default_stance_state_entered"]
 [connection signal="state_exited" from="StateChart/Root/Stances/DefaultStance" to="." method="_on_default_stance_state_exited"]

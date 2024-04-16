@@ -10,6 +10,7 @@ func _spawn():
 	health_ui.max_value = attributes.health
 	if attacks:
 		current_attack = attacks[0]
+	# FIXME - why aren't we entering the spawn state?
 	anim_player.play("spawn")
 
 func _process(_delta):
@@ -28,8 +29,6 @@ func _on_idle_state_entered():
 
 func _on_idle_state_physics_processing(_delta):
 	if nav_agent.target_position:
-		# Wait for spawn anim to finish
-		await anim_player.animation_finished
 		state_chart.send_event("start_walking")
 	return
 
@@ -120,3 +119,17 @@ func _on_status_stunned_state_exited():
 func _on_stagger_stun_timer_timeout():
 	state_chart.send_event("recover_stagger")
 	state_chart.send_event("recover_stun")
+
+
+func _on_walking_state_entered():
+	anim_player.play("walk")
+
+
+func _on_walking_state_exited():
+	anim_player.stop()
+
+
+func _on_spawning_state_entered():
+	anim_player.play("spawn")
+	await anim_player.animation_finished
+	state_chart.send_event("finish_spawn")

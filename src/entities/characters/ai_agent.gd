@@ -176,7 +176,7 @@ func _attack(attack: AttackResource):
 			target_count += 1
 	
 		_attack_cooldown(attack)
-		status_ui._spawn_attack_indicator(attack.name, 0.6)
+		#status_ui._spawn_attack_indicator(attack.name, 0.6)
 		current_attack = null
 		
 		# Generic cooldown to prevent spamming inputs each frame
