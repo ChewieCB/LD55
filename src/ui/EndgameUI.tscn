@@ -19,11 +19,9 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-current_tab = 1
 tabs_visible = false
 
 [node name="Win" type="ColorRect" parent="TabContainer"]
-visible = false
 layout_mode = 2
 color = Color(0, 0, 0, 0.521569)
 
@@ -55,7 +53,8 @@ offset_bottom = 594.0
 grow_horizontal = 2
 theme_override_fonts/font = ExtResource("1_jbx2m")
 theme_override_font_sizes/font_size = 40
-text = "The crusader is slain. Thus continues the reign of your unholy dominion."
+text = "The crusader is slain. 
+Thus continues the reign of your unholy dominion."
 horizontal_alignment = 1
 uppercase = true
 
@@ -67,9 +66,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -360.0
-offset_top = 100.0
+offset_top = 126.0
 offset_right = -61.0
-offset_bottom = 183.0
+offset_bottom = 209.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("1_jbx2m")
@@ -84,9 +83,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = 62.0
-offset_top = 100.0
+offset_top = 126.0
 offset_right = 365.0
-offset_bottom = 183.0
+offset_bottom = 209.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("1_jbx2m")
@@ -94,6 +93,7 @@ theme_override_font_sizes/font_size = 60
 text = "Main menu"
 
 [node name="Lose" type="ColorRect" parent="TabContainer"]
+visible = false
 layout_mode = 2
 color = Color(0, 0, 0, 0.521569)
 

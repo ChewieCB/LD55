@@ -1,4 +1,4 @@
-[gd_scene load_steps=76 format=3 uid="uid://bjabavwsrnt0y"]
+[gd_scene load_steps=78 format=3 uid="uid://bjabavwsrnt0y"]
 
 [ext_resource type="Script" path="res://src/levels/main_game/main_game.gd" id="1_4qjmh"]
 [ext_resource type="Texture2D" uid="uid://d3cgna0tvv81s" path="res://assets/environment/scatter/scatter_misc_0.png" id="3_mewxh"]
@@ -44,6 +44,8 @@
 [ext_resource type="Texture2D" uid="uid://bblyib8pth16b" path="res://assets/environment/grave_32.png" id="33_7o728"]
 [ext_resource type="Shader" path="res://src/levels/main_game/vignette.gdshader" id="42_8ndve"]
 [ext_resource type="Texture2D" uid="uid://bxw82a7i5eohh" path="res://assets/area_mask.png" id="44_x68rp"]
+[ext_resource type="Texture2D" uid="uid://dpxfhsaxn0t7c" path="res://assets/environment/fountain.png" id="45_6u1n7"]
+[ext_resource type="Texture2D" uid="uid://cmkso26a1gqvy" path="res://assets/environment/monolith.png" id="46_402yd"]
 
 [sub_resource type="Curve2D" id="Curve2D_abl5w"]
 _data = {
@@ -912,11 +914,6 @@ rotation = 3.14159
 scale = Vector2(0.25, -0.25)
 texture = ExtResource("27_pskvl")
 
-[node name="Statue2" type="Sprite2D" parent="YSort"]
-position = Vector2(2194, 1381)
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("5_iuqtn")
-
 [node name="Rock4" type="Sprite2D" parent="YSort"]
 position = Vector2(1770, 406)
 scale = Vector2(0.16, 0.16)
@@ -936,6 +933,31 @@ texture = ExtResource("25_vqfwe")
 position = Vector2(2480, 1188)
 scale = Vector2(0.16, 0.16)
 texture = ExtResource("25_vqfwe")
+
+[node name="Fountain" type="Sprite2D" parent="YSort"]
+position = Vector2(2194, 1417)
+scale = Vector2(0.342682, 0.342682)
+texture = ExtResource("45_6u1n7")
+
+[node name="Monolith" type="Sprite2D" parent="YSort"]
+position = Vector2(2426, 1485)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("46_402yd")
+
+[node name="Monolith2" type="Sprite2D" parent="YSort"]
+position = Vector2(2001, 1331)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("46_402yd")
+
+[node name="Monolith3" type="Sprite2D" parent="YSort"]
+position = Vector2(1923, 1625)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("46_402yd")
+
+[node name="Monolith4" type="Sprite2D" parent="YSort"]
+position = Vector2(2318, 1725)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("46_402yd")
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
 visible = false
