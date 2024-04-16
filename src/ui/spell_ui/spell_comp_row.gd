@@ -5,6 +5,8 @@ class_name SpellCompRow
 @onready var input_label: RichTextLabel = $VBoxContainer/Input
 @onready var cooldown_bar: TextureProgressBar = $VBoxContainer/CooldownBar
 @onready var timer: Timer = $Timer
+@onready var desc_panel = $DescBG
+@onready var desc_label: Label = $DescBG/DescLabel
 
 var spell_data: SpellMainResource
 var prefix_data: SpellPrefixResource
@@ -13,12 +15,14 @@ var tween: Tween
 
 func _ready() -> void:
 	cooldown_bar.value = 100
+	desc_panel.visible = false
 
 func populate_spell_data(data: SpellMainResource):
 	spell_data = data
 	prefix_data = null
 	name_label.text = "[right][wave]{0}[/wave][/right]".format([data.name])
 	input_label.text = "[center]-{0}-[/center]".format([Utils.convert_text_to_arrow(data.input, "black")])
+	desc_label.text = data.description
 	cooldown_bar.fill_mode = TextureProgressBar.FILL_RIGHT_TO_LEFT
 	GameManager.player_control.spell_casted.connect(check_cooldown)
 
@@ -27,6 +31,7 @@ func populate_prefix_data(data: SpellPrefixResource):
 	prefix_data = data
 	name_label.text = "[wave]{0}[/wave]".format([data.name])
 	input_label.text = "[center]-{0}-[/center]".format([Utils.convert_text_to_arrow(data.input, "black")])
+	desc_label.text = data.description
 	GameManager.player_control.spell_casted.connect(check_cooldown)
 
 func check_cooldown(prefix_id: EnumAutoload.SpellPrefix, spell_id: EnumAutoload.SpellMain):
@@ -48,3 +53,9 @@ func start_cooldown(duration: float):
 
 func _on_timer_timeout() -> void:
 	modulate = Color(1, 1, 1, 1)
+
+func _on_mouse_entered() -> void:
+	desc_panel.visible = true
+
+func _on_mouse_exited() -> void:
+	desc_panel.visible = false

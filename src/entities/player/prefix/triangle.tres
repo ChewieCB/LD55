@@ -8,3 +8,4 @@ name = "Triangle"
 input = "ULR"
 prefix_id = 2
 cooldown = 4.0
+description = "Summon in a triangle-shaped group."

@@ -10,3 +10,4 @@ input = "RRLLUD"
 spell_id = 4
 spawn_scene = ExtResource("2_sgmer")
 cooldown = 8.2
+description = "Summon the powerful Tentacles."

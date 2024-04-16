@@ -10,3 +10,4 @@ input = "RLDD"
 spell_id = 3
 spawn_scene = ExtResource("1_i3si7")
 cooldown = 2.6
+description = "Summon the elite Skeletons."

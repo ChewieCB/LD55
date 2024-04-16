@@ -6,3 +6,4 @@ class_name SpellMainResource
 @export var spell_id: EnumAutoload.SpellMain
 @export var spawn_scene: PackedScene
 @export var cooldown: float = 0.5
+@export_multiline var description: String

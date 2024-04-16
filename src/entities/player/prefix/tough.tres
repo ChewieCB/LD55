@@ -8,3 +8,4 @@ name = "Tough"
 input = "UDLRDU"
 prefix_id = 4
 cooldown = 3.0
+description = "Enhance the summon max health."
