@@ -1,6 +1,6 @@
 extends Node
 
-@onready var bgm: AudioStream = load("res://assets/music/LD55_Medley_1.0.mp3")
+@onready var bgm: AudioStream = load("res://assets/music/LD55_Medley_1.1.mp3")
 @onready var win_sfx: AudioStream = load("res://assets/sfx/ui/win_lose_states/You_Win_1_Laughing.mp3")
 @onready var lose_sfx: AudioStream = load("res://assets/sfx/ui/win_lose_states/You_Die_Better_version.mp3")
 
