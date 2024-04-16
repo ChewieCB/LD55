@@ -15,13 +15,12 @@ var setting_ui: SettingUI
 
 # setting saved here to persist across screen
 var scanline_enabled = true
-var weather_enabled = true
+var weather_enabled = false
 var rain_enabled = true
 var abberation_enabled = true
 
 func _ready():
 	SoundManager.play_music(bgm, 0.0, "Music")
-
 
 func spawn_minion(minion: MinionBase):
 	minion.crusader = crusader

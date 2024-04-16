@@ -37,9 +37,9 @@
 [ext_resource type="Texture2D" uid="uid://bomcu88gfslyg" path="res://assets/environment/scatter/scatter_misc_2.png" id="20_kgg0e"]
 [ext_resource type="Texture2D" uid="uid://d2xm1fy8kyfmk" path="res://assets/environment/scatter/dirt_1.png" id="21_chhq8"]
 [ext_resource type="Texture2D" uid="uid://calf3t1b08vyr" path="res://assets/environment/nature/tree_cluster.png" id="21_fcwke"]
-[ext_resource type="Texture2D" path="res://assets/environment/Rock_1.png" id="25_vqfwe"]
+[ext_resource type="Texture2D" uid="uid://mwqwdm3ub0b" path="res://assets/environment/Rock_1.png" id="25_vqfwe"]
 [ext_resource type="Texture2D" uid="uid://dqjdwnekg2tu" path="res://assets/environment/broken_wall_1.png" id="26_anud6"]
-[ext_resource type="Texture2D" uid="uid://beujqhjr886je" path="res://assets/environment/rock_1.png" id="26_f0u6f"]
+[ext_resource type="Texture2D" uid="uid://mwqwdm3ub0b" path="res://assets/environment/rock_1.png" id="26_f0u6f"]
 [ext_resource type="Texture2D" uid="uid://c0ubklbi86qx1" path="res://assets/environment/broken_wall_2.png" id="27_pskvl"]
 [ext_resource type="Texture2D" uid="uid://bblyib8pth16b" path="res://assets/environment/grave_32.png" id="33_7o728"]
 [ext_resource type="Shader" path="res://src/levels/main_game/vignette.gdshader" id="42_8ndve"]
@@ -1391,6 +1391,7 @@ layer = 0
 motion_mirroring = Vector2(1920, 1080)
 
 [node name="FogShader" type="ColorRect" parent="ParallaxBackground/ParallaxLayer"]
+visible = false
 material = SubResource("ShaderMaterial_ndmxn")
 offset_right = 1920.0
 offset_bottom = 1080.0
@@ -1423,9 +1424,9 @@ grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
-visible = false
 
 [node name="RainShader" type="ColorRect" parent="CanvasLayer"]
+visible = false
 material = SubResource("ShaderMaterial_djl7n")
 anchors_preset = 15
 anchor_right = 1.0
@@ -1464,6 +1465,7 @@ visible = false
 
 [node name="EndgameUI" parent="CanvasLayer" instance=ExtResource("12_jv3wu")]
 process_mode = 3
+visible = false
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_8qn3o")
