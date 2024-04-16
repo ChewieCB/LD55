@@ -10,22 +10,18 @@ signal cleansed
 @onready var cleanse_sfx = [cleanse_sfx_1, cleanse_sfx_2]
 @onready var ritual_sfx: AudioStream = load("res://assets/sfx/ritual/Control Point Draining 1.mp3")
 
-
 var cleanse_progress: float = 0:
 	set(value):
 		cleanse_progress = clamp(value, 0, 100)
 		if cleanse_progress == 100:
 			cleanse()
 
-
 func _process(_delta):
 	cleanse_ui.value = cleanse_progress
-
 
 func cleanse():
 	anim_player.play("cleansing")
 	SoundManager.play_sound(ritual_sfx)
-
 
 func cleanse_complete():
 	# TODO - add buffs to crusader/update loss counter/UI
@@ -36,14 +32,11 @@ func cleanse_complete():
 	emit_signal("cleansed")
 	queue_free()
 
-
 func _on_range_body_entered(body):
 	if body is Crusader:
 		body.ritual_point = self
-
 
 func _on_cleansing_area_body_entered(body):
 	if body is Crusader:
 		#body.ritual_point = body.global_position
 		body.start_cleanse(self)
-

@@ -63,6 +63,7 @@ tint_progress = Color(0.168627, 1, 0.00784314, 1)
 one_shot = true
 
 [node name="DescBG" type="ColorRect" parent="."]
+visible = false
 layout_mode = 2
 mouse_filter = 2
 color = Color(0, 0, 0, 0.545098)
