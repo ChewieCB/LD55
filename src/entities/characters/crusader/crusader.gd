@@ -32,6 +32,8 @@ var current_stance: Stance = Stance.FAST:
 
 @onready var engagement_range = $EngagementRange
 
+const CLEANSE_SPEED = 8
+
 var path: Curve2D
 var path_points: PackedVector2Array
 var path_index: int = 0:
@@ -122,7 +124,7 @@ func _on_action_cleansing_state_entered():
 
 func _on_action_cleansing_state_physics_processing(delta):
 	while ritual_point.cleanse_progress < 100:
-		ritual_point.cleanse_progress += delta * 15
+		ritual_point.cleanse_progress += delta * CLEANSE_SPEED
 		return
 	finish_cleanse()
 
@@ -255,7 +257,7 @@ func _on_attacking_idle_state_physics_processing(_delta):
 							initial_stance_label_flag = false
 						stance_str = "tank_stance"
 						status_ui._spawn_status_indicator(
-							"Bulwark", 2.0, 
+							"Bulwark", 2.0,
 							Vector2(0, 50), Color.GOLD
 						)
 						$GlowSprite.modulate = Color.GOLD
@@ -268,7 +270,7 @@ func _on_attacking_idle_state_physics_processing(_delta):
 						# TODO - add damage stance
 						stance_str = "tank_stance"
 						status_ui._spawn_status_indicator(
-							"Penitent", 2.0, 
+							"Penitent", 2.0,
 							Vector2(0, 50), Color.CRIMSON
 						)
 						$GlowSprite.modulate = Color.CRIMSON
@@ -363,10 +365,8 @@ func _on_stagger_stun_timer_timeout():
 func _on_attack_buildup_timer_timeout():
 	state_chart.send_event("perform_attack")
 
-
 func _on_walking_state_entered():
 	anim_player.play("walk")
-
 
 func _on_walking_state_exited():
 	anim_player.stop()
