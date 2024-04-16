@@ -281,10 +281,10 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("5_7ycku")
 theme_override_font_sizes/font_size = 34
-text = "- Use a sequence of arrows (WASD by default) to prepare spells.
-- There's a list of prefix and main spell components on both side of the screen.
-- You can cast a spell alone, or combine them with a prefixe to enhance its power.
-- After input the correct sequence, press [Space] to confirm it, and use [Left-mouse button] to cast it on screen.
+text = "- Use a sequence of arrows (WASD) to prepare spells.
+- Available prefixes and spells are shown on either side of the screen with a cooldown.
+- You can cast a spell alone, or place a prefix before a spell to enhance its power.
+- After inputting the correct sequence, press [Space] to confirm it, and use [Left-mouse button] to cast it on screen.
 "
 autowrap_mode = 2
 
