@@ -8,3 +8,4 @@ name = "Square"
 input = "ULDR"
 prefix_id = 1
 cooldown = 5.0
+description = "Summon in a square-shaped group."

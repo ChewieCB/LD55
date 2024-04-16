@@ -8,3 +8,4 @@ name = "Agile"
 input = "LRLRLR"
 prefix_id = 3
 cooldown = 3.0
+description = "Enhance the summon speed and attack speed."
