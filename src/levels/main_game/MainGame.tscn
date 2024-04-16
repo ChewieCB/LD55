@@ -946,6 +946,15 @@ navigation_polygon = SubResource("NavigationPolygon_oogn7")
 [node name="RitualPoint" parent="RitualSites" instance=ExtResource("4_62qie")]
 position = Vector2(443, 459)
 
+[node name="RitualPoint2" parent="RitualSites" instance=ExtResource("4_62qie")]
+position = Vector2(1509, 868)
+
+[node name="RitualPoint3" parent="RitualSites" instance=ExtResource("4_62qie")]
+position = Vector2(2198, 1574)
+
+[node name="RitualPoint4" parent="RitualSites" instance=ExtResource("4_62qie")]
+position = Vector2(2087, 779)
+
 [node name="TreeBorders" type="Node2D" parent="."]
 
 [node name="TreeCluster19" type="Sprite2D" parent="TreeBorders"]
@@ -1392,6 +1401,7 @@ grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="RainShader" type="ColorRect" parent="CanvasLayer"]
 material = SubResource("ShaderMaterial_djl7n")
