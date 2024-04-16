@@ -170,25 +170,19 @@ texture = ExtResource("4_b26bl")
 texture_region_size = Vector2i(32, 64)
 0:0/0 = 0
 1:0/0 = 0
-0:1/0 = 0
-1:1/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_uiw5p"]
 texture = ExtResource("5_kdhnm")
 texture_region_size = Vector2i(32, 64)
 0:0/0 = 0
 1:0/0 = 0
-0:1/0 = 0
-1:1/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jgs6e"]
 texture = ExtResource("11_ko0re")
 margins = Vector2i(32, 0)
 texture_region_size = Vector2i(32, 32)
 0:0/0 = 0
-1:0/0 = 0
 0:1/0 = 0
-1:1/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_vwvsb"]
 tile_size = Vector2i(32, 32)
@@ -343,17 +337,19 @@ position = Vector2(200, 194)
 texture = ExtResource("19_ed0ox")
 
 [node name="Rock3" type="Sprite2D" parent="YSort"]
-position = Vector2(-18, 451)
+position = Vector2(-23, 555)
 scale = Vector2(0.488353, 0.488353)
 texture = ExtResource("25_vqfwe")
+offset = Vector2(10.2385, -212.961)
 
 [node name="Rock2" type="Sprite2D" parent="YSort"]
-position = Vector2(246, 168)
+position = Vector2(249, 292)
 scale = Vector2(0.488353, 0.488353)
 texture = ExtResource("25_vqfwe")
+offset = Vector2(-6.1431, -253.915)
 
 [node name="Rock1" type="Sprite2D" parent="YSort"]
-position = Vector2(216, 128)
+position = Vector2(208, 84)
 scale = Vector2(0.265406, 0.265406)
 texture = ExtResource("25_vqfwe")
 
