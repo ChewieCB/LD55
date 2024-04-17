@@ -211,13 +211,16 @@ color = Color(0.0235294, 0.466667, 0.0117647, 1)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_vlocc")
-scale = Vector2(0.25, 1e-05)
+position = Vector2(0, -18)
+scale = Vector2(0.2, 0.2)
 texture = ExtResource("4_w3q0o")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -18)
 shape = SubResource("RectangleShape2D_ci4kf")
 
 [node name="AttackRange" type="Area2D" parent="."]
+position = Vector2(0, -18)
 collision_layer = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackRange"]

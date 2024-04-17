@@ -46,6 +46,7 @@ var ritual_point: Node2D:
 	set(value):
 		ritual_point = value
 
+
 func _spawn():
 	GameManager.crusader = self
 	# TODO - play some animation or effect before beginning the movement

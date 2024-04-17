@@ -19,7 +19,7 @@
 [ext_resource type="Texture2D" uid="uid://brmlt6rgwrn1w" path="res://assets/particles/Explosion_2_64x64.png" id="14_eqdax"]
 [ext_resource type="PackedScene" uid="uid://crdcf3pu3urwg" path="res://src/ui/status/status_ui.tscn" id="14_q5bwy"]
 [ext_resource type="Animation" uid="uid://bsm1jgdoh0k47" path="res://assets/anims/walk.res" id="15_u2ci8"]
-[ext_resource type="PackedScene" uid="uid://cklnh2ojwuuxe" path="res://src/entities/characters/minions/MinionHealthBar.tscn" id="17_ivnfs"]
+[ext_resource type="PackedScene" path="res://src/entities/characters/minions/MinionHealthBar.tscn" id="17_ivnfs"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_negqm"]
 shader = ExtResource("4_6air7")
@@ -212,15 +212,16 @@ color = Color(0.431373, 0.427451, 0.415686, 1)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_negqm")
-position = Vector2(0, 1.36)
+position = Vector2(0, -18.64)
 scale = Vector2(0.08, 0.0759281)
 texture = ExtResource("5_4gvto")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0.5, 1)
+position = Vector2(0.5, -19)
 shape = SubResource("RectangleShape2D_ci4kf")
 
 [node name="AttackRange" type="Area2D" parent="."]
+position = Vector2(0, -20)
 collision_layer = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackRange"]

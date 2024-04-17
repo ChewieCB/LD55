@@ -33,8 +33,10 @@ func _ready() -> void:
 
 
 func sync_graphic_setting():
-	fog_effect.visible = GameManager.weather_enabled
-	rain_effect.visible = GameManager.weather_enabled
+	if fog_effect:
+		fog_effect.visible = GameManager.weather_enabled
+	if rain_effect:
+		rain_effect.visible = GameManager.weather_enabled
 	if GameManager.scanline_enabled:
 		GameManager.main_game.crt_shader.material.set_shader_parameter("scanlines_opacity", 0.4)
 	else:
