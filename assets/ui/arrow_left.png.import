@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bkwq805k7bc5j"
-path="res://.godot/imported/construction_icon.png-09db812cbdb2d8dbdc79943b8f8e3a87.ctex"
+uid="uid://2qtnmxpvfb3v"
+path="res://.godot/imported/arrow_left.png-5ebb11c7a4c8f48b176d59b13e565014.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprite/construction_icon.png"
-dest_files=["res://.godot/imported/construction_icon.png-09db812cbdb2d8dbdc79943b8f8e3a87.ctex"]
+source_file="res://assets/ui/arrow_left.png"
+dest_files=["res://.godot/imported/arrow_left.png-5ebb11c7a4c8f48b176d59b13e565014.ctex"]
 
 [params]
 

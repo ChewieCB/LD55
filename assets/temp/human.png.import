@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b1thgr02pynsj"
-path="res://.godot/imported/lighting.png-2f694d7e0a0851c6795e035005c3a0a1.ctex"
+uid="uid://drpc5qnu6pf8u"
+path="res://.godot/imported/human.png-e137459ab76c3e922df902011d93a7e1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprite/lighting.png"
-dest_files=["res://.godot/imported/lighting.png-2f694d7e0a0851c6795e035005c3a0a1.ctex"]
+source_file="res://assets/temp/human.png"
+dest_files=["res://.godot/imported/human.png-e137459ab76c3e922df902011d93a7e1.ctex"]
 
 [params]
 

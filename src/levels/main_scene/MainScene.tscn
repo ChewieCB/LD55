@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://yqaf1cxr4njr"]
+[gd_scene load_steps=19 format=3 uid="uid://yqaf1cxr4njr"]
 
 [ext_resource type="Script" path="res://src/levels/main_scene/main_scene.gd" id="1_vnu07"]
 [ext_resource type="Texture2D" uid="uid://da7l7aali17mh" path="res://assets/cutscene/menu_background.jpg" id="2_o0nl0"]
@@ -8,6 +8,13 @@
 [ext_resource type="Texture2D" uid="uid://bnyh2q7x1nuyk" path="res://assets/cutscene/tutorial.png" id="5_fhexy"]
 [ext_resource type="Texture2D" uid="uid://cahh042xli854" path="res://assets/ui/kenney_borders/Default/Border/panel-border-000.png" id="6_22r4t"]
 [ext_resource type="Shader" path="res://src/utils/shaders/crt_scanline.gdshader" id="7_ruhtu"]
+[ext_resource type="PackedScene" uid="uid://bxx1nm1l0sl14" path="res://src/levels/main_scene/SpellbookButton.tscn" id="8_6dmx2"]
+[ext_resource type="Script" path="res://src/levels/main_scene/spell_book.gd" id="8_webuq"]
+[ext_resource type="Texture2D" uid="uid://ct4iw3ibf12mp" path="res://assets/sprite/characters/minions/SkeletonSkeleton.png" id="13_ffyxx"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rl01p"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_j72yo"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_t43mp"]
 
@@ -86,7 +93,7 @@ _data = {
 [node name="MainScene" type="Node2D" node_paths=PackedStringArray("animated_buttons")]
 process_mode = 3
 script = ExtResource("1_vnu07")
-animated_buttons = [NodePath("CanvasLayer/Menu/ButtonBackgroundWrapper/ButtonBackground/StartButton"), NodePath("CanvasLayer/Menu/ButtonBackgroundWrapper/ButtonBackground/TutorialButton"), NodePath("CanvasLayer/Menu/ButtonBackgroundWrapper/ButtonBackground/QuitButton")]
+animated_buttons = [NodePath("CanvasLayer/Menu/ButtonBackgroundWrapper/ButtonBackground/VBoxContainer/StartButton"), NodePath("CanvasLayer/Menu/ButtonBackgroundWrapper/ButtonBackground/VBoxContainer/TutorialButton"), NodePath("CanvasLayer/Menu/ButtonBackgroundWrapper/ButtonBackground/VBoxContainer/SpellbookButton"), NodePath("CanvasLayer/Menu/ButtonBackgroundWrapper/ButtonBackground/VBoxContainer/QuitButton")]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -122,16 +129,6 @@ Death Resurrection[/left][/wave][/center]"
 fit_content = true
 scroll_active = false
 
-[node name="DontRemoveThisCRTNeedIt" type="ColorRect" parent="CanvasLayer/Menu"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-color = Color(0, 0, 0, 0)
-
 [node name="ButtonBackgroundWrapper" type="Control" parent="CanvasLayer/Menu"]
 layout_mode = 1
 anchors_preset = 11
@@ -156,51 +153,31 @@ grow_horizontal = 0
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
-[node name="StartButton" parent="CanvasLayer/Menu/ButtonBackgroundWrapper/ButtonBackground" instance=ExtResource("4_df5ml")]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -150.0
-offset_top = 136.0
-offset_right = 150.0
-offset_bottom = 213.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Menu/ButtonBackgroundWrapper/ButtonBackground"]
+layout_mode = 0
+offset_left = 72.0
+offset_top = 736.0
+offset_right = 372.0
+offset_bottom = 1104.0
+theme_override_constants/separation = 20
+
+[node name="StartButton" parent="CanvasLayer/Menu/ButtonBackgroundWrapper/ButtonBackground/VBoxContainer" instance=ExtResource("4_df5ml")]
+layout_mode = 2
 text = "Start"
 script = ExtResource("4_b7wsb")
 
-[node name="TutorialButton" parent="CanvasLayer/Menu/ButtonBackgroundWrapper/ButtonBackground" instance=ExtResource("4_df5ml")]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -150.0
-offset_top = 232.0
-offset_right = 150.0
-offset_bottom = 317.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="TutorialButton" parent="CanvasLayer/Menu/ButtonBackgroundWrapper/ButtonBackground/VBoxContainer" instance=ExtResource("4_df5ml")]
+layout_mode = 2
 text = "Tutorial"
 script = ExtResource("4_b7wsb")
 
-[node name="QuitButton" parent="CanvasLayer/Menu/ButtonBackgroundWrapper/ButtonBackground" instance=ExtResource("4_df5ml")]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -150.0
-offset_top = 336.0
-offset_right = 150.0
-offset_bottom = 421.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="SpellbookButton" parent="CanvasLayer/Menu/ButtonBackgroundWrapper/ButtonBackground/VBoxContainer" instance=ExtResource("4_df5ml")]
+layout_mode = 2
+text = "Spellbook"
+script = ExtResource("4_b7wsb")
+
+[node name="QuitButton" parent="CanvasLayer/Menu/ButtonBackgroundWrapper/ButtonBackground/VBoxContainer" instance=ExtResource("4_df5ml")]
+layout_mode = 2
 text = "Quit"
 script = ExtResource("4_b7wsb")
 
@@ -235,6 +212,7 @@ patch_margin_right = 20
 patch_margin_bottom = 20
 
 [node name="Tutorial" type="Control" parent="CanvasLayer"]
+visible = false
 layout_mode = 3
 anchors_preset = 2
 anchor_top = 1.0
@@ -253,6 +231,19 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0.882353)
+
+[node name="NinePatchRect" type="NinePatchRect" parent="CanvasLayer/Tutorial/ColorRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("6_22r4t")
+patch_margin_left = 20
+patch_margin_top = 20
+patch_margin_right = 20
+patch_margin_bottom = 20
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer/Tutorial"]
 layout_mode = 1
@@ -288,7 +279,28 @@ text = "- Use a sequence of arrows (WASD) to prepare spells.
 "
 autowrap_mode = 2
 
-[node name="NinePatchRect" type="NinePatchRect" parent="CanvasLayer/Tutorial"]
+[node name="Spellbook" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 64.0
+offset_top = -640.0
+offset_right = 1152.0
+offset_bottom = -64.0
+grow_vertical = 0
+script = ExtResource("8_webuq")
+
+[node name="BG" type="ColorRect" parent="CanvasLayer/Spellbook"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.882353)
+
+[node name="NinePatchRect" type="NinePatchRect" parent="CanvasLayer/Spellbook/BG"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -301,7 +313,156 @@ patch_margin_top = 20
 patch_margin_right = 20
 patch_margin_bottom = 20
 
+[node name="TabContainer" type="TabContainer" parent="CanvasLayer/Spellbook"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_rl01p")
+theme_override_styles/tabbar_background = SubResource("StyleBoxEmpty_j72yo")
+tabs_visible = false
+
+[node name="Overview" type="Control" parent="CanvasLayer/Spellbook/TabContainer"]
+layout_mode = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="CanvasLayer/Spellbook/TabContainer/Overview"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 32.0
+offset_top = 72.0
+offset_right = -32.0
+offset_bottom = -32.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GridContainer" type="GridContainer" parent="CanvasLayer/Spellbook/TabContainer/Overview/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/h_separation = 20
+theme_override_constants/v_separation = 20
+columns = 4
+
+[node name="Button" parent="CanvasLayer/Spellbook/TabContainer/Overview/ScrollContainer/GridContainer" instance=ExtResource("8_6dmx2")]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+
+[node name="Button2" parent="CanvasLayer/Spellbook/TabContainer/Overview/ScrollContainer/GridContainer" instance=ExtResource("8_6dmx2")]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+
+[node name="Button3" parent="CanvasLayer/Spellbook/TabContainer/Overview/ScrollContainer/GridContainer" instance=ExtResource("8_6dmx2")]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+
+[node name="Button4" parent="CanvasLayer/Spellbook/TabContainer/Overview/ScrollContainer/GridContainer" instance=ExtResource("8_6dmx2")]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+
+[node name="Button5" parent="CanvasLayer/Spellbook/TabContainer/Overview/ScrollContainer/GridContainer" instance=ExtResource("8_6dmx2")]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+
+[node name="Button6" parent="CanvasLayer/Spellbook/TabContainer/Overview/ScrollContainer/GridContainer" instance=ExtResource("8_6dmx2")]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+
+[node name="Button7" parent="CanvasLayer/Spellbook/TabContainer/Overview/ScrollContainer/GridContainer" instance=ExtResource("8_6dmx2")]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+
+[node name="Button8" parent="CanvasLayer/Spellbook/TabContainer/Overview/ScrollContainer/GridContainer" instance=ExtResource("8_6dmx2")]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+
+[node name="Detail" type="Control" parent="CanvasLayer/Spellbook/TabContainer"]
+visible = false
+layout_mode = 2
+
+[node name="Desc" type="RichTextLabel" parent="CanvasLayer/Spellbook/TabContainer/Detail"]
+layout_mode = 0
+offset_left = 704.0
+offset_top = 72.0
+offset_right = 1024.0
+offset_bottom = 520.0
+theme_override_fonts/normal_font = ExtResource("5_7ycku")
+theme_override_font_sizes/normal_font_size = 30
+bbcode_enabled = true
+text = "[center][wave]Skeleton[/wave][/center]
+
+Some description here
+
+
+
+
+Stat here
+hp
+atk"
+
+[node name="MonsterBorder" type="NinePatchRect" parent="CanvasLayer/Spellbook/TabContainer/Detail"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 296.0
+offset_top = 104.0
+offset_right = 676.0
+offset_bottom = 484.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("6_22r4t")
+patch_margin_left = 20
+patch_margin_top = 20
+patch_margin_right = 20
+patch_margin_bottom = 20
+
+[node name="MonsterSprite" type="TextureRect" parent="CanvasLayer/Spellbook/TabContainer/Detail/MonsterBorder"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -176.0
+offset_top = -176.0
+offset_right = 176.0
+offset_bottom = 176.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("13_ffyxx")
+expand_mode = 3
+
+[node name="DontRemoveThisCRTNeedIt" type="ColorRect" parent="CanvasLayer/Spellbook"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -216.0
+offset_top = -600.0
+offset_right = 968.0
+offset_bottom = 208.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0)
+
 [node name="Cutscene" type="TabContainer" parent="CanvasLayer"]
+visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -309,11 +470,9 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_t43mp")
 theme_override_styles/tabbar_background = SubResource("StyleBoxEmpty_6p53p")
-current_tab = 2
 tabs_visible = false
 
 [node name="YouEvil" type="ColorRect" parent="CanvasLayer/Cutscene"]
-visible = false
 layout_mode = 2
 color = Color(0, 0, 0, 1)
 
@@ -391,6 +550,7 @@ text = "Then, as if out of nowhere, a powerful crusader from some holy order ent
 autowrap_mode = 2
 
 [node name="Defend" type="ColorRect" parent="CanvasLayer/Cutscene"]
+visible = false
 layout_mode = 2
 color = Color(0, 0, 0, 1)
 
@@ -442,9 +602,11 @@ libraries = {
 }
 autoplay = "start"
 
-[connection signal="mouse_entered" from="CanvasLayer/Menu/ButtonBackgroundWrapper/ButtonBackground/StartButton" to="." method="play_ui_hover_sfx"]
-[connection signal="pressed" from="CanvasLayer/Menu/ButtonBackgroundWrapper/ButtonBackground/StartButton" to="." method="_on_start_button_pressed"]
-[connection signal="mouse_entered" from="CanvasLayer/Menu/ButtonBackgroundWrapper/ButtonBackground/TutorialButton" to="." method="play_ui_hover_sfx"]
-[connection signal="pressed" from="CanvasLayer/Menu/ButtonBackgroundWrapper/ButtonBackground/TutorialButton" to="." method="_on_tutorial_button_pressed"]
-[connection signal="mouse_entered" from="CanvasLayer/Menu/ButtonBackgroundWrapper/ButtonBackground/QuitButton" to="." method="play_ui_hover_sfx"]
-[connection signal="pressed" from="CanvasLayer/Menu/ButtonBackgroundWrapper/ButtonBackground/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="mouse_entered" from="CanvasLayer/Menu/ButtonBackgroundWrapper/ButtonBackground/VBoxContainer/StartButton" to="." method="play_ui_hover_sfx"]
+[connection signal="pressed" from="CanvasLayer/Menu/ButtonBackgroundWrapper/ButtonBackground/VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="mouse_entered" from="CanvasLayer/Menu/ButtonBackgroundWrapper/ButtonBackground/VBoxContainer/TutorialButton" to="." method="play_ui_hover_sfx"]
+[connection signal="pressed" from="CanvasLayer/Menu/ButtonBackgroundWrapper/ButtonBackground/VBoxContainer/TutorialButton" to="." method="_on_tutorial_button_pressed"]
+[connection signal="mouse_entered" from="CanvasLayer/Menu/ButtonBackgroundWrapper/ButtonBackground/VBoxContainer/SpellbookButton" to="." method="play_ui_hover_sfx"]
+[connection signal="pressed" from="CanvasLayer/Menu/ButtonBackgroundWrapper/ButtonBackground/VBoxContainer/SpellbookButton" to="." method="_on_spellbook_button_pressed"]
+[connection signal="mouse_entered" from="CanvasLayer/Menu/ButtonBackgroundWrapper/ButtonBackground/VBoxContainer/QuitButton" to="." method="play_ui_hover_sfx"]
+[connection signal="pressed" from="CanvasLayer/Menu/ButtonBackgroundWrapper/ButtonBackground/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://drmvkv7ecxeng"
-path="res://.godot/imported/arrow_down.png-831ee9c5da9180c7ddd568d33deef594.ctex"
+uid="uid://fi17det5il8"
+path="res://.godot/imported/bestiary_button_normal.png-b646f5cc1ff9449bbf3b1c28aae5952e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprite/arrow_down.png"
-dest_files=["res://.godot/imported/arrow_down.png-831ee9c5da9180c7ddd568d33deef594.ctex"]
+source_file="res://assets/ui/bestiary_button_normal.png"
+dest_files=["res://.godot/imported/bestiary_button_normal.png-b646f5cc1ff9449bbf3b1c28aae5952e.ctex"]
 
 [params]
 

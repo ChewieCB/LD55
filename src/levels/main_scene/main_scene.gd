@@ -31,7 +31,10 @@ func _on_start_button_pressed() -> void:
 func _on_tutorial_button_pressed() -> void:
 	Utils.play_button_click_sfx()
 	tutorial.visible = not tutorial.visible
-	
+
+func _on_spellbook_button_pressed() -> void:
+	Utils.play_button_click_sfx()
+
 func _on_quit_button_pressed() -> void:
 	Utils.play_button_click_sfx()
 	get_tree().quit()
