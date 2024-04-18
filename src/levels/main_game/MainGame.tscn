@@ -195,9 +195,9 @@ sources/1 = SubResource("TileSetAtlasSource_uiw5p")
 sources/3 = SubResource("TileSetAtlasSource_jgs6e")
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_oogn7"]
-vertices = PackedVector2Array(1167, -110, 1376, -106, 1375, -106, 2399, 971, 2399, 970, 2405, 1221, 141, 747, 63, 744, 64, 744, 386, -340, 378, -285, 378, -286, 1561, -89, 1769, -6, 1768, -6, 1986, 1149, 1960, 1075, 1961, 1076, 1802, 652, 1764, 596, 1747, 336, 2038, 149, 2191, 300, 2273, 431, 2273, 432, 1835, 688, 596, 292, 620, 287, 618, 323, 397, 526, 371, 521, 1707, 325, 1645, 290, 1919, 841, 1901, 778, 2375, 756, 1582, 293, 1555, 260, 81, -265, 81, -367, 378, -369, 362, -197, 340, -76, 389, 563, 784, 321, 786, 413, 524, 514, 338, 258, 595, 254, 336, 289, 1395, 259, 1366, 243, 1032, -15, 1243, 242, 940, 79, 822, 262, 1226, 271, 854, 341, 1622, 616, 1716, 618, 1716, 685, 1625, 972, 1512, 1032, 900, 755, 237, 159, 273, 201, 233, 238, 122, 159, 1555, 332, 1653, 334, 1654, 365, 1622, 578, 370, 521, 305, 408, 307, 291, -80, 50, -23, -149, 347, -1, 200, 33, 269, 509, 268, 416, 1772, 652, 1804, 685, 1367, 296, 1550, 299, 1362, 275, 852, 656, 849, 412, 503, 569, 607, 573, 627, 580, 626, 664, 469, 820, 246, 801, 763, 229, 641, 241, 611, 175, 648, 118, 1841, 775, 1836, 759, 1737, 366, 1989, 1870, 1809, 1769, 1697, 1624, 1782, 1472, 1914, 1351, 2385, 1856, 788, 713, 815, 733, 817, 847, 777, 865, 726, 838, 670, 706, 472, 552, 245, 801, 194, 784, 1748, 691, 1752, 707, 359, 96, 362, 134, 341, 146, 313, 143, 297, 103, 335, 68, 273, 44, 1780, 722, 1778, 790, 1469, 1055, 1294, 1092, 1115, 1101, 935, 1037, 2545, 1265, 2655, 1417, 2603, 1597, 2517, 1784, 1996, 1266, 1958, 1063, 1762, 976, 1820, 834, -31, 686, -31, 685, 214, 539, 241, 544, 250, 563, 0, 734, 747, 619, 677, 572, 635, 518, 239, 366, 215, 389, -125, 545, -136, 187, -78, 107, 164, 49, 135, 108, -84, 606, 285, 563, 360, 560, 586, 515, 585, 515)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2), PackedInt32Array(3, 4, 5), PackedInt32Array(6, 7, 8), PackedInt32Array(9, 10, 11), PackedInt32Array(12, 13, 14), PackedInt32Array(15, 16, 17), PackedInt32Array(18, 19, 20, 14, 21, 22, 23, 24, 25), PackedInt32Array(26, 27, 28, 29, 30), PackedInt32Array(14, 20, 31, 32, 12), PackedInt32Array(33, 34, 24, 35, 3, 5), PackedInt32Array(12, 32, 36, 37), PackedInt32Array(38, 39, 40, 9, 11, 41, 42), PackedInt32Array(43, 29, 28, 44, 45, 46), PackedInt32Array(47, 48, 26, 49), PackedInt32Array(2, 12, 37, 50, 51, 0), PackedInt32Array(52, 0, 51, 53, 54), PackedInt32Array(55, 54, 53, 56, 57), PackedInt32Array(58, 59, 60, 61, 62, 63), PackedInt32Array(64, 65, 66, 67), PackedInt32Array(68, 69, 70, 71), PackedInt32Array(72, 73, 74, 49, 26, 30), PackedInt32Array(75, 76, 38, 42, 77, 78), PackedInt32Array(72, 79, 80, 73), PackedInt32Array(18, 81, 19), PackedInt32Array(25, 82, 18), PackedInt32Array(83, 84, 68), PackedInt32Array(56, 85, 83, 63, 86, 87, 57), PackedInt32Array(88, 89, 90, 91, 92, 93), PackedInt32Array(94, 95, 96, 97, 54), PackedInt32Array(55, 94, 54), PackedInt32Array(34, 98, 99, 25, 24), PackedInt32Array(100, 20, 19), PackedInt32Array(100, 19, 71, 70), PackedInt32Array(101, 102, 103, 104, 105, 106), PackedInt32Array(107, 108, 109, 110, 111, 112), PackedInt32Array(112, 111, 92, 91), PackedInt32Array(113, 88, 93, 114, 115, 6, 43), PackedInt32Array(60, 116, 117, 61), PackedInt32Array(118, 119, 120, 121, 122, 123), PackedInt32Array(123, 122, 124, 77), PackedInt32Array(63, 83, 68, 71, 58), PackedInt32Array(117, 125, 126, 61), PackedInt32Array(127, 128, 129, 130, 63, 62), PackedInt32Array(131, 132, 133, 134, 106, 105, 135, 5), PackedInt32Array(5, 135, 15), PackedInt32Array(33, 5, 15, 17, 136), PackedInt32Array(33, 136, 137, 138), PackedInt32Array(138, 137, 61, 126), PackedInt32Array(139, 140, 141, 142, 143, 6, 8, 144), PackedInt32Array(45, 87, 86, 145, 146, 147), PackedInt32Array(67, 66, 148, 149, 150, 151, 152), PackedInt32Array(77, 124, 78), PackedInt32Array(75, 78, 153), PackedInt32Array(75, 153, 154, 152), PackedInt32Array(152, 154, 67), PackedInt32Array(150, 149, 141, 155), PackedInt32Array(140, 155, 141), PackedInt32Array(6, 143, 156), PackedInt32Array(6, 156, 157, 43), PackedInt32Array(45, 147, 158), PackedInt32Array(46, 113, 43), PackedInt32Array(46, 45, 158, 159)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(71, -377, 71, -269, -33, -153, -90, 47, -88, 104, -147, 184, -135, 549, -92, 612, -39, 691, -6, 744, 63, 754, 138, 757, 188, 792, 245, 811, 468, 830, 723, 848, 777, 877, 828, 854, 825, 728, 792, 704, 674, 696, 636, 660, 638, 574, 607, 563, 506, 559, 491, 551, 527, 524, 585, 525, 630, 528, 671, 580, 741, 627, 845, 664, 890, 758, 926, 1044, 1115, 1112, 1296, 1102, 1473, 1065, 1517, 1041, 1627, 982, 1760, 986, 1969, 1079, 1919, 832, 1825, 824, 1788, 786, 1791, 716, 1761, 700, 1757, 683, 1726, 677, 1726, 609, 1632, 606, 1632, 589, 1755, 605, 1764, 663, 1793, 662, 1795, 695, 1825, 697, 1826, 759, 1835, 785, 1932, 790, 1872, 594, 1812, 348, 1735, 343, 1730, 356, 1664, 355, 1663, 325, 1564, 322, 1559, 290, 1375, 286, 1371, 266, 1243, 262, 1249, 252, 1363, 253, 1392, 269, 1550, 270, 1578, 304, 1643, 300, 1704, 335, 1795, 360, 1810, 522, 1844, 611, 1907, 837, 1951, 1078, 1976, 1151, 1986, 1262, 1907, 1344, 1773, 1467, 1685, 1625, 1803, 1778, 1986, 1881, 2389, 1866, 2525, 1792, 2613, 1600, 2667, 1416, 2551, 1256, 2415, 1214, 2409, 970, 2385, 753, 2283, 429, 2198, 293, 2043, 140, 1773, -15, 1563, -99, 1376, -116, 1164, -121, 1026, -23, 935, 70, 643, 109, 600, 174, 636, 252, 761, 239, 814, 269, 844, 343, 840, 402, 796, 403, 794, 311, 629, 313, 632, 275, 606, 280, 605, 244, 329, 249, 327, 280, 298, 282, 295, 400, 258, 408, 260, 519, 369, 531, 385, 534, 381, 552, 361, 550, 285, 553, 256, 553, 248, 535, 224, 531, 225, 393, 250, 370, 243, 242, 288, 202, 242, 149, 135, 149, 144, 111, 171, 57, 201, 43, 266, 53, 288, 107, 307, 153, 344, 157, 373, 140, 369, 93, 346, 65, 357, -2, 350, -76, 372, -195, 388, -284, 396, -342, 387, -380)])
+vertices = PackedVector2Array(1167, -110, 1376, -106, 1375, -106, 141, 747, 63, 744, 64, 744, 1865, 2125, 1542, 2108, 1543, 2108, 386, -340, 378, -285, 378, -286, 2632, 1419, 2610, 1587, 2607, 1437, 194, 784, 9, 545, 214, 539, 241, 544, 250, 563, 245, 801, 1561, -89, 1769, -6, 1768, -6, 2461, 1914, 2462, 1914, 2218, 2024, 247, 222, 259, 219, 241, 240, 608, 768, 598, 706, 670, 706, 788, 713, 815, 733, 817, 847, 777, 865, 726, 838, 1737, 366, 1747, 336, 2236, 170, 2404, 182, 2508, 313, 2547, 471, 2501, 546, 2441, 640, 1901, 778, 1835, 688, 2040, 150, 504, 569, 626, 664, 549, 702, 1746, 1485, 1753, 1573, 1657, 1527, 1751, 1431, 1784, 1418, 1842, 1364, 1944, 1418, 1943, 1290, 2409, 1205, 2442, 1241, 1707, 325, 1645, 290, 1655, 1756, 2546, 1690, 2593, 1689, 2608, 1720, 2608, 1829, 2556, 1861, 210, 165, 235, 166, 224, 190, -120, 536, -141, 546, -141, 409, -138, 410, -104, 470, 504, 370, 596, 292, 620, 287, 618, 323, 521, 410, 474, 830, 548, 767, 493, 766, 418, 804, 2470, 805, 2505, 1010, 1919, 841, 2532, 1239, 2525, 1197, 2535, 1185, 2557, 1207, 2557, 1208, 2581, 1246, 2570, 1295, 2509, 1386, 2544, 1473, 1655, 1703, 2516, 1469, 1517, 1758, 1517, 1787, 1371, 1792, 1372, 2066, 1304, 1995, 1336, 1809, 1308, 1819, 1328, 1791, 1343, 1737, 1359, 1775, 1360, 1735, 1480, 1594, 1514, 1697, 1460, 1727, 1639, 1540, 784, 321, 786, 413, 635, 518, 586, 515, 2602, 1380, 2570, 1407, 1582, 293, 1555, 260, 2507, 1443, 2443, 1435, 81, -265, 81, -367, 378, -369, 362, -197, 340, -76, 1761, 1601, 338, 258, 595, 254, 439, 349, 336, 289, 380, 363, 1395, 259, 1366, 243, 1032, -15, 1243, 242, 940, 79, 822, 262, 1226, 271, 854, 341, 128, 120, 211, 123, 1808, 1605, 1807, 1469, 1937, 1466, 1622, 616, 1716, 618, 1716, 685, 900, 755, 215, 389, -3, 498, -3, 459, 1555, 332, 1653, 334, 1654, 365, 1622, 578, -80, 50, -23, -149, 347, -1, 200, 33, 303, 408, 307, 291, 376, 407, 370, 521, 269, 509, 268, 416, 382, 414, 371, 521, 438, 420, 397, 526, 1802, 652, 1772, 652, 1764, 596, 1804, 685, 1367, 296, 1550, 299, 1362, 275, 852, 656, 849, 412, 607, 573, 627, 580, 513, 709, 389, 563, 763, 229, 641, 241, 611, 175, 648, 118, 1841, 775, 1836, 759, 2448, 1390, 1748, 691, 1752, 707, 335, 68, 359, 96, 362, 134, 344, 145, 329, 135, 306, 99, 272, 44, 1780, 722, 1778, 790, 1625, 972, 1512, 1032, 1469, 1055, 1294, 1092, 1115, 1101, 935, 1037, 522, 514, 501, 541, 2524, 1095, 2513, 1163, 2501, 1180, 2413, 1194, 1944, 1090, 1763, 976, 1820, 834, -78, 107, 1940, 1206, 747, 619, 677, 572, 585, 515, 360, 560, 505, 742, 285, 563, 0, 734, -31, 686, -31, 685, -84, 606, -59, 547, 240, 365, -137, 187, 164, 49)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2), PackedInt32Array(3, 4, 5), PackedInt32Array(6, 7, 8), PackedInt32Array(9, 10, 11), PackedInt32Array(12, 13, 14), PackedInt32Array(15, 3, 16, 17, 18, 19, 20), PackedInt32Array(21, 22, 23), PackedInt32Array(24, 25, 26), PackedInt32Array(27, 28, 29), PackedInt32Array(30, 31, 32, 33, 34, 35, 36, 37), PackedInt32Array(38, 39, 40, 41, 42, 43, 44, 45, 46, 47), PackedInt32Array(48, 40, 39), PackedInt32Array(49, 50, 32, 31, 51), PackedInt32Array(52, 53, 54), PackedInt32Array(52, 54, 55, 56), PackedInt32Array(56, 55, 57), PackedInt32Array(58, 56, 57, 59, 60, 61), PackedInt32Array(23, 48, 39, 62, 63, 21), PackedInt32Array(64, 65, 66, 67, 68, 69, 24, 26, 6, 8), PackedInt32Array(70, 71, 72), PackedInt32Array(73, 74, 75, 76, 77), PackedInt32Array(78, 79, 80, 81, 82), PackedInt32Array(30, 37, 83, 84), PackedInt32Array(85, 84, 83, 86), PackedInt32Array(45, 87, 88, 89, 46), PackedInt32Array(90, 91, 92, 93, 94), PackedInt32Array(90, 94, 95, 96, 97), PackedInt32Array(98, 65, 64, 99, 100), PackedInt32Array(101, 64, 8, 102), PackedInt32Array(103, 102, 8, 104, 105, 106), PackedInt32Array(106, 105, 107, 108), PackedInt32Array(108, 107, 109), PackedInt32Array(110, 108, 109, 111), PackedInt32Array(111, 109, 112), PackedInt32Array(113, 114, 111, 112, 115), PackedInt32Array(82, 81, 116, 117, 118, 119), PackedInt32Array(120, 12, 14, 121), PackedInt32Array(21, 63, 122, 123), PackedInt32Array(124, 100, 99, 125), PackedInt32Array(126, 127, 128, 9, 11, 129, 130), PackedInt32Array(99, 113, 115, 131), PackedInt32Array(132, 133, 79, 78, 134, 135), PackedInt32Array(135, 134, 136), PackedInt32Array(2, 21, 123, 137, 138, 0), PackedInt32Array(139, 0, 138, 140, 141), PackedInt32Array(142, 141, 140, 143, 144), PackedInt32Array(145, 146, 70), PackedInt32Array(147, 148, 149), PackedInt32Array(150, 151, 152, 153), PackedInt32Array(154, 17, 16, 155, 156), PackedInt32Array(157, 158, 159, 160), PackedInt32Array(161, 162, 126, 130, 163, 164), PackedInt32Array(165, 166, 135, 136, 167), PackedInt32Array(168, 169, 170, 165, 167, 171, 172), PackedInt32Array(172, 171, 173, 174), PackedInt32Array(175, 176, 177, 38), PackedInt32Array(47, 178, 175), PackedInt32Array(179, 180, 157), PackedInt32Array(143, 181, 179, 153, 182, 183, 144), PackedInt32Array(184, 185, 50, 49), PackedInt32Array(49, 51, 186, 187), PackedInt32Array(188, 189, 190, 191, 141), PackedInt32Array(142, 188, 141), PackedInt32Array(96, 120, 121, 97), PackedInt32Array(46, 192, 193, 47), PackedInt32Array(38, 47, 175), PackedInt32Array(38, 177, 160, 159), PackedInt32Array(61, 90, 97, 194), PackedInt32Array(152, 195, 196, 153), PackedInt32Array(197, 198, 199, 200, 201, 202, 203), PackedInt32Array(163, 197, 203), PackedInt32Array(61, 194, 125, 99, 147), PackedInt32Array(153, 179, 157, 160, 150), PackedInt32Array(153, 196, 204, 205, 206, 207), PackedInt32Array(208, 209, 210, 211, 153, 207), PackedInt32Array(174, 173, 82, 212, 213, 187), PackedInt32Array(89, 88, 214, 215, 216, 217), PackedInt32Array(89, 217, 60, 218, 219, 220), PackedInt32Array(72, 27, 29, 221), PackedInt32Array(99, 131, 147), PackedInt32Array(61, 147, 149), PackedInt32Array(61, 149, 58), PackedInt32Array(60, 59, 222, 218), PackedInt32Array(220, 219, 206, 205), PackedInt32Array(117, 183, 182, 223, 224, 118), PackedInt32Array(82, 119, 225, 212), PackedInt32Array(187, 213, 49), PackedInt32Array(226, 187, 186, 227, 85, 86, 20, 228), PackedInt32Array(19, 228, 20), PackedInt32Array(16, 3, 5, 229, 230, 231), PackedInt32Array(16, 231, 232, 233), PackedInt32Array(233, 232, 74, 73), PackedInt32Array(234, 154, 156, 77, 76, 235, 221, 29), PackedInt32Array(145, 70, 72, 221, 161), PackedInt32Array(236, 145, 161), PackedInt32Array(163, 203, 164), PackedInt32Array(161, 164, 236)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(71, -377, 71, -269, -33, -153, -90, 47, -88, 104, -147, 184, -149, 435, -13, 469, -13, 500, -4, 535, -58, 537, -108, 528, -96, 479, -10, 470, -152, 396, -151, 550, -92, 612, -39, 691, -6, 744, 63, 754, 138, 757, 188, 792, 245, 811, 416, 814, 473, 840, 514, 746, 521, 718, 550, 712, 589, 715, 596, 758, 548, 757, 508, 756, 473, 840, 723, 848, 777, 877, 828, 854, 825, 728, 792, 704, 674, 696, 636, 660, 638, 574, 607, 563, 513, 559, 511, 544, 527, 524, 585, 525, 630, 528, 671, 580, 741, 627, 845, 664, 890, 758, 926, 1044, 1115, 1112, 1296, 1102, 1473, 1065, 1517, 1041, 1627, 982, 1760, 986, 1936, 1096, 1919, 832, 1825, 824, 1788, 786, 1791, 716, 1761, 700, 1757, 683, 1726, 677, 1726, 609, 1632, 606, 1632, 589, 1755, 605, 1764, 663, 1793, 662, 1795, 695, 1825, 697, 1826, 759, 1835, 785, 1932, 790, 1872, 594, 1812, 348, 1735, 343, 1730, 356, 1664, 355, 1663, 325, 1564, 322, 1559, 290, 1375, 286, 1371, 266, 1243, 262, 1249, 252, 1363, 253, 1392, 269, 1550, 270, 1578, 304, 1643, 300, 1704, 335, 1795, 360, 1810, 522, 1844, 611, 1907, 837, 1936, 1095, 1930, 1206, 1933, 1285, 1836, 1356, 1745, 1423, 1641, 1530, 1765, 1590, 1756, 1487, 1790, 1428, 1932, 1428, 1928, 1456, 1797, 1460, 1798, 1594, 1764, 1591, 1641, 1530, 1474, 1587, 1335, 1732, 1300, 1818, 1369, 1782, 1370, 1744, 1464, 1737, 1516, 1707, 1645, 1713, 1645, 1746, 1508, 1749, 1507, 1777, 1369, 1783, 1299, 1817, 1294, 1999, 1368, 2076, 1541, 2118, 1868, 2136, 2221, 2034, 2466, 1923, 2561, 1870, 2618, 1836, 2619, 1719, 2599, 1679, 2556, 1680, 2554, 1465, 2523, 1460, 2514, 1434, 2454, 1426, 2457, 1399, 2508, 1396, 2565, 1416, 2597, 1442, 2601, 1675, 2620, 1718, 2618, 1605, 2643, 1417, 2611, 1375, 2580, 1294, 2592, 1245, 2566, 1203, 2535, 1171, 2515, 1195, 2520, 1229, 2446, 1231, 2420, 1203, 2507, 1190, 2523, 1167, 2534, 1093, 2515, 1008, 2480, 803, 2452, 642, 2509.33, 551.051, 2558, 472, 2518, 309, 2410, 173, 2237, 160, 2043, 140, 1773, -15, 1563, -99, 1376, -116, 1164, -121, 1026, -23, 935, 70, 643, 109, 600, 174, 636, 252, 761, 239, 814, 269, 844, 343, 840, 402, 796, 403, 794, 311, 629, 313, 632, 275, 606, 280, 605, 244, 329, 249, 327, 280, 298, 282, 293, 408, 386, 416, 389, 371, 439, 359, 497, 378, 507, 402, 438, 410, 387, 404, 295, 400, 258, 408, 260, 519, 369, 531, 385, 534, 381, 552, 361, 550, 285, 553, 256, 553, 248, 535, 224, 531, 225, 393, 250, 370, 251, 244, 288, 202, 251, 211, 236, 189, 252, 158, 220, 156, 222, 114, 144, 111, 171, 57, 201, 43, 266, 53, 298, 104, 323, 143, 344, 157, 373, 140, 369, 93, 346, 65, 357, -2, 350, -76, 372, -195, 388, -284, 396, -342, 387, -380)])
 source_geometry_group_name = &"navigation_polygon_source_group"
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_ytest"]
@@ -368,7 +368,7 @@ y_sort_enabled = true
 position = Vector2(-55, 512)
 scale = Vector2(0.222692, 0.222692)
 texture = ExtResource("25_vqfwe")
-offset = Vector2(10.2385, -212.961)
+offset = Vector2(0, -150)
 
 [node name="Rock8" type="Sprite2D" parent="YSort"]
 z_index = 1
@@ -376,22 +376,23 @@ y_sort_enabled = true
 position = Vector2(555, 743)
 scale = Vector2(0.169393, 0.169393)
 texture = ExtResource("25_vqfwe")
-offset = Vector2(10.2385, -212.961)
+offset = Vector2(0, -150)
 
 [node name="Rock2" type="Sprite2D" parent="YSort"]
 z_index = 1
 y_sort_enabled = true
-position = Vector2(304, 213)
+position = Vector2(309, 199)
 scale = Vector2(0.254487, 0.254487)
 texture = ExtResource("25_vqfwe")
-offset = Vector2(-6.1431, -253.915)
+offset = Vector2(-6.143, -150)
 
 [node name="Rock1" type="Sprite2D" parent="YSort"]
 z_index = 1
 y_sort_enabled = true
-position = Vector2(208, 84)
+position = Vector2(222, 86)
 scale = Vector2(0.265406, 0.265406)
 texture = ExtResource("25_vqfwe")
+offset = Vector2(0, -150)
 
 [node name="Dirt1" type="Sprite2D" parent="YSort"]
 z_index = 1
@@ -1240,9 +1241,10 @@ texture = ExtResource("25_vqfwe")
 [node name="Rock6" type="Sprite2D" parent="YSort"]
 z_index = 1
 y_sort_enabled = true
-position = Vector2(258, 112)
+position = Vector2(269, 141)
 scale = Vector2(0.16, 0.16)
 texture = ExtResource("25_vqfwe")
+offset = Vector2(0, -150)
 
 [node name="Rock7" type="Sprite2D" parent="YSort"]
 z_index = 1
@@ -1288,6 +1290,7 @@ texture = ExtResource("46_402yd")
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
 navigation_polygon = SubResource("NavigationPolygon_oogn7")
+metadata/_edit_lock_ = true
 
 [node name="RitualSites" type="Node2D" parent="."]
 
@@ -1752,6 +1755,7 @@ grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="RainShader" type="ColorRect" parent="CanvasLayer"]
 material = SubResource("ShaderMaterial_djl7n")
@@ -1799,6 +1803,7 @@ environment = SubResource("Environment_8qn3o")
 
 [node name="AreaMasks" type="Node2D" parent="."]
 z_index = 3
+metadata/_edit_lock_ = true
 
 [node name="BlackMask1" type="Sprite2D" parent="AreaMasks"]
 top_level = true
@@ -1806,6 +1811,7 @@ z_index = 4
 position = Vector2(-653, -414)
 scale = Vector2(2.75409, 3.26802)
 texture = ExtResource("44_x68rp")
+metadata/_edit_lock_ = true
 
 [node name="BlackMask2" type="Sprite2D" parent="AreaMasks"]
 top_level = true
@@ -1813,6 +1819,7 @@ z_index = 4
 position = Vector2(-873, 169)
 scale = Vector2(2.75409, 3.26802)
 texture = ExtResource("44_x68rp")
+metadata/_edit_lock_ = true
 
 [node name="BlackMask3" type="Sprite2D" parent="AreaMasks"]
 top_level = true
@@ -1820,6 +1827,7 @@ z_index = 4
 position = Vector2(-822, 688)
 scale = Vector2(2.75409, 3.26802)
 texture = ExtResource("44_x68rp")
+metadata/_edit_lock_ = true
 
 [node name="BlackMask4" type="Sprite2D" parent="AreaMasks"]
 top_level = true
@@ -1827,6 +1835,7 @@ z_index = 4
 position = Vector2(-366, 1364)
 scale = Vector2(2.75409, 3.26802)
 texture = ExtResource("44_x68rp")
+metadata/_edit_lock_ = true
 
 [node name="BlackMask5" type="Sprite2D" parent="AreaMasks"]
 top_level = true
@@ -1834,6 +1843,7 @@ z_index = 4
 position = Vector2(172, 1606)
 scale = Vector2(2.75409, 3.26802)
 texture = ExtResource("44_x68rp")
+metadata/_edit_lock_ = true
 
 [node name="BlackMask9" type="Sprite2D" parent="AreaMasks"]
 top_level = true
@@ -1841,6 +1851,7 @@ z_index = 4
 position = Vector2(741, 2059)
 scale = Vector2(2.75409, 3.26802)
 texture = ExtResource("44_x68rp")
+metadata/_edit_lock_ = true
 
 [node name="BlackMask10" type="Sprite2D" parent="AreaMasks"]
 top_level = true
@@ -1848,6 +1859,7 @@ z_index = 4
 position = Vector2(1159, 2606)
 scale = Vector2(2.75409, 3.26802)
 texture = ExtResource("44_x68rp")
+metadata/_edit_lock_ = true
 
 [node name="BlackMask11" type="Sprite2D" parent="AreaMasks"]
 top_level = true
@@ -1855,6 +1867,7 @@ z_index = 4
 position = Vector2(2195, 2593)
 scale = Vector2(2.75409, 3.26802)
 texture = ExtResource("44_x68rp")
+metadata/_edit_lock_ = true
 
 [node name="BlackMask12" type="Sprite2D" parent="AreaMasks"]
 top_level = true
@@ -1862,6 +1875,7 @@ z_index = 4
 position = Vector2(1603, 2638)
 scale = Vector2(2.75409, 3.26802)
 texture = ExtResource("44_x68rp")
+metadata/_edit_lock_ = true
 
 [node name="BlackMask13" type="Sprite2D" parent="AreaMasks"]
 top_level = true
@@ -1869,6 +1883,7 @@ z_index = 4
 position = Vector2(2735, 2383)
 scale = Vector2(2.75409, 3.26802)
 texture = ExtResource("44_x68rp")
+metadata/_edit_lock_ = true
 
 [node name="BlackMask14" type="Sprite2D" parent="AreaMasks"]
 top_level = true
@@ -1876,6 +1891,7 @@ z_index = 4
 position = Vector2(3174, 1773)
 scale = Vector2(2.75409, 3.26802)
 texture = ExtResource("44_x68rp")
+metadata/_edit_lock_ = true
 
 [node name="BlackMask15" type="Sprite2D" parent="AreaMasks"]
 top_level = true
@@ -1883,6 +1899,7 @@ z_index = 4
 position = Vector2(3150, 1243)
 scale = Vector2(2.75409, 3.26802)
 texture = ExtResource("44_x68rp")
+metadata/_edit_lock_ = true
 
 [node name="BlackMask16" type="Sprite2D" parent="AreaMasks"]
 top_level = true
@@ -1890,6 +1907,7 @@ z_index = 4
 position = Vector2(3072, 763)
 scale = Vector2(2.75409, 3.26802)
 texture = ExtResource("44_x68rp")
+metadata/_edit_lock_ = true
 
 [node name="BlackMask17" type="Sprite2D" parent="AreaMasks"]
 top_level = true
@@ -1897,6 +1915,7 @@ z_index = 4
 position = Vector2(3013, 364)
 scale = Vector2(2.75409, 3.26802)
 texture = ExtResource("44_x68rp")
+metadata/_edit_lock_ = true
 
 [node name="BlackMask18" type="Sprite2D" parent="AreaMasks"]
 top_level = true
@@ -1904,6 +1923,7 @@ z_index = 4
 position = Vector2(2704, -147)
 scale = Vector2(2.75409, 3.26802)
 texture = ExtResource("44_x68rp")
+metadata/_edit_lock_ = true
 
 [node name="BlackMask19" type="Sprite2D" parent="AreaMasks"]
 top_level = true
@@ -1911,6 +1931,7 @@ z_index = 4
 position = Vector2(2038, -494)
 scale = Vector2(2.75409, 3.26802)
 texture = ExtResource("44_x68rp")
+metadata/_edit_lock_ = true
 
 [node name="BlackMask20" type="Sprite2D" parent="AreaMasks"]
 top_level = true
@@ -1918,6 +1939,7 @@ z_index = 4
 position = Vector2(1374, -746)
 scale = Vector2(2.75409, 3.26802)
 texture = ExtResource("44_x68rp")
+metadata/_edit_lock_ = true
 
 [node name="BlackMask21" type="Sprite2D" parent="AreaMasks"]
 top_level = true
@@ -1925,6 +1947,7 @@ z_index = 4
 position = Vector2(817, -596)
 scale = Vector2(2.75409, 3.26802)
 texture = ExtResource("44_x68rp")
+metadata/_edit_lock_ = true
 
 [node name="BlackMask22" type="Sprite2D" parent="AreaMasks"]
 top_level = true
@@ -1932,6 +1955,7 @@ z_index = 4
 position = Vector2(108, -822)
 scale = Vector2(2.75409, 3.26802)
 texture = ExtResource("44_x68rp")
+metadata/_edit_lock_ = true
 
 [node name="BlackMask23" type="Sprite2D" parent="AreaMasks"]
 top_level = true
@@ -1939,6 +1963,7 @@ z_index = 4
 position = Vector2(-318, -827)
 scale = Vector2(2.75409, 3.26802)
 texture = ExtResource("44_x68rp")
+metadata/_edit_lock_ = true
 
 [node name="BlackMask6" type="Sprite2D" parent="AreaMasks"]
 top_level = true
@@ -1946,6 +1971,7 @@ z_index = 4
 position = Vector2(596, 1583)
 scale = Vector2(2.75409, 3.26802)
 texture = ExtResource("44_x68rp")
+metadata/_edit_lock_ = true
 
 [node name="BlackMask7" type="Sprite2D" parent="AreaMasks"]
 top_level = true
@@ -1953,6 +1979,7 @@ z_index = 4
 position = Vector2(1102, 1395)
 scale = Vector2(1.8754, 1.85964)
 texture = ExtResource("44_x68rp")
+metadata/_edit_lock_ = true
 
 [node name="BlackMask8" type="Sprite2D" parent="AreaMasks"]
 top_level = true
@@ -1961,6 +1988,7 @@ position = Vector2(1510, 1258)
 rotation = -0.192104
 scale = Vector2(2.10872, 1.00917)
 texture = ExtResource("44_x68rp")
+metadata/_edit_lock_ = true
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 z_index = 4
