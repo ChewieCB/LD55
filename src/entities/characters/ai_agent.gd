@@ -115,7 +115,7 @@ func _attack(attack: AttackResource):
 				var _particles_clone = particles.duplicate()
 				_target.add_child(_particles_clone)
 				_particles_clone.finished.connect(
-					func(): 
+					func():
 					particles.queue_free()
 				)
 				particles.queue_free()
@@ -124,7 +124,7 @@ func _attack(attack: AttackResource):
 		
 		if particles:
 			particles.finished.connect(
-				func(): 
+				func():
 				particles.queue_free()
 			)
 		
@@ -143,7 +143,7 @@ func _attack(attack: AttackResource):
 			# We need to pass 0.5 to stagger, and 0.9 to stun
 			# TODO - playtest and tweak this
 			var stagger_chance = clamp(
-				(0.8 - randf()) + attack.control,# + target.attributes.dexterity,
+				(0.8 - randf()) + attack.control, # + target.attributes.dexterity,
 				0.0,
 				1.0
 			)
@@ -210,5 +210,7 @@ func _die():
 	pass
 
 func _on_navigation_agent_2d_velocity_computed(safe_velocity):
+	# This caused an error message, but it does not affect gameplay.
+	# Fix: Make sure this func does not run between changing level.
 	velocity = safe_velocity
 	move_and_slide()
