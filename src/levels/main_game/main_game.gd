@@ -31,7 +31,6 @@ func _ready() -> void:
 	main_ui.init_health(crusader.current_health)
 	crusader.health_changed.connect(main_ui._set_health)
 
-
 func sync_graphic_setting():
 	fog_effect.visible = GameManager.weather_enabled
 	rain_effect.visible = GameManager.weather_enabled
@@ -50,4 +49,5 @@ func _on_ritual_site_cleansed():
 		GameManager.end_game(false)
 
 func _on_crusader_killed():
+	print("_on_crusader_killed")
 	GameManager.end_game(true)

@@ -20,6 +20,7 @@ var rain_enabled = true
 var abberation_enabled = true
 
 func _ready():
+	SoundManager.set_sound_volume(0.4)
 	SoundManager.play_music(bgm, 0.0, "Music")
 
 func spawn_minion(minion: MinionBase):
@@ -29,7 +30,7 @@ func spawn_minion(minion: MinionBase):
 func end_game(victory: bool):
 	emit_signal("game_ended")
 	if victory:
-		await crusader.anim_player.animation_finished
+		await get_tree().create_timer(1).timeout
 		endgame_ui.show_win_screen()
 		SoundManager.play_sound(win_sfx)
 	else:

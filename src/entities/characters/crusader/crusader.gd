@@ -331,10 +331,10 @@ func _on_hit_state_entered():
 	state_chart.send_event("end_damage")
 
 func _on_dead_state_entered():
+	emit_signal("death")
 	state_chart.send_event("stop_walking")
 	state_chart.send_event("stop_cleansing")
 	anim_player.play("death")
-	emit_signal("death")
 
 func _on_minion_attack_area_body_entered(body):
 	if body is MinionBase:
@@ -366,7 +366,8 @@ func _on_attack_buildup_timer_timeout():
 	state_chart.send_event("perform_attack")
 
 func _on_walking_state_entered():
-	anim_player.play("walk")
+	if current_health > 0:
+		anim_player.play("walk")
 
 func _on_walking_state_exited():
 	anim_player.stop()

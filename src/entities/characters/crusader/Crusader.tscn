@@ -369,7 +369,6 @@ resource_attributes = ExtResource("2_jwm8m")
 attacks = Array[Resource("res://src/entities/characters/attack_resource.gd")]([ExtResource("3_au4vg"), ExtResource("5_pbuhd"), ExtResource("4_50p0w"), ExtResource("6_0yoop"), ExtResource("7_m83wk")])
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-modulate = Color(1, 1, 1, 0.984688)
 material = SubResource("ShaderMaterial_c218b")
 position = Vector2(-2, -2)
 scale = Vector2(0.1, 0.1)
