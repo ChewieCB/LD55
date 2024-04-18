@@ -16,8 +16,14 @@ var cleanse_progress: float = 0:
 		if cleanse_progress == 100:
 			cleanse()
 
+func _ready() -> void:
+	tree_exited.connect(reset)
+
 func _process(_delta):
 	cleanse_ui.value = cleanse_progress
+
+func reset():
+	SoundManager.stop_sound(ritual_sfx)
 
 func cleanse():
 	anim_player.play("cleansing")
