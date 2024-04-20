@@ -164,7 +164,11 @@ func cast_readied_spell():
 		return
 
 	# Decide how we spawn it
-	var mouse_global_pos = get_global_mouse_position()
+	var spawn_position = get_global_mouse_position()
+	# Lock spawning to within the navigation map
+	var nav_maps = NavigationServer2D.get_maps()
+	spawn_position = NavigationServer2D.map_get_closest_point(nav_maps[0], spawn_position)
+	
 	var prefix_id = EnumAutoload.SpellPrefix.NONE
 	if current_prefix_str:
 		prefix_id = prefix_dict[current_prefix_str].prefix_id
@@ -173,24 +177,24 @@ func cast_readied_spell():
 				# Will spawn 4 in each corner of square shape
 				for i in range(4):
 					var _minion = current_spell.spawn_scene.instantiate()
-					_minion.global_position = mouse_global_pos + Vector2( - 20, -20).rotated(PI / 2 * i)
+					_minion.global_position = spawn_position + Vector2( - 20, -20).rotated(PI / 2 * i)
 					_minion.crusader = crusader
 					GameManager.spawn_minion(_minion)
 			EnumAutoload.SpellPrefix.TRIANGLE:
 				for i in range(3):
 					var _minion = current_spell.spawn_scene.instantiate()
-					_minion.global_position = mouse_global_pos + Vector2( - 20, -20).rotated(PI / 2 * i)
+					_minion.global_position = spawn_position + Vector2( - 20, -20).rotated(PI / 2 * i)
 					_minion.crusader = crusader
 					GameManager.spawn_minion(_minion)
 			EnumAutoload.SpellPrefix.AGILE, EnumAutoload.SpellPrefix.TOUGH:
 				var _minion = current_spell.spawn_scene.instantiate()
-				_minion.global_position = mouse_global_pos
+				_minion.global_position = spawn_position
 				_minion.crusader = crusader
 				_minion.apply_prefix(prefix_id)
 				GameManager.spawn_minion(_minion)
 	else:
 		var _minion = current_spell.spawn_scene.instantiate()
-		_minion.global_position = mouse_global_pos
+		_minion.global_position = spawn_position
 		_minion.crusader = crusader
 		GameManager.spawn_minion(_minion)
 

@@ -139,14 +139,16 @@ attacks = Array[Resource("res://src/entities/characters/attack_resource.gd")]([E
 [node name="Sprite2D" type="Sprite2D" parent="."]
 z_index = 1
 material = SubResource("ShaderMaterial_6onvs")
-position = Vector2(0, 3)
+position = Vector2(0, -25)
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("4_8ic58")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -28)
 shape = SubResource("RectangleShape2D_ci4kf")
 
 [node name="AttackRange" type="Area2D" parent="."]
+position = Vector2(0, -28)
 collision_layer = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackRange"]
