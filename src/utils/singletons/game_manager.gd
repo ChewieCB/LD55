@@ -11,6 +11,7 @@ var game_ui: GameUI
 var main_game: MainGame
 var endgame_ui: EndgameUI
 var crusader: Crusader
+var nav_region: NavigationRegion2D
 var setting_ui: SettingUI
 
 # setting saved here to persist across screen

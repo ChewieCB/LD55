@@ -1,6 +1,7 @@
 extends Node2D
 class_name MainGame
 
+@export var nav_region: NavigationRegion2D
 @export var minion_spawn: Node2D
 @export var crusader: Crusader
 @export var ritual_sites: Node2D
@@ -18,6 +19,7 @@ var sites_cleansed: int = 0
 
 func _ready() -> void:
 	GameManager.main_game = self
+	GameManager.nav_region = nav_region
 	sync_graphic_setting()
 
 	total_ritual_sites = ritual_sites.get_child_count()
