@@ -42,7 +42,7 @@ theme_override_styles/disabled = SubResource("StyleBoxTexture_ykygw")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_fh3vg")
 script = ExtResource("6_qs6r5")
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="MonsterImage" type="TextureRect" parent="."]
 self_modulate = Color(0, 0, 0, 1)
 layout_mode = 1
 anchors_preset = 15
@@ -56,3 +56,10 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("6_4dmuw")
 expand_mode = 3
+
+[node name="PrefixText" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 16.0
+offset_right = 184.0
+offset_bottom = 184.0

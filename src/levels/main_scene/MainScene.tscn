@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://yqaf1cxr4njr"]
+[gd_scene load_steps=26 format=3 uid="uid://yqaf1cxr4njr"]
 
 [ext_resource type="Script" path="res://src/levels/main_scene/main_scene.gd" id="1_vnu07"]
 [ext_resource type="Texture2D" uid="uid://da7l7aali17mh" path="res://assets/cutscene/menu_background.jpg" id="2_o0nl0"]
@@ -10,7 +10,14 @@
 [ext_resource type="Shader" path="res://src/utils/shaders/crt_scanline.gdshader" id="7_ruhtu"]
 [ext_resource type="PackedScene" uid="uid://bxx1nm1l0sl14" path="res://src/levels/main_scene/SpellbookButton.tscn" id="8_6dmx2"]
 [ext_resource type="Script" path="res://src/levels/main_scene/spell_book.gd" id="8_webuq"]
+[ext_resource type="Resource" uid="uid://divo10l1etcrb" path="res://src/entities/player/prefix/square.tres" id="9_dibs5"]
+[ext_resource type="Resource" uid="uid://cj3odtgn32j5g" path="res://src/entities/player/prefix/triangle.tres" id="10_3m0va"]
+[ext_resource type="Resource" uid="uid://deu8alrv0hxfy" path="res://src/entities/player/prefix/agile.tres" id="11_hgaga"]
+[ext_resource type="Resource" uid="uid://d002fmxjkp77y" path="res://src/entities/player/prefix/tough.tres" id="12_lbfy0"]
 [ext_resource type="Texture2D" uid="uid://ct4iw3ibf12mp" path="res://assets/sprite/characters/minions/SkeletonSkeleton.png" id="13_ffyxx"]
+[ext_resource type="Resource" uid="uid://bhp86ov0smg50" path="res://src/entities/player/spell/summon_zombie.tres" id="13_hhtpf"]
+[ext_resource type="Resource" uid="uid://ix73paims45p" path="res://src/entities/player/spell/summon_skeleton.tres" id="14_8s7o0"]
+[ext_resource type="Resource" uid="uid://bn2w8ekgluaum" path="res://src/entities/player/spell/summon_tentacle.tres" id="15_xfiif"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rl01p"]
 
@@ -290,6 +297,9 @@ offset_right = 1152.0
 offset_bottom = -64.0
 grow_vertical = 0
 script = ExtResource("8_webuq")
+prefix_data = Array[Resource("res://src/entities/player/prefix/spell_prefix_resource.gd")]([ExtResource("9_dibs5"), ExtResource("10_3m0va"), ExtResource("11_hgaga"), ExtResource("12_lbfy0")])
+spell_data = Array[Resource("res://src/entities/player/spell/spell_main_resource.gd")]([ExtResource("13_hhtpf"), ExtResource("14_8s7o0"), ExtResource("15_xfiif")])
+spellbook_button_prefab = ExtResource("8_6dmx2")
 
 [node name="BG" type="ColorRect" parent="CanvasLayer/Spellbook"]
 layout_mode = 1

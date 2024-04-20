@@ -1,6 +1,7 @@
-[gd_resource type="Resource" script_class="SpellMainResource" load_steps=3 format=3 uid="uid://bn2w8ekgluaum"]
+[gd_resource type="Resource" script_class="SpellMainResource" load_steps=4 format=3 uid="uid://bn2w8ekgluaum"]
 
 [ext_resource type="Script" path="res://src/entities/player/spell/spell_main_resource.gd" id="1_3jjh5"]
+[ext_resource type="Texture2D" uid="uid://bsyg5rcv87bfk" path="res://assets/sprite/characters/minions/tentacle.png" id="1_urp7j"]
 [ext_resource type="PackedScene" uid="uid://p4y5na38iohw" path="res://src/entities/characters/minions/Tentacle.tscn" id="2_sgmer"]
 
 [resource]
@@ -9,5 +10,6 @@ name = "Tentacle"
 input = "RRLLUD"
 spell_id = 4
 spawn_scene = ExtResource("2_sgmer")
+monster_sprite = ExtResource("1_urp7j")
 cooldown = 8.2
 description = "Summon the powerful Tentacles."
