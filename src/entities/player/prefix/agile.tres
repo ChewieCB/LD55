@@ -8,4 +8,5 @@ name = "Agile"
 input = "LRLRLR"
 prefix_id = 3
 cooldown = 3.0
-description = "Enhance the summon speed and attack speed."
+tooltip_description = "Enhance the movement and attack speed of the summoned unit."
+spellbook_description = "Enhance the summoned unit's movement speed by 40% and attack speed by 100%. This also make the unit smaller and harder to hit."

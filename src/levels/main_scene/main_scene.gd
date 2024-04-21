@@ -3,6 +3,7 @@ extends Node2D
 @export var animated_buttons: Array[Button] = []
 
 @onready var tutorial = $CanvasLayer/Tutorial
+@onready var spellbook: SpellbookUI = $CanvasLayer/Spellbook
 @onready var intro_cutscene: TabContainer = $CanvasLayer/Cutscene
 
 var max_tab: int
@@ -34,6 +35,7 @@ func _on_tutorial_button_pressed() -> void:
 
 func _on_spellbook_button_pressed() -> void:
 	Utils.play_button_click_sfx()
+	spellbook.toggle_ui()
 
 func _on_quit_button_pressed() -> void:
 	Utils.play_button_click_sfx()

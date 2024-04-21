@@ -34,12 +34,13 @@ theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
 theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
 theme_override_colors/font_disabled_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("1_iq7g5")
-theme_override_font_sizes/font_size = 34
+theme_override_font_sizes/font_size = 38
 theme_override_styles/normal = SubResource("StyleBoxTexture_nhy34")
 theme_override_styles/hover = SubResource("StyleBoxTexture_37hls")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_ffu0g")
 theme_override_styles/disabled = SubResource("StyleBoxTexture_ykygw")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_fh3vg")
+text = "Square"
 script = ExtResource("6_qs6r5")
 
 [node name="MonsterImage" type="TextureRect" parent="."]
@@ -54,12 +55,9 @@ offset_right = -16.0
 offset_bottom = -16.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 texture = ExtResource("6_4dmuw")
 expand_mode = 3
 
-[node name="PrefixText" type="RichTextLabel" parent="."]
-layout_mode = 0
-offset_left = 24.0
-offset_top = 16.0
-offset_right = 184.0
-offset_bottom = 184.0
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="pressed" from="." to="." method="_on_pressed"]

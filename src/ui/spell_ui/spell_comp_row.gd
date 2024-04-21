@@ -22,7 +22,7 @@ func populate_spell_data(data: SpellMainResource):
 	prefix_data = null
 	name_label.text = "[right][wave]{0}[/wave][/right]".format([data.name])
 	input_label.text = "[center]-{0}-[/center]".format([Utils.convert_text_to_arrow(data.input, "black")])
-	desc_label.text = data.description
+	desc_label.text = data.tooltip_description
 	cooldown_bar.fill_mode = TextureProgressBar.FILL_RIGHT_TO_LEFT
 	GameManager.player_control.spell_casted.connect(check_cooldown)
 
@@ -31,7 +31,7 @@ func populate_prefix_data(data: SpellPrefixResource):
 	prefix_data = data
 	name_label.text = "[wave]{0}[/wave]".format([data.name])
 	input_label.text = "[center]-{0}-[/center]".format([Utils.convert_text_to_arrow(data.input, "black")])
-	desc_label.text = data.description
+	desc_label.text = data.tooltip_description
 	GameManager.player_control.spell_casted.connect(check_cooldown)
 
 func check_cooldown(prefix_id: EnumAutoload.SpellPrefix, spell_id: EnumAutoload.SpellMain):

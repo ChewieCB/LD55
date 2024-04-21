@@ -2,26 +2,32 @@ extends Button
 class_name SpellbookButton
 
 @onready var monster_image: TextureRect = $MonsterImage
-@onready var prefix_text: RichTextLabel = $PrefixText
 
 var spell_data: SpellMainResource
 var prefix_data: SpellPrefixResource
+var spellbook_ui: SpellbookUI
 
 func _ready():
 	text = ""
 	monster_image.texture = null
-	prefix_text.text = ""
 
 
 func populate_spell_data(data: SpellMainResource):
 	spell_data = data
 	prefix_data = null
-	monster_image.texture = data.monster_sprite
-	# set("theme_override_colors/font_color", Color.GREEN)
-	# text = spell_data.name
+	monster_image.texture = data.spell_sprite
 
 func populate_prefix_data(data: SpellPrefixResource):
 	spell_data = null
 	prefix_data = data
-	set("theme_override_colors/font_color", Color.YELLOW)
 	text = prefix_data.name
+
+func _on_mouse_entered():
+	Utils.play_button_hover_sfx()
+
+func _on_pressed():
+	if spell_data != null:
+		spellbook_ui.load_spell_detail_view(spell_data)
+	else:
+		spellbook_ui.load_prefix_detail_view(prefix_data)
+	Utils.play_button_click_sfx()

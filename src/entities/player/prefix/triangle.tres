@@ -8,4 +8,5 @@ name = "Triangle"
 input = "ULR"
 prefix_id = 2
 cooldown = 4.0
-description = "Summon in a triangle-shaped group."
+tooltip_description = "Summon units in a triangle-shaped group."
+spellbook_description = "Summon 3 units in a square-shaped group."

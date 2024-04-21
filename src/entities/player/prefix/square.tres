@@ -8,4 +8,5 @@ name = "Square"
 input = "ULDR"
 prefix_id = 1
 cooldown = 5.0
-description = "Summon in a square-shaped group."
+tooltip_description = "Summon units in a square-shaped group."
+spellbook_description = "Summon 4 units in a square-shaped group."

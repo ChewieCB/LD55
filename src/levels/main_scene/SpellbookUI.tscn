@@ -1,0 +1,185 @@
+[gd_scene load_steps=16 format=3 uid="uid://c2ceig8kjrlvv"]
+
+[ext_resource type="Script" path="res://src/levels/main_scene/spellbook_ui.gd" id="1_1851x"]
+[ext_resource type="Resource" uid="uid://divo10l1etcrb" path="res://src/entities/player/prefix/square.tres" id="2_n1xjf"]
+[ext_resource type="Resource" uid="uid://cj3odtgn32j5g" path="res://src/entities/player/prefix/triangle.tres" id="3_04kwi"]
+[ext_resource type="Resource" uid="uid://deu8alrv0hxfy" path="res://src/entities/player/prefix/agile.tres" id="4_2hgv6"]
+[ext_resource type="Resource" uid="uid://d002fmxjkp77y" path="res://src/entities/player/prefix/tough.tres" id="5_vk3d6"]
+[ext_resource type="Resource" uid="uid://bhp86ov0smg50" path="res://src/entities/player/spell/summon_zombie.tres" id="6_rdha5"]
+[ext_resource type="Resource" uid="uid://ix73paims45p" path="res://src/entities/player/spell/summon_skeleton.tres" id="7_gmqqe"]
+[ext_resource type="Resource" uid="uid://bn2w8ekgluaum" path="res://src/entities/player/spell/summon_tentacle.tres" id="8_aq28s"]
+[ext_resource type="PackedScene" uid="uid://bxx1nm1l0sl14" path="res://src/levels/main_scene/SpellbookButton.tscn" id="9_jwt4q"]
+[ext_resource type="Texture2D" uid="uid://cahh042xli854" path="res://assets/ui/kenney_borders/Default/Border/panel-border-000.png" id="10_oguw8"]
+[ext_resource type="FontFile" uid="uid://b21yg3y2byt8f" path="res://assets/fonts/AvQest.ttf" id="11_uwy4r"]
+[ext_resource type="Texture2D" uid="uid://ct4iw3ibf12mp" path="res://assets/sprite/characters/minions/SkeletonSkeleton.png" id="12_jsewv"]
+[ext_resource type="PackedScene" uid="uid://dj18tmsspff4d" path="res://src/ui/common/StyledButton.tscn" id="13_yu28g"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rl01p"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_j72yo"]
+
+[node name="Spellbook" type="Control"]
+layout_mode = 3
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -1080.0
+offset_right = 1088.0
+offset_bottom = -504.0
+grow_vertical = 0
+script = ExtResource("1_1851x")
+prefix_data = Array[Resource("res://src/entities/player/prefix/spell_prefix_resource.gd")]([ExtResource("2_n1xjf"), ExtResource("3_04kwi"), ExtResource("4_2hgv6"), ExtResource("5_vk3d6")])
+spell_data = Array[Resource("res://src/entities/player/spell/spell_main_resource.gd")]([ExtResource("6_rdha5"), ExtResource("7_gmqqe"), ExtResource("8_aq28s")])
+spellbook_button_prefab = ExtResource("9_jwt4q")
+
+[node name="BG" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.882353)
+
+[node name="NinePatchRect" type="NinePatchRect" parent="BG"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("10_oguw8")
+patch_margin_left = 20
+patch_margin_top = 20
+patch_margin_right = 20
+patch_margin_bottom = 20
+
+[node name="TabContainer" type="TabContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_rl01p")
+theme_override_styles/tabbar_background = SubResource("StyleBoxEmpty_j72yo")
+tabs_visible = false
+
+[node name="Overview" type="Control" parent="TabContainer"]
+layout_mode = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="TabContainer/Overview"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 32.0
+offset_top = 72.0
+offset_right = -32.0
+offset_bottom = -32.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GridContainer" type="GridContainer" parent="TabContainer/Overview/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/h_separation = 20
+theme_override_constants/v_separation = 20
+columns = 4
+
+[node name="Button" parent="TabContainer/Overview/ScrollContainer/GridContainer" instance=ExtResource("9_jwt4q")]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+
+[node name="Detail" type="Control" parent="TabContainer"]
+visible = false
+layout_mode = 2
+
+[node name="Desc" type="RichTextLabel" parent="TabContainer/Detail"]
+layout_mode = 0
+offset_left = 576.0
+offset_top = 64.0
+offset_right = 1024.0
+offset_bottom = 464.0
+theme_override_fonts/normal_font = ExtResource("11_uwy4r")
+theme_override_font_sizes/normal_font_size = 30
+bbcode_enabled = true
+text = "[center][wave]Skeleton[/wave][/center]
+
+Some description here
+
+
+
+Stat here
+hp
+atk"
+
+[node name="SpellBorder" type="NinePatchRect" parent="TabContainer/Detail"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -488.0
+offset_top = -224.0
+offset_right = -40.0
+offset_bottom = 224.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("10_oguw8")
+patch_margin_left = 20
+patch_margin_top = 20
+patch_margin_right = 20
+patch_margin_bottom = 20
+
+[node name="SpellSprite" type="TextureRect" parent="TabContainer/Detail/SpellBorder"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -176.0
+offset_top = -176.0
+offset_right = 176.0
+offset_bottom = 176.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("12_jsewv")
+expand_mode = 3
+
+[node name="BackButton" parent="TabContainer/Detail" instance=ExtResource("13_yu28g")]
+custom_minimum_size = Vector2(180, 0)
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -376.0
+offset_top = -88.0
+offset_right = -196.0
+offset_bottom = -44.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_font_sizes/font_size = 34
+text = "Back"
+
+[node name="DontRemoveThisCRTNeedIt" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -216.0
+offset_top = -600.0
+offset_right = 968.0
+offset_bottom = 208.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0)
+
+[connection signal="pressed" from="TabContainer/Detail/BackButton" to="." method="_on_back_button_pressed"]
