@@ -41,7 +41,7 @@ theme_override_constants/shadow_outline_size = 3
 theme_override_fonts/normal_font = ExtResource("1_tx8xt")
 theme_override_font_sizes/normal_font_size = 24
 bbcode_enabled = true
-text = "[center]-ULDR[img=30]res://assets/sprite/arrow_up.png[/img]-[/center]"
+text = "[center]-ULDR[img=30]res://assets/ui/arrow_up.png[/img]-[/center]"
 fit_content = true
 scroll_active = false
 
