@@ -8,4 +8,5 @@ name = "Tough"
 input = "UDLRDU"
 prefix_id = 4
 cooldown = 3.0
-description = "Enhance the summon max health."
+tooltip_description = "Enhance the maximum health of the summoned unit."
+spellbook_description = "Enhance the summoned unit's maximum health by 100%. This also make the unit bigger."

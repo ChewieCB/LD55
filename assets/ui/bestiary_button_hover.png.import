@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://1hj5sql37v51"
-path="res://.godot/imported/star.png-b85e75bc85a14415802ec36242bf22cf.ctex"
+uid="uid://ck4g4s464lo5u"
+path="res://.godot/imported/bestiary_button_hover.png-6dd3d30c84d2a068ff545d0d00a386d0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprite/star.png"
-dest_files=["res://.godot/imported/star.png-b85e75bc85a14415802ec36242bf22cf.ctex"]
+source_file="res://assets/ui/bestiary_button_hover.png"
+dest_files=["res://.godot/imported/bestiary_button_hover.png-6dd3d30c84d2a068ff545d0d00a386d0.ctex"]
 
 [params]
 

@@ -1,6 +1,7 @@
-[gd_resource type="Resource" script_class="SpellMainResource" load_steps=3 format=3 uid="uid://ix73paims45p"]
+[gd_resource type="Resource" script_class="SpellMainResource" load_steps=4 format=3 uid="uid://ix73paims45p"]
 
 [ext_resource type="PackedScene" uid="uid://iqw1g1onexq2" path="res://src/entities/characters/minions/Skeleton.tscn" id="1_i3si7"]
+[ext_resource type="Texture2D" uid="uid://ct4iw3ibf12mp" path="res://assets/sprite/characters/minions/SkeletonSkeleton.png" id="1_leowu"]
 [ext_resource type="Script" path="res://src/entities/player/spell/spell_main_resource.gd" id="2_h8q7d"]
 
 [resource]
@@ -9,5 +10,7 @@ name = "Skeleton"
 input = "RLDD"
 spell_id = 3
 spawn_scene = ExtResource("1_i3si7")
+spell_sprite = ExtResource("1_leowu")
 cooldown = 2.6
-description = "Summon the elite Skeletons."
+tooltip_description = "Summon the elite Skeleton."
+spellbook_description = "The Skeletons are stronger than Zombie and can be powerful if summoned in a group."

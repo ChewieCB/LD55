@@ -1,7 +1,8 @@
-[gd_resource type="Resource" script_class="SpellMainResource" load_steps=3 format=3 uid="uid://bhp86ov0smg50"]
+[gd_resource type="Resource" script_class="SpellMainResource" load_steps=4 format=3 uid="uid://bhp86ov0smg50"]
 
 [ext_resource type="PackedScene" uid="uid://c7jvs3fcwp2j1" path="res://src/entities/characters/minions/Zombie.tscn" id="1_0lq4h"]
 [ext_resource type="Script" path="res://src/entities/player/spell/spell_main_resource.gd" id="1_fdbb7"]
+[ext_resource type="Texture2D" uid="uid://c5iybko3t607a" path="res://assets/sprite/characters/minions/zombie.png" id="1_qr3gf"]
 
 [resource]
 script = ExtResource("1_fdbb7")
@@ -9,5 +10,7 @@ name = "Zombie"
 input = "DDD"
 spell_id = 1
 spawn_scene = ExtResource("1_0lq4h")
+spell_sprite = ExtResource("1_qr3gf")
 cooldown = 0.5
-description = "Summon the cost-efficient Zombies."
+tooltip_description = "Summon the low-power yet supportive Zombie."
+spellbook_description = "The Zombie is a very easy to summon unit and their attack has slow effect. However, they are very fragile and has low attack power."

@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://yqaf1cxr4njr"]
+[gd_scene load_steps=15 format=3 uid="uid://yqaf1cxr4njr"]
 
 [ext_resource type="Script" path="res://src/levels/main_scene/main_scene.gd" id="1_vnu07"]
 [ext_resource type="Texture2D" uid="uid://da7l7aali17mh" path="res://assets/cutscene/menu_background.jpg" id="2_o0nl0"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://bnyh2q7x1nuyk" path="res://assets/cutscene/tutorial.png" id="5_fhexy"]
 [ext_resource type="Texture2D" uid="uid://cahh042xli854" path="res://assets/ui/kenney_borders/Default/Border/panel-border-000.png" id="6_22r4t"]
 [ext_resource type="Shader" path="res://src/utils/shaders/crt_scanline.gdshader" id="7_ruhtu"]
+[ext_resource type="PackedScene" uid="uid://c2ceig8kjrlvv" path="res://src/levels/main_scene/SpellbookUI.tscn" id="8_rm70n"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_t43mp"]
 
@@ -86,7 +87,7 @@ _data = {
 [node name="MainScene" type="Node2D" node_paths=PackedStringArray("animated_buttons")]
 process_mode = 3
 script = ExtResource("1_vnu07")
-animated_buttons = [NodePath("CanvasLayer/Menu/ButtonBackgroundWrapper/ButtonBackground/StartButton"), NodePath("CanvasLayer/Menu/ButtonBackgroundWrapper/ButtonBackground/TutorialButton"), NodePath("CanvasLayer/Menu/ButtonBackgroundWrapper/ButtonBackground/QuitButton")]
+animated_buttons = [NodePath("CanvasLayer/Menu/ButtonBackgroundWrapper/ButtonBackground/VBoxContainer/StartButton"), NodePath("CanvasLayer/Menu/ButtonBackgroundWrapper/ButtonBackground/VBoxContainer/TutorialButton"), NodePath("CanvasLayer/Menu/ButtonBackgroundWrapper/ButtonBackground/VBoxContainer/SpellbookButton"), NodePath("CanvasLayer/Menu/ButtonBackgroundWrapper/ButtonBackground/VBoxContainer/QuitButton")]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -122,16 +123,6 @@ Death Resurrection[/left][/wave][/center]"
 fit_content = true
 scroll_active = false
 
-[node name="DontRemoveThisCRTNeedIt" type="ColorRect" parent="CanvasLayer/Menu"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-color = Color(0, 0, 0, 0)
-
 [node name="ButtonBackgroundWrapper" type="Control" parent="CanvasLayer/Menu"]
 layout_mode = 1
 anchors_preset = 11
@@ -156,51 +147,31 @@ grow_horizontal = 0
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
-[node name="StartButton" parent="CanvasLayer/Menu/ButtonBackgroundWrapper/ButtonBackground" instance=ExtResource("4_df5ml")]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -150.0
-offset_top = 136.0
-offset_right = 150.0
-offset_bottom = 213.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Menu/ButtonBackgroundWrapper/ButtonBackground"]
+layout_mode = 0
+offset_left = 72.0
+offset_top = 736.0
+offset_right = 372.0
+offset_bottom = 1104.0
+theme_override_constants/separation = 20
+
+[node name="StartButton" parent="CanvasLayer/Menu/ButtonBackgroundWrapper/ButtonBackground/VBoxContainer" instance=ExtResource("4_df5ml")]
+layout_mode = 2
 text = "Start"
 script = ExtResource("4_b7wsb")
 
-[node name="TutorialButton" parent="CanvasLayer/Menu/ButtonBackgroundWrapper/ButtonBackground" instance=ExtResource("4_df5ml")]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -150.0
-offset_top = 232.0
-offset_right = 150.0
-offset_bottom = 317.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="TutorialButton" parent="CanvasLayer/Menu/ButtonBackgroundWrapper/ButtonBackground/VBoxContainer" instance=ExtResource("4_df5ml")]
+layout_mode = 2
 text = "Tutorial"
 script = ExtResource("4_b7wsb")
 
-[node name="QuitButton" parent="CanvasLayer/Menu/ButtonBackgroundWrapper/ButtonBackground" instance=ExtResource("4_df5ml")]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -150.0
-offset_top = 336.0
-offset_right = 150.0
-offset_bottom = 421.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="SpellbookButton" parent="CanvasLayer/Menu/ButtonBackgroundWrapper/ButtonBackground/VBoxContainer" instance=ExtResource("4_df5ml")]
+layout_mode = 2
+text = "Spellbook"
+script = ExtResource("4_b7wsb")
+
+[node name="QuitButton" parent="CanvasLayer/Menu/ButtonBackgroundWrapper/ButtonBackground/VBoxContainer" instance=ExtResource("4_df5ml")]
+layout_mode = 2
 text = "Quit"
 script = ExtResource("4_b7wsb")
 
@@ -235,6 +206,7 @@ patch_margin_right = 20
 patch_margin_bottom = 20
 
 [node name="Tutorial" type="Control" parent="CanvasLayer"]
+visible = false
 layout_mode = 3
 anchors_preset = 2
 anchor_top = 1.0
@@ -253,6 +225,19 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0.882353)
+
+[node name="NinePatchRect" type="NinePatchRect" parent="CanvasLayer/Tutorial/ColorRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("6_22r4t")
+patch_margin_left = 20
+patch_margin_top = 20
+patch_margin_right = 20
+patch_margin_bottom = 20
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer/Tutorial"]
 layout_mode = 1
@@ -288,20 +273,15 @@ text = "- Use a sequence of arrows (WASD) to prepare spells.
 "
 autowrap_mode = 2
 
-[node name="NinePatchRect" type="NinePatchRect" parent="CanvasLayer/Tutorial"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("6_22r4t")
-patch_margin_left = 20
-patch_margin_top = 20
-patch_margin_right = 20
-patch_margin_bottom = 20
+[node name="Spellbook" parent="CanvasLayer" instance=ExtResource("8_rm70n")]
+visible = false
+offset_left = 64.0
+offset_top = -632.0
+offset_right = 1152.0
+offset_bottom = -56.0
 
 [node name="Cutscene" type="TabContainer" parent="CanvasLayer"]
+visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -309,11 +289,9 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_t43mp")
 theme_override_styles/tabbar_background = SubResource("StyleBoxEmpty_6p53p")
-current_tab = 2
 tabs_visible = false
 
 [node name="YouEvil" type="ColorRect" parent="CanvasLayer/Cutscene"]
-visible = false
 layout_mode = 2
 color = Color(0, 0, 0, 1)
 
@@ -391,6 +369,7 @@ text = "Then, as if out of nowhere, a powerful crusader from some holy order ent
 autowrap_mode = 2
 
 [node name="Defend" type="ColorRect" parent="CanvasLayer/Cutscene"]
+visible = false
 layout_mode = 2
 color = Color(0, 0, 0, 1)
 
@@ -442,9 +421,11 @@ libraries = {
 }
 autoplay = "start"
 
-[connection signal="mouse_entered" from="CanvasLayer/Menu/ButtonBackgroundWrapper/ButtonBackground/StartButton" to="." method="play_ui_hover_sfx"]
-[connection signal="pressed" from="CanvasLayer/Menu/ButtonBackgroundWrapper/ButtonBackground/StartButton" to="." method="_on_start_button_pressed"]
-[connection signal="mouse_entered" from="CanvasLayer/Menu/ButtonBackgroundWrapper/ButtonBackground/TutorialButton" to="." method="play_ui_hover_sfx"]
-[connection signal="pressed" from="CanvasLayer/Menu/ButtonBackgroundWrapper/ButtonBackground/TutorialButton" to="." method="_on_tutorial_button_pressed"]
-[connection signal="mouse_entered" from="CanvasLayer/Menu/ButtonBackgroundWrapper/ButtonBackground/QuitButton" to="." method="play_ui_hover_sfx"]
-[connection signal="pressed" from="CanvasLayer/Menu/ButtonBackgroundWrapper/ButtonBackground/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="mouse_entered" from="CanvasLayer/Menu/ButtonBackgroundWrapper/ButtonBackground/VBoxContainer/StartButton" to="." method="play_ui_hover_sfx"]
+[connection signal="pressed" from="CanvasLayer/Menu/ButtonBackgroundWrapper/ButtonBackground/VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="mouse_entered" from="CanvasLayer/Menu/ButtonBackgroundWrapper/ButtonBackground/VBoxContainer/TutorialButton" to="." method="play_ui_hover_sfx"]
+[connection signal="pressed" from="CanvasLayer/Menu/ButtonBackgroundWrapper/ButtonBackground/VBoxContainer/TutorialButton" to="." method="_on_tutorial_button_pressed"]
+[connection signal="mouse_entered" from="CanvasLayer/Menu/ButtonBackgroundWrapper/ButtonBackground/VBoxContainer/SpellbookButton" to="." method="play_ui_hover_sfx"]
+[connection signal="pressed" from="CanvasLayer/Menu/ButtonBackgroundWrapper/ButtonBackground/VBoxContainer/SpellbookButton" to="." method="_on_spellbook_button_pressed"]
+[connection signal="mouse_entered" from="CanvasLayer/Menu/ButtonBackgroundWrapper/ButtonBackground/VBoxContainer/QuitButton" to="." method="play_ui_hover_sfx"]
+[connection signal="pressed" from="CanvasLayer/Menu/ButtonBackgroundWrapper/ButtonBackground/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
