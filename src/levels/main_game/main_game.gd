@@ -1,6 +1,7 @@
 extends Node2D
 class_name MainGame
 
+@export var nav_region: NavigationRegion2D
 @export var minion_spawn: Node2D
 @export var crusader: Crusader
 @export var ritual_sites: Node2D
@@ -18,6 +19,7 @@ var sites_cleansed: int = 0
 
 func _ready() -> void:
 	GameManager.main_game = self
+	GameManager.nav_region = nav_region
 	sync_graphic_setting()
 
 	total_ritual_sites = ritual_sites.get_child_count()
@@ -32,8 +34,10 @@ func _ready() -> void:
 	crusader.health_changed.connect(main_ui._set_health)
 
 func sync_graphic_setting():
-	fog_effect.visible = GameManager.weather_enabled
-	rain_effect.visible = GameManager.weather_enabled
+	if fog_effect:
+		fog_effect.visible = GameManager.weather_enabled
+	if rain_effect:
+		rain_effect.visible = GameManager.weather_enabled
 	if GameManager.scanline_enabled:
 		GameManager.main_game.crt_shader.material.set_shader_parameter("scanlines_opacity", 0.4)
 	else:

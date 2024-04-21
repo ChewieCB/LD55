@@ -373,15 +373,16 @@ material = SubResource("ShaderMaterial_c218b")
 position = Vector2(-2, -2)
 scale = Vector2(0.1, 0.1)
 texture = ExtResource("8_thchg")
+offset = Vector2(0, -100)
 
 [node name="GlowSprite" type="Sprite2D" parent="."]
 modulate = Color(1, 1, 1, 0)
 position = Vector2(10, 11)
 scale = Vector2(0.035, 0.035)
 texture = ExtResource("10_dy8i7")
+offset = Vector2(0, -100)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
 shape = SubResource("RectangleShape2D_ci4kf")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
