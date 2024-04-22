@@ -12,6 +12,7 @@ signal spell_casted(prefix_id, spell_id)
 @onready var _summon_sfx_3 = load("res://assets/sfx/summoning/Summoning_noise_3.mp3")
 @onready var _summon_sfx_4 = load("res://assets/sfx/summoning/Summoning_noise_4.mp3")
 @onready var summon_sfx = [_summon_sfx_1, _summon_sfx_2, _summon_sfx_3, _summon_sfx_4]
+var _summon_sfx_full = []
 #
 @onready var _input_sfx_1 = load("res://assets/sfx/Knock_Reverb.mp3")
 @onready var _input_sfx_2 = load("res://assets/sfx/Knock_Reverb_2.mp3")
@@ -20,6 +21,7 @@ signal spell_casted(prefix_id, spell_id)
 @onready var _input_sfx_5 = load("res://assets/sfx/Knock_Reverb_5.mp3")
 @onready var _input_sfx_6 = load("res://assets/sfx/Knock_Reverb_6.mp3")
 @onready var input_sfx = [_input_sfx_1, _input_sfx_2, _input_sfx_3, _input_sfx_4, _input_sfx_5, _input_sfx_6]
+var _input_sfx_full = []
 #
 var prefix_dict = {} # map input to SpellPrefixResource
 var current_spell: SpellMainResource
@@ -79,6 +81,12 @@ func _ready() -> void:
 		prefix_used_timestamp[prefix.prefix_id] = (Time.get_ticks_msec() / 1000.0) - 1000
 	for spell in spells:
 		spell_used_timestamp[spell.spell_id] = (Time.get_ticks_msec() / 1000.0) - 1000
+	
+	randomize()
+	_summon_sfx_full = summon_sfx.duplicate()
+	_summon_sfx_full.shuffle()
+	_input_sfx_full = input_sfx.duplicate()
+	_input_sfx_full.shuffle()
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("confirm_spell"):
@@ -198,8 +206,9 @@ func cast_readied_spell():
 		_minion.crusader = crusader
 		GameManager.spawn_minion(_minion)
 
-	SoundManager.play_sound(summon_sfx[randi_range(0, summon_sfx.size() - 1)])
+	GameManager.play_sfx_shuffled(_summon_sfx_full, summon_sfx)
 	emit_signal("spell_casted", prefix_id, current_spell.spell_id)
+	
 	spell_used_timestamp[current_spell.spell_id] = Time.get_ticks_msec() / 1000.0
 	if prefix_id != EnumAutoload.SpellPrefix.NONE:
 		prefix_used_timestamp[prefix_id] = Time.get_ticks_msec() / 1000.0
@@ -236,7 +245,8 @@ func cast_input(input: String):
 
 	# FIXME - emit a signal using the current_spell signal
 	# GameManager.game_ui.spell_ui.set_spell_label("Input: " + Utils.convert_text_to_arrow(raw_input))
-	SoundManager.play_sound(input_sfx[randi_range(0, input_sfx.size() - 1)])
+	GameManager.play_sfx_shuffled(_input_sfx_full, input_sfx)
+
 
 func play_spell_input_sfx():
 	# TODO: Replace with better sfx

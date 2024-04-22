@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="AttackResource" load_steps=12 format=3 uid="uid://ba11yt4qvy1fc"]
+[gd_resource type="Resource" script_class="AttackResource" load_steps=14 format=3 uid="uid://ba11yt4qvy1fc"]
 
 [ext_resource type="Material" uid="uid://dyiav2l5wpxer" path="res://src/entities/characters/minions/minion_attacks/particle_resources/GrabCanvasItemMaterial.tres" id="1_yosj8"]
 [ext_resource type="Material" uid="uid://0rrnlgpw34g1" path="res://src/entities/characters/minions/minion_attacks/particle_resources/GrabProcessMaterial.tres" id="2_ur8ce"]
@@ -9,8 +9,10 @@
 [ext_resource type="AudioStream" uid="uid://dg7f6c0hu07cn" path="res://assets/sfx/minions/minion_attacks/Hit 5.mp3" id="7_fmcsu"]
 [ext_resource type="AudioStream" uid="uid://dc7yeqx0textd" path="res://assets/sfx/minions/minion_attacks/Hit 6.mp3" id="8_fb5xd"]
 [ext_resource type="AudioStream" uid="uid://c2a4gjo87eorj" path="res://assets/sfx/minions/minion_attacks/Hit 7.mp3" id="9_a3igx"]
+[ext_resource type="AudioStream" uid="uid://p6xdqyyu588x" path="res://assets/sfx/block/Armor Clang 3.mp3" id="10_o26ef"]
 [ext_resource type="Texture2D" uid="uid://43injemtwjgx" path="res://assets/particles/PoisonClaw_96x96.png" id="10_y8yrv"]
 [ext_resource type="Script" path="res://src/entities/characters/attack_resource.gd" id="11_60vcj"]
+[ext_resource type="AudioStream" uid="uid://cm7tvso7to1a0" path="res://assets/sfx/block/Armor Clang 1 (Heavy).mp3" id="11_548ci"]
 
 [resource]
 script = ExtResource("11_60vcj")
@@ -28,4 +30,4 @@ particle_size = 96
 attack_particles_process_mat = ExtResource("2_ur8ce")
 attack_particles_canvas_mat = ExtResource("1_yosj8")
 attack_sfx = Array[AudioStream]([ExtResource("3_2lxap"), ExtResource("4_6uy23"), ExtResource("5_f3826"), ExtResource("6_4vqjs"), ExtResource("7_fmcsu"), ExtResource("8_fb5xd"), ExtResource("9_a3igx")])
-block_sfx = Array[AudioStream]([])
+block_sfx = Array[AudioStream]([ExtResource("10_o26ef"), ExtResource("11_548ci")])

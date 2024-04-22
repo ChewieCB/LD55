@@ -6,7 +6,6 @@ var crusader_target: Vector2
 
 func _spawn():
 	resource_attributes.play_summon_sfx()
-	# TODO - play some animation or effect before beginning the movement
 	health_ui.max_value = attributes.health
 	if attacks:
 		current_attack = attacks[0]
@@ -23,6 +22,7 @@ func _hurt():
 func _die():
 	state_chart.send_event("stop_walking")
 	state_chart.send_event("death")
+	attributes.play_death_sfx()
 
 func _on_idle_state_entered():
 	nav_agent.target_position = global_position

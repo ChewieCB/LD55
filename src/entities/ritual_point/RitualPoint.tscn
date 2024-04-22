@@ -1,8 +1,10 @@
-[gd_scene load_steps=14 format=3 uid="uid://binmlcu1tn3wn"]
+[gd_scene load_steps=16 format=3 uid="uid://binmlcu1tn3wn"]
 
 [ext_resource type="Texture2D" uid="uid://b356n6j567g3d" path="res://assets/temp/juni-bg.png" id="1_kil8c"]
 [ext_resource type="Script" path="res://src/entities/ritual_point/ritual_point.gd" id="1_smowv"]
+[ext_resource type="AudioStream" uid="uid://dpywyaf2b4ohp" path="res://assets/sfx/cleanse/Angelic_Chant_1.mp3" id="2_7iqrk"]
 [ext_resource type="Texture2D" uid="uid://bwf2tcdl5xxjr" path="res://assets/environment/Altar_2x2_Tile1.png" id="2_njwho"]
+[ext_resource type="AudioStream" uid="uid://c1kkvv4hodfoy" path="res://assets/sfx/cleanse/Angelic_Chant_2.mp3" id="3_4l8ix"]
 [ext_resource type="Texture2D" uid="uid://cewud2lc7rcrj" path="res://assets/particles/HolyExplosion_96x96_transparent.png" id="3_xpg1o"]
 [ext_resource type="Texture2D" uid="uid://2tmaxolkdoh3" path="res://assets/ui/kenney_borders/Default/Panel/panel-000.png" id="5_l7h55"]
 
@@ -98,6 +100,7 @@ _data = {
 [node name="RitualPoint" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_smowv")
+cleanse_sfx = Array[AudioStream]([ExtResource("2_7iqrk"), ExtResource("3_4l8ix")])
 
 [node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="."]
 

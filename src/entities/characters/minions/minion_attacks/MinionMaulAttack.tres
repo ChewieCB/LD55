@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="AttackResource" load_steps=11 format=3 uid="uid://nir8erbl55hp"]
+[gd_resource type="Resource" script_class="AttackResource" load_steps=13 format=3 uid="uid://nir8erbl55hp"]
 
 [ext_resource type="Material" uid="uid://da57eu7k40v6l" path="res://src/entities/characters/minions/minion_attacks/particle_resources/MaulCanvasMaterial.tres" id="1_gcwii"]
 [ext_resource type="Material" uid="uid://dh5drr46te2fc" path="res://src/entities/characters/minions/minion_attacks/particle_resources/MaulParticleProcessMaterial.tres" id="2_1ca4b"]
@@ -8,7 +8,9 @@
 [ext_resource type="AudioStream" uid="uid://bxarv20xjs7bc" path="res://assets/sfx/minions/Magic Hit 4.mp3" id="6_duga4"]
 [ext_resource type="AudioStream" uid="uid://6i3n8c3qwr34" path="res://assets/sfx/minions/Magic Hit 5.mp3" id="7_sfii0"]
 [ext_resource type="AudioStream" uid="uid://drbi7lnqmrq4p" path="res://assets/sfx/minions/Magic Hit 6.mp3" id="8_nx4mn"]
+[ext_resource type="AudioStream" uid="uid://cm7tvso7to1a0" path="res://assets/sfx/block/Armor Clang 1 (Heavy).mp3" id="9_6bft1"]
 [ext_resource type="Texture2D" uid="uid://bgyxffrldjerr" path="res://assets/particles/maul/Effect_PuffAndStars_1_120x109.png" id="9_c2dtl"]
+[ext_resource type="AudioStream" uid="uid://p6xdqyyu588x" path="res://assets/sfx/block/Armor Clang 3.mp3" id="10_rulw5"]
 [ext_resource type="Script" path="res://src/entities/characters/attack_resource.gd" id="11_pttu1"]
 
 [resource]
@@ -27,4 +29,4 @@ particle_size = 64
 attack_particles_process_mat = ExtResource("2_1ca4b")
 attack_particles_canvas_mat = ExtResource("1_gcwii")
 attack_sfx = Array[AudioStream]([ExtResource("3_tok0q"), ExtResource("4_5do08"), ExtResource("5_mlg6b"), ExtResource("6_duga4"), ExtResource("7_sfii0"), ExtResource("8_nx4mn")])
-block_sfx = Array[AudioStream]([])
+block_sfx = Array[AudioStream]([ExtResource("9_6bft1"), ExtResource("10_rulw5")])

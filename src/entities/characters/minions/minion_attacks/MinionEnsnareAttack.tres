@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="AttackResource" load_steps=12 format=3 uid="uid://cfv3alq5a0pe4"]
+[gd_resource type="Resource" script_class="AttackResource" load_steps=14 format=3 uid="uid://cfv3alq5a0pe4"]
 
 [ext_resource type="Material" uid="uid://diu2a3513a1mx" path="res://src/entities/characters/minions/minion_attacks/particle_resources/EnsnareCanvasMaterial.tres" id="1_jdtm2"]
 [ext_resource type="Material" uid="uid://45bvflpxe3e3" path="res://src/entities/characters/minions/minion_attacks/particle_resources/EnsnareParticleProcessMaterial.tres" id="2_rvsfa"]
@@ -9,7 +9,9 @@
 [ext_resource type="AudioStream" uid="uid://dg7f6c0hu07cn" path="res://assets/sfx/minions/minion_attacks/Hit 5.mp3" id="7_s2feu"]
 [ext_resource type="AudioStream" uid="uid://dc7yeqx0textd" path="res://assets/sfx/minions/minion_attacks/Hit 6.mp3" id="8_hjs0f"]
 [ext_resource type="AudioStream" uid="uid://c2a4gjo87eorj" path="res://assets/sfx/minions/minion_attacks/Hit 7.mp3" id="9_23jjt"]
+[ext_resource type="AudioStream" uid="uid://p6xdqyyu588x" path="res://assets/sfx/block/Armor Clang 3.mp3" id="10_6p8o4"]
 [ext_resource type="Texture2D" uid="uid://m31rd2s8yfja" path="res://assets/particles/ensnare/Effect_Tentacles_1_453x337.png" id="10_orvvv"]
+[ext_resource type="AudioStream" uid="uid://cm7tvso7to1a0" path="res://assets/sfx/block/Armor Clang 1 (Heavy).mp3" id="11_njsxh"]
 [ext_resource type="Script" path="res://src/entities/characters/attack_resource.gd" id="11_x1pnh"]
 
 [resource]
@@ -28,4 +30,4 @@ particle_size = 96
 attack_particles_process_mat = ExtResource("2_rvsfa")
 attack_particles_canvas_mat = ExtResource("1_jdtm2")
 attack_sfx = Array[AudioStream]([ExtResource("3_7bc0g"), ExtResource("4_tfliv"), ExtResource("5_uia1r"), ExtResource("6_ohqej"), ExtResource("7_s2feu"), ExtResource("8_hjs0f"), ExtResource("9_23jjt")])
-block_sfx = Array[AudioStream]([])
+block_sfx = Array[AudioStream]([ExtResource("10_6p8o4"), ExtResource("11_njsxh")])
