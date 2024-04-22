@@ -24,6 +24,12 @@ func _ready():
 	SoundManager.set_sound_volume(0.4)
 	SoundManager.play_music(bgm, 0.0, "Music")
 
+func play_sfx_shuffled(shuffled_arr: Array[AudioStream], source_arr: Array[AudioStream]):
+	if shuffled_arr.is_empty():
+		shuffled_arr = source_arr.duplicate()
+		shuffled_arr.shuffle()
+	SoundManager.play_sound(shuffled_arr.pop_front())
+
 func spawn_minion(minion: MinionBase):
 	minion.crusader = crusader
 	main_game.minion_spawn.add_child(minion)

@@ -206,11 +206,9 @@ func cast_readied_spell():
 		_minion.crusader = crusader
 		GameManager.spawn_minion(_minion)
 
-	if _summon_sfx_full.is_empty():
-		_summon_sfx_full = summon_sfx.duplicate()
-		_summon_sfx_full.shuffle()
-	SoundManager.play_sound(_summon_sfx_full.pop_front())
+	GameManager.play_sfx_shuffled(_summon_sfx_full, summon_sfx)
 	emit_signal("spell_casted", prefix_id, current_spell.spell_id)
+	
 	spell_used_timestamp[current_spell.spell_id] = Time.get_ticks_msec() / 1000.0
 	if prefix_id != EnumAutoload.SpellPrefix.NONE:
 		prefix_used_timestamp[prefix_id] = Time.get_ticks_msec() / 1000.0
@@ -247,10 +245,7 @@ func cast_input(input: String):
 
 	# FIXME - emit a signal using the current_spell signal
 	# GameManager.game_ui.spell_ui.set_spell_label("Input: " + Utils.convert_text_to_arrow(raw_input))
-	if _input_sfx_full.is_empty():
-		_input_sfx_full = input_sfx.duplicate()
-		_input_sfx_full.shuffle()
-	SoundManager.play_sound(_input_sfx_full.pop_front())
+	GameManager.play_sfx_shuffled(_input_sfx_full, input_sfx)
 
 
 func play_spell_input_sfx():

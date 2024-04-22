@@ -12,6 +12,11 @@ enum Rank {
 @export var summon_sfx: Array[AudioStream]
 var _summon_sfx_full = []
 
+@export var walk_sfx: Array[AudioStream]
+var _walk_sfx_full = []
+@export var death_sfx: Array[AudioStream]
+var _death_sfx_full = []
+
 @export var health: int
 @export var armour: int # Reduced damage taken, ignored by armour-piercing attacks
 @export var speed: float # Movement speed of agent
@@ -28,7 +33,8 @@ func _ready():
 
 
 func play_summon_sfx():
-	if _summon_sfx_full.is_empty():
-		_summon_sfx_full = summon_sfx.duplicate()
-		_summon_sfx_full.shuffle()
-	SoundManager.play_sound(_summon_sfx_full.pop_front())
+	GameManager.play_sfx_shuffled(_summon_sfx_full, summon_sfx)
+
+
+func play_walk_sfx():
+	GameManager.play_sfx_shuffled(_walk_sfx_full, walk_sfx)

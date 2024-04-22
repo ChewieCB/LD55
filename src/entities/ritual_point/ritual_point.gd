@@ -34,11 +34,7 @@ func cleanse():
 func cleanse_complete():
 	# TODO - add buffs to crusader/update loss counter/UI
 	SoundManager.stop_sound(ritual_sfx)
-	
-	if _cleanse_sfx_full.is_empty():
-		_cleanse_sfx_full = cleanse_sfx.duplicate()
-		_cleanse_sfx_full.shuffle()
-	SoundManager.play_sound(_cleanse_sfx_full.pop_front())
+	GameManager.play_sfx_shuffled(_cleanse_sfx_full, cleanse_sfx)
 	
 	anim_player.play("cleanse_complete")
 	await particles.finished
