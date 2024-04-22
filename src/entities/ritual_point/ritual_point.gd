@@ -5,9 +5,8 @@ signal cleansed
 @onready var anim_player = $AnimationPlayer
 @onready var particles = $GPUParticles2D
 @onready var cleanse_ui = $CleanseBar
-@onready var cleanse_sfx_1: AudioStream = load("res://assets/sfx/cleanse/Angelic_Chant_1.mp3")
-@onready var cleanse_sfx_2: AudioStream = load("res://assets/sfx/cleanse/Angelic_Chant_2.mp3")
-@onready var cleanse_sfx = [cleanse_sfx_1, cleanse_sfx_2]
+@export var cleanse_sfx: Array[AudioStream]
+var _cleanse_sfx_full = []
 @onready var ritual_sfx: AudioStream = load("res://assets/sfx/ritual/Control Point Draining 1.mp3")
 
 var cleanse_progress: float = 0:
@@ -18,6 +17,9 @@ var cleanse_progress: float = 0:
 
 func _ready() -> void:
 	tree_exited.connect(reset)
+	randomize()
+	_cleanse_sfx_full = cleanse_sfx.duplicate()
+	_cleanse_sfx_full.shuffle()
 
 func _process(_delta):
 	cleanse_ui.value = cleanse_progress
@@ -32,7 +34,12 @@ func cleanse():
 func cleanse_complete():
 	# TODO - add buffs to crusader/update loss counter/UI
 	SoundManager.stop_sound(ritual_sfx)
-	SoundManager.play_sound(cleanse_sfx[randi_range(0, cleanse_sfx.size() - 1)])
+	
+	if _cleanse_sfx_full.is_empty():
+		_cleanse_sfx_full = cleanse_sfx.duplicate()
+		_cleanse_sfx_full.shuffle()
+	SoundManager.play_sound(_cleanse_sfx_full.pop_front())
+	
 	anim_player.play("cleanse_complete")
 	await particles.finished
 	emit_signal("cleansed")

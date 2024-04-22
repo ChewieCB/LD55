@@ -27,7 +27,18 @@ enum TargetingMode {
 @export var attack_particles_process_mat: ParticleProcessMaterial
 @export var attack_particles_canvas_mat: CanvasItemMaterial
 @export var attack_sfx: Array[AudioStream]
+var _attack_sfx_full = []
 @export var block_sfx: Array[AudioStream]
+var _block_sfx_full = []
+
+
+func _ready():
+	randomize()
+	_attack_sfx_full = attack_sfx.duplicate()
+	_attack_sfx_full.shuffle()
+	_block_sfx_full = block_sfx.duplicate()
+	_block_sfx_full.shuffle()
+
 
 func get_targets(attacker: AIAgent):
 	# Get target
@@ -77,12 +88,16 @@ func get_targets(attacker: AIAgent):
 	
 	return null
 
+
 func play_attack_sfx():
-	# TODO - make these non-sequential
-	if attack_sfx:
-		SoundManager.play_sound(attack_sfx[randi_range(0, attack_sfx.size() - 1)])
+	if _attack_sfx_full.is_empty():
+		_attack_sfx_full = attack_sfx.duplicate()
+		_attack_sfx_full.shuffle()
+	SoundManager.play_sound(_attack_sfx_full.pop_front())
+
 
 func play_block_sfx():
-	# TODO - make these non-sequential
-	if block_sfx:
-		SoundManager.play_sound(block_sfx[randi_range(0, block_sfx.size() - 1)])
+	if _block_sfx_full.is_empty():
+		_block_sfx_full = block_sfx.duplicate()
+		_block_sfx_full.shuffle()
+	SoundManager.play_sound(_block_sfx_full.pop_front())
