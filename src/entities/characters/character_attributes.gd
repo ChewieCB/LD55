@@ -38,3 +38,7 @@ func play_summon_sfx():
 
 func play_walk_sfx():
 	GameManager.play_sfx_shuffled(_walk_sfx_full, walk_sfx)
+
+
+func play_death_sfx():
+	GameManager.play_sfx_shuffled(_death_sfx_full, death_sfx)

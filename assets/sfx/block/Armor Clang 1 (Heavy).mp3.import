@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cm7tvso7to1a0"
+path="res://.godot/imported/Armor Clang 1 (Heavy).mp3-e663dfe24a862ea211dffcc931afe766.mp3str"
+
+[deps]
+
+source_file="res://assets/sfx/block/Armor Clang 1 (Heavy).mp3"
+dest_files=["res://.godot/imported/Armor Clang 1 (Heavy).mp3-e663dfe24a862ea211dffcc931afe766.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

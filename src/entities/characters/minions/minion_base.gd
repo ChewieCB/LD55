@@ -22,6 +22,7 @@ func _hurt():
 func _die():
 	state_chart.send_event("stop_walking")
 	state_chart.send_event("death")
+	attributes.play_death_sfx()
 
 func _on_idle_state_entered():
 	nav_agent.target_position = global_position
